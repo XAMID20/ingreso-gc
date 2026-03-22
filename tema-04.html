@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Tema 4 – Derecho Constitucional | Ingreso GC</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    body{display:flex;flex-direction:column;min-height:100vh;}
+    .topbar{background:var(--verde);height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;position:sticky;top:0;z-index:900;box-shadow:0 2px 12px rgba(0,0,0,0.15);}
+    .topbar-brand{font-family:var(--fuente-d);font-size:1.4rem;font-weight:700;color:var(--blanco);}
+    .topbar-brand span{color:var(--dorado-claro);}
+    .topbar-back{padding:7px 16px;background:rgba(255,255,255,0.12);color:var(--blanco);border-radius:6px;font-size:0.82rem;border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;}
+    .topbar-back:hover{background:rgba(255,255,255,0.22);}
+    .layout{display:grid;grid-template-columns:260px 1fr;flex:1;}
+    .idx{background:var(--blanco);border-right:1px solid var(--gris-claro);padding:1.25rem;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;}
+    .idx-num{font-family:var(--fuente-d);font-size:3rem;font-weight:800;color:var(--verde);line-height:1;}
+    .idx-tit{font-family:var(--fuente-d);font-size:0.95rem;font-weight:700;color:var(--negro);line-height:1.2;margin-bottom:0.75rem;}
+    .idx-lbl{font-size:0.65rem;font-weight:700;color:var(--gris-med);text-transform:uppercase;letter-spacing:0.1em;margin:1rem 0 0.35rem;}
+    .idx-a{display:flex;align-items:center;gap:7px;padding:5px 8px;border-radius:6px;cursor:pointer;font-size:0.78rem;color:var(--gris-osc);transition:all var(--t);margin-bottom:1px;text-decoration:none;}
+    .idx-a:hover{background:var(--verde-bg);color:var(--verde);}
+    .idx-a.on{background:var(--verde);color:var(--blanco);}
+    .dot{width:5px;height:5px;border-radius:50%;background:currentColor;opacity:0.35;flex-shrink:0;}
+    .done-btn{width:100%;margin-top:1rem;padding:10px;border-radius:var(--radio);font-weight:700;font-size:0.85rem;cursor:pointer;transition:all var(--t);background:transparent;color:var(--verde);border:2px solid var(--verde);}
+    .done-btn:hover,.done-btn.done{background:var(--verde);color:white;}
+    .content{padding:2rem 3rem;max-width:900px;}
+    .hero{background:linear-gradient(135deg,#0b2816,var(--verde));border-radius:var(--radio-lg);padding:2rem;color:white;margin-bottom:2rem;position:relative;overflow:hidden;}
+    .hero::after{content:'4';position:absolute;right:1rem;top:-2rem;font-family:var(--fuente-d);font-size:10rem;font-weight:800;color:rgba(255,255,255,0.04);line-height:1;pointer-events:none;}
+    .hero-tag{display:inline-block;background:rgba(200,150,12,0.2);border:1px solid rgba(200,150,12,0.4);border-radius:100px;padding:3px 12px;font-size:0.7rem;font-weight:700;color:var(--dorado-claro);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.6rem;}
+    .hero h1{font-family:var(--fuente-d);font-size:2.2rem;font-weight:800;color:var(--blanco);margin-bottom:0.5rem;}
+    .hero-meta{display:flex;gap:1.25rem;flex-wrap:wrap;font-size:0.8rem;color:rgba(255,255,255,0.65);}
+    .s{margin-bottom:2.5rem;scroll-margin-top:75px;}
+    .s h2{font-family:var(--fuente-d);font-size:1.65rem;font-weight:700;color:var(--negro);margin-bottom:1rem;padding-bottom:0.6rem;border-bottom:2.5px solid var(--verde);}
+    .s h3{font-family:var(--fuente-d);font-size:1.25rem;font-weight:700;color:var(--negro);margin:1.5rem 0 0.6rem;padding-left:0.75rem;border-left:3px solid var(--dorado);}
+    .s h4{font-size:0.88rem;font-weight:700;color:var(--verde);margin:1.25rem 0 0.35rem;text-transform:uppercase;letter-spacing:0.05em;}
+    .s p{font-size:0.91rem;color:var(--gris-osc);line-height:1.9;margin-bottom:0.7rem;}
+    .s ul,.s ol{margin:0.4rem 0 0.8rem 1.3rem;}
+    .s ul li,.s ol li{font-size:0.91rem;color:var(--gris-osc);line-height:1.85;margin-bottom:0.15rem;}
+    .art{background:var(--verde-bg);border-left:4px solid var(--verde);border-radius:0 var(--radio) var(--radio) 0;padding:0.9rem 1.4rem;margin:0.6rem 0 1rem;}
+    .art-r{font-size:0.68rem;font-weight:700;color:var(--verde);text-transform:uppercase;letter-spacing:0.09em;margin-bottom:0.45rem;}
+    .art p{font-size:0.875rem;color:var(--gris-osc);line-height:1.85;margin-bottom:0.35rem;}
+    .art p:last-child{margin-bottom:0;}
+    .art strong{color:var(--negro);}
+    .art em{color:var(--verde-med);font-style:normal;font-weight:700;}
+    .key{background:rgba(200,150,12,0.07);border:1px solid rgba(200,150,12,0.28);border-radius:var(--radio);padding:0.9rem 1.3rem;margin:0.7rem 0;}
+    .key-t{font-size:0.68rem;font-weight:700;color:var(--dorado);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.4rem;}
+    .key p{font-size:0.875rem;color:var(--gris-osc);line-height:1.8;margin-bottom:0.25rem;}
+    .note{background:rgba(27,94,53,0.06);border-left:3px solid var(--verde-claro);border-radius:0 var(--radio) var(--radio) 0;padding:0.75rem 1.2rem;margin:0.5rem 0;font-size:0.85rem;color:var(--gris-osc);line-height:1.75;}
+    .tabla{width:100%;border-collapse:collapse;font-size:0.83rem;margin:0.75rem 0 1.25rem;}
+    .tabla th{background:var(--verde);color:white;padding:8px 12px;text-align:left;font-weight:600;font-size:0.8rem;}
+    .tabla td{padding:8px 12px;border-bottom:1px solid var(--gris-claro);color:var(--gris-osc);vertical-align:top;line-height:1.6;}
+    .tabla tr:last-child td{border-bottom:none;}
+    .tabla tr:hover td{background:var(--verde-bg);}
+    .nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;border-top:1px solid var(--gris-claro);margin-top:1.5rem;flex-wrap:wrap;gap:1rem;}
+    .nav a{display:flex;align-items:center;gap:8px;font-weight:600;color:var(--verde);font-size:0.88rem;padding:9px 14px;border-radius:var(--radio);border:2px solid var(--verde);transition:all var(--t);text-decoration:none;}
+    .nav a:hover{background:var(--verde);color:white;}
+    @media(max-width:1024px){.layout{grid-template-columns:1fr;}.idx{display:none;}.content{padding:1.25rem;}}
+  </style>
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-brand">Ingreso<span>GC</span></div>
+  <div style="display:flex;align-items:center;gap:1rem;">
+    <span style="font-size:0.8rem;color:rgba(255,255,255,0.5);">Tema 4 de 25</span>
+    <a href="panel-alumno.html" class="topbar-back">← Volver al panel</a>
+  </div>
+</div>
+<div class="layout">
+<aside class="idx">
+  <div class="idx-num">T4</div>
+  <div class="idx-tit">Derecho Constitucional</div>
+  <div style="font-size:0.7rem;color:var(--gris-med);display:flex;justify-content:space-between;margin-bottom:3px;"><span>Estado</span><span id="pct">—</span></div>
+  <div style="background:var(--gris-claro);border-radius:100px;height:5px;overflow:hidden;margin-bottom:1rem;"><div id="pbar" style="height:100%;background:var(--verde);border-radius:100px;width:0%;transition:width 0.5s;"></div></div>
+  <div class="idx-lbl">Contenido</div>
+  <a class="idx-a on" href="#intro"><span class="dot"></span>1. Introducción</a>
+  <a class="idx-a" href="#preambulo"><span class="dot"></span>2. El Preámbulo</a>
+  <a class="idx-a" href="#tpreliminar"><span class="dot"></span>3. Título Preliminar (arts. 1–9)</a>
+  <a class="idx-a" href="#titulo1"><span class="dot"></span>4. Título I — Derechos y deberes</a>
+  <a class="idx-a" href="#cap1"><span class="dot"></span>&nbsp;&nbsp;Cap. I — Españoles/Extranjeros</a>
+  <a class="idx-a" href="#cap2s1"><span class="dot"></span>&nbsp;&nbsp;Secc. 1ª — DDFF (arts. 15–29)</a>
+  <a class="idx-a" href="#art15a19"><span class="dot"></span>&nbsp;&nbsp;&nbsp;&nbsp;Arts. 15–19</a>
+  <a class="idx-a" href="#art20a29"><span class="dot"></span>&nbsp;&nbsp;&nbsp;&nbsp;Arts. 20–29</a>
+  <a class="idx-a" href="#cap2s2"><span class="dot"></span>&nbsp;&nbsp;Secc. 2ª — Derechos/Deberes</a>
+  <a class="idx-a" href="#cap3"><span class="dot"></span>&nbsp;&nbsp;Cap. III — Principios rectores</a>
+  <a class="idx-a" href="#cap4"><span class="dot"></span>&nbsp;&nbsp;Cap. IV — Garantías (arts. 53–55)</a>
+  <a class="idx-a" href="#titulo2"><span class="dot"></span>5. Título II — La Corona</a>
+  <a class="idx-a" href="#titulo3"><span class="dot"></span>6. Título III — Cortes Generales</a>
+  <a class="idx-a" href="#titulo4"><span class="dot"></span>7. Título IV — Gobierno</a>
+  <a class="idx-a" href="#titulo5"><span class="dot"></span>8. Título V — Gobierno/Cortes</a>
+  <a class="idx-a" href="#titulo6"><span class="dot"></span>9. Título VI — Poder Judicial</a>
+  <a class="idx-a" href="#titulo9"><span class="dot"></span>10. Título IX — Tribunal Const.</a>
+  <a class="idx-a" href="#titulo10"><span class="dot"></span>11. Título X — Reforma CE</a>
+  <a class="idx-a" href="#esquema"><span class="dot"></span>12. Esquema y tabla resumen</a>
+  <button class="done-btn" id="dbtn" onclick="tDone()">✓ Marcar como completado</button>
+</aside>
+<main class="content">
+<div class="hero">
+  <div class="hero-tag">Tema 4 · Constitución Española · BOE-A-1978-31229 · Última modif. 17/02/2024</div>
+  <h1>Derecho Constitucional</h1>
+  <div class="hero-meta">
+    <span>📄 169 artículos + Preámbulo y disposiciones</span>
+    <span>⭐ El tema más preguntado del temario</span>
+    <span>📅 En vigor desde el 29 de diciembre de 1978</span>
+  </div>
+</div>
+<!-- 1. INTRODUCCIÓN -->
+<section class="s" id="intro">
+<h2>1. Introducción y datos esenciales</h2>
+<p>La <strong>Constitución Española de 1978</strong> (CE) es la norma jurídica suprema del ordenamiento jurídico español. Ninguna ley ni acto de los poderes públicos puede contradecirla. Fue elaborada en el marco de la Transición democrática por las Cortes Generales surgidas de las primeras elecciones democráticas del 15 de junio de 1977.</p>
+<p>Se compone de un <strong>Preámbulo</strong>, <strong>169 artículos</strong> distribuidos en un Título Preliminar y los Títulos I al X, <strong>4 disposiciones adicionales</strong>, <strong>9 disposiciones transitorias</strong>, <strong>1 disposición derogatoria</strong> y <strong>1 disposición final</strong>.</p>
+
+<div class="key">
+<div class="key-t">⭐ Cronología esencial — pregunta habitual de examen</div>
+<p><strong>15 junio 1977:</strong> Primeras elecciones democráticas. Comienza la elaboración de la CE.</p>
+<p><strong>31 octubre 1978:</strong> Aprobación del texto por las Cortes Generales (Congreso y Senado).</p>
+<p><strong>6 diciembre 1978:</strong> Ratificación en referéndum popular. Hoy es el <em>Día de la Constitución</em>.</p>
+<p><strong>27 diciembre 1978:</strong> Sanción por S.M. el Rey Don Juan Carlos I.</p>
+<p><strong>29 diciembre 1978:</strong> Publicación en el BOE y <em>entrada en vigor</em>. Referencia: BOE-A-1978-31229.</p>
+</div>
+
+<div class="key">
+<div class="key-t">⭐ Las tres reformas constitucionales</div>
+<p><strong>1992 — Art. 13.2:</strong> Se añadió «y pasivo» para permitir a ciudadanos de la UE votar y ser elegibles en elecciones municipales, en cumplimiento del Tratado de Maastricht. Procedimiento: reforma ordinaria (art. 167).</p>
+<p><strong>2011 — Art. 135:</strong> Se introdujo el principio de estabilidad presupuestaria y el límite de déficit estructural en respuesta a la crisis económica. Procedimiento: reforma ordinaria (art. 167). Aprobada en tiempo récord: 2 semanas.</p>
+<p><strong>2024 — Art. 49:</strong> Nueva redacción sobre las personas con discapacidad, eliminando el término «disminuidos» y reconociendo la autonomía e inclusión como derechos. Procedimiento: reforma ordinaria (art. 167). Publicada en el BOE el 17 de febrero de 2024.</p>
+</div>
+
+<h3>Posición de la CE en el ordenamiento jurídico</h3>
+<p>La CE ocupa el vértice del sistema de fuentes del Derecho español. Por debajo de ella se sitúan, en orden jerárquico:</p>
+<ol>
+  <li><strong>Leyes Orgánicas</strong> — aprobadas por mayoría absoluta del Congreso. Regulan materias como derechos fundamentales, régimen electoral, CCAA y PJ.</li>
+  <li><strong>Leyes ordinarias</strong> — aprobadas por mayoría simple. El resto de materias.</li>
+  <li><strong>Decretos Legislativos y Decretos-Ley</strong> — dictados por el Gobierno.</li>
+  <li><strong>Reglamentos</strong> — normas del poder ejecutivo de rango inferior a la ley.</li>
+</ol>
+<p>Cualquier norma contraria a la CE puede ser declarada <strong>inconstitucional</strong> por el Tribunal Constitucional y quedar sin efecto.</p>
+</section>
+
+<!-- 2. PREÁMBULO -->
+<section class="s" id="preambulo">
+<h2>2. El Preámbulo</h2>
+<p>El Preámbulo no tiene valor normativo directo —no puede ser invocado por sí solo ante los tribunales— pero sí sirve como <strong>criterio interpretativo</strong> de toda la Constitución. Proclama la voluntad de la Nación española de:</p>
+<ul>
+  <li>Garantizar la convivencia democrática dentro de la Constitución y de las leyes conforme a un orden económico y social justo.</li>
+  <li>Consolidar un Estado de Derecho que asegure el imperio de la ley como expresión de la voluntad popular.</li>
+  <li>Proteger a todos los españoles y pueblos de España en el ejercicio de los derechos humanos, sus culturas y tradiciones, lenguas e instituciones.</li>
+  <li>Promover el progreso de la cultura y de la economía para asegurar a todos una digna calidad de vida.</li>
+  <li>Establecer una sociedad democrática avanzada.</li>
+  <li>Colaborar en el fortalecimiento de unas relaciones pacíficas y de eficaz cooperación entre todos los pueblos de la Tierra.</li>
+</ul>
+</section>
+
+<!-- 3. TÍTULO PRELIMINAR -->
+<section class="s" id="tpreliminar">
+<h2>3. Título Preliminar — Artículos 1 al 9</h2>
+<p>El Título Preliminar recoge los principios estructurales básicos del Estado español. Es una de las partes más preguntadas del examen y está sujeto al <strong>procedimiento de reforma agravada</strong> (art. 168 CE).</p>
+
+<div class="art"><div class="art-r">Artículo 1 CE — El Estado y sus valores</div>
+<p><strong>1.</strong> España se constituye en un <em>Estado social y democrático de Derecho</em>, que propugna como valores superiores de su ordenamiento jurídico <em>la libertad, la justicia, la igualdad y el pluralismo político</em>.</p>
+<p><strong>2.</strong> La soberanía nacional reside en el <em>pueblo español</em>, del que emanan los poderes del Estado.</p>
+<p><strong>3.</strong> La forma política del Estado español es la <em>Monarquía parlamentaria</em>.</p></div>
+
+<div class="note">El concepto de «Estado social y democrático de Derecho» integra tres dimensiones: <strong>Estado de Derecho</strong> (primacía de la ley), <strong>Estado democrático</strong> (soberanía popular, sufragio universal) y <strong>Estado social</strong> (poderes públicos deben garantizar condiciones materiales de igualdad real). Los cuatro valores superiores del art. 1.1 son únicamente esos cuatro: libertad, justicia, igualdad y pluralismo político.</div>
+
+<div class="art"><div class="art-r">Artículo 2 CE — Unidad e identidades territoriales</div>
+<p>La Constitución se fundamenta en la <em>indisoluble unidad de la Nación española</em>, patria común e indivisible de todos los españoles, y reconoce y garantiza el derecho a la <em>autonomía de las nacionalidades y regiones</em> que la integran y la <em>solidaridad</em> entre todas ellas.</p></div>
+
+<div class="note">El art. 2 refleja el llamado «principio dispositivo»: la CE no impone la autonomía, pero la garantiza. El modelo territorial es el <strong>Estado de las Autonomías</strong>, único en Europa. La unidad es «indisoluble» —no cabe secesión unilateral.</div>
+
+<div class="art"><div class="art-r">Artículo 3 CE — La lengua oficial</div>
+<p><strong>1.</strong> El <em>castellano es la lengua española oficial del Estado</em>. Todos los españoles tienen el <em>deber de conocerla</em> y el derecho a usarla.</p>
+<p><strong>2.</strong> Las demás lenguas españolas serán también oficiales en las respectivas Comunidades Autónomas de acuerdo con sus Estatutos.</p>
+<p><strong>3.</strong> La riqueza de las distintas modalidades lingüísticas de España es un patrimonio cultural que será objeto de especial respeto y protección.</p></div>
+
+<div class="note">Solo el castellano tiene carácter oficial en <em>todo</em> el Estado. Las otras lenguas cooficiales (catalán, euskera, gallego, valenciano, aranés) lo son exclusivamente en sus CCAA respectivas. El deber de conocer el castellano no implica que los demás idiomas no puedan usarse —tienen también el derecho— sino que el desconocimiento del castellano no exime de sus efectos jurídicos.</div>
+
+<div class="art"><div class="art-r">Artículo 4 CE — La bandera de España</div>
+<p><strong>1.</strong> La bandera de España está formada por tres franjas horizontales, <em>roja, amarilla y roja</em>, siendo la amarilla de <em>doble anchura</em> que cada una de las rojas.</p>
+<p><strong>2.</strong> Los Estatutos podrán reconocer banderas y enseñas propias de las Comunidades Autónomas. Estas se utilizarán junto a la bandera de España en sus edificios públicos y en sus actos oficiales.</p></div>
+
+<div class="art"><div class="art-r">Artículo 5 CE — La capital del Estado</div>
+<p>La capital del Estado es la <em>villa de Madrid</em>.</p></div>
+
+<div class="art"><div class="art-r">Artículo 6 CE — Los partidos políticos</div>
+<p>Los partidos políticos expresan el pluralismo político, concurren a la formación y manifestación de la voluntad popular y son instrumento fundamental para la participación política. Su creación y el ejercicio de su actividad son libres dentro del respeto a la Constitución y a la ley. <em>Su estructura interna y funcionamiento deberán ser democráticos</em>.</p></div>
+
+<div class="art"><div class="art-r">Artículo 7 CE — Sindicatos y asociaciones empresariales</div>
+<p>Los sindicatos de trabajadores y las asociaciones empresariales contribuyen a la defensa y promoción de los intereses económicos y sociales que les son propios. Su creación y el ejercicio de su actividad son libres dentro del respeto a la Constitución y a la ley. <em>Su estructura interna y funcionamiento deberán ser democráticos</em>.</p></div>
+
+<div class="art"><div class="art-r">Artículo 8 CE — Las Fuerzas Armadas</div>
+<p><strong>1.</strong> Las Fuerzas Armadas, constituidas por el <em>Ejército de Tierra, la Armada y el Ejército del Aire</em>, tienen como misión garantizar la soberanía e independencia de España, defender su integridad territorial y el ordenamiento constitucional.</p>
+<p><strong>2.</strong> Una ley orgánica regulará las bases de la organización militar conforme a los principios de la presente Constitución.</p></div>
+
+<div class="note">Importante distinguir: las <strong>Fuerzas Armadas</strong> (art. 8) son Ejército de Tierra, Armada y Ejército del Aire. Las <strong>Fuerzas y Cuerpos de Seguridad</strong> (art. 104) son el Cuerpo Nacional de Policía y la Guardia Civil. La Guardia Civil es un instituto armado de naturaleza <em>militar</em> pero con funciones de seguridad pública.</div>
+
+<div class="art"><div class="art-r">Artículo 9 CE — Principio de legalidad y garantías del ordenamiento</div>
+<p><strong>1.</strong> Los ciudadanos y los poderes públicos están <em>sujetos a la Constitución y al resto del ordenamiento jurídico</em>.</p>
+<p><strong>2.</strong> Corresponde a los poderes públicos promover las condiciones para que la libertad y la igualdad del individuo y de los grupos en que se integra sean reales y efectivas; remover los obstáculos que impidan o dificulten su plenitud y facilitar la participación de todos los ciudadanos en la vida política, económica, cultural y social.</p>
+<p><strong>3.</strong> La Constitución garantiza el principio de <em>legalidad</em>, la <em>jerarquía normativa</em>, la <em>publicidad de las normas</em>, la <em>irretroactividad</em> de las disposiciones sancionadoras no favorables o restrictivas de derechos individuales, la <em>seguridad jurídica</em>, la <em>responsabilidad</em> y la <em>interdicción de la arbitrariedad</em> de los poderes públicos.</p></div>
+
+<div class="note">El art. 9.3 recoge <strong>ocho principios jurídicos</strong> garantizados expresamente: legalidad, jerarquía normativa, publicidad de las normas, irretroactividad de disposiciones sancionadoras desfavorables, seguridad jurídica, responsabilidad de los poderes públicos e interdicción de arbitrariedad. Es un artículo que suele dar lugar a preguntas sobre cuál de los principios está o no recogido expresamente.</div>
+</section>
+
+<!-- 4. TÍTULO I -->
+<section class="s" id="titulo1">
+<h2>4. Título I — De los derechos y deberes fundamentales (arts. 10–55)</h2>
+<p>El Título I es el más extenso de la CE y el que más preguntas genera en el examen. Se divide en cinco capítulos y recoge los derechos, libertades y deberes de los ciudadanos con distintos niveles de protección constitucional.</p>
+
+<div class="art"><div class="art-r">Artículo 10 CE — La dignidad de la persona como fundamento</div>
+<p><strong>1.</strong> La dignidad de la persona, los derechos inviolables que le son inherentes, el libre desarrollo de la personalidad, el respeto a la ley y a los derechos de los demás son <em>fundamento del orden político y de la paz social</em>.</p>
+<p><strong>2.</strong> Las normas relativas a los derechos fundamentales y a las libertades que la Constitución reconoce se interpretarán de conformidad con la <em>Declaración Universal de Derechos Humanos y los tratados y acuerdos internacionales</em> sobre las mismas materias ratificados por España.</p></div>
+</section>
+
+<!-- Cap I -->
+<section class="s" id="cap1">
+<h3>Capítulo Primero — De los españoles y los extranjeros (arts. 11–13)</h3>
+
+<div class="art"><div class="art-r">Artículo 11 CE — La nacionalidad española</div>
+<p><strong>1.</strong> La nacionalidad española se adquiere, se conserva y se pierde de acuerdo con lo establecido por la ley.</p>
+<p><strong>2.</strong> <em>Ningún español de origen podrá ser privado de su nacionalidad</em>.</p>
+<p><strong>3.</strong> El Estado podrá concertar tratados de doble nacionalidad con los países iberoamericanos o con aquellos que hayan tenido o tengan una particular vinculación con España. En estos mismos países, aun cuando no reconozcan a sus ciudadanos un derecho recíproco, podrán naturalizarse los españoles sin perder su nacionalidad de origen.</p></div>
+
+<div class="art"><div class="art-r">Artículo 12 CE — La mayoría de edad</div>
+<p>Los españoles son mayores de edad a los <em>dieciocho años</em>.</p></div>
+
+<div class="art"><div class="art-r">Artículo 13 CE — Derechos de los extranjeros</div>
+<p><strong>1.</strong> Los extranjeros gozarán en España de las libertades públicas que garantiza el presente Título en los términos que establezcan los tratados y la ley.</p>
+<p><strong>2.</strong> Solamente los españoles serán titulares de los derechos reconocidos en el artículo 23 (participación política), <em>salvo lo que, atendiendo a criterios de reciprocidad, pueda establecerse por tratado o ley para el derecho de sufragio activo y pasivo en las elecciones municipales</em>.</p>
+<p><strong>3.</strong> La extradición sólo se concederá en cumplimiento de un tratado o de la ley, atendiendo al principio de reciprocidad. <em>Quedan excluidos de la extradición los delitos políticos</em>, no considerándose como tales los actos de terrorismo.</p>
+<p><strong>4.</strong> La ley establecerá los términos en que los ciudadanos de otros países y los apátridas podrán gozar del derecho de asilo en España.</p></div>
+
+<div class="art"><div class="art-r">Artículo 14 CE — El principio de igualdad ante la ley</div>
+<p>Los españoles son iguales ante la ley, sin que pueda prevalecer discriminación alguna por razón de <em>nacimiento, raza, sexo, religión, opinión o cualquier otra condición o circunstancia personal o social</em>.</p></div>
+
+<div class="note">El art. 14 es el primer derecho del Capítulo Segundo pero se sitúa antes de las secciones. Es la base de toda la jurisprudencia constitucional en materia de igualdad. La igualdad del art. 14 es una igualdad <strong>formal</strong> (ante la ley); la igualdad <strong>material o real</strong> es la que impone el art. 9.2 como mandato a los poderes públicos.</div>
+</section>
+
+<!-- Secc 1ª -->
+<section class="s" id="cap2s1">
+<h3>Capítulo Segundo, Sección 1ª — Derechos fundamentales y libertades públicas (arts. 15–29)</h3>
+<p>Son los derechos de <strong>máxima protección constitucional</strong>. Características principales:</p>
+<ul>
+  <li>Su desarrollo requiere <strong>Ley Orgánica</strong> (mayoría absoluta del Congreso).</li>
+  <li>Son tutelables por un procedimiento judicial <strong>preferente y sumario</strong>.</li>
+  <li>Cabe frente a su violación el <strong>recurso de amparo ante el Tribunal Constitucional</strong> (art. 53.2 CE).</li>
+  <li>Pueden ser <strong>suspendidos</strong> individualmente en caso de investigación antiterrorista (art. 55.2 CE) o de manera general durante los estados de excepción y sitio (art. 55.1 CE).</li>
+</ul>
+</section>
+
+<section class="s" id="art15a19">
+<h4>Arts. 15–19 — Derechos a la vida, libertad, intimidad y circulación</h4>
+
+<div class="art"><div class="art-r">Artículo 15 CE — Derecho a la vida y a la integridad física y moral</div>
+<p>Todos tienen derecho a la vida y a la integridad física y moral, sin que, en ningún caso, puedan ser sometidos a tortura ni a penas o tratos inhumanos o degradantes. <em>Queda abolida la pena de muerte, salvo lo que puedan disponer las leyes penales militares para tiempos de guerra</em>.</p></div>
+
+<div class="note">La pena de muerte está abolida constitucionalmente, pero con una excepción expresa para las leyes penales militares en tiempo de guerra. En la práctica, el Código Penal Militar también abolió la pena de muerte en 1995, por lo que en España no existe actualmente en ningún ámbito.</div>
+
+<div class="art"><div class="art-r">Artículo 16 CE — Libertad ideológica, religiosa y de culto</div>
+<p><strong>1.</strong> Se garantiza la libertad ideológica, religiosa y de culto de los individuos y las comunidades sin más limitación, en sus manifestaciones, que la necesaria para el mantenimiento del orden público protegido por la ley.</p>
+<p><strong>2.</strong> <em>Nadie podrá ser obligado a declarar sobre su ideología, religión o creencias</em>.</p>
+<p><strong>3.</strong> <em>Ninguna confesión tendrá carácter estatal</em>. Los poderes públicos tendrán en cuenta las creencias religiosas de la sociedad española y mantendrán las consiguientes relaciones de cooperación con la Iglesia Católica y las demás confesiones.</p></div>
+
+<div class="note">El art. 16.3 consagra el principio de <strong>aconfesionalidad del Estado</strong>: ninguna religión tiene carácter oficial. Sin embargo, se admiten acuerdos de cooperación con confesiones religiosas. Los Acuerdos con la Santa Sede (1979) tienen rango de tratado internacional. Las limitaciones a la libertad religiosa solo pueden ser las necesarias para el orden público.</div>
+
+<div class="art"><div class="art-r">Artículo 17 CE — Derecho a la libertad y a la seguridad personal</div>
+<p><strong>1.</strong> Toda persona tiene derecho a la libertad y a la seguridad. Nadie puede ser privado de su libertad, sino con la observancia de lo establecido en este artículo y en los casos y en la forma previstos en la ley.</p>
+<p><strong>2.</strong> La detención preventiva no podrá durar más del tiempo estrictamente necesario para la realización de las averiguaciones tendentes al esclarecimiento de los hechos, y, en todo caso, <em>en el plazo máximo de setenta y dos horas</em>, el detenido deberá ser puesto en libertad o a disposición de la autoridad judicial.</p>
+<p><strong>3.</strong> Toda persona detenida debe ser informada de forma inmediata, y de modo que le sea comprensible, de sus derechos y de las razones de su detención, <em>no pudiendo ser obligada a declarar</em>. Se garantiza la asistencia de abogado al detenido en las diligencias policiales y judiciales, en los términos que la ley establezca.</p>
+<p><strong>4.</strong> La ley regulará un procedimiento de <em>«habeas corpus»</em> para producir la inmediata puesta a disposición judicial de toda persona detenida ilegalmente. Asimismo, por ley se determinará el plazo máximo de duración de la <em>prisión provisional</em>.</p></div>
+
+<div class="key">
+<div class="key-t">⭐ Art. 17 — Derechos del detenido (MUY PREGUNTADO)</div>
+<p>El detenido tiene derecho a: <strong>1)</strong> ser informado de sus derechos y de los hechos que se le imputan; <strong>2)</strong> no declarar; <strong>3)</strong> no declararse culpable; <strong>4)</strong> asistencia letrada en diligencias policiales y judiciales; <strong>5)</strong> reconocimiento médico forense (regulado por ley).</p>
+<p>El plazo máximo de detención preventiva es de <strong>72 horas</strong>. En los estados de excepción y sitio puede ampliarse. Para bandas armadas o terrorismo, la Ley Orgánica puede autorizar hasta 5 días (art. 55.2 CE).</p>
+<p>El <strong>habeas corpus</strong> está regulado en la LO 6/1984 y se activa mediante escrito al juez de guardia. Puede ser solicitado por el propio detenido, su cónyuge, ascendientes, descendientes, hermanos, representante legal, Ministerio Fiscal, o el propio juez de oficio.</p>
+</div>
+
+<div class="art"><div class="art-r">Artículo 18 CE — Derecho al honor, intimidad e inviolabilidad del domicilio</div>
+<p><strong>1.</strong> Se garantiza el derecho al honor, a la intimidad personal y familiar y a la propia imagen.</p>
+<p><strong>2.</strong> <em>El domicilio es inviolable</em>. Ninguna entrada o registro podrá hacerse en él sin consentimiento del titular o resolución judicial, <em>salvo en caso de flagrante delito</em>.</p>
+<p><strong>3.</strong> Se garantiza el <em>secreto de las comunicaciones</em> y, en especial, de las postales, telegráficas y telefónicas, <em>salvo resolución judicial</em>.</p>
+<p><strong>4.</strong> La ley limitará el uso de la informática para garantizar el honor y la intimidad personal y familiar de los ciudadanos y el pleno ejercicio de sus derechos.</p></div>
+
+<div class="note">La inviolabilidad del domicilio admite tres excepciones a la entrada sin permiso del titular: <strong>consentimiento del titular</strong>, <strong>resolución judicial</strong> y <strong>flagrante delito</strong>. El secreto de las comunicaciones solo puede levantarse por resolución judicial motivada; la Policía no puede interceptar comunicaciones sin autorización judicial previa. El art. 18.4 fue el fundamento para la LO 3/2018 de Protección de Datos.</div>
+
+<div class="art"><div class="art-r">Artículo 19 CE — Libertad de residencia y circulación</div>
+<p>Los españoles tienen derecho a elegir libremente su residencia y a circular por el territorio nacional. Asimismo, tienen derecho a entrar y salir libremente de España en los términos que la ley establezca. <em>Este derecho no podrá ser limitado por motivos políticos o ideológicos</em>.</p></div>
+</section>
+
+<section class="s" id="art20a29">
+<h4>Arts. 20–29 — Libertades de expresión, reunión, asociación, participación, tutela judicial y petición</h4>
+
+<div class="art"><div class="art-r">Artículo 20 CE — Libertades de expresión e información</div>
+<p><strong>1.</strong> Se reconocen y protegen los derechos: a) A expresar y difundir libremente los pensamientos, ideas y opiniones mediante la palabra, el escrito o cualquier otro medio de reproducción; b) A la producción y creación literaria, artística, científica y técnica; c) A la libertad de cátedra; d) A comunicar o recibir libremente información veraz por cualquier medio de difusión. La ley regulará el derecho a la cláusula de conciencia y al secreto profesional.</p>
+<p><strong>2.</strong> El ejercicio de estos derechos <em>no puede restringirse mediante ningún tipo de censura previa</em>.</p>
+<p><strong>4.</strong> Estas libertades tienen su límite en el respeto a los derechos reconocidos en este Título, en especial en el derecho al honor, a la intimidad, a la propia imagen y a la protección de la juventud y de la infancia.</p>
+<p><strong>5.</strong> <em>Sólo podrá acordarse el secuestro de publicaciones, grabaciones y otros medios de información en virtud de resolución judicial</em>.</p></div>
+
+<div class="note">El art. 20 distingue entre <strong>libertad de expresión</strong> (comunicar opiniones y juicios de valor, sin requisito de veracidad) y <strong>libertad de información</strong> (comunicar hechos, que sí exige veracidad). Los límites son el honor, la intimidad y la imagen (art. 18.1). La prohibición de censura previa es absoluta; solo cabe el secuestro posterior por resolución judicial.</div>
+
+<div class="art"><div class="art-r">Artículo 21 CE — Derecho de reunión</div>
+<p><strong>1.</strong> Se reconoce el derecho de reunión pacífica y sin armas. <em>El ejercicio de este derecho no necesitará autorización previa</em>.</p>
+<p><strong>2.</strong> En los casos de reuniones en lugares de tránsito público y manifestaciones se dará <em>comunicación previa a la autoridad</em>, que sólo podrá prohibirlas cuando existan razones fundadas de alteración del orden público, con peligro para personas o bienes.</p></div>
+
+<div class="note">No se requiere autorización para reunirse, pero las <strong>reuniones en la vía pública</strong> requieren comunicación previa a la autoridad gubernativa. Esta puede prohibirlas —no prohibir el derecho, sino aquella manifestación concreta— cuando existan razones fundadas de alteración del orden público con peligro para personas o bienes. El plazo de comunicación previa es de 10 días (con reducción a 24 horas en casos urgentes), según la LO 9/1983 reguladora del derecho de reunión.</div>
+
+<div class="art"><div class="art-r">Artículo 22 CE — Derecho de asociación</div>
+<p><strong>1.</strong> Se reconoce el derecho de asociación.</p>
+<p><strong>2.</strong> Las asociaciones que persigan fines o utilicen medios tipificados como delito son ilegales.</p>
+<p><strong>3.</strong> Las asociaciones constituidas al amparo de este artículo deberán inscribirse en un registro a los solos efectos de publicidad.</p>
+<p><strong>4.</strong> Las asociaciones sólo podrán ser disueltas o suspendidas en sus actividades en virtud de <em>resolución judicial motivada</em>.</p>
+<p><strong>5.</strong> <em>Se prohíben las asociaciones secretas y las de carácter paramilitar</em>.</p></div>
+
+<div class="art"><div class="art-r">Artículo 23 CE — Derecho de participación política</div>
+<p><strong>1.</strong> Los ciudadanos tienen el derecho a participar en los asuntos públicos, directamente o por medio de representantes, libremente elegidos en elecciones periódicas por sufragio universal.</p>
+<p><strong>2.</strong> Asimismo, tienen derecho a acceder en condiciones de igualdad a las funciones y cargos públicos, con los requisitos que señalen las leyes.</p></div>
+
+<div class="note">El art. 23 reconoce el <strong>sufragio activo</strong> (derecho a votar) y el <strong>sufragio pasivo</strong> (derecho a ser elegido). Como regla general, solo los españoles son titulares de estos derechos (art. 13.2 CE). Excepcionalmente, los ciudadanos de la UE y los nacionales de países con acuerdo de reciprocidad pueden votar y ser elegidos en <strong>elecciones municipales</strong>.</div>
+
+<div class="art"><div class="art-r">Artículo 24 CE — Tutela judicial efectiva y garantías procesales</div>
+<p><strong>1.</strong> Todas las personas tienen derecho a obtener la tutela efectiva de los jueces y tribunales en el ejercicio de sus derechos e intereses legítimos, sin que, en ningún caso, pueda producirse indefensión.</p>
+<p><strong>2.</strong> Asimismo, todos tienen derecho al <em>Juez ordinario predeterminado por la ley</em>, a la defensa y a la asistencia de letrado, a ser informados de la acusación formulada contra ellos, a un <em>proceso público sin dilaciones indebidas</em> y con todas las garantías, a utilizar los medios de prueba pertinentes para su defensa, a <em>no declarar contra sí mismos</em>, a no confesarse culpables y a la <em>presunción de inocencia</em>.</p></div>
+
+<div class="note">El art. 24 es una de las piezas clave del Estado de Derecho. Consagra el derecho a no sufrir indefensión (que nunca puede producirse), la presunción de inocencia, el derecho a guardar silencio (nadie está obligado a declarar contra sí mismo), el juez legal o natural (predeterminado por la ley, no designado ad hoc) y el proceso con todas las garantías (due process). Se aplica tanto en el ámbito penal como administrativo sancionador.</div>
+
+<div class="art"><div class="art-r">Artículo 25 CE — Principio de legalidad penal y derechos del preso</div>
+<p><strong>1.</strong> <em>Nadie puede ser condenado o sancionado por acciones u omisiones que en el momento de producirse no constituyan delito, falta o infracción administrativa</em>, según la legislación vigente en aquel momento.</p>
+<p><strong>2.</strong> Las penas privativas de libertad y las medidas de seguridad estarán orientadas hacia la <em>reeducación y reinserción social</em> y no podrán consistir en trabajos forzados. El condenado a pena de prisión que estuviere cumpliendo la misma gozará de los derechos fundamentales de este Capítulo, a excepción de los que se vean expresamente limitados por el contenido del fallo condenatorio, el sentido de la pena y la ley penitenciaria. En todo caso, tendrá derecho a un trabajo remunerado y a los beneficios correspondientes de la Seguridad Social, así como al acceso a la cultura y al desarrollo integral de su personalidad.</p>
+<p><strong>3.</strong> <em>La Administración civil no podrá imponer sanciones que, directa o subsidiariamente, impliquen privación de libertad</em>.</p></div>
+
+<div class="note">El principio de legalidad penal se formula clásicamente como <em>nullum crimen, nulla poena sine lege</em>: no hay crimen ni pena sin ley previa que los establezca. La ley penal debe ser previa, escrita, cierta (lex certa) y estricta. La <strong>irretroactividad</strong> de la ley penal desfavorable es una consecuencia directa, pero sí cabe la retroactividad de la ley penal <em>favorable</em> al reo.</div>
+
+<div class="art"><div class="art-r">Artículo 26 CE — Prohibición de Tribunales de Honor</div>
+<p><em>Se prohíben los Tribunales de Honor</em> en el ámbito de la Administración civil y de las organizaciones profesionales.</p></div>
+
+<div class="art"><div class="art-r">Artículo 27 CE — Derecho a la educación</div>
+<p><strong>1.</strong> Todos tienen el derecho a la educación. Se reconoce la libertad de enseñanza.</p>
+<p><strong>2.</strong> La educación tendrá por objeto el pleno desarrollo de la personalidad humana en el respeto a los principios democráticos de convivencia y a los derechos y libertades fundamentales.</p>
+<p><strong>3.</strong> Los poderes públicos garantizan el derecho que asiste a los padres para que sus hijos reciban la formación religiosa y moral que esté de acuerdo con sus propias convicciones.</p>
+<p><strong>4.</strong> <em>La enseñanza básica es obligatoria y gratuita</em>.</p>
+<p><strong>6.</strong> Se reconoce a las personas físicas y jurídicas la libertad de creación de centros docentes, dentro del respeto a los principios constitucionales.</p>
+<p><strong>10.</strong> Se reconoce la autonomía de las Universidades, en los términos que la ley establezca.</p></div>
+
+<div class="art"><div class="art-r">Artículo 28 CE — Libertad sindical y derecho de huelga</div>
+<p><strong>1.</strong> Todos tienen derecho a sindicarse libremente. La ley podrá limitar o exceptuar el ejercicio de este derecho a las <em>Fuerzas o Institutos armados o a los demás Cuerpos sometidos a disciplina militar</em> y regulará las peculiaridades de su ejercicio para los funcionarios públicos. La libertad sindical comprende el derecho a fundar sindicatos y a afiliarse al de su elección, así como el derecho de los sindicatos a formar confederaciones y a fundar organizaciones sindicales internacionales o a afiliarse a las mismas. <em>Nadie podrá ser obligado a afiliarse a un sindicato</em>.</p>
+<p><strong>2.</strong> <em>Se reconoce el derecho a la huelga</em> de los trabajadores para la defensa de sus intereses. La ley que regule el ejercicio de este derecho establecerá las garantías precisas para asegurar el mantenimiento de los servicios esenciales de la comunidad.</p></div>
+
+<div class="note">La Guardia Civil, al ser un instituto armado de naturaleza militar sometido a disciplina militar, ve limitado su derecho de sindicación (art. 28.1). No pueden constituir ni afiliarse a sindicatos. Sí pueden asociarse en las asociaciones profesionales reguladas por la LO 11/2007. El derecho de huelga tampoco puede ser ejercido por la Guardia Civil.</div>
+
+<div class="art"><div class="art-r">Artículo 29 CE — Derecho de petición</div>
+<p><strong>1.</strong> Todos los españoles tendrán el derecho de petición individual y colectiva, por escrito, en la forma y con los efectos que determine la ley.</p>
+<p><strong>2.</strong> <em>Los miembros de las Fuerzas o Institutos armados o de los Cuerpos sometidos a disciplina militar podrán ejercer este derecho sólo individualmente</em> y con arreglo a lo dispuesto en su legislación específica.</p></div>
+
+<div class="note">Nueva restricción relevante para la Guardia Civil: el derecho de petición solo puede ejercerse <strong>individualmente</strong>, no colectivamente. No pueden firmar peticiones conjuntas ni dirigirse en grupo a las autoridades. Esta limitación busca preservar la disciplina y la unidad de mando en los institutos armados.</div>
+</section>
+
+<!-- Secc 2ª -->
+<section class="s" id="cap2s2">
+<h3>Capítulo Segundo, Sección 2ª — De los derechos y deberes de los ciudadanos (arts. 30–38)</h3>
+<p>Tienen menor protección que los derechos fundamentales de la Sección 1ª. No acceden directamente al recurso de amparo ante el TC ni requieren Ley Orgánica. Sí exigen reserva de ley ordinaria.</p>
+
+<div class="art"><div class="art-r">Artículo 30 CE — Defensa de España</div>
+<p><strong>1.</strong> Los españoles tienen el derecho y el deber de defender a España.</p>
+<p><strong>2.</strong> La ley fijará las obligaciones militares de los españoles y regulará, con las debidas garantías, la <em>objeción de conciencia</em>, así como las demás causas de exención del servicio militar obligatorio, pudiendo imponer, en su caso, una prestación social sustitutoria.</p>
+<p><strong>3.</strong> Podrá establecerse un servicio civil para el cumplimiento de fines de interés general.</p>
+<p><strong>4.</strong> Mediante ley podrán regularse los deberes de los ciudadanos en los casos de grave riesgo, catástrofe o calamidad pública.</p></div>
+
+<div class="art"><div class="art-r">Artículo 31 CE — Deber de contribuir al gasto público</div>
+<p><strong>1.</strong> Todos contribuirán al sostenimiento de los gastos públicos de acuerdo con su capacidad económica mediante un sistema tributario <em>justo inspirado en los principios de igualdad y progresividad</em> que, en ningún caso, tendrá alcance confiscatorio.</p>
+<p><strong>2.</strong> El gasto público realizará una asignación equitativa de los recursos públicos, y su programación y ejecución responderán a los criterios de eficiencia y economía.</p>
+<p><strong>3.</strong> Sólo podrán establecerse prestaciones personales o patrimoniales de carácter público con arreglo a la ley.</p></div>
+
+<div class="art"><div class="art-r">Artículo 32 CE — Derecho al matrimonio</div>
+<p><strong>1.</strong> <em>El hombre y la mujer tienen derecho a contraer matrimonio con plena igualdad jurídica</em>.</p>
+<p><strong>2.</strong> La ley regulará las formas de matrimonio, la edad y capacidad para contraerlo, los derechos y deberes de los cónyuges, las causas de separación y disolución y sus efectos.</p></div>
+
+<div class="art"><div class="art-r">Artículo 33 CE — Derecho a la propiedad privada y a la herencia</div>
+<p><strong>1.</strong> Se reconoce el derecho a la propiedad privada y a la herencia.</p>
+<p><strong>2.</strong> La <em>función social</em> de estos derechos delimitará su contenido, de acuerdo con las leyes.</p>
+<p><strong>3.</strong> Nadie podrá ser privado de sus bienes y derechos sino por causa justificada de <em>utilidad pública o interés social</em>, mediante la correspondiente <em>indemnización</em> y de conformidad con lo dispuesto por las leyes.</p></div>
+
+<div class="art"><div class="art-r">Artículo 35 CE — Derecho al trabajo</div>
+<p><strong>1.</strong> Todos los españoles tienen el <em>deber de trabajar y el derecho al trabajo</em>, a la libre elección de profesión u oficio, a la promoción a través del trabajo y a una remuneración suficiente para satisfacer sus necesidades y las de su familia, sin que en ningún caso pueda hacerse discriminación por razón de sexo.</p></div>
+
+<div class="art"><div class="art-r">Artículo 37 CE — Negociación colectiva</div>
+<p><strong>1.</strong> La ley garantizará el derecho a la negociación colectiva laboral entre los representantes de los trabajadores y empresarios, así como la <em>fuerza vinculante de los convenios</em>.</p></div>
+
+<div class="art"><div class="art-r">Artículo 38 CE — Libertad de empresa</div>
+<p>Se reconoce la <em>libertad de empresa en el marco de la economía de mercado</em>. Los poderes públicos garantizan y protegen su ejercicio y la defensa de la productividad, de acuerdo con las exigencias de la economía general y, en su caso, de la planificación.</p></div>
+</section>
+
+<!-- Cap III -->
+<section class="s" id="cap3">
+<h3>Capítulo Tercero — Principios rectores de la política social y económica (arts. 39–52)</h3>
+<p>No son derechos subjetivos directamente exigibles ante los tribunales por los ciudadanos. Su función es <strong>informar la legislación positiva, la práctica judicial y la actuación de los poderes públicos</strong> (art. 53.3 CE). Solo son alegables ante los tribunales ordinarios en los términos que dispongan las leyes que los desarrollen.</p>
+
+<table class="tabla">
+<thead><tr><th>Artículo</th><th>Principio rector</th><th>Contenido esencial</th></tr></thead>
+<tbody>
+<tr><td><strong>Art. 39</strong></td><td>Protección de la familia</td><td>Protección social, económica y jurídica de la familia. Protección integral de los hijos con independencia de su filiación. Los padres deben prestar asistencia de todo orden a los hijos. Los niños gozarán de la protección de los acuerdos internacionales.</td></tr>
+<tr><td><strong>Art. 40</strong></td><td>Progreso social y económico</td><td>Distribución equitativa de la renta. Política orientada al pleno empleo. Formación y readaptación profesionales. Seguridad e higiene en el trabajo. Vacaciones periódicas retribuidas.</td></tr>
+<tr><td><strong>Art. 41</strong></td><td>Seguridad Social</td><td>Régimen público de Seguridad Social para todos los ciudadanos. Garantía de asistencia y prestaciones suficientes ante situaciones de necesidad, especialmente el desempleo.</td></tr>
+<tr><td><strong>Art. 42</strong></td><td>Trabajadores en el extranjero</td><td>El Estado velará por los derechos económicos y sociales de los trabajadores españoles en el extranjero y orientará su política hacia su retorno.</td></tr>
+<tr><td><strong>Art. 43</strong></td><td>Protección de la salud</td><td>Derecho a la protección de la salud. Los poderes públicos organizarán y tutelarán la salud pública. Fomento de la educación sanitaria, la educación física y el deporte.</td></tr>
+<tr><td><strong>Art. 44</strong></td><td>Acceso a la cultura</td><td>Todos tienen derecho a la cultura. Los poderes públicos promoverán la ciencia y la investigación científica y técnica en beneficio del interés general.</td></tr>
+<tr><td><strong>Art. 45</strong></td><td>Medio ambiente</td><td>Derecho a disfrutar de un medio ambiente adecuado. Deber de conservarlo. Uso racional de los recursos naturales. Sanciones penales o administrativas para quienes violen lo dispuesto.</td></tr>
+<tr><td><strong>Art. 46</strong></td><td>Patrimonio histórico</td><td>Conservación y enriquecimiento del patrimonio histórico, cultural y artístico de los pueblos de España. La ley penal sancionará los atentados contra este patrimonio.</td></tr>
+<tr><td><strong>Art. 47</strong></td><td>Vivienda digna</td><td>Todos los españoles tienen derecho a disfrutar de una vivienda digna y adecuada. Regulación del suelo para impedir la especulación. La comunidad participará en las plusvalías de la acción urbanística pública.</td></tr>
+<tr><td><strong>Art. 48</strong></td><td>Juventud</td><td>Condiciones para la participación libre y eficaz de la juventud en el desarrollo político, social, económico y cultural.</td></tr>
+<tr><td><strong>Art. 49</strong></td><td>Personas con discapacidad</td><td>Ejercen sus derechos en condiciones de libertad e igualdad reales y efectivas. Políticas de plena autonomía personal e inclusión social en entornos universalmente accesibles. <em>(Nueva redacción tras reforma constitucional de 2024)</em></td></tr>
+<tr><td><strong>Art. 50</strong></td><td>Tercera edad</td><td>Pensiones adecuadas y periódicamente actualizadas. Sistema de servicios sociales que atenderá sus problemas específicos de salud, vivienda, cultura y ocio.</td></tr>
+<tr><td><strong>Art. 51</strong></td><td>Consumidores y usuarios</td><td>Defensa de los consumidores y usuarios protegiendo la seguridad, la salud y los legítimos intereses económicos. Información y educación de consumidores.</td></tr>
+<tr><td><strong>Art. 52</strong></td><td>Organizaciones profesionales</td><td>La ley regulará las organizaciones profesionales que contribuyan a la defensa de los intereses económicos que les sean propios.</td></tr>
+</tbody>
+</table>
+</section>
+
+<!-- Cap IV - Garantías -->
+<section class="s" id="cap4">
+<h3>Capítulo Cuarto — Garantías de las libertades y derechos fundamentales (arts. 53–55)</h3>
+
+<div class="art"><div class="art-r">Artículo 53 CE — Los tres niveles de protección constitucional</div>
+<p><strong>1.</strong> Los derechos y libertades reconocidos en el Capítulo II del presente Título vinculan a todos los poderes públicos. Sólo por ley, que en todo caso deberá respetar su contenido esencial, podrá regularse el ejercicio de tales derechos y libertades.</p>
+<p><strong>2.</strong> Cualquier ciudadano podrá recabar la tutela de las libertades y derechos reconocidos en el artículo 14 y la Sección primera del Capítulo II ante los Tribunales ordinarios por un procedimiento basado en los principios de <em>preferencia y sumariedad</em> y, en su caso, a través del <em>recurso de amparo ante el Tribunal Constitucional</em>.</p>
+<p><strong>3.</strong> El reconocimiento, el respeto y la protección de los principios reconocidos en el Capítulo III informarán la legislación positiva, la práctica judicial y la actuación de los poderes públicos. Sólo podrán ser alegados ante la Jurisdicción ordinaria de acuerdo con lo que dispongan las leyes que los desarrollen.</p></div>
+
+<table class="tabla">
+<thead><tr><th>Nivel</th><th>Derechos</th><th>Protección</th></tr></thead>
+<tbody>
+<tr><td><strong>Máxima</strong></td><td>Art. 14 + Sección 1ª Cap. II (arts. 15–29) + art. 30.2</td><td>Procedimiento preferente y sumario ante jueces ordinarios + Recurso de amparo ante TC. Reserva de Ley Orgánica.</td></tr>
+<tr><td><strong>Media</strong></td><td>Capítulo II completo (arts. 14–38)</td><td>Vinculan a todos los poderes públicos. Solo regulables mediante ley ordinaria (reserva de ley). No por decreto o reglamento.</td></tr>
+<tr><td><strong>Mínima</strong></td><td>Capítulo III (arts. 39–52)</td><td>Informan la legislación y la actuación de los poderes públicos. No son directamente invocables ante tribunales sin desarrollo legislativo previo.</td></tr>
+</tbody>
+</table>
+
+<div class="art"><div class="art-r">Artículo 54 CE — El Defensor del Pueblo</div>
+<p>Una ley orgánica regulará la institución del Defensor del Pueblo, como <em>alto comisionado de las Cortes Generales</em>, designado por éstas para la defensa de los derechos comprendidos en este Título, a cuyo efecto podrá supervisar la actividad de la Administración. Dará cuenta a las Cortes Generales.</p></div>
+
+<div class="key">
+<div class="key-t">⭐ Defensor del Pueblo — todos los datos</div>
+<p><strong>Ley reguladora:</strong> LO 3/1981, de 6 de abril, del Defensor del Pueblo.</p>
+<p><strong>Elección:</strong> Elegido por las Cortes Generales con mayoría de <strong>3/5 de cada Cámara</strong>.</p>
+<p><strong>Mandato:</strong> <strong>5 años</strong>. Sin límite de reelección aunque en la práctica no se renueva.</p>
+<p><strong>Funciones:</strong> Supervisar la actividad de la Administración en defensa de los derechos del Título I. Puede interponer <strong>recurso de inconstitucionalidad</strong> y <strong>recurso de amparo</strong>. Presenta informe anual a las Cortes Generales.</p>
+<p><strong>Independencia:</strong> No recibe instrucciones de ninguna autoridad. Es inviolable e inamovible durante su mandato. Está amparado por inmunidad parlamentaria.</p>
+</div>
+
+<div class="art"><div class="art-r">Artículo 55 CE — Suspensión de derechos fundamentales</div>
+<p><strong>1.</strong> Los derechos reconocidos en los artículos 17, 18 (apartados 2 y 3), 19, 20 (apartados 1 a y d, y 5), 21, 28 (apartado 2) y 37 (apartado 2) podrán ser suspendidos cuando se acuerde la declaración del estado de excepción o de sitio en los términos previstos en la Constitución. Se exceptúa de lo establecido anteriormente el apartado 3 del artículo 17 para el supuesto de declaración de estado de excepción.</p>
+<p><strong>2.</strong> Una ley orgánica podrá determinar la forma y los casos en los que, de forma <em>individual</em> y con la necesaria intervención judicial y el adecuado control parlamentario, los derechos reconocidos en los artículos 17.2 y 18.2 y 3 pueden ser suspendidos para personas determinadas, en relación con las investigaciones correspondientes a la actuación de bandas armadas o elementos terroristas.</p></div>
+</section>
+
+<!-- Título II -->
+<section class="s" id="titulo2">
+<h2>5. Título II — De la Corona (arts. 56–65)</h2>
+<p>El Título II es una de las partes sujetas al procedimiento de reforma agravada (art. 168 CE). Regula la institución monárquica: el estatuto del Rey, la sucesión y las funciones constitucionales.</p>
+
+<div class="art"><div class="art-r">Artículo 56 CE — El Rey: Jefe del Estado</div>
+<p><strong>1.</strong> El Rey es el <em>Jefe del Estado, símbolo de su unidad y permanencia</em>, arbitra y modera el funcionamiento regular de las instituciones, asume la más alta representación del Estado español en las relaciones internacionales, especialmente con las naciones de su comunidad histórica, y ejerce las funciones que le atribuyen expresamente la Constitución y las leyes.</p>
+<p><strong>2.</strong> Su título es el de <em>Rey de España</em> y podrá utilizar los demás que correspondan a la Corona.</p>
+<p><strong>3.</strong> <em>La persona del Rey es inviolable y no está sujeta a responsabilidad</em>. Sus actos estarán siempre refrendados en la forma establecida en el artículo 64, careciendo de validez sin dicho refrendo, salvo lo dispuesto en el artículo 65.2.</p></div>
+
+<div class="note">La inviolabilidad del Rey significa que no puede ser perseguido penalmente ni civilmente. La irresponsabilidad implica que de sus actos responden quienes los refrendan. El <strong>refrendo</strong> es la firma de un miembro del Gobierno que asume la responsabilidad del acto regio. Sin refrendo, el acto del Rey carece de validez. Los únicos actos del Rey que no requieren refrendo son los de la Casa Real (art. 65.2).</div>
+
+<div class="art"><div class="art-r">Artículo 57 CE — Sucesión a la Corona</div>
+<p><strong>1.</strong> La Corona de España es hereditaria en los sucesores de S.M. Don Juan Carlos I de Borbón, legítimo heredero de la dinastía histórica. La sucesión en el trono seguirá el orden regular de <em>primogenitura y representación</em>, siendo preferida siempre la línea anterior a las posteriores; en la misma línea, el grado más próximo al más remoto; en el mismo grado, el <em>varón a la mujer</em>, y en el mismo sexo, la persona de más edad a la de menos.</p>
+<p><strong>2.</strong> El Príncipe heredero, desde su nacimiento o desde que se produzca el hecho que origine el llamamiento, tendrá la dignidad de <em>Príncipe de Asturias</em> y los demás títulos vinculados tradicionalmente al sucesor de la Corona de España.</p>
+<p><strong>3.</strong> Extinguidas todas las líneas llamadas en Derecho, las Cortes Generales proveerán a la sucesión en la Corona en la forma que más convenga a los intereses de España.</p>
+<p><strong>4.</strong> Aquellas personas que teniendo derecho a la sucesión en el trono contrajeren matrimonio contra la expresa prohibición del Rey y de las Cortes Generales, quedarán excluidas en la sucesión a la Corona por sí y sus descendientes.</p>
+<p><strong>5.</strong> Las abdicaciones y renuncias y cualquier duda de hecho o de derecho que ocurra en el orden de sucesión a la Corona se resolverán por una <em>ley orgánica</em>.</p></div>
+
+<div class="art"><div class="art-r">Artículo 59 CE — La Regencia</div>
+<p><strong>1.</strong> Cuando el Rey fuere menor de edad, el padre o la madre del Rey y, en su defecto, el pariente mayor de edad más próximo a suceder en la Corona, según el orden establecido en la Constitución, entrará a ejercer inmediatamente la Regencia.</p>
+<p><strong>4.</strong> Para ejercer la Regencia es preciso ser español y mayor de edad.</p>
+<p><strong>5.</strong> La Regencia se ejercerá por mandato constitucional y siempre en nombre del Rey.</p></div>
+
+<div class="art"><div class="art-r">Artículo 61 CE — Juramento del Rey</div>
+<p><strong>1.</strong> El Rey, al ser proclamado ante las Cortes Generales, prestará juramento de desempeñar fielmente sus funciones, guardar y hacer guardar la Constitución y las leyes y respetar los derechos de los ciudadanos y de las Comunidades Autónomas.</p></div>
+
+<h3>Funciones del Rey — Artículo 62 CE</h3>
+<p>Corresponde al Rey el ejercicio de las siguientes funciones constitucionales:</p>
+<ul>
+  <li><strong>a)</strong> Sancionar y promulgar las leyes.</li>
+  <li><strong>b)</strong> Convocar y disolver las Cortes Generales y convocar elecciones en los términos previstos en la Constitución.</li>
+  <li><strong>c)</strong> Convocar a referéndum en los casos previstos en la Constitución.</li>
+  <li><strong>d)</strong> Proponer el candidato a Presidente del Gobierno y, en su caso, nombrarlo, así como poner fin a sus funciones en los términos previstos en la Constitución.</li>
+  <li><strong>e)</strong> Nombrar y separar a los miembros del Gobierno, a propuesta de su Presidente.</li>
+  <li><strong>f)</strong> Expedir los decretos acordados en el Consejo de Ministros, conferir los empleos civiles y militares y conceder honores y distinciones con arreglo a las leyes.</li>
+  <li><strong>g)</strong> Ser informado de los asuntos de Estado y presidir, a estos efectos, las sesiones del Consejo de Ministros, cuando lo estime oportuno, a petición del Presidente del Gobierno.</li>
+  <li><strong>h)</strong> El <em>mando supremo de las Fuerzas Armadas</em>.</li>
+  <li><strong>i)</strong> Ejercer el <em>derecho de gracia</em> con arreglo a la ley, que no podrá autorizar indultos generales.</li>
+  <li><strong>j)</strong> El Alto Patronazgo de las Reales Academias.</li>
+</ul>
+
+<div class="art"><div class="art-r">Artículo 64 CE — El refrendo de los actos del Rey</div>
+<p><strong>1.</strong> Los actos del Rey serán refrendados por el Presidente del Gobierno y, en su caso, por los Ministros competentes. La propuesta y el nombramiento del Presidente del Gobierno, y la disolución prevista en el artículo 99, serán refrendados por el Presidente del Congreso.</p>
+<p><strong>2.</strong> De los actos del Rey serán <em>responsables las personas que los refrendan</em>.</p></div>
+</section>
+
+<!-- Título III -->
+<section class="s" id="titulo3">
+<h2>6. Título III — Las Cortes Generales (arts. 66–96)</h2>
+
+<div class="art"><div class="art-r">Artículo 66 CE</div>
+<p><strong>1.</strong> Las Cortes Generales <em>representan al pueblo español</em> y están formadas por el <em>Congreso de los Diputados y el Senado</em>.</p>
+<p><strong>2.</strong> Las Cortes Generales ejercen la potestad legislativa del Estado, aprueban sus Presupuestos, controlan la acción del Gobierno y tienen las demás competencias que les atribuya la Constitución.</p>
+<p><strong>3.</strong> Las Cortes Generales son <em>inviolables</em>.</p></div>
+
+<table class="tabla">
+<thead><tr><th></th><th>Congreso de los Diputados (art. 68)</th><th>Senado (art. 69)</th></tr></thead>
+<tbody>
+<tr><td><strong>Número de miembros</strong></td><td>Mínimo 300, máximo 400. Actualmente: <strong>350 diputados</strong></td><td>Variable. Actualmente: <strong>~265 senadores</strong></td></tr>
+<tr><td><strong>Sistema de elección</strong></td><td>Sufragio universal, libre, igual, directo y secreto. Circunscripción provincial. Sistema proporcional D'Hondt.</td><td>Sufragio universal + designación autonómica: 4 por provincia + 2 por cada ciudad autónoma + 1 por cada CA (+ 1 por millón de hab.)</td></tr>
+<tr><td><strong>Mandato</strong></td><td>4 años (prorrogable)</td><td>4 años (prorrogable)</td></tr>
+<tr><td><strong>Carácter</strong></td><td>Cámara de representación popular</td><td>Cámara de representación territorial</td></tr>
+<tr><td><strong>Competencias especiales</strong></td><td>Investidura del Presidente. Moción de censura. Primacía en el proceso legislativo.</td><td>Puede vetar leyes (el Congreso puede levantarlo). Aprueba medidas del art. 155 CE.</td></tr>
+<tr><td><strong>Primacía en conflicto</strong></td><td>Siempre prevalece sobre el Senado en el proceso legislativo</td><td>Posición secundaria: puede vetar o enmendar pero no bloquear definitivamente</td></tr>
+</tbody>
+</table>
+
+<h3>Iniciativa legislativa (art. 87 CE)</h3>
+<p>Corresponde al <strong>Gobierno</strong> (proyectos de ley), al <strong>Congreso y al Senado</strong> (proposiciones de ley), a las <strong>Asambleas de las CCAA</strong> y a la <strong>iniciativa legislativa popular</strong> (mínimo 500.000 firmas acreditadas, excluida en materias propias de LO, tributarias, de carácter internacional y de prerrogativa de gracia).</p>
+
+<div class="art"><div class="art-r">Artículo 79 CE — Quórum y mayorías</div>
+<p><strong>1.</strong> Para adoptar acuerdos las Cámaras deben estar reunidas reglamentariamente y con asistencia de la mayoría de sus miembros.</p>
+<p><strong>2.</strong> Dichos acuerdos, para ser válidos, deberán ser aprobados por la mayoría de los miembros presentes, sin perjuicio de las mayorías especiales que establezcan la Constitución o las leyes orgánicas y las que para elección de personas establezcan los Reglamentos de las Cámaras.</p></div>
+
+<div class="art"><div class="art-r">Artículo 81 CE — Las Leyes Orgánicas</div>
+<p><strong>1.</strong> Son leyes orgánicas las relativas al desarrollo de los derechos fundamentales y de las libertades públicas, las que aprueben los Estatutos de Autonomía y el régimen electoral general y las demás previstas en la Constitución.</p>
+<p><strong>2.</strong> La aprobación, modificación o derogación de las leyes orgánicas exigirá <em>mayoría absoluta del Congreso</em>, en una votación final sobre el conjunto del proyecto.</p></div>
+</section>
+
+<!-- Título IV -->
+<section class="s" id="titulo4">
+<h2>7. Título IV — El Gobierno y la Administración (arts. 97–107)</h2>
+
+<div class="art"><div class="art-r">Artículo 97 CE — Funciones del Gobierno</div>
+<p>El Gobierno dirige la política interior y exterior, la Administración civil y militar y la defensa del Estado. <em>Ejerce la función ejecutiva y la potestad reglamentaria</em> de acuerdo con la Constitución y las leyes.</p></div>
+
+<div class="art"><div class="art-r">Artículo 98 CE — Composición del Gobierno</div>
+<p><strong>1.</strong> El Gobierno se compone del <em>Presidente, Vicepresidentes</em> en su caso, <em>Ministros y demás miembros</em> que establezca la ley.</p>
+<p><strong>2.</strong> El Presidente dirige la acción del Gobierno y coordina las funciones de los demás miembros del mismo, sin perjuicio de la competencia y responsabilidad directa de éstos en su gestión.</p>
+<p><strong>3.</strong> Los miembros del Gobierno no podrán ejercer otras funciones representativas que las propias del mandato parlamentario, ni cualquier otra función pública que no derive de su cargo, ni actividad profesional o mercantil alguna.</p></div>
+
+<div class="art"><div class="art-r">Artículo 99 CE — Investidura del Presidente del Gobierno</div>
+<p>El Rey, previa consulta con los representantes de los grupos políticos con representación parlamentaria, propone un candidato a Presidente del Gobierno a través del Presidente del Congreso.</p>
+<p>El candidato expone su programa político y solicita la confianza del Congreso. Si la obtiene por <em>mayoría absoluta</em> en primera votación, el Rey le nombrará. Si no, 48 horas después una nueva votación en la que basta la <em>mayoría simple</em>. Si transcurrido el plazo de <em>dos meses</em> desde la primera votación ningún candidato obtiene la confianza, el Rey disuelve ambas Cámaras y convoca nuevas elecciones.</p></div>
+
+<div class="art"><div class="art-r">Artículo 104 CE — Las Fuerzas y Cuerpos de Seguridad</div>
+<p><strong>1.</strong> Las Fuerzas y Cuerpos de seguridad, bajo la dependencia del Gobierno, tendrán como misión proteger el libre ejercicio de los derechos y libertades y garantizar la seguridad ciudadana.</p>
+<p><strong>2.</strong> Una ley orgánica determinará las funciones, principios básicos de actuación y estatutos de las Fuerzas y Cuerpos de seguridad.</p></div>
+
+<div class="note">El art. 104.2 CE es el fundamento constitucional de la LO 2/1986 de Fuerzas y Cuerpos de Seguridad (tema central del T15). Las FFCCSS dependen del <strong>Gobierno</strong>, no del Poder Judicial ni del Parlamento, aunque están sujetas a control jurisdiccional. La ley orgánica exigida es la LO 2/1986.</div>
+</section>
+
+<!-- Título V -->
+<section class="s" id="titulo5">
+<h2>8. Título V — Relaciones entre Gobierno y Cortes Generales (arts. 108–116)</h2>
+<p>Este Título regula los mecanismos de control parlamentario del Gobierno y los instrumentos de crisis constitucional.</p>
+
+<div class="art"><div class="art-r">Artículo 108 CE — Responsabilidad del Gobierno</div>
+<p>El Gobierno responde solidariamente en su gestión política ante el Congreso de los Diputados.</p></div>
+
+<div class="art"><div class="art-r">Artículo 112 CE — La cuestión de confianza</div>
+<p>El Presidente del Gobierno, previa deliberación del Consejo de Ministros, puede plantear ante el Congreso de los Diputados la cuestión de confianza sobre su programa o sobre una declaración de política general. La confianza se entenderá otorgada cuando vote a favor de la misma la mayoría simple de los Diputados.</p></div>
+
+<div class="art"><div class="art-r">Artículo 113 CE — La moción de censura</div>
+<p><strong>1.</strong> El Congreso de los Diputados puede exigir la responsabilidad política del Gobierno mediante la adopción por <em>mayoría absoluta</em> de sus miembros de una <em>moción de censura constructiva</em>.</p>
+<p><strong>2.</strong> La moción de censura deberá ser propuesta al menos por la décima parte de los Diputados, y habrá de incluir un <em>candidato a la Presidencia del Gobierno</em>.</p></div>
+
+<div class="art"><div class="art-r">Artículo 115 CE — Disolución de las Cortes</div>
+<p><strong>1.</strong> El Presidente del Gobierno, previa deliberación del Consejo de Ministros, y bajo su exclusiva responsabilidad, podrá proponer la disolución del Congreso, del Senado o de las Cortes Generales, que será decretada por el Rey. El decreto de disolución fijará la fecha de las elecciones.</p></div>
+
+<div class="art"><div class="art-r">Artículo 116 CE — Los estados de alarma, excepción y sitio</div>
+<p><strong>1.</strong> Una ley orgánica regulará los estados de alarma, de excepción y de sitio, y las competencias y limitaciones correspondientes.</p>
+<p><strong>2.</strong> El estado de <em>alarma</em> será declarado por el Gobierno mediante decreto acordado en Consejo de Ministros por un plazo máximo de <em>quince días</em>, dando cuenta al Congreso de los Diputados, reunido inmediatamente al efecto y sin cuya autorización no podrá ser prorrogado dicho plazo.</p>
+<p><strong>3.</strong> El estado de <em>excepción</em> será declarado por el Gobierno mediante decreto acordado en Consejo de Ministros, previa <em>autorización del Congreso de los Diputados</em>. La autorización y proclamación del estado de excepción deberá determinar expresamente los efectos del mismo, el ámbito territorial a que se extiende y su duración, que no podrá exceder de <em>treinta días</em>, prorrogables por otro plazo igual.</p>
+<p><strong>4.</strong> El estado de <em>sitio</em> será declarado por la mayoría absoluta del <em>Congreso de los Diputados</em>, a propuesta exclusiva del Gobierno.</p></div>
+
+<div class="key">
+<div class="key-t">⭐ Los tres estados excepcionales — tabla comparativa</div>
+<p><strong>Alarma:</strong> Decreto del Gobierno. Plazo: 15 días (prorrogable con autorización del Congreso). Suspende derechos de libre circulación (art. 19 CE). No suspende derechos fundamentales de la Sección 1ª.</p>
+<p><strong>Excepción:</strong> Decreto del Gobierno con autorización del Congreso. Plazo: 30 días (prorrogable 30 más). Puede suspender arts. 17, 18.2 y 3, 19, 20.1.a y d, 20.5, 21, 28.2 y 37.2.</p>
+<p><strong>Sitio:</strong> Declarado por el Congreso (mayoría absoluta) a propuesta del Gobierno. Plazo: el que determine el Congreso. Puede suspender todos los derechos del estado de excepción más el art. 17.3.</p>
+</div>
+</section>
+
+<!-- Título VI -->
+<section class="s" id="titulo6">
+<h2>9. Título VI — Del Poder Judicial (arts. 117–127)</h2>
+
+<div class="art"><div class="art-r">Artículo 117 CE — Principios del Poder Judicial</div>
+<p><strong>1.</strong> La justicia emana del pueblo y se administra en nombre del Rey por Jueces y Magistrados integrantes del poder judicial, <em>independientes, inamovibles, responsables y sometidos únicamente al imperio de la ley</em>.</p>
+<p><strong>3.</strong> El ejercicio de la potestad jurisdiccional en todo tipo de procesos, juzgando y haciendo ejecutar lo juzgado, <em>corresponde exclusivamente a los Juzgados y Tribunales</em> determinados por las leyes.</p>
+<p><strong>4.</strong> Los Juzgados y Tribunales no ejercerán más funciones que las señaladas en el apartado anterior y las que expresamente les sean atribuidas por ley en garantía de cualquier derecho.</p>
+<p><strong>5.</strong> El principio de unidad jurisdiccional es la base de la organización y funcionamiento de los Tribunales. La ley regulará el ejercicio de la jurisdicción militar en el ámbito estrictamente castrense y en los supuestos de estado de sitio.</p></div>
+
+<div class="art"><div class="art-r">Artículo 119 CE — Justicia gratuita</div>
+<p>La justicia será gratuita cuando así lo disponga la ley y, en todo caso, respecto de quienes <em>acrediten insuficiencia de recursos para litigar</em>.</p></div>
+
+<div class="art"><div class="art-r">Artículo 122 CE — El Consejo General del Poder Judicial</div>
+<p><strong>1.</strong> La ley orgánica del poder judicial determinará la constitución, funcionamiento y gobierno de los Juzgados y Tribunales, así como el estatuto jurídico de los Jueces y Magistrados de carrera, que formarán un Cuerpo único, y del personal al servicio de la Administración de Justicia.</p>
+<p><strong>2.</strong> El Consejo General del Poder Judicial es el <em>órgano de gobierno del poder judicial</em>. Una ley orgánica establecerá su estatuto y el régimen de incompatibilidades de sus miembros y sus funciones, en particular en materia de nombramientos, ascensos, inspección y régimen disciplinario.</p>
+<p><strong>3.</strong> El Consejo General del Poder Judicial estará integrado por el Presidente del Tribunal Supremo, que lo presidirá, y por <em>veinte miembros</em> nombrados por el Rey por un período de <em>cinco años</em>. De éstos, doce entre Jueces y Magistrados de todas las categorías judiciales, en los términos que establezca la ley orgánica; cuatro a propuesta del Congreso de los Diputados, y cuatro a propuesta del Senado, elegidos en ambos casos por mayoría de tres quintos de sus miembros, entre abogados y otros juristas, todos ellos de reconocida competencia y con más de quince años de ejercicio en su profesión.</p></div>
+
+<div class="art"><div class="art-r">Artículo 123 CE — El Tribunal Supremo</div>
+<p>El Tribunal Supremo, con jurisdicción en toda España, es el <em>órgano jurisdiccional superior en todos los órdenes</em>, salvo lo dispuesto en materia de garantías constitucionales. El Presidente del Tribunal Supremo será nombrado por el Rey, a propuesta del Consejo General del Poder Judicial.</p></div>
+
+<div class="art"><div class="art-r">Artículo 124 CE — El Ministerio Fiscal</div>
+<p><strong>1.</strong> El Ministerio Fiscal, sin perjuicio de las funciones encomendadas a otros órganos, tiene por misión promover la acción de la justicia en defensa de la <em>legalidad, de los derechos de los ciudadanos y del interés público tutelado por la ley</em>, de oficio o a petición de los interesados, así como velar por la independencia de los Tribunales y procurar ante éstos la satisfacción del interés social.</p>
+<p><strong>2.</strong> El Ministerio Fiscal ejerce sus funciones por medio de órganos propios conforme a los principios de <em>unidad de actuación y dependencia jerárquica</em> y con sujeción, en todo caso, a los de legalidad e imparcialidad.</p>
+<p><strong>4.</strong> El Fiscal General del Estado será nombrado por el Rey, a propuesta del Gobierno, oído el Consejo General del Poder Judicial.</p></div>
+</section>
+
+<!-- Título IX -->
+<section class="s" id="titulo9">
+<h2>10. Título IX — Del Tribunal Constitucional (arts. 159–165)</h2>
+<p>El Tribunal Constitucional (TC) es el <strong>intérprete supremo de la Constitución</strong>. Es único en su orden y sus sentencias tienen el valor de cosa juzgada desde su publicación en el BOE. Está regulado por la LO 2/1979, de 3 de octubre, del Tribunal Constitucional.</p>
+
+<div class="art"><div class="art-r">Artículo 159 CE — Composición y mandato</div>
+<p><strong>1.</strong> El TC se compone de <em>12 miembros</em> nombrados por el Rey: <em>cuatro a propuesta del Congreso</em> (mayoría de 3/5); <em>cuatro a propuesta del Senado</em> (mayoría de 3/5); <em>dos a propuesta del Gobierno</em>; y <em>dos a propuesta del CGPJ</em>.</p>
+<p><strong>2.</strong> Deberán ser juristas de reconocida competencia con <em>más de quince años de ejercicio profesional</em>.</p>
+<p><strong>3.</strong> Son designados por un período de <em>nueve años</em> y se <em>renuevan por terceras partes cada tres años</em>.</p>
+<p><strong>4.</strong> Incompatible con: todo mandato representativo; cargos políticos o administrativos; funciones directivas en partido político o sindicato; ejercicio de las carreras judicial y fiscal; y cualquier actividad profesional o mercantil.</p>
+<p><strong>5.</strong> Son <em>independientes e inamovibles</em> en el ejercicio de su mandato.</p></div>
+
+<div class="art"><div class="art-r">Artículo 160 CE — Presidente del TC</div>
+<p>El Presidente del TC será nombrado entre sus miembros por el Rey, a propuesta del mismo Tribunal en pleno y por un período de <em>tres años</em>.</p></div>
+
+<div class="art"><div class="art-r">Artículo 161 CE — Competencias del TC</div>
+<p>El TC tiene jurisdicción en todo el territorio español y es competente para conocer: a) Del <em>recurso de inconstitucionalidad</em> contra leyes y disposiciones normativas con fuerza de ley; b) Del <em>recurso de amparo</em> por violación de los derechos referidos en el art. 53.2 CE; c) De los <em>conflictos de competencia</em> entre el Estado y las CC.AA. o de éstas entre sí; d) De las demás materias que le atribuya la CE o las leyes orgánicas.</p></div>
+
+<div class="art"><div class="art-r">Artículo 162 CE — Legitimación para recurrir</div>
+<p><strong>Recurso de inconstitucionalidad:</strong> Presidente del Gobierno; Defensor del Pueblo; <em>50 Diputados; 50 Senadores</em>; órganos colegiados ejecutivos de las CC.AA.; Asambleas de las CC.AA.</p>
+<p><strong>Recurso de amparo:</strong> Toda persona natural o jurídica que invoque un interés legítimo; el Defensor del Pueblo; el Ministerio Fiscal.</p></div>
+
+<div class="art"><div class="art-r">Artículo 163 CE — Cuestión de inconstitucionalidad</div>
+<p>Cuando un órgano judicial considere, en algún proceso, que una norma con rango de ley, aplicable al caso, de cuya validez dependa el fallo, pueda ser contraria a la Constitución, <em>planteará la cuestión ante el TC</em>. Los efectos no son suspensivos.</p></div>
+
+<div class="art"><div class="art-r">Artículo 164 CE — Valor de las sentencias</div>
+<p>Las sentencias del TC se publicarán en el BOE con los votos particulares. <em>Tienen el valor de cosa juzgada</em> a partir del día siguiente de su publicación. No cabe recurso alguno contra ellas.</p></div>
+
+<table class="tabla">
+<thead><tr><th>Recurso/Procedimiento</th><th>Legitimados</th><th>Objeto</th><th>Plazo</th></tr></thead>
+<tbody>
+<tr><td><strong>Recurso de inconstitucionalidad</strong></td><td>Presidente Gobierno, DP, 50 Dip., 50 Sen., CCAA</td><td>Leyes y normas con fuerza de ley contrarias a la CE</td><td>3 meses desde publicación</td></tr>
+<tr><td><strong>Cuestión de inconstitucionalidad</strong></td><td>Jueces y Tribunales (de oficio)</td><td>Norma con fuerza de ley aplicable al caso</td><td>Antes de dictar sentencia</td></tr>
+<tr><td><strong>Recurso de amparo</strong></td><td>Cualquier persona + DP + MF</td><td>Violación de derechos del art. 53.2 CE</td><td>30 días desde notificación</td></tr>
+<tr><td><strong>Conflictos de competencia</strong></td><td>Estado y/o CCAA</td><td>Invasión de competencias</td><td>2 meses</td></tr>
+<tr><td><strong>Conflictos entre órganos constitucionales</strong></td><td>Congreso, Senado, Gobierno, CGPJ</td><td>Atribuciones constitucionales</td><td>1 mes</td></tr>
+</tbody>
+</table>
+</section>
+
+<!-- Título X -->
+<section class="s" id="titulo10">
+<h2>11. Título X — De la reforma constitucional (arts. 166–169)</h2>
+
+<div class="art"><div class="art-r">Artículo 166 CE — Iniciativa de reforma</div>
+<p>La iniciativa de reforma constitucional se ejercerá en los términos previstos en los apartados 1 y 2 del artículo 87 (Gobierno, Congreso, Senado y Asambleas autonómicas). <em>No cabe iniciativa legislativa popular para la reforma constitucional</em>.</p></div>
+
+<div class="art"><div class="art-r">Artículo 167 CE — Procedimiento ordinario de reforma</div>
+<p><strong>1.</strong> Los proyectos de reforma constitucional deberán ser aprobados por una <em>mayoría de tres quintos de cada una de las Cámaras</em>. Si no hubiera acuerdo entre ambas, se intentará obtenerlo mediante la creación de una Comisión de composición paritaria de Diputados y Senadores, que presentará un texto que será votado por el Congreso y el Senado.</p>
+<p><strong>2.</strong> De no lograrse la aprobación mediante el procedimiento del apartado anterior, y siempre que el texto hubiere obtenido el voto favorable de la mayoría absoluta del Senado, el Congreso, por <em>mayoría de dos tercios</em>, podrá aprobar la reforma.</p>
+<p><strong>3.</strong> Aprobada la reforma por las Cortes Generales, será sometida a <em>referéndum facultativo</em> para su ratificación cuando así lo soliciten, dentro de los quince días siguientes a su aprobación, una décima parte de los miembros de cualquiera de las Cámaras.</p></div>
+
+<div class="art"><div class="art-r">Artículo 168 CE — Procedimiento agravado de reforma</div>
+<p><strong>1.</strong> Cuando se propusiere la revisión total de la Constitución o una parcial que afecte al <em>Título Preliminar, al Capítulo Segundo, Sección Primera del Título I</em> (derechos fundamentales, arts. 15–29), <em>o al Título II</em> (La Corona), se procederá a la aprobación del principio por <em>mayoría de dos tercios de cada Cámara</em>, y a la <em>disolución inmediata de las Cortes</em>.</p>
+<p><strong>2.</strong> Las Cámaras elegidas deberán ratificar la decisión y proceder al estudio del nuevo texto constitucional, que deberá ser aprobado por <em>mayoría de dos tercios de ambas Cámaras</em>.</p>
+<p><strong>3.</strong> Aprobada la reforma por las Cortes Generales, será sometida a <em>referéndum obligatorio</em> para su ratificación.</p></div>
+
+<div class="art"><div class="art-r">Artículo 169 CE — Límite temporal</div>
+<p><em>No podrá iniciarse la reforma constitucional en tiempo de guerra o de vigencia de alguno de los estados previstos en el artículo 116</em> (alarma, excepción y sitio).</p></div>
+
+<table class="tabla">
+<thead><tr><th></th><th>Reforma ordinaria (art. 167)</th><th>Reforma agravada (art. 168)</th></tr></thead>
+<tbody>
+<tr><td><strong>¿Qué partes afecta?</strong></td><td>Cualquier parte salvo las del art. 168</td><td>Título Preliminar + Secc. 1ª Cap. II T.I (arts. 15–29) + Título II (Corona)</td></tr>
+<tr><td><strong>Mayoría necesaria</strong></td><td>3/5 de cada Cámara (o mayoría absoluta Senado + 2/3 Congreso)</td><td>2/3 de cada Cámara + disolución Cortes + nuevas Cortes aprueban por 2/3</td></tr>
+<tr><td><strong>Referéndum</strong></td><td>Facultativo (lo pide 1/10 de cualquier Cámara en 15 días)</td><td>Obligatorio siempre</td></tr>
+<tr><td><strong>Disuelven las Cortes</strong></td><td>No</td><td>Sí, inmediatamente</td></tr>
+</tbody>
+</table>
+</section>
+
+<!-- ESQUEMA RESUMEN -->
+<section class="s" id="esquema">
+<h2>12. Esquema general de la Constitución</h2>
+
+<table class="tabla">
+<thead><tr><th>Parte</th><th>Artículos</th><th>Contenido</th><th>Reforma</th></tr></thead>
+<tbody>
+<tr><td><strong>Preámbulo</strong></td><td>—</td><td>Exposición de motivos y fines del Estado</td><td>Ordinaria</td></tr>
+<tr><td><strong>Título Preliminar</strong></td><td>1–9</td><td>Principios estructurales: valores, unidad, lengua, bandera, partidos, FA</td><td><strong>Agravada</strong></td></tr>
+<tr><td><strong>Título I, Cap. I</strong></td><td>10–13</td><td>Españoles y extranjeros: nacionalidad, mayoría de edad, derechos extranjeros</td><td>Ordinaria</td></tr>
+<tr><td><strong>Título I, Cap. II, Secc. 1ª</strong></td><td>14–29</td><td>Derechos fundamentales y libertades públicas. Máxima protección.</td><td><strong>Agravada</strong></td></tr>
+<tr><td><strong>Título I, Cap. II, Secc. 2ª</strong></td><td>30–38</td><td>Derechos y deberes de los ciudadanos</td><td>Ordinaria</td></tr>
+<tr><td><strong>Título I, Cap. III</strong></td><td>39–52</td><td>Principios rectores de la política social y económica</td><td>Ordinaria</td></tr>
+<tr><td><strong>Título I, Cap. IV–V</strong></td><td>53–55</td><td>Garantías de los derechos. Defensor del Pueblo. Suspensión.</td><td>Ordinaria</td></tr>
+<tr><td><strong>Título II</strong></td><td>56–65</td><td>La Corona: estatuto del Rey, sucesión, regencia, funciones</td><td><strong>Agravada</strong></td></tr>
+<tr><td><strong>Título III</strong></td><td>66–96</td><td>Cortes Generales: Congreso y Senado, proceso legislativo</td><td>Ordinaria</td></tr>
+<tr><td><strong>Título IV</strong></td><td>97–107</td><td>Gobierno y Administración. FFCCSS (art. 104).</td><td>Ordinaria</td></tr>
+<tr><td><strong>Título V</strong></td><td>108–116</td><td>Relaciones Gobierno-Cortes. Estados excepcionales.</td><td>Ordinaria</td></tr>
+<tr><td><strong>Título VI</strong></td><td>117–127</td><td>Poder Judicial. CGPJ. Tribunal Supremo. Ministerio Fiscal.</td><td>Ordinaria</td></tr>
+<tr><td><strong>Título VII</strong></td><td>128–136</td><td>Economía y Hacienda. Tribunal de Cuentas.</td><td>Ordinaria</td></tr>
+<tr><td><strong>Título VIII</strong></td><td>137–158</td><td>Organización territorial. Municipios, provincias, CCAA.</td><td>Ordinaria</td></tr>
+<tr><td><strong>Título IX</strong></td><td>159–165</td><td>Tribunal Constitucional: composición, competencias, procedimientos</td><td>Ordinaria</td></tr>
+<tr><td><strong>Título X</strong></td><td>166–169</td><td>Reforma constitucional: procedimientos ordinario y agravado</td><td>—</td></tr>
+</tbody>
+</table>
+
+<div class="key">
+<div class="key-t">⭐ Resumen de cifras clave de la CE — muy preguntado</div>
+<p><strong>169</strong> artículos · <strong>4</strong> disposiciones adicionales · <strong>9</strong> disposiciones transitorias · <strong>1</strong> disposición derogatoria · <strong>1</strong> disposición final</p>
+<p><strong>3 reformas</strong>: 1992 (art. 13.2) · 2011 (art. 135) · 2024 (art. 49)</p>
+<p><strong>Tribunal Constitucional:</strong> 12 magistrados · 9 años de mandato · Presidente: 3 años · Renovación por tercios cada 3 años</p>
+<p><strong>CGPJ:</strong> 20 vocales · 5 años de mandato · 12 jueces/magistrados + 4 Congreso + 4 Senado</p>
+<p><strong>Defensor del Pueblo:</strong> 5 años · elegido por 3/5 de cada Cámara · LO 3/1981</p>
+<p><strong>Reforma ordinaria:</strong> 3/5 de cada Cámara · referéndum facultativo</p>
+<p><strong>Reforma agravada:</strong> 2/3 + disolución Cortes + 2/3 nuevas Cortes + referéndum obligatorio</p>
+</div>
+</section>
+
+<div class="nav">
+  <a href="panel-alumno.html">← Volver al temario</a>
+  <a href="panel-alumno.html">Ir a los tests →</a>
+</div>
+</main>
+</div>
+
+<script src="js/main.js"></script>
+<script>
+if(Progreso.done(4)){
+  document.getElementById('dbtn').classList.add('done');
+  document.getElementById('dbtn').textContent='✓ Completado';
+  document.getElementById('pbar').style.width='100%';
+  document.getElementById('pct').textContent='Completado';
+} else {
+  document.getElementById('pbar').style.width='35%';
+  document.getElementById('pct').textContent='En progreso';
+}
+function tDone(){
+  const d=Progreso.toggle(4);
+  document.getElementById('dbtn').classList.toggle('done',d);
+  document.getElementById('dbtn').textContent=d?'✓ Completado':'✓ Marcar completado';
+  document.getElementById('pbar').style.width=d?'100%':'35%';
+  document.getElementById('pct').textContent=d?'Completado':'En progreso';
+}
+document.querySelectorAll('.idx-a').forEach(a=>{
+  a.addEventListener('click',function(){
+    document.querySelectorAll('.idx-a').forEach(x=>x.classList.remove('on'));
+    this.classList.add('on');
+  });
+});
+</script>
+</body>
+</html>
