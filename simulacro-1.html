@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Simulacro 1 — Guardia Civil 2025 | Ingreso GC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    body{background:var(--fondo);display:flex;flex-direction:column;min-height:100vh;}
+
+    /* TOPBAR */
+    .topbar{background:var(--negro);height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;position:sticky;top:0;z-index:900;}
+    .tb-brand{font-family:var(--fuente-d);font-size:1.3rem;font-weight:800;color:white;}
+    .tb-brand span{color:var(--dorado-claro);}
+    .tb-right{display:flex;align-items:center;gap:1.25rem;}
+    .tb-timer{font-family:var(--fuente-d);font-size:1.8rem;font-weight:700;color:var(--dorado-claro);letter-spacing:0.05em;display:none;}
+    .tb-timer.rojo{color:#f87171;animation:parpadeo 1s infinite;}
+    @keyframes parpadeo{0%,100%{opacity:1}50%{opacity:0.5}}
+    .tb-back{padding:6px 14px;background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.7);border-radius:6px;font-size:0.8rem;border:1px solid rgba(255,255,255,0.12);text-decoration:none;cursor:pointer;}
+    .tb-back:hover{background:rgba(255,255,255,0.15);color:white;}
+
+    /* PORTADA */
+    #portada{flex:1;display:flex;align-items:center;justify-content:center;padding:2rem;}
+    .portada-card{background:white;border-radius:var(--radio-lg);padding:2.5rem;max-width:640px;width:100%;box-shadow:0 4px 32px rgba(0,0,0,0.08);}
+    .p-tag{display:inline-block;background:rgba(200,150,12,0.1);border:1px solid rgba(200,150,12,0.3);border-radius:100px;padding:3px 14px;font-size:0.7rem;font-weight:700;color:var(--dorado);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.75rem;}
+    .portada-card h1{font-family:var(--fuente-d);font-size:2.4rem;font-weight:800;color:var(--negro);margin-bottom:0.25rem;}
+    .portada-card h2{font-family:var(--fuente-d);font-size:1rem;font-weight:600;color:var(--gris-med);margin-bottom:1.75rem;}
+    .p-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;margin-bottom:1.75rem;}
+    .ps{background:var(--fondo);border-radius:var(--radio);padding:0.9rem;text-align:center;}
+    .ps .n{font-family:var(--fuente-d);font-size:1.8rem;font-weight:700;color:var(--verde);display:block;line-height:1;}
+    .ps .l{font-size:0.7rem;color:var(--gris-med);text-transform:uppercase;letter-spacing:0.05em;margin-top:3px;}
+    .p-reglas{background:var(--verde-bg);border-radius:var(--radio);padding:1.1rem 1.25rem;margin-bottom:1.75rem;}
+    .p-reglas p{font-size:0.86rem;color:var(--gris-osc);line-height:1.7;margin-bottom:0.2rem;}
+    .p-reglas p:last-child{margin:0;}
+    .btn-empezar{width:100%;padding:1rem;background:var(--verde);color:white;border:none;border-radius:var(--radio);font-family:var(--fuente-d);font-size:1.2rem;font-weight:700;cursor:pointer;transition:background 0.2s;}
+    .btn-empezar:hover{background:var(--verde-med);}
+
+    /* EXAMEN */
+    #examen{display:none;flex:1;}
+    .exam-wrap{display:grid;grid-template-columns:260px 1fr;min-height:calc(100vh - 60px);}
+
+    /* SIDEBAR */
+    .sidebar{background:white;border-right:1px solid var(--gris-claro);padding:1.1rem;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;display:flex;flex-direction:column;gap:0.9rem;}
+    .sb-lbl{font-size:0.65rem;font-weight:700;color:var(--gris-med);text-transform:uppercase;letter-spacing:0.09em;}
+    .sb-bar-wrap{background:var(--gris-claro);border-radius:100px;height:5px;overflow:hidden;}
+    .sb-bar{height:100%;background:var(--verde);border-radius:100px;width:0%;transition:width 0.3s;}
+    .sb-bar-txt{display:flex;justify-content:space-between;font-size:0.72rem;color:var(--gris-med);margin-top:3px;}
+    .leyenda{display:flex;gap:0.6rem;flex-wrap:wrap;}
+    .ley{display:flex;align-items:center;gap:4px;font-size:0.7rem;color:var(--gris-med);}
+    .ley-dot{width:9px;height:9px;border-radius:2px;}
+    .dots{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;}
+    .dot{aspect-ratio:1;border-radius:3px;background:var(--gris-claro);border:none;cursor:pointer;font-size:0.55rem;font-weight:700;color:var(--gris-med);display:flex;align-items:center;justify-content:center;transition:all 0.1s;}
+    .dot:hover{transform:scale(1.15);}
+    .dot.ans{background:var(--verde);color:white;}
+    .dot.cur{background:var(--dorado);color:var(--negro);}
+    .sb-btns{margin-top:auto;display:flex;flex-direction:column;gap:0.5rem;}
+    .btn-limpiar{padding:8px;background:transparent;color:var(--gris-med);border:1px solid var(--gris-claro);border-radius:var(--radio);font-size:0.8rem;cursor:pointer;}
+    .btn-limpiar:hover{border-color:var(--gris-osc);color:var(--negro);}
+    .btn-entregar{padding:10px;background:var(--verde);color:white;border:none;border-radius:var(--radio);font-weight:700;font-size:0.88rem;cursor:pointer;}
+    .btn-entregar:hover{background:var(--verde-med);}
+
+    /* PREGUNTA */
+    .preg-area{padding:2rem 2.5rem;max-width:780px;}
+    .preg-tema{font-size:0.68rem;font-weight:700;color:var(--verde);text-transform:uppercase;letter-spacing:0.09em;margin-bottom:0.3rem;}
+    .preg-n{font-size:0.78rem;color:var(--gris-med);margin-bottom:0.6rem;}
+    .preg-txt{font-size:1rem;font-weight:600;color:var(--negro);line-height:1.6;margin-bottom:1.2rem;}
+    .opciones{display:flex;flex-direction:column;gap:0.45rem;margin-bottom:1.2rem;}
+    .opc{display:flex;align-items:flex-start;gap:0.9rem;padding:0.85rem 1rem;border:2px solid var(--gris-claro);border-radius:var(--radio);cursor:pointer;background:white;transition:all 0.12s;}
+    .opc:hover{border-color:var(--verde);background:var(--verde-bg);}
+    .opc.sel{border-color:var(--verde);background:var(--verde-bg);}
+    .opc.ok{border-color:#16a34a;background:rgba(22,163,74,0.07);}
+    .opc.ko{border-color:#dc2626;background:rgba(220,38,38,0.05);}
+    .opc.ok-dim{border-color:#16a34a;background:rgba(22,163,74,0.04);}
+    .opc-l{width:28px;height:28px;border-radius:6px;background:var(--gris-claro);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.8rem;flex-shrink:0;color:var(--gris-med);transition:all 0.12s;}
+    .opc.sel .opc-l{background:var(--verde);color:white;}
+    .opc.ok .opc-l,.opc.ok-dim .opc-l{background:#16a34a;color:white;}
+    .opc.ko .opc-l{background:#dc2626;color:white;}
+    .opc-t{font-size:0.9rem;color:var(--gris-osc);line-height:1.5;flex:1;}
+    .exp{background:rgba(27,94,53,0.06);border-left:3px solid var(--verde);border-radius:var(--radio);padding:0.85rem 1rem;font-size:0.84rem;color:var(--gris-osc);line-height:1.75;margin-bottom:1.2rem;display:none;}
+    .nav-row{display:flex;justify-content:space-between;align-items:center;padding-top:1rem;border-top:1px solid var(--gris-claro);}
+    .nav-info{font-size:0.8rem;color:var(--gris-med);}
+
+    /* RESULTADO */
+    #resultado{display:none;padding:2rem;}
+    .res-inner{max-width:720px;margin:0 auto;}
+    .res-hero{background:var(--negro);border-radius:var(--radio-lg);padding:2.25rem;text-align:center;color:white;margin-bottom:1.25rem;}
+    .res-stag{display:inline-block;background:rgba(200,150,12,0.2);border:1px solid rgba(200,150,12,0.4);border-radius:100px;padding:3px 14px;font-size:0.7rem;font-weight:700;color:var(--dorado-claro);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.7rem;}
+    .res-pts{font-family:var(--fuente-d);font-size:5rem;font-weight:800;color:var(--dorado-claro);line-height:1;}
+    .res-sub{color:rgba(255,255,255,0.4);font-size:0.88rem;margin-bottom:0.9rem;}
+    .res-barra{background:rgba(255,255,255,0.1);border-radius:100px;height:8px;overflow:hidden;margin:0.75rem 0;}
+    .res-barra-fill{height:100%;border-radius:100px;transition:width 1s;}
+    .res-stats{display:flex;justify-content:center;gap:2.5rem;margin:1rem 0 0.5rem;}
+    .rs .n{font-family:var(--fuente-d);font-size:2rem;font-weight:700;display:block;line-height:1;}
+    .rs.ok .n{color:#4ade80;}.rs.ko .n{color:#f87171;}.rs.bl .n{color:rgba(255,255,255,0.3);}
+    .rs .l{font-size:0.7rem;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-top:3px;}
+    .res-msg{color:rgba(255,255,255,0.65);font-size:0.9rem;margin-top:0.75rem;line-height:1.65;}
+    .res-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:1.4rem;}
+    .res-bloques{background:white;border-radius:var(--radio-lg);padding:1.5rem;margin-bottom:1.25rem;}
+    .res-bloques h3{font-family:var(--fuente-d);font-size:1.2rem;font-weight:700;color:var(--negro);margin-bottom:0.9rem;}
+    .bloque-row{display:flex;align-items:center;gap:0.9rem;padding:0.5rem 0;border-bottom:1px solid var(--gris-claro);}
+    .bloque-row:last-child{border:none;}
+    .bloque-nom{font-size:0.83rem;color:var(--gris-osc);flex:1;}
+    .bloque-bar-w{width:110px;background:var(--gris-claro);border-radius:100px;height:5px;overflow:hidden;}
+    .bloque-bar{height:100%;border-radius:100px;}
+    .bloque-sc{font-size:0.78rem;font-weight:700;min-width:36px;text-align:right;}
+
+    @media(max-width:900px){.exam-wrap{grid-template-columns:1fr;}.sidebar{display:none;}}
+    @media(max-width:600px){.p-stats{grid-template-columns:1fr 1fr;}.preg-area{padding:1.25rem;}}
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="tb-brand">Ingreso<span>GC</span></div>
+  <div class="tb-right">
+    <div class="tb-timer" id="timer"></div>
+    <a href="panel-alumno.html" class="tb-back" onclick="return confirmarSalir()">← Panel</a>
+  </div>
+</div>
+
+<!-- ══ PORTADA ══ -->
+<div id="portada">
+  <div class="portada-card">
+    <div class="p-tag">Resolución 160/38240/2025 · BOE nº 128 · Año 2025</div>
+    <h1>Simulacro 1</h1>
+    <h2>Prueba de Conocimientos Generales — Escala de Cabos y Guardias</h2>
+    <div class="p-stats">
+      <div class="ps"><span class="n">100</span><div class="l">Preguntas</div></div>
+      <div class="ps"><span class="n">140</span><div class="l">Minutos</div></div>
+      <div class="ps"><span class="n">−⅓</span><div class="l">Penalización</div></div>
+    </div>
+    <div class="p-reglas">
+      <p>📋 <strong>4 opciones</strong> por pregunta. Solo una correcta.</p>
+      <p>⚠️ <strong>Penalización:</strong> cada respuesta incorrecta resta 1/3 del valor de una correcta.</p>
+      <p>⬜ <strong>En blanco:</strong> no penaliza. Si dudas, mejor dejar en blanco.</p>
+      <p>⏱ <strong>Tiempo:</strong> 140 minutos. Al agotarse se entrega automáticamente.</p>
+      <p>✅ <strong>Aprobado:</strong> a partir de 50 puntos sobre 100.</p>
+    </div>
+    <button class="btn-empezar" onclick="comenzar()">▶ Comenzar examen</button>
+  </div>
+</div>
+
+<!-- ══ EXAMEN ══ -->
+<div id="examen">
+  <div class="exam-wrap">
+    <aside class="sidebar">
+      <div>
+        <div class="sb-lbl">Progreso</div>
+        <div class="sb-bar-wrap"><div class="sb-bar" id="sb-bar"></div></div>
+        <div class="sb-bar-txt"><span id="sb-ans">0 respondidas</span><span id="sb-pct">0%</span></div>
+      </div>
+      <div>
+        <div class="leyenda">
+          <div class="ley"><div class="ley-dot" style="background:var(--verde)"></div>Respondida</div>
+          <div class="ley"><div class="ley-dot" style="background:var(--dorado)"></div>Actual</div>
+          <div class="ley"><div class="ley-dot" style="background:var(--gris-claro)"></div>Sin responder</div>
+        </div>
+      </div>
+      <div>
+        <div class="sb-lbl" style="margin-bottom:0.4rem">Navegación</div>
+        <div class="dots" id="dots"></div>
+      </div>
+      <div class="sb-btns">
+        <button class="btn-limpiar" onclick="limpiar()">✕ Limpiar respuesta actual</button>
+        <button class="btn-entregar" onclick="pedirEntrega()">✓ Entregar examen</button>
+      </div>
+    </aside>
+    <main class="preg-area" id="preg-area">
+      <div class="preg-tema" id="p-tema"></div>
+      <div class="preg-n" id="p-n"></div>
+      <div class="preg-txt" id="p-txt"></div>
+      <div class="opciones" id="p-ops"></div>
+      <div class="exp" id="p-exp"></div>
+      <div class="nav-row">
+        <button class="btn btn-secondary" id="btn-ant" onclick="nav(-1)">← Anterior</button>
+        <span class="nav-info" id="nav-info"></span>
+        <button class="btn btn-primary" id="btn-sig" onclick="nav(1)">Siguiente →</button>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- ══ RESULTADO ══ -->
+<div id="resultado">
+  <div class="res-inner">
+    <div class="res-hero">
+      <div class="res-stag">Simulacro 1 · Resultado final</div>
+      <div class="res-pts" id="r-pts"></div>
+      <div class="res-sub">puntos sobre 100</div>
+      <div class="res-barra"><div class="res-barra-fill" id="r-bar"></div></div>
+      <div class="res-stats">
+        <div class="rs ok"><span class="n" id="r-ok"></span><div class="l">Correctas</div></div>
+        <div class="rs ko"><span class="n" id="r-ko"></span><div class="l">Incorrectas</div></div>
+        <div class="rs bl"><span class="n" id="r-bl"></span><div class="l">En blanco</div></div>
+      </div>
+      <div class="res-msg" id="r-msg"></div>
+      <div class="res-btns">
+        <button class="btn btn-gold" onclick="revisar()">🔍 Revisar respuestas</button>
+        <button class="btn btn-outline-white" onclick="location.href='panel-alumno.html'">← Volver al panel</button>
+      </div>
+    </div>
+    <div class="res-bloques">
+      <h3>Resultado por bloques temáticos</h3>
+      <div id="r-bloques"></div>
+    </div>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+<script>
+Auth.requireAuth();
+
+// ═══════════════════════════════════════════════════════════════
+// SIMULACRO 1 — 100 PREGUNTAS OFICIALES
+// Convocatoria Guardia Civil 2025 · Res. 160/38240/2025
+// ═══════════════════════════════════════════════════════════════
+const Q = [
+{n:1,t:'T1 · Derechos Humanos',p:'Carta de las Naciones Unidas. ¿Cuál de los siguientes NO es uno de los órganos principales de las Naciones Unidas?',a:['El Consejo de Administración Fiduciaria','El Consejo Económico y Social','El Consejo Internacional de Justicia','El Consejo de Seguridad'],ok:2,e:'Los órganos principales de la ONU son: Asamblea General, Consejo de Seguridad, Consejo Económico y Social, Consejo de Administración Fiduciaria, Corte Internacional de Justicia y Secretaría. El «Consejo Internacional de Justicia» no existe; el órgano judicial es la Corte Internacional de Justicia.'},
+{n:2,t:'T1 · Derechos Humanos',p:'Declaración Universal de Derechos Humanos. Señale la proposición INCORRECTA:',a:['Toda persona tiene derecho a un recurso efectivo ante los tribunales nacionales que la ampare contra actos que violen sus derechos fundamentales','Toda persona tiene derecho a los seguros en caso de desempleo u otros casos de pérdida de sus medios de subsistencia por cualquier circunstancia','Toda persona tiene el derecho de acceso, en condiciones de igualdad, a las funciones públicas de su país','Toda persona tiene deberes respecto a la comunidad, puesto que solo en ella puede desarrollar libre y plenamente su personalidad'],ok:1,e:'La DUDH (art. 25) reconoce el derecho a seguros en caso de desempleo, enfermedad, invalidez, viudez, vejez u otros supuestos previstos, pero NO dice «por cualquier circunstancia». La opción b) amplía indebidamente el alcance del precepto.'},
+{n:3,t:'T1 · Derechos Humanos',p:'Convención contra la Tortura. Todo Estado Parte velará por que todos los actos de tortura constituyan delitos conforme a su legislación penal. ¿Se aplica también este precepto a la tentativa de tortura?',a:['No, la tentativa queda excluida expresamente de la Convención','Sí, la Convención obliga a tipificar también la tentativa de tortura','Solo la tentativa próxima a la consumación','La tentativa solo se castiga si hay lesiones efectivas'],ok:1,e:'La Convención contra la Tortura establece que cada Estado velará por que sus actos de tortura constituyan delito, «así como toda tentativa de cometer tortura». La tentativa no queda excluida; al contrario, está expresamente incluida.'},
+{n:4,t:'T1 · Derechos Humanos',p:'Carta de los Derechos Fundamentales de la UE. En relación con el trabajo infantil, la edad mínima de admisión al trabajo:',a:['No podrá ser inferior a los 18 años','No podrá ser inferior a los 16 años','No podrá ser inferior a la edad en que concluye el período de escolaridad obligatoria','No podrá ser inferior a los 17 años'],ok:2,e:'La Carta de los Derechos Fundamentales de la UE establece que la edad mínima de admisión al trabajo no podrá ser inferior a la edad en que concluye el período de escolaridad obligatoria, sin fijar una edad concreta.'},
+{n:5,t:'T1 · Derechos Humanos',p:'Estatuto de Roma de la Corte Penal Internacional. ¿Cuál de las siguientes NO es una Sección de los órganos de la Corte?',a:['La de Instrucción','La de Apelaciones','La de Primera Instancia','La de Cuestiones Preliminares'],ok:0,e:'Los órganos de la Corte Penal Internacional incluyen la Sección de Apelaciones, la Sección de Primera Instancia y la Sección de Cuestiones Preliminares. La «Sección de Instrucción» no existe como tal en el Estatuto de Roma.'},
+{n:6,t:'T5 · Derecho UE',p:'Tratado de la Unión Europea. ¿Conforme a qué principio la Unión y los Estados miembros se respetarán y asistirán mutuamente en el cumplimiento de las misiones derivadas de los Tratados?',a:['Reciprocidad','Subsidiariedad','Atribución','Cooperación leal'],ok:3,e:'El principio de cooperación leal o lealtad mutua (art. 4.3 TUE) obliga a la UE y a los Estados miembros a respetarse y asistirse mutuamente en el cumplimiento de las misiones derivadas de los Tratados.'},
+{n:7,t:'T5 · Derecho UE',p:'Tratado de Funcionamiento de la UE. Un Reglamento europeo es:',a:['Un acto no vinculante de alcance general directamente aplicable','Un acto vinculante de alcance singular y directamente aplicable','Un acto vinculante, obligatorio en todos sus elementos, de alcance general y directamente aplicable en cada Estado miembro','Un acto no vinculante que establece objetivos que los países deben cumplir'],ok:2,e:'Art. 288 TFUE: El Reglamento es un acto vinculante, obligatorio en todos sus elementos y directamente aplicable en cada Estado miembro sin necesidad de transposición nacional. La Directiva, en cambio, establece objetivos y sí requiere transposición.'},
+{n:8,t:'T6 · Instituciones Internacionales',p:'Instituciones Internacionales. En relación con el Consejo de Europa, señale la opción INCORRECTA:',a:['El Comité de Ministros es el órgano ejecutivo del Consejo de Europa e integrado por los Ministros del Interior de cada Estado miembro','Todos los Estados miembros del Consejo de Europa han suscrito el Convenio Europeo de Derechos Humanos','El Consejo de Europa es la principal organización del continente dedicada a la defensa de los derechos humanos','Su Secretario General es elegido por la Asamblea Parlamentaria para un mandato de cinco años'],ok:0,e:'El Comité de Ministros del Consejo de Europa está integrado por los Ministros de Asuntos Exteriores (no de Interior) de los Estados miembros o sus representantes diplomáticos permanentes en Estrasburgo.'},
+{n:9,t:'T6 · Instituciones Internacionales',p:'Instituciones Internacionales. ¿Cuántos países son miembros de la OTAN actualmente?',a:['30','32','34','35'],ok:1,e:'Tras la adhesión de Finlandia en 2023 y Suecia en 2024, la OTAN cuenta con 32 Estados miembros.'},
+{n:10,t:'T2 · Igualdad efectiva',p:'Ley Orgánica 3/2007 para la igualdad efectiva. Las normas sobre personal de las Fuerzas Armadas procurarán la efectividad del principio de igualdad, en especial en lo referente al régimen de:',a:['Personal, destinos, ascensos, permisos y situaciones administrativas','Clases pasivas, ascensos, pabellones, destinos y permisos','Acceso, formación, ascensos, destinos y situaciones administrativas','Selección, formación, destinos, permisos y ascensos'],ok:2,e:'La LO 3/2007 establece que las normas sobre personal de las Fuerzas Armadas procurarán la efectividad del principio de igualdad en lo referente al régimen de acceso, formación, ascensos, destinos y situaciones administrativas.'},
+{n:11,t:'T2 · Igualdad efectiva',p:'LO 3/2007. ¿En qué ámbitos sus normas serán de aplicación en las Fuerzas y Cuerpos de Seguridad adaptándose a las peculiaridades de sus funciones?',a:['Solo en materia de igualdad','Solo en prevención de violencia de género y sexual','Solo en la conciliación de la vida personal, familiar y profesional','En todos los ámbitos anteriores'],ok:3,e:'La LO 3/2007 se aplica a las FFCCSS en materia de igualdad, en prevención de la violencia de género y la violencia sexual, y en la conciliación de la vida personal, familiar y profesional, adaptándose a sus peculiaridades.'},
+{n:12,t:'T3 · Prevención de Riesgos Laborales',p:'Ley de Prevención de Riesgos Laborales. Se entenderá como «condición de trabajo» cualquier característica del mismo que:',a:['Genere un accidente de trabajo o enfermedad profesional','Pueda tener una influencia significativa en la generación de riesgos para la seguridad y salud del trabajador','Sea potencialmente peligrosa según los estándares de la OIT','Implique un nivel de riesgo superior al admisible por la legislación'],ok:1,e:'Art. 4.7 LPRL: Se entenderá como «condición de trabajo» cualquier característica del mismo que pueda tener una influencia significativa en la generación de riesgos para la seguridad y la salud del trabajador.'},
+{n:13,t:'T3 · Prevención de Riesgos Laborales',p:'Real Decreto de adaptación de la legislación de PRL a la AGE. ¿Quién realizará funciones de coordinación general de la función de prevención en la AGE, especialmente en formación?',a:['La Delegación o Subdelegación del Gobierno correspondiente','El Comité de Seguridad y Salud','El Ministerio de Sanidad','La Dirección General de la Función Pública'],ok:3,e:'El RD 67/2010 establece que la Dirección General de la Función Pública realizará funciones de coordinación general de la función de prevención en el ámbito de la AGE, especialmente en lo referente a la formación en esta materia.'},
+{n:14,t:'T3 · Prevención de Riesgos Laborales',p:'Real Decreto sobre PRL en la Guardia Civil. El contenido del RD se inspira, entre otros, en el principio relativo a:',a:['La promoción de la salud e higiene en el trabajo','La integración de la prevención','La cooperación entre Administraciones en prevención de riesgos','La promoción de la seguridad'],ok:1,e:'El RD 179/2005, sobre PRL en la Guardia Civil, se inspira entre otros en el principio de integración de la prevención de riesgos laborales en la organización y actividad del Cuerpo.'},
+{n:15,t:'T4 · Constitución Española',p:'Constitución Española. Es un derecho fundamental:',a:['El derecho a la libertad de cátedra','El derecho a la propiedad privada y a la herencia','El derecho a la protección de la salud','El derecho a disfrutar de un medio ambiente adecuado'],ok:0,e:'La libertad de cátedra (art. 20.1.c CE) está en la Sección 1ª del Capítulo II del Título I: derechos fundamentales. La propiedad (art. 33), la salud (art. 43) y el medio ambiente (art. 45) son principios rectores de menor protección constitucional.'},
+{n:16,t:'T4 · Constitución Española',p:'Constitución Española. ¿De cuál de los siguientes derechos NO se podrá recabar tutela a través del recurso de amparo ante el TC?',a:['Derecho de reunión pacífica','Derecho a la educación','Derecho de fundación para fines de interés general','Derecho a la libertad de expresión'],ok:2,e:'El recurso de amparo (art. 53.2 CE) protege solo los derechos del art. 14 y la Sección 1ª del Cap. II (arts. 15-29). El derecho de fundación está en el art. 34, Sección 2ª, y no accede al amparo.'},
+{n:17,t:'T4 · Constitución Española',p:'Constitución Española. Según el artículo 17.2 CE, la detención preventiva no podrá durar más de:',a:['24 horas','48 horas','72 horas','5 días'],ok:2,e:'Art. 17.2 CE: «en todo caso, en el plazo máximo de setenta y dos horas, el detenido deberá ser puesto en libertad o a disposición de la autoridad judicial.»'},
+{n:18,t:'T4 · Constitución Española',p:'Constitución Española. La institución del Defensor del Pueblo está regulada por:',a:['Un Real Decreto','Una Ley Ordinaria','Un Real Decreto-Ley','Una Ley Orgánica'],ok:3,e:'Art. 54 CE: «Una ley orgánica regulará la institución del Defensor del Pueblo.» Está desarrollada por la LO 3/1981.'},
+{n:19,t:'T4 · Constitución Española',p:'Constitución Española. ¿Cuál es una competencia del Gobierno según el artículo 97 CE?',a:['Convocar elecciones en los términos previstos en la CE','Dirigir la Administración Civil y Militar y la defensa del Estado','Aprobar los presupuestos del Estado','Convocar referéndum en los casos previstos en la CE'],ok:1,e:'Art. 97 CE: «El Gobierno dirige la política interior y exterior, la Administración civil y militar y la defensa del Estado.» Convocar elecciones y referéndum son funciones del Rey (arts. 62.b y 62.c). Aprobar presupuestos corresponde a las Cortes.'},
+{n:20,t:'T4 · Constitución Española',p:'Constitución Española. La responsabilidad criminal de los miembros del Gobierno por delito de traición o contra la seguridad del Estado solo podrá ser planteada por iniciativa de:',a:['La mayoría absoluta del Congreso','La cuarta parte de los miembros del Congreso','La mayoría absoluta del Senado','La cuarta parte de los miembros de las Cortes Generales'],ok:1,e:'Art. 102.2 CE: «la acusación por traición o por cualquier delito contra la seguridad del Estado en el ejercicio de sus funciones, sólo podrá ser planteada por iniciativa de la cuarta parte de los miembros del Congreso.»'},
+{n:21,t:'T4 · Constitución Española',p:'Constitución Española. En relación con los principios rectores de la política social y económica, señale la proposición INCORRECTA:',a:['Los poderes públicos impulsarán políticas que garanticen la plena autonomía personal de las personas con discapacidad','Los poderes públicos mantendrán un régimen público de Seguridad Social que garantice prestaciones ante situaciones de necesidad, especialmente en caso de acceso a la sanidad','Los poderes públicos aseguran la protección integral de los hijos con independencia de su filiación','Los poderes públicos aseguran la protección social, económica y jurídica de la familia'],ok:1,e:'Art. 41 CE: el régimen de Seguridad Social garantiza prestaciones ante situaciones de necesidad «especialmente en el caso de desempleo», no de «acceso a la sanidad» (que es el art. 43 CE). La opción b) introduce un término incorrecto.'},
+{n:22,t:'T4 · Constitución Española',p:'Constitución Española. Según el artículo 15 CE, queda abolida la pena de muerte, salvo:',a:['En ningún caso; la abolición es absoluta','Lo que puedan disponer las leyes penales militares para tiempos de guerra','En casos de terrorismo mediante ley orgánica','Lo que determine el Tribunal Supremo en circunstancias excepcionales'],ok:1,e:'Art. 15 CE: «Queda abolida la pena de muerte, salvo lo que puedan disponer las leyes penales militares para tiempos de guerra.»'},
+{n:23,t:'T4 · Constitución Española',p:'Constitución Española. El artículo 22.5 CE prohíbe expresamente:',a:['Las asociaciones con fines no lucrativos no registradas','Las asociaciones sin fines de interés general','Las asociaciones secretas y las de carácter paramilitar','Las asociaciones extranjeras en España'],ok:2,e:'Art. 22.5 CE: «Se prohíben las asociaciones secretas y las de carácter paramilitar.»'},
+{n:24,t:'T4 · Constitución Española',p:'Constitución Española. Según el artículo 21.1 CE, el derecho de reunión pacífica:',a:['Requiere autorización previa de la autoridad gubernativa','No necesitará autorización previa','Necesita comunicación previa en todos los casos','Solo está permitido en lugares privados'],ok:1,e:'Art. 21.1 CE: «Se reconoce el derecho de reunión pacífica y sin armas. El ejercicio de este derecho no necesitará autorización previa.» La comunicación previa solo se exige para reuniones en lugares de tránsito público.'},
+{n:25,t:'T4 · Constitución Española',p:'Constitución Española. Las penas privativas de libertad estarán orientadas hacia:',a:['La retribución y el castigo','La reeducación y reinserción social','La disuasión de futuros delincuentes','La reparación a las víctimas'],ok:1,e:'Art. 25.2 CE: «Las penas privativas de libertad y las medidas de seguridad estarán orientadas hacia la reeducación y reinserción social y no podrán consistir en trabajos forzados.»'},
+{n:26,t:'T4 · Constitución Española',p:'Constitución Española. El Tribunal Constitucional se compone de:',a:['9 miembros por 6 años','12 miembros por 9 años','10 miembros por 10 años','15 miembros por 5 años'],ok:1,e:'Art. 159.1 y 3 CE: El TC se compone de 12 miembros nombrados por el Rey, designados por un período de 9 años y renovados por terceras partes cada tres años.'},
+{n:27,t:'T4 · Constitución Española',p:'Constitución Española. Para interponer el recurso de inconstitucionalidad están legitimados, entre otros:',a:['25 Diputados o 25 Senadores','50 Diputados o 50 Senadores','El Presidente del Congreso','El Fiscal General del Estado'],ok:1,e:'Art. 162.1.a) CE: Están legitimados para el recurso de inconstitucionalidad: el Presidente del Gobierno, el Defensor del Pueblo, «50 Diputados, 50 Senadores», los órganos colegiados ejecutivos de las CCAA y sus Asambleas.'},
+{n:28,t:'T4 · Constitución Española',p:'Constitución Española. La reforma constitucional ordinaria (art. 167) requiere aprobación por:',a:['Mayoría simple de cada Cámara','Mayoría absoluta de cada Cámara','Mayoría de tres quintos de cada Cámara','Mayoría de dos tercios de cada Cámara'],ok:2,e:'Art. 167.1 CE: «Los proyectos de reforma constitucional deberán ser aprobados por una mayoría de tres quintos de cada una de las Cámaras.»'},
+{n:29,t:'T4 · Constitución Española',p:'Constitución Española. Según el artículo 169 CE, ¿cuándo no puede iniciarse la reforma constitucional?',a:['Durante los períodos de sesiones','En año electoral','En tiempo de guerra o de vigencia de los estados de alarma, excepción o sitio','Cuando el Gobierno esté en funciones'],ok:2,e:'Art. 169 CE: «No podrá iniciarse la reforma constitucional en tiempo de guerra o de vigencia de alguno de los estados previstos en el artículo 116» (alarma, excepción y sitio).'},
+{n:30,t:'T4 · Constitución Española',p:'Constitución Española. El estado de sitio es declarado por:',a:['El Gobierno mediante decreto-ley','El Presidente del Gobierno con autorización del Senado','El Congreso por mayoría absoluta a propuesta exclusiva del Gobierno','Las Cortes Generales por mayoría de dos tercios'],ok:2,e:'Art. 116.4 CE: «El estado de sitio será declarado por la mayoría absoluta del Congreso de los Diputados, a propuesta exclusiva del Gobierno.»'},
+{n:31,t:'T4 · Constitución Española',p:'Constitución Española. Según el artículo 57.1 CE, en la sucesión al Trono, en el mismo grado se preferirá:',a:['La persona de mayor edad sin distinción de sexo','El varón a la mujer','La mujer al varón','Lo decidirán las Cortes Generales'],ok:1,e:'Art. 57.1 CE: «...en el mismo grado, el varón a la mujer, y en el mismo sexo, la persona de más edad a la de menos.»'},
+{n:32,t:'T4 · Constitución Española',p:'Constitución Española. Las Cortes Generales están formadas por:',a:['El Congreso y el Consejo de Estado','El Congreso, el Senado y el TC','El Congreso de los Diputados y el Senado','El Senado y el CGPJ'],ok:2,e:'Art. 66.1 CE: «Las Cortes Generales representan al pueblo español y están formadas por el Congreso de los Diputados y el Senado.»'},
+{n:33,t:'T4 · Constitución Española',p:'Constitución Española. La moción de censura contra el Gobierno requiere aprobación por:',a:['Mayoría simple del Congreso','Mayoría absoluta del Congreso y debe incluir candidato alternativo','Mayoría de tres quintos del Congreso','Mayoría absoluta sin necesidad de candidato alternativo'],ok:1,e:'Art. 113 CE: La moción de censura debe ser aprobada por mayoría absoluta del Congreso y es constructiva: debe incluir un candidato alternativo a la Presidencia del Gobierno.'},
+{n:34,t:'T4 · Constitución Española',p:'Constitución Española. ¿Cuántos años dura el mandato del Presidente del Tribunal Constitucional?',a:['3 años','4 años','5 años','9 años'],ok:0,e:'Art. 160 CE: «El Presidente del Tribunal Constitucional será nombrado entre sus miembros por el Rey, a propuesta del mismo Tribunal en pleno y por un período de tres años.»'},
+{n:35,t:'T7 · Derecho Civil',p:'Código Civil. De los alimentos entre parientes, señale la opción INCORRECTA:',a:['Se entiende por alimentos todo lo indispensable para el sustento, habitación, vestido y asistencia médica','Entre los alimentos se incluirán los gastos de embarazo y parto, aun estando cubiertos de otro modo','Los alimentos comprenden la educación e instrucción del alimentista mientras sea menor de edad','Los alimentos comprenden también la educación e instrucción aun después de la mayoría de edad cuando no haya terminado su formación por causa no imputable a él'],ok:1,e:'El CC establece que los gastos de embarazo y parto se incluyen «en cuanto no estén cubiertos de otro modo». La opción b) dice «aun estando cubiertos de otro modo», lo que es incorrecto.'},
+{n:36,t:'T7 · Derecho Civil',p:'Código Civil. El acogimiento familiar de urgencia (principalmente para menores de seis años) tendrá una duración máxima de:',a:['Tres meses','Seis meses','Un año','Dos años'],ok:1,e:'El acogimiento familiar de urgencia, principalmente para menores de seis años, tendrá una duración no superior a seis meses, en tanto se decide la medida de protección familiar que corresponda.'},
+{n:37,t:'T7 · Derecho Civil',p:'Código Civil. La autoridad judicial dará audiencia al menor tutelado si fuere mayor de:',a:['Diez años','Once años','Doce años','Nueve años'],ok:2,e:'El CC establece que en todo caso será tenida en cuenta la opinión del menor y se le dará audiencia si fuere mayor de doce años.'},
+{n:38,t:'T7 · Derecho Civil',p:'Código Civil. Respecto al menor que hubiere obtenido judicialmente la emancipación, señale la proposición CORRECTA:',a:['Puede gravar o enajenar bienes inmuebles sin consentimiento de sus progenitores','No puede comparecer en juicio por sí solo','Puede tomar dinero a préstamo sin consentimiento de sus progenitores','No puede enajenar objetos de extraordinario valor sin consentimiento de sus progenitores o, en su defecto, de su defensor judicial'],ok:3,e:'El menor emancipado necesita el consentimiento de sus progenitores o del defensor judicial para: enajenar o gravar bienes inmuebles, objetos de extraordinario valor o tomar dinero a préstamo.'},
+{n:39,t:'T8 · Derecho Penal',p:'Ley Orgánica del Código Penal. ¿Cuál de las siguientes NO se considera una circunstancia agravante?',a:['Ser reincidente','Prevalerse del carácter público que tenga el culpable','Ejecutar el hecho con alevosía','Obrar con abuso de confianza'],ok:3,e:'La reincidencia (a), prevalerse del carácter público (b) y la alevosía (c) son circunstancias agravantes del art. 22 CP. El abuso de confianza (d) es también circunstancia agravante (art. 22.6 CP). Esta pregunta busca que se conozca que TODAS son agravantes, siendo d) la que a veces se confunde con atenuante.'},
+{n:40,t:'T8 · Derecho Penal',p:'Ley Orgánica del Código Penal. Los que realizan el hecho por medio de otro del que se sirven como instrumento son:',a:['Cómplices','Autores','Inductores','Cooperadores necesarios'],ok:1,e:'Art. 28 CP: Son autores quienes realizan el hecho por sí solos, conjuntamente o «por medio de otro del que se sirven como instrumento» (autoría mediata). Son también considerados autores los inductores y los cooperadores necesarios.'},
+{n:41,t:'T8 · Derecho Penal',p:'Ley Orgánica del Código Penal. ¿Qué tipo de pena es la libertad vigilada?',a:['Medida de seguridad no privativa de libertad','Pena privativa de derechos','Medida de seguridad privativa de libertad','Pena privativa de libertad'],ok:1,e:'La libertad vigilada es una pena privativa de derechos (art. 39.g CP), no una medida de seguridad. Se aplica como pena accesoria en delitos graves y permite la supervisión del penado tras cumplir la pena principal.'},
+{n:42,t:'T8 · Derecho Penal',p:'Ley Orgánica del Código Penal. El que solicita favores de naturaleza sexual en el ámbito de una relación laboral provocando a la víctima una situación objetiva y gravemente intimidatoria, hostil o humillante, será castigado como autor de:',a:['Acoso sexual','Agresión sexual','Acto vejatorio','Abuso sexual'],ok:0,e:'Art. 184 CP: El acoso sexual consiste en solicitar favores de naturaleza sexual en el ámbito de una relación laboral, docente o similar, que provoque a la víctima una situación objetiva y gravemente intimidatoria, hostil o humillante.'},
+{n:43,t:'T8 · Derecho Penal',p:'Ley Orgánica del Código Penal. Las penas privativas de libertad y las medidas de seguridad no podrán consistir en:',a:['Confinamiento en establecimientos penitenciarios','Trabajos forzados','Privación de libertad sin comunicación','Internamiento en centro cerrado'],ok:1,e:'Art. 25.2 CE y art. 6 CP: Las penas privativas de libertad y las medidas de seguridad no podrán consistir en trabajos forzados y estarán orientadas hacia la reeducación y reinserción social.'},
+{n:44,t:'T8 · Derecho Penal',p:'Ley Orgánica del Código Penal. La prescripción del delito comienza a computarse desde:',a:['La fecha de la resolución judicial que inicia el procedimiento','El día en que se cometió el delito','La fecha de la denuncia presentada por la víctima','El día de la detención del presunto responsable'],ok:1,e:'Art. 132 CP: Los términos de prescripción del delito se computarán desde el día en que se haya cometido la infracción punible.'},
+{n:45,t:'T8 · Derecho Penal',p:'Ley Orgánica del Código Penal. La reincidencia como circunstancia agravante supone:',a:['Haber sido condenado ejecutoriamente por un delito comprendido en el mismo Título del Código','Haber cometido un delito anterior aunque no haya recaído sentencia','Haber cometido más de tres delitos en los últimos cinco años','Haber cumplido condena en establecimiento penitenciario con anterioridad'],ok:0,e:'Art. 22.8 CP: Hay reincidencia cuando al delinquir el culpable haya sido condenado ejecutoriamente por un delito comprendido en el mismo Título del Código, siempre que sea de la misma naturaleza.'},
+{n:46,t:'T9 · Derecho Procesal Penal',p:'Ley de Enjuiciamiento Criminal. Los atestados que redacten los funcionarios de Policía Judicial se considerarán:',a:['Testimonios','Diligencias policiales','Denuncias','Declaraciones testificales'],ok:2,e:'Art. 297 LECrim: «Los atestados que redactaren y las manifestaciones que hicieren los funcionarios de Policía judicial, a consecuencia de las averiguaciones que hubiesen practicado, se considerarán denuncias para los efectos legales.»'},
+{n:47,t:'T9 · Derecho Procesal Penal',p:'Ley de Enjuiciamiento Criminal. En relación con la declaración de los testigos, señale la opción CORRECTA:',a:['El testigo no podrá dictar sus contestaciones por sí mismo','Podrán consultar algún apunte o memoria que contenga datos difíciles de recordar','El Juez interrumpirá continuamente al testigo para dirigirle preguntas','Los testigos podrán leer la declaración o respuestas que lleven escritas'],ok:1,e:'Art. 437 LECrim: El testigo podrá consultar algún apunte o memoria que contenga datos difíciles de recordar. El Juez dejará narrar libremente los hechos y solo le interrumpirá para dirigirle las preguntas que estime oportunas.'},
+{n:48,t:'T9 · Derecho Procesal Penal',p:'Ley de Enjuiciamiento Criminal. En investigaciones sobre delincuencia organizada, ¿quién otorga la identidad supuesta al agente encubierto?',a:['El Ministerio de la Presidencia por tres meses prorrogables','El Juez de Instrucción, oído el MF, por seis meses','El Ministerio del Interior por seis meses prorrogables','El Ministerio Fiscal dando cuenta al Juez de Instrucción, por tres meses prorrogable una sola vez'],ok:3,e:'Art. 282 bis LECrim: La identidad supuesta será otorgada por el Ministerio Fiscal, dando cuenta al Juez de Instrucción competente, por el plazo de tres meses prorrogable por períodos de igual duración.'},
+{n:49,t:'T9 · Derecho Procesal Penal',p:'Ley del Estatuto de la víctima del delito. ¿Qué derechos tiene toda víctima en el momento de presentar su denuncia?',a:['A la asistencia lingüística gratuita cuando no entienda ninguna lengua oficial del lugar de la denuncia','A obtener copia de la denuncia debidamente certificada','A la asistencia lingüística gratuita cuando no hable ninguna lengua oficial del lugar','Todos los descritos en las opciones anteriores'],ok:3,e:'La Ley 4/2015 del Estatuto de la Víctima reconoce al denunciar: asistencia lingüística gratuita tanto cuando no entienda como cuando no hable las lenguas oficiales, y obtener copia certificada de la denuncia. Ambas son correctas, por eso es «todas las anteriores».'},
+{n:50,t:'T9 · Derecho Procesal Penal',p:'Ley Orgánica del Poder Judicial. La Sala de lo Penal de la Audiencia Nacional conocerá:',a:['De todos los procedimientos penales iniciados en el extranjero','De las cuestiones de cesión de jurisdicción en materia penal derivadas del cumplimiento de tratados internacionales','En única instancia de conflictos colectivos con efecto en más de una CCAA','De los recursos de apelación contra resoluciones de las Audiencias Provinciales'],ok:1,e:'La Sala de lo Penal de la Audiencia Nacional tiene atribuido el conocimiento de las cuestiones de cesión de jurisdicción en materia penal derivadas del cumplimiento de tratados internacionales en que España sea parte, entre otras competencias específicas.'},
+{n:51,t:'T9 · Derecho Procesal Penal',p:'Ley Orgánica reguladora del Habeas Corpus. ¿Cuál es el objetivo fundamental del constitucionalismo moderno según la Exposición de Motivos de la ley?',a:['El reconocimiento y la protección de la vida y la libertad de los ciudadanos','El compromiso de los poderes públicos ante los ciudadanos','El acceso a la autoridad judicial con rapidez, sencillez y carencia de formalismos','Establecer remedios eficaces para supuestos de detenciones no justificadas legalmente'],ok:0,e:'La Exposición de Motivos de la LO 6/1984 establece que el objetivo fundamental del constitucionalismo moderno, que constituye al mismo tiempo su raíz última, es el reconocimiento y la protección de la vida y la libertad de los ciudadanos.'},
+{n:52,t:'T10 · Derecho Administrativo',p:'Ley del Procedimiento Administrativo Común. Los poderes inscritos en los registros de apoderamientos tendrán una validez determinada máxima de:',a:['Tres años','Un año','Cinco años','Diez años'],ok:0,e:'La Ley 39/2015 establece que, como norma general, los poderes inscritos en los registros electrónicos de apoderamientos tendrán una validez determinada máxima de tres años a contar desde la fecha de inscripción.'},
+{n:53,t:'T10 · Derecho Administrativo',p:'Ley del PAC. El recurso extraordinario de revisión se interpondrá en plazo de cuatro años cuando:',a:['Se hubiera incurrido en error de hecho en los documentos del expediente','Aparezcan documentos esenciales que evidencien el error aunque sean posteriores','En la resolución hayan influido documentos o testimonios declarados falsos por sentencia firme','La resolución se dictó como consecuencia de prevaricación u otra conducta punible'],ok:2,e:'El plazo de 4 años se aplica cuando en la resolución hayan influido documentos o testimonios declarados falsos por sentencia firme, anterior o posterior. Los otros supuestos tienen un plazo de tres meses desde el conocimiento del hecho.'},
+{n:54,t:'T10 · Derecho Administrativo',p:'Ley de Régimen Jurídico del Sector Público. ¿Cómo pueden los órganos administrativos dirigir a sus órganos jerárquicamente dependientes?',a:['Mediante recomendaciones','Mediante directrices','Mediante instrucciones y órdenes de servicio','Mediante directrices, instrucciones y órdenes de servicio'],ok:3,e:'La Ley 40/2015 establece que los órganos administrativos podrán dirigir las actividades de sus órganos jerárquicamente dependientes mediante instrucciones y órdenes de servicio, así como mediante directrices.'},
+{n:55,t:'T10 · Derecho Administrativo',p:'Ley del PAC. Si el acto fuera expreso, ¿cuál es el plazo para interponer el recurso potestativo de reposición?',a:['Diez días','Un mes','Dos meses','Tres meses'],ok:1,e:'Art. 124 Ley 39/2015: El recurso potestativo de reposición deberá interponerse en el plazo de un mes si el acto fuera expreso. Si no fuera expreso (silencio), podrá interponerse en cualquier momento a partir del día siguiente a que se produzca el silencio administrativo.'},
+{n:56,t:'T10 · Derecho Administrativo',p:'Ley de Régimen Jurídico del Sector Público. La encomienda de gestión:',a:['Supone cesión de la titularidad de la competencia al órgano encomendado','No supone cesión de la titularidad ni de los elementos sustantivos de su ejercicio','Requiere publicación en el BOE en todo caso','El órgano encomendado actúa en nombre propio y bajo su propia responsabilidad'],ok:1,e:'Art. 11 Ley 40/2015: «La encomienda de gestión no supone cesión de la titularidad de la competencia ni de los elementos sustantivos de su ejercicio.» La responsabilidad de dictar actos jurídicos sigue siendo del órgano encomendante.'},
+{n:57,t:'T11 · Protección de Datos',p:'Ley Orgánica de Protección de Datos. ¿Quién aprobará el Estatuto de la Agencia Española de Protección de Datos?',a:['La propia Agencia','El Gobierno','El Ministro de la Presidencia, Justicia y Relaciones con las Cortes','El Consejo General del Poder Judicial'],ok:1,e:'La LO 3/2018 establece que el Estatuto de la AEPD será aprobado por el Gobierno mediante Real Decreto.'},
+{n:58,t:'T11 · Protección de Datos',p:'LO de Protección de Datos. En relación con el Consejo Consultivo de la AEPD, señale la opción INCORRECTA:',a:['Estará compuesto, entre otros, por un representante del CGPJ','La condición de experto requerirá acreditar conocimientos genéricos en protección de datos','La Presidencia de la AEPD estará asesorada por un Consejo Consultivo','Estará compuesto por un experto propuesto por la CRUE'],ok:1,e:'La LO 3/2018 exige que la condición de experto en el Consejo Consultivo se acredite con conocimientos «especializados» (no genéricos) en el Derecho y la práctica en materia de protección de datos mediante ejercicio profesional o académico.'},
+{n:59,t:'T12 · Extranjería',p:'Ley Orgánica de Extranjería. ¿Cuál constituye una infracción GRAVE en materia de extranjería?',a:['La omisión en la comunicación de cambios de nacionalidad o domicilio','Las salidas del territorio por puestos no habilitados o contraviniendo las prohibiciones impuestas','Encontrarse trabajando sin autorización cuando se tiene residencia temporal','Consentir la falsa inscripción de un extranjero en el Padrón Municipal'],ok:1,e:'Las salidas del territorio español por puestos no habilitados o contraviniendo las prohibiciones legalmente impuestas constituyen infracción grave. La omisión de comunicar cambios es leve. Trabajar sin autorización teniendo residencia temporal es leve. La falsa inscripción padronal es muy grave.'},
+{n:60,t:'T12 · Extranjería',p:'Real Decreto sobre entrada de ciudadanos UE. La tarjeta de residencia de familiar de ciudadano de la Unión deberá expedirse en el plazo de:',a:['Tres meses siguientes a la presentación','Veinte días hábiles siguientes','Seis meses siguientes','Quince días hábiles siguientes'],ok:0,e:'El RD 240/2007 establece que la tarjeta de residencia de familiar de ciudadano de la UE deberá expedirse en el plazo de los tres meses siguientes a la presentación de la solicitud.'},
+{n:61,t:'T13 · Seguridad ciudadana',p:'LO de protección de la seguridad ciudadana. Constituye uno de los fines de esta Ley, la protección de las personas y bienes con especial atención a:',a:['Las autoridades y a los miembros de las FFCCSS','Los menores y a las personas con discapacidad necesitadas de especial protección','Las víctimas del terrorismo','Las personas vulnerables por su situación social o económica'],ok:1,e:'La LOPSC establece como fin la protección de las personas y bienes, con especial atención a los menores y a las personas con discapacidad necesitadas de especial protección, así como a otras personas en situación de especial vulnerabilidad.'},
+{n:62,t:'T13 · Seguridad ciudadana',p:'LO de protección de la seguridad ciudadana. ¿Quién es competente en la AGE para la sanción de infracciones muy graves en grado máximo?',a:['El Consejo de Ministros','El Ministro del Interior','El Secretario de Estado de Seguridad','Los Delegados de Gobierno en las CCAA'],ok:0,e:'La LOPSC establece que en el ámbito de la AGE, la sanción de las infracciones muy graves en grado máximo corresponde al Consejo de Ministros.'},
+{n:63,t:'T13 · Seguridad Privada',p:'Ley de Seguridad Privada. ¿Cuál es uno de los requisitos para obtener la habilitación para ejercer funciones de seguridad privada?',a:['Tener la nacionalidad española','Carecer de antecedentes penales por cualquier delito','No haber sido sancionado en los dos o cuatro años anteriores por infracción grave o muy grave en seguridad privada','No haber sido separado del servicio en las FFCCSS en los cinco años anteriores'],ok:2,e:'La Ley 5/2014 exige no haber sido sancionado en los dos años anteriores por infracción grave, o en los cuatro años anteriores por infracción muy grave, en materia de seguridad privada. No se exige exclusivamente la nacionalidad española.'},
+{n:64,t:'T14 · Ministerios',p:'Real Decreto de estructura del Ministerio del Interior. ¿De qué órgano depende directamente la Secretaría General de Instituciones Penitenciarias?',a:['De la Secretaría de Estado de Seguridad','De la Subsecretaría del Interior','De la Secretaría General Técnica','Del Ministerio del Interior directamente'],ok:3,e:'La Secretaría General de Instituciones Penitenciarias depende directamente del Ministerio del Interior, al mismo nivel que la Secretaría de Estado de Seguridad y la Subsecretaría del Interior.'},
+{n:65,t:'T14 · Ministerios',p:'Real Decreto de estructura del Ministerio de Defensa. ¿A qué órgano corresponde la planificación y desarrollo de la política industrial de la Defensa?',a:['A la Dirección General de Estrategia e Innovación de la Industria de Defensa','A la Dirección General de Armamento y Material','A la Dirección General de Infraestructura','Al Centro de Sistemas y Tecnologías de la Información'],ok:0,e:'La Dirección General de Estrategia e Innovación de la Industria de Defensa tiene atribuida la planificación y desarrollo de la política industrial de la Defensa.'},
+{n:66,t:'T15 · FFCCSS y Guardia Civil',p:'LO 2/1986 de Fuerzas y Cuerpos de Seguridad. ¿Cuáles son las FFCCSS según el artículo 2?',a:['Solo el CNP y la Guardia Civil','Las FFCCSS del Estado, los Cuerpos de Policía autonómicos y los Cuerpos de Policía de Corporaciones Locales','Las FFAA y las FFCCSS del Estado','El CNP, la GC y las Policías Autonómicas'],ok:1,e:'Art. 2 LO 2/1986: Son FFCCSS: a) Las FFCCSS del Estado dependientes del Gobierno; b) Los Cuerpos de Policía dependientes de las Comunidades Autónomas; c) Los Cuerpos de Policía dependientes de las Corporaciones Locales.'},
+{n:67,t:'T15 · FFCCSS y Guardia Civil',p:'LO 2/1986. Los principios básicos de actuación de las FFCCSS en materia de relaciones con la comunidad incluyen:',a:['Impedir cualquier práctica abusiva, arbitraria o discriminatoria que entrañe violencia física o moral','Actuar únicamente cuando sean requeridos por los ciudadanos','Proporcionar información solo cuando sea estrictamente necesario','Usar las armas siempre que exista cualquier riesgo para la seguridad ciudadana'],ok:0,e:'Art. 5.2.a) LO 2/1986: Entre los principios básicos relativos a las relaciones con la comunidad figura «Impedir, en el ejercicio de su actuación profesional, cualquier práctica abusiva, arbitraria o discriminatoria que entrañe violencia física o moral.»'},
+{n:68,t:'T15 · FFCCSS y Guardia Civil',p:'LO 2/1986. ¿Cuándo deberán utilizar las armas los miembros de las FFCCSS?',a:['Siempre que exista cualquier riesgo para la seguridad ciudadana','Solo en situaciones de riesgo racionalmente grave para su vida, integridad física o la de terceros, o de grave riesgo para la seguridad ciudadana','En cualquier situación que requiera el mando jerárquico','Solo cuando el riesgo sea inminente y no haya otro medio posible'],ok:1,e:'Art. 5.2.d) LO 2/1986: «Solamente deberán utilizar las armas en las situaciones en que exista un riesgo racionalmente grave para su vida, su integridad física o las de terceras personas, o en aquellas circunstancias que puedan suponer un grave riesgo para la seguridad ciudadana.»'},
+{n:69,t:'T15 · FFCCSS y Guardia Civil',p:'LO 2/1986. Para conseguir la óptima utilización de medios disponibles, ¿quién puede ordenar que la GC asuma funciones exclusivas asignadas al CNP en zonas determinadas?',a:['El Delegado del Gobierno en la CCAA','El Secretario de Estado de Seguridad','El Ministerio del Interior','El Consejo de Política de Seguridad'],ok:2,e:'LO 2/1986: El Ministerio del Interior podrá ordenar que el CNP o la Guardia Civil asuman, en zonas o núcleos determinados, todas o algunas de las funciones exclusivas asignadas al otro Cuerpo.'},
+{n:70,t:'T15 · FFCCSS y Guardia Civil',p:'LO 2/1986. De la Guardia Civil, ¿a quién corresponde disponer lo referente a selección, formación y perfeccionamiento?',a:['Al Ministro del Interior','Al Ministro de Defensa','Conjuntamente a los Ministros de Defensa e Interior','Al Consejo de Ministros'],ok:2,e:'LO 2/1986: La selección, formación y perfeccionamiento del personal de la Guardia Civil corresponde conjuntamente a los Ministros de Defensa e Interior, dada la doble dependencia ministerial del Cuerpo.'},
+{n:71,t:'T15 · FFCCSS y Guardia Civil',p:'Ley 29/2014 de Régimen del Personal de la Guardia Civil. Mediante __________ se aplican los medios puestos a disposición para alcanzar los objetivos de la forma más eficiente.',a:['La acción directiva','Acciones de gestión','Acciones ejecutivas','La acción de mando'],ok:3,e:'La Ley 29/2014 establece que mediante la acción de mando se aplican los medios puestos a disposición para alcanzar los objetivos de la forma más eficiente.'},
+{n:72,t:'T15 · FFCCSS y Guardia Civil',p:'Estructura orgánica de los Servicios Centrales de la DG de la GC. De la persona titular de la DG dependen directamente:',a:['El Mando de Operaciones, el Mando de Personal y el Mando de Apoyo','El Mando de Operaciones, el Mando de Fronteras y PM, el Mando de Personal y el Mando de Apoyo','La Dirección Adjunta Operativa, el Mando de Fronteras y PM, el Mando de Personal y el Mando de Apoyo','La Dirección Adjunta Operativa, el Mando de Personal y el Mando de Apoyo'],ok:2,e:'De la persona titular de la Dirección General de la Guardia Civil dependen directamente: la Dirección Adjunta Operativa, el Mando de Fronteras y Policía Marítima, el Mando de Personal y el Mando de Apoyo.'},
+{n:73,t:'T15 · FFCCSS y Guardia Civil',p:'Estructura orgánica de la DG de la GC. ¿A qué órgano corresponde coordinar la estrategia de ciberseguridad del Cuerpo?',a:['A la Jefatura de Transformación Digital y Ciberseguridad','A la Jefatura de Información','A la Jefatura de Policía Judicial','A la Jefatura de Servicios Técnicos y de Ciberseguridad'],ok:0,e:'A la Jefatura de Transformación Digital y Ciberseguridad le corresponde coordinar la estrategia de ciberseguridad y de Seguridad de la información del Cuerpo de la Guardia Civil.'},
+{n:74,t:'T15 · FFCCSS y Guardia Civil',p:'LO 11/2007. Presentación de quejas. ¿En cuál de los siguientes casos NO podrá presentar una queja un guardia civil?',a:['Cuando hubiese presentado recurso sobre el mismo asunto','Cuando se refiera a su mando inmediato superior','Cuando sean relativas al régimen del personal','Cuando sean relativas a la calidad de vida en las unidades'],ok:0,e:'La LO 11/2007 establece que no podrá presentarse queja cuando el guardia civil ya hubiese presentado recurso sobre el mismo asunto, para evitar la duplicidad de vías de impugnación sobre la misma cuestión.'},
+{n:75,t:'T15 · Deontología',p:'Real Decreto del Código de Conducta del personal de la Guardia Civil. ¿Cuál NO se corresponde con el Decálogo de los miembros de la Guardia Civil?',a:['El honor ha de ser mi principal divisa; debo conservarlo sin mancha. Una vez perdido, no se recobra jamás','Me comportaré siempre con la mayor dignidad, como exigen el Cuerpo al que pertenezco y el uniforme que visto','Actuar siempre con integridad y rectitud, será mi mayor recompensa','Fiel a mi deber, con actitud serena en el peligro, seré prudente sin debilidad y firme sin violencia'],ok:2,e:'La opción c) no figura literalmente en el Decálogo de los miembros de la Guardia Civil. Las opciones a), b) y d) sí son frases literales del Decálogo.'},
+{n:76,t:'T15 · Deontología',p:'Principios básicos sobre el empleo de la fuerza y armas de fuego por los funcionarios encargados de hacer cumplir la Ley. Señale la opción INCORRECTA:',a:['Solo podrá hacerse uso intencional de armas letales cuando sea estrictamente inevitable para proteger una vida','Cuando el empleo de armas de fuego sea inevitable, notificarán lo sucedido en un plazo máximo de 24 horas a los parientes de las personas heridas','Se hará evaluación cuidadosa de armas no letales para reducir riesgo de lesiones a personas ajenas','Los gobiernos adoptarán medidas para castigar como delito el empleo arbitrario de la fuerza'],ok:1,e:'Los Principios Básicos establecen que los funcionarios notificarán lo ocurrido «inmediatamente» a sus superiores, no en un plazo de 24 horas a los parientes. La notificación a parientes se realiza lo antes posible, pero sin ese plazo específico.'},
+{n:77,t:'T16 · Protección Civil',p:'Ley del Sistema Nacional de Protección Civil. ¿Qué se entiende por «Vulnerabilidad» a los efectos de esta ley?',a:['La posibilidad de que una amenaza llegue a afectar a colectivos de personas o bienes','El potencial de ocasionar daño en determinadas situaciones','La característica de una colectividad de personas o bienes que los hace susceptibles de ser afectados en mayor o menor grado por un peligro','La situación de exposición a un peligro inminente o latente'],ok:2,e:'La Ley 17/2015 define «Vulnerabilidad» como la característica de una colectividad de personas o bienes que los hace susceptibles de ser afectados en mayor o menor grado por un peligro en determinadas circunstancias.'},
+{n:78,t:'T16 · Protección Civil',p:'Ley del Sistema Nacional de Protección Civil. ¿A propuesta de quién será aprobada la Estrategia Nacional de Protección Civil?',a:['Del Consejo de Seguridad Nacional','Del Director General de Protección Civil y Emergencias','Del Ministro del Interior','Del Consejo Nacional de Protección Civil'],ok:3,e:'La Ley 17/2015 establece que la Estrategia Nacional de Protección Civil será aprobada a propuesta del Consejo Nacional de Protección Civil.'},
+{n:79,t:'T16 · Patrimonio Natural',p:'Ley del Patrimonio Natural y de la Biodiversidad. ¿Cuál de las siguientes es una categoría de espacio natural protegido?',a:['Áreas Marinas Ecológicas','Paisajes Naturales','Monumentos Naturales','Reservas Geológicas'],ok:2,e:'La Ley 42/2007 clasifica los espacios naturales protegidos en: Parques, Reservas Naturales, Áreas Marinas Protegidas, Monumentos Naturales y Paisajes Protegidos.'},
+{n:80,t:'T17 · TIC y Ciberseguridad',p:'CCN-CERT. Con respecto a los Bitcoins, señale la opción CORRECTA:',a:['Se utiliza una cadena de caracteres criptográficos que se intercambian a través de billeteras digitales entre el usuario y el vendedor (intercambios P2P)','Cada transacción se registra en una gran base de datos llamada "BlackChain"','Las transacciones son completamente seguras sin riesgo de blanqueo','Bitcoin es una moneda centralizada donde el control lo realizan los bancos centrales'],ok:0,e:'Bitcoin es una moneda electrónica descentralizada (P2P) basada en cadenas criptográficas intercambiadas mediante billeteras digitales. La base de datos se llama «Blockchain» (no BlackChain). Sí presenta riesgos de blanqueo y evasión fiscal.'},
+{n:81,t:'T17 · TIC',p:'Esquema Nacional de Interoperabilidad. Para garantizar la interoperabilidad en ciberseguridad y criptografía, el órgano competente será el Centro Criptológico Nacional adscrito al:',a:['Centro Nacional de Inteligencia','Centro de Transferencia de Tecnología','Centro de interoperabilidad semántica','Comité Sectorial de Administración Electrónica'],ok:0,e:'El Centro Criptológico Nacional (CCN) está adscrito al Centro Nacional de Inteligencia (CNI) y es el órgano competente en materia de ciberseguridad y criptografía en la Administración electrónica.'},
+{n:82,t:'T18 · Topografía',p:'Topografía. ¿Cuál es la unidad de medida lineal definida como la longitud recorrida en el vacío por un rayo de luz en 1/299.792.458 segundos?',a:['El centímetro','El kilómetro','El metro','El hectómetro'],ok:2,e:'El metro es la unidad de longitud del Sistema Internacional, definida como la longitud recorrida en el vacío por un rayo de luz durante un intervalo de tiempo de 1/299.792.458 segundos.'},
+{n:83,t:'T18 · Topografía',p:'Topografía. Con respecto a los elementos geográficos, señale la opción INCORRECTA:',a:['Recibe el nombre de plano meridiano todo plano que contiene al eje terrestre','Se denominan paralelos a las líneas de intersección con la superficie terrestre de todo plano perpendicular al eje terrestre','Las longitudes se miden de 0º a 90º a uno y otro lado del meridiano de origen','Las coordenadas geográficas de un punto de la superficie terrestre son la latitud y la longitud'],ok:2,e:'Las latitudes se miden de 0° a 90° (norte o sur). Las longitudes se miden de 0° a 180° (este u oeste) a uno y otro lado del meridiano de origen. La opción c) es incorrecta al indicar 90° para las longitudes.'},
+{n:84,t:'T20 · Responsabilidad Penal Menores',p:'LO 5/2000, reguladora de la responsabilidad penal de los menores. El tiempo máximo de la medida cautelar de internamiento será de __________, prorrogable por otros __________.',a:['Tres meses / tres meses','Seis meses / tres meses','Tres meses / dos meses','Seis meses / seis meses'],ok:1,e:'La LO 5/2000 establece que la medida cautelar de internamiento tendrá un máximo de seis meses, prorrogable, a instancia del Ministerio Fiscal, mediante auto motivado, por otros tres meses como máximo.'},
+{n:85,t:'T21 · Violencia de Género',p:'LO 1/2004. ¿Con qué periodicidad el Observatorio Estatal de Violencia sobre la Mujer remitirá informe al Gobierno y las CCAA?',a:['Mensual','Trimestral','Anual','Bienal'],ok:2,e:'La LO 1/2004 establece que el Observatorio Estatal de Violencia sobre la Mujer remitirá al Gobierno y a las CCAA un informe con periodicidad anual sobre la evolución de la violencia ejercida sobre la mujer.'},
+{n:86,t:'T21 · Violencia de Género',p:'LO 1/2004. En la composición del Observatorio Estatal de Violencia sobre la Mujer se garantizará, en todo caso, la participación de:',a:['Cualquiera de las organizaciones empresariales y sindicales','Las organizaciones de mujeres con implantación en todo el territorio nacional','Las asociaciones de consumidores y usuarios','Son correctas las opciones a) y c)'],ok:1,e:'La LO 1/2004 establece que en la composición del Observatorio Estatal de Violencia sobre la Mujer se garantizará, en todo caso, la participación de las organizaciones de mujeres con implantación en todo el territorio nacional.'},
+{n:87,t:'T22 · Armas y Explosivos',p:'Reglamento de Armas. ¿A qué arma nos referimos si en su ornamentación presenta una peculiaridad en razón de los materiales nobles empleados o de diseño, que le confiere un especial valor?',a:['Arma artística','Arma antigua','Arma Flobert','Arma histórica'],ok:0,e:'El Reglamento de Armas (RD 137/1993) define el arma artística como aquella que en su ornamentación presenta una peculiaridad en razón de los materiales nobles empleados o de diseño, que le confiere un especial valor.'},
+{n:88,t:'T22 · Armas y Explosivos',p:'Reglamento de Armas. Los envases para el comercio interior de armas de fuego:',a:['Pueden contener cualquier número cuando ofrezcan garantías','No pueden llevar armas cortas o largas de cañón estriado junto con escopetas de caza','Podrán contener 50 armas largas','No deben contener más de 20 armas cortas'],ok:3,e:'El Reglamento de Armas establece que los envases para el comercio interior de armas de fuego no deben contener más de 20 armas cortas.'},
+{n:89,t:'T22 · Armas y Explosivos',p:'Reglamento de Explosivos. La alambrada de espino de la parte superior del cerramiento de una fábrica de explosivos estará inclinada hacia el exterior:',a:['30° respecto a la vertical','60° respecto a la vertical','25° respecto a la vertical','45° respecto a la vertical'],ok:3,e:'El Reglamento de Explosivos (RD 130/2017) establece que la alambrada de espino de la parte superior del cerramiento de una fábrica de explosivos estará inclinada hacia el exterior a 45° respecto a la vertical.'},
+{n:90,t:'T22 · Armas y Explosivos',p:'Reglamento de Explosivos. Los lugares de parada de un transporte de explosivos por carretera se escogerán en áreas situadas como mínimo a:',a:['500 metros de núcleos de población','1.000 metros de núcleos de población','2.000 metros de núcleos de población','5.000 metros de núcleos de población'],ok:1,e:'El Reglamento de Explosivos establece que los lugares de parada se escogerán en áreas situadas a 1.000 metros como mínimo de núcleos de población.'},
+{n:91,t:'T23 · Derecho Fiscal',p:'LO de represión del contrabando. ¿Cuál NO es una circunstancia que se considerará principalmente un medio fraudulento en contrabando?',a:['El empleo de justificantes falseados','La utilización de medios que indiquen planificación del contrabando','La existencia de cualquier anomalía en la contabilidad','El empleo de facturas falsas'],ok:2,e:'La LO 12/1995 establece como medios fraudulentos: justificantes falseados (a), medios que indiquen planificación (b) y facturas falsas (d). La «existencia de cualquier anomalía en la contabilidad» no está prevista como medio fraudulento de contrabando.'},
+{n:92,t:'T23 · Derecho Fiscal',p:'Código Aduanero de la Unión. ¿Cuál de los siguientes NO es un régimen especial aduanero?',a:['El depósito aduanero','El tránsito interno','El perfeccionamiento pasivo','La exportación'],ok:3,e:'Los regímenes especiales del CAU incluyen el tránsito, el depósito, el destino especial y el perfeccionamiento (activo y pasivo). La exportación es un despacho aduanero ordinario, NO un régimen especial.'},
+{n:93,t:'T15 · Historia de la Guardia Civil',p:'Historia de la Guardia Civil. En el rescate del barranco de Bellver (Castellón) en el que intervinieron los guardias civiles Pedro Ortega y Antonio Gimeno:',a:['Las víctimas viajaban en un carruaje y fallecieron los dos guardias civiles','No hubo víctimas mortales','Se produjo en 1950 y falleció uno de los guardias civiles','Los guardias civiles rescataron a unos campesinos que trabajaban en el campo'],ok:3,e:'En el rescate del barranco de Bellver, los guardias civiles Pedro Ortega y Antonio Gimeno rescataron a unos campesinos que trabajaban en el campo durante una tormenta, siendo este un ejemplo de los servicios humanitarios, pilar base de la creación del Instituto.'},
+{n:94,t:'T5 · Derecho UE',p:'Tratado de Funcionamiento de la UE. Cuando una cuestión sobre interpretación de los Tratados se plantee ante un tribunal cuyas decisiones NO sean susceptibles de ulterior recurso, dicho tribunal:',a:['Podrá someter la cuestión al TJUE si lo estima conveniente','Deberá someter la cuestión al TJUE en todo caso','Solo lo hará si lo solicita alguna de las partes','Está excluido de plantear cuestiones prejudiciales'],ok:1,e:'Art. 267 TFUE: Los tribunales cuyas decisiones NO son susceptibles de recurso judicial ulterior DEBERÁN plantear la cuestión prejudicial al TJUE. Los tribunales de instancia solo podrán hacerlo.'},
+{n:95,t:'T4 · Constitución Española',p:'Constitución Española. El artículo 28.1 CE establece que la ley podrá limitar el derecho de sindicación a las Fuerzas o Institutos armados. Respecto a la Guardia Civil:',a:['Puede constituir sindicatos con autorización del Ministerio del Interior','No puede constituir ni afiliarse a sindicatos, aunque sí puede asociarse en asociaciones profesionales','Puede afiliarse a sindicatos generales pero no crear sindicatos propios','Tiene plena libertad sindical igual que cualquier funcionario civil'],ok:1,e:'Art. 28.1 CE y LO 11/2007: La Guardia Civil, como instituto armado de naturaleza militar sometido a disciplina militar, tiene vedada la sindicación. Sin embargo, puede asociarse en asociaciones profesionales reguladas por la LO 11/2007.'},
+{n:96,t:'T4 · Constitución Española',p:'Constitución Española. Según el artículo 53.2 CE, el recurso de amparo ante el TC puede interponerlo:',a:['Solo el Ministerio Fiscal','Solo los ciudadanos españoles','Toda persona natural o jurídica que invoque un interés legítimo, el Defensor del Pueblo y el MF','Solo quien haya agotado la vía judicial y sea ciudadano español'],ok:2,e:'Art. 162.1.b) CE: Están legitimados para el recurso de amparo: «toda persona natural o jurídica que invoque un interés legítimo, así como el Defensor del Pueblo y el Ministerio Fiscal.»'},
+{n:97,t:'T8 · Derecho Penal',p:'Ley Orgánica del Código Penal. El error sobre un hecho que cualifique la infracción o sobre una circunstancia agravante:',a:['Agrava la responsabilidad criminal','Impedirá su apreciación','No tiene efectos sobre la responsabilidad criminal','Convierte el delito en falta'],ok:1,e:'Art. 14.2 CP: «El error sobre un hecho que cualifique la infracción o sobre una circunstancia agravante, impedirá su apreciación.»'},
+{n:98,t:'T10 · Derecho Administrativo',p:'Ley de Régimen Jurídico del Sector Público. ¿Cuál de las siguientes NO es un motivo de abstención para las autoridades y personal de las Administraciones?',a:['Haber prestado en los dos últimos años servicios profesionales a la persona interesada','Tener enemistad manifiesta con representantes legales que intervengan en el procedimiento','Ser administrador de sociedad interesada o tener cuestión litigiosa pendiente con algún interesado','Tener el parentesco de consanguinidad dentro del cuarto grado con los administradores de entidades interesadas'],ok:1,e:'La Ley 40/2015 establece causas de abstención. La enemistad manifiesta es causa cuando es con los «interesados» directamente, no con sus «representantes legales». La opción b) introduce un supuesto no previsto en la ley.'},
+{n:99,t:'T24 · Lengua Inglesa',p:'Choose the correct option: "Martin has heard the news, _______?"',a:["isn't he","hasn't he","did he","haven't he"],ok:1,e:'Con el present perfect "has heard", la question tag usa el auxiliar "has" en negativo y el pronombre "he": "hasn't he?". La opción a) usa el auxiliar "is" (incorrecto). La d) usa "have" con sujeto "he" (incorrecto).'},
+{n:100,t:'T25 · Lengua Española',p:'Prueba de gramática. Señale la frase INCORRECTA:',a:['Si lo hubieras hecho antes, te habría ido mejor','No quiero que me se entienda mal','Tengo un amigo cuya madre ha fallecido','Si preferís marcharos, marchaos'],ok:1,e:'«Me se» es incorrecto en español. El orden correcto de los pronombres átonos exige colocar primero el reflexivo: «se me». La frase correcta sería «No quiero que se me entienda mal».'}
+];
+
+// ═══════════════════════════════════════════════════════════════
+// ESTADO DEL EXAMEN
+// ═══════════════════════════════════════════════════════════════
+const ST = {
+  idx: 0,
+  resp: new Array(Q.length).fill(null),
+  rev: false,
+  interval: null,
+  secs: 140 * 60,
+  activo: false
+};
+
+function fmtTimer(s) {
+  const h = Math.floor(s / 3600);
+  const m = Math.floor((s % 3600) / 60);
+  const ss = s % 60;
+  return h + ':' + String(m).padStart(2,'0') + ':' + String(ss).padStart(2,'0');
+}
+
+function comenzar() {
+  ST.activo = true;
+  document.getElementById('portada').style.display = 'none';
+  document.getElementById('examen').style.display = 'block';
+
+  // Timer: calcular y mostrar ANTES de iniciar el intervalo
+  const timerEl = document.getElementById('timer');
+  timerEl.textContent = fmtTimer(ST.secs);
+  timerEl.style.display = 'block';
+
+  ST.interval = setInterval(() => {
+    ST.secs--;
+    timerEl.textContent = fmtTimer(ST.secs);
+    if (ST.secs <= 600) timerEl.classList.add('rojo');
+    if (ST.secs <= 0) {
+      clearInterval(ST.interval);
+      alert('⏱ Tiempo agotado. El examen se entrega automáticamente.');
+      calcularResultado();
+    }
+  }, 1000);
+
+  window.onbeforeunload = () => 'Si sales perderás el progreso. ¿Seguro?';
+  renderDots();
+  renderPreg();
+}
+
+function confirmarSalir() {
+  if (!ST.activo || ST.rev) return true;
+  return confirm('Si sales perderás el progreso del simulacro. ¿Deseas salir?');
+}
+
+// ─ RENDER PREGUNTA ─
+function renderPreg() {
+  const { idx, resp, rev } = ST;
+  const p = Q[idx];
+  const L = ['a)','b)','c)','d)'];
+
+  document.getElementById('p-tema').textContent = p.t;
+  document.getElementById('p-n').textContent = 'Pregunta ' + p.n + ' de ' + Q.length;
+  document.getElementById('p-txt').textContent = p.p;
+
+  document.getElementById('p-ops').innerHTML = p.a.map((o, i) => {
+    let cls = 'opc';
+    if (rev) {
+      if (i === p.ok) cls += ' ok-dim';
+      if (resp[idx] === i) cls += (i === p.ok ? ' ok' : ' ko');
+    } else {
+      if (resp[idx] === i) cls += ' sel';
+    }
+    return `<div class="${cls}" ${rev ? '' : 'onclick="sel(' + i + ')"'}>
+      <div class="opc-l">${L[i]}</div>
+      <div class="opc-t">${o}</div>
+    </div>`;
+  }).join('');
+
+  const expEl = document.getElementById('p-exp');
+  expEl.innerHTML = '<strong>📖 Explicación:</strong> ' + p.e;
+  expEl.style.display = (rev || resp[idx] !== null) ? 'block' : 'none';
+
+  document.getElementById('btn-ant').style.visibility = idx === 0 ? 'hidden' : 'visible';
+  document.getElementById('btn-sig').style.display = idx === Q.length - 1 ? 'none' : 'inline-flex';
+  document.getElementById('nav-info').textContent = (idx + 1) + ' / ' + Q.length;
+
+  // Sidebar stats
+  const ans = resp.filter(r => r !== null).length;
+  const pct = Math.round(ans / Q.length * 100);
+  document.getElementById('sb-bar').style.width = pct + '%';
+  document.getElementById('sb-ans').textContent = ans + ' respondidas';
+  document.getElementById('sb-pct').textContent = pct + '%';
+
+  renderDots();
+  document.getElementById('preg-area').scrollTop = 0;
+}
+
+function sel(i) {
+  if (ST.rev) return;
+  ST.resp[ST.idx] = i;
+  renderPreg();
+}
+
+function nav(d) {
+  ST.idx = Math.max(0, Math.min(Q.length - 1, ST.idx + d));
+  renderPreg();
+}
+
+function limpiar() {
+  if (ST.rev) return;
+  ST.resp[ST.idx] = null;
+  renderPreg();
+}
+
+// ─ DOTS ─
+function renderDots() {
+  document.getElementById('dots').innerHTML = Q.map((_, i) => {
+    let cls = 'dot';
+    if (i === ST.idx) cls += ' cur';
+    else if (ST.resp[i] !== null) cls += ' ans';
+    return `<button class="${cls}" onclick="irA(${i})">${i + 1}</button>`;
+  }).join('');
+}
+
+function irA(i) { ST.idx = i; renderPreg(); }
+
+// ─ ENTREGAR ─
+function pedirEntrega() {
+  const bl = ST.resp.filter(r => r === null).length;
+  const msg = bl > 0
+    ? `Tienes ${bl} pregunta${bl > 1 ? 's' : ''} sin responder (no penalizan).
+
+¿Deseas entregar el examen?`
+    : '¿Deseas entregar el examen?';
+  if (confirm(msg)) calcularResultado();
+}
+
+// ─ RESULTADO ─
+function calcularResultado() {
+  clearInterval(ST.interval);
+  window.onbeforeunload = null;
+  ST.activo = false;
+
+  let ok = 0, ko = 0, bl = 0;
+  Q.forEach((p, i) => {
+    if (ST.resp[i] === null) bl++;
+    else if (ST.resp[i] === p.ok) ok++;
+    else ko++;
+  });
+
+  const pts = Math.max(0, Math.round((ok - ko / 3) * (100 / Q.length)));
+
+  document.getElementById('examen').style.display = 'none';
+  document.getElementById('timer').style.display = 'none';
+  document.getElementById('resultado').style.display = 'block';
+
+  document.getElementById('r-pts').textContent = pts;
+  document.getElementById('r-ok').textContent = ok;
+  document.getElementById('r-ko').textContent = ko;
+  document.getElementById('r-bl').textContent = bl;
+
+  const color = pts >= 70 ? '#4ade80' : pts >= 50 ? '#facc15' : '#f87171';
+  const barEl = document.getElementById('r-bar');
+  barEl.style.width = pts + '%';
+  barEl.style.background = color;
+
+  const msgs = {
+    alto: '🎉 ¡Excelente! Muy por encima del aprobado. Sigue así.',
+    apr: '✅ ¡Aprobado! Estás en el buen camino. Repasa los temas donde has fallado.',
+    cerca: '⚠️ Cerca del aprobado. Repasa los temas con más fallos y vuelve a intentarlo.',
+    bajo: '❌ Por debajo del mínimo. Vuelve al temario y repasa en profundidad antes de repetir.'
+  };
+  document.getElementById('r-msg').textContent = pts >= 70 ? msgs.alto : pts >= 50 ? msgs.apr : pts >= 35 ? msgs.cerca : msgs.bajo;
+
+  // Bloques
+  const bl2 = {};
+  Q.forEach((p, i) => {
+    const b = p.t.split(' · ')[0];
+    if (!bl2[b]) bl2[b] = { ok: 0, total: 0 };
+    bl2[b].total++;
+    if (ST.resp[i] === p.ok) bl2[b].ok++;
+  });
+
+  document.getElementById('r-bloques').innerHTML = Object.entries(bl2).map(([b, d]) => {
+    const pct = Math.round(d.ok / d.total * 100);
+    const c = pct >= 70 ? 'var(--verde)' : pct >= 50 ? '#f59e0b' : '#dc2626';
+    return `<div class="bloque-row">
+      <div class="bloque-nom">${b}</div>
+      <div class="bloque-bar-w"><div class="bloque-bar" style="width:${pct}%;background:${c}"></div></div>
+      <div class="bloque-sc" style="color:${c}">${d.ok}/${d.total}</div>
+    </div>`;
+  }).join('');
+
+  // Guardar historial
+  const hist = JSON.parse(localStorage.getItem('gc_simulacros') || '[]');
+  hist.unshift({ sim: 1, pts, ok, ko, bl, fecha: new Date().toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }) });
+  localStorage.setItem('gc_simulacros', JSON.stringify(hist.slice(0, 10)));
+}
+
+// ─ REVISAR ─
+function revisar() {
+  ST.rev = true;
+  ST.idx = 0;
+  document.getElementById('resultado').style.display = 'none';
+  document.getElementById('examen').style.display = 'block';
+  renderDots();
+  renderPreg();
+}
+</script>
+</body>
+</html>
