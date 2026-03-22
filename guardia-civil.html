@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Guardia Civil: Historia, Funciones y Valores | Ingreso GC</title>
+  <meta name="description" content="Conoce la Guardia Civil: historia desde 1844, funciones principales, especialidades del cuerpo y valores institucionales. Información esencial para opositores.">
+  <meta name="keywords" content="guardia civil historia, guardia civil funciones, especialidades guardia civil, valores guardia civil, cuerpo guardia civil">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .page-hero{background:linear-gradient(135deg,var(--verde-oscuro,#0b2816) 0%,var(--verde) 100%);padding:80px 0 60px;color:white;}
+    .page-hero h1{font-family:var(--fuente-d);font-size:clamp(2.5rem,5vw,4rem);font-weight:800;color:var(--blanco);line-height:1.1;margin-bottom:1rem;}
+    .page-hero p{color:rgba(255,255,255,0.75);font-size:1.1rem;max-width:600px;font-weight:300;}
+    .breadcrumb{display:flex;gap:0.5rem;font-size:0.82rem;color:rgba(255,255,255,0.55);margin-bottom:1rem;}
+    .breadcrumb a{color:rgba(255,255,255,0.7);transition:color var(--t);}
+    .breadcrumb a:hover{color:var(--dorado-claro);}
+    .breadcrumb span{color:rgba(255,255,255,0.4);}
+
+    /* Timeline historia */
+    .timeline{position:relative;padding-left:2rem;}
+    .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--verde),var(--verde-claro));}
+    .tl-item{position:relative;padding:0 0 2.5rem 2rem;}
+    .tl-item::before{content:'';position:absolute;left:-8px;top:4px;width:16px;height:16px;border-radius:50%;background:var(--verde);border:3px solid var(--blanco);box-shadow:0 0 0 2px var(--verde);}
+    .tl-year{font-family:var(--fuente-d);font-size:1.4rem;font-weight:700;color:var(--verde);margin-bottom:0.3rem;}
+    .tl-title{font-weight:700;color:var(--negro);margin-bottom:0.4rem;}
+    .tl-desc{font-size:0.9rem;color:var(--gris-med);line-height:1.7;}
+
+    /* Especialidades */
+    .espec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;}
+    .espec-card{background:var(--blanco);border-radius:var(--radio-lg);padding:1.5rem;border:1px solid var(--gris-claro);text-align:center;transition:all var(--t);}
+    .espec-card:hover{box-shadow:var(--sombra);transform:translateY(-4px);border-color:rgba(27,94,53,0.2);}
+    .espec-icon{font-size:2rem;margin-bottom:0.75rem;}
+    .espec-name{font-family:var(--fuente-d);font-size:1.05rem;font-weight:700;color:var(--negro);margin-bottom:0.4rem;}
+    .espec-desc{font-size:0.82rem;color:var(--gris-med);line-height:1.5;}
+
+    /* Valores */
+    .valores-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;}
+    .valor{background:var(--verde);border-radius:var(--radio-lg);padding:2rem;text-align:center;color:white;transition:all var(--t);}
+    .valor:hover{background:var(--verde-med);transform:translateY(-4px);}
+    .valor__icon{font-size:2.5rem;margin-bottom:1rem;}
+    .valor__name{font-family:var(--fuente-d);font-size:1.2rem;font-weight:700;margin-bottom:0.5rem;color:var(--dorado-claro);}
+    .valor__desc{font-size:0.85rem;color:rgba(255,255,255,0.8);line-height:1.6;}
+
+    /* Funciones */
+    .funciones-list{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+    .funcion-item{display:flex;align-items:flex-start;gap:1rem;background:var(--blanco);border-radius:var(--radio);padding:1.25rem;border:1px solid var(--gris-claro);}
+    .funcion-icon{font-size:1.5rem;flex-shrink:0;margin-top:2px;}
+    .funcion-title{font-weight:700;color:var(--negro);margin-bottom:0.3rem;}
+    .funcion-desc{font-size:0.85rem;color:var(--gris-med);line-height:1.6;}
+
+    @media(max-width:768px){
+      .valores-grid{grid-template-columns:repeat(2,1fr);}
+      .funciones-list{grid-template-columns:1fr;}
+    }
+    @media(max-width:500px){.valores-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container navbar__inner">
+    <a href="index.html" class="navbar__brand">Ingreso<span>GC</span></a>
+    <ul class="navbar__menu" id="nav-menu">
+      <li><a href="index.html" class="navbar__link">Inicio</a></li>
+      <li><a href="guardia-civil.html" class="navbar__link active">La GC</a></li>
+      <li><a href="proceso-selectivo.html" class="navbar__link">Proceso selectivo</a></li>
+      <li><a href="normativa.html" class="navbar__link">Normativa</a></li>
+      <li><a href="faq.html" class="navbar__link">FAQ</a></li>
+      <li><a href="actualidad.html" class="navbar__link">Actualidad</a></li>
+      <li><a href="login.html" class="navbar__cta">Área alumnos →</a></li>
+    </ul>
+    <button class="navbar__hamburger" id="hamburger" aria-label="Menú" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Inicio</a><span>/</span><span>La Guardia Civil</span></div>
+    <h1>La Guardia Civil</h1>
+    <p>Historia, funciones, especialidades y valores del instituto armado más antiguo de España.</p>
+  </div>
+</header>
+
+<!-- HISTORIA -->
+<section class="section" id="historia">
+  <div class="container">
+    <div class="fade-up">
+      <span class="tag">Bloque 4 · Tema 15</span>
+      <h2 class="section-heading">Historia de la <span>Guardia Civil</span></h2>
+      <p class="section-sub">Fundada en 1844, la Guardia Civil es el instituto armado de naturaleza militar más antiguo de España.</p>
+    </div>
+    <div class="grid-2 fade-up" style="gap:3rem;align-items:start;">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-year">1844</div>
+          <div class="tl-title">Fundación</div>
+          <p class="tl-desc">El Duque de Ahumada, Francisco Javier Girón, funda la Guardia Civil mediante Real Decreto de 28 de marzo. Se crea para mantener el orden público y proteger a los ciudadanos en zonas rurales.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">1845</div>
+          <div class="tl-title">Primera cartilla del guardia civil</div>
+          <p class="tl-desc">Se aprueba la famosa Cartilla con el mandamiento "El honor ha de ser mi divisa", que define los valores y principios que rigen la conducta del guardia civil.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">1878-1923</div>
+          <div class="tl-title">Restauración monárquica y Alfonso XIII</div>
+          <p class="tl-desc">Consolidación del cuerpo como pilar del orden público. Participación en conflictos coloniales y expansión de sus funciones.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">1931-1939</div>
+          <div class="tl-title">Segunda República y Guerra Civil</div>
+          <p class="tl-desc">Período convulso para el cuerpo. La Guerra Civil divide y transforma profundamente la institución.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">1940</div>
+          <div class="tl-title">Integración del Cuerpo de Carabineros</div>
+          <p class="tl-desc">Los Carabineros, cuerpo encargado de la vigilancia de fronteras y costas, se integran en la Guardia Civil ampliando sus funciones.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">1978-Actualidad</div>
+          <div class="tl-title">La transición y la democracia</div>
+          <p class="tl-desc">La LO 2/1986 de Fuerzas y Cuerpos de Seguridad regula la GC en democracia. Modernización constante y adaptación a nuevos retos: terrorismo, crimen organizado, ciberseguridad.</p>
+        </div>
+      </div>
+      <div>
+        <div style="background:var(--verde-bg);border-radius:var(--radio-lg);padding:2rem;border-left:4px solid var(--verde);margin-bottom:1.5rem;">
+          <h3 style="font-family:var(--fuente-d);font-size:1.2rem;font-weight:700;color:var(--negro);margin-bottom:0.75rem;">Naturaleza jurídica</h3>
+          <p style="font-size:0.9rem;color:var(--gris-med);line-height:1.7;">La Guardia Civil es un instituto armado de naturaleza militar que ejerce funciones de seguridad pública. Depende del Ministerio del Interior para el ejercicio de sus funciones y del Ministerio de Defensa en tiempo de guerra y en misiones militares.</p>
+        </div>
+        <div style="background:var(--negro);border-radius:var(--radio-lg);padding:2rem;color:white;">
+          <div style="font-size:0.75rem;font-weight:700;color:var(--dorado-claro);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:1rem;">Marco legal</div>
+          <ul style="display:flex;flex-direction:column;gap:0.6rem;">
+            <li style="font-size:0.88rem;color:rgba(255,255,255,0.8);">🔹 LO 2/1986 de Fuerzas y Cuerpos de Seguridad</li>
+            <li style="font-size:0.88rem;color:rgba(255,255,255,0.8);">🔹 Ley 29/2014 de Régimen del Personal de la GC</li>
+            <li style="font-size:0.88rem;color:rgba(255,255,255,0.8);">🔹 LO 11/2007 de derechos y deberes de los miembros</li>
+            <li style="font-size:0.88rem;color:rgba(255,255,255,0.8);">🔹 RD 176/2022 Código de Conducta</li>
+            <li style="font-size:0.88rem;color:rgba(255,255,255,0.8);">🔹 LO 12/2007 del Régimen Disciplinario</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FUNCIONES -->
+<section class="section section-alt" id="funciones">
+  <div class="container">
+    <div class="fade-up">
+      <span class="tag">Competencias</span>
+      <h2 class="section-heading">Funciones <span>principales</span></h2>
+      <p class="section-sub">La Guardia Civil tiene asignadas una serie de funciones exclusivas definidas en la LO 2/1986.</p>
+    </div>
+    <div class="funciones-list fade-up">
+      <div class="funcion-item">
+        <span class="funcion-icon">🛡️</span>
+        <div><div class="funcion-title">Seguridad pública</div><p class="funcion-desc">Proteger el libre ejercicio de derechos y libertades. Garantizar la seguridad ciudadana en zonas rurales y áreas no urbanas.</p></div>
+      </div>
+      <div class="funcion-item">
+        <span class="funcion-icon">🚔</span>
+        <div><div class="funcion-title">Policía judicial</div><p class="funcion-desc">Auxiliar a juzgados y tribunales en la investigación de delitos, detención de delincuentes y cumplimiento de órdenes judiciales.</p></div>
+      </div>
+      <div class="funcion-item">
+        <span class="funcion-icon">🚦</span>
+        <div><div class="funcion-title">Tráfico y seguridad vial</div><p class="funcion-desc">Regulación, vigilancia y control del tráfico en carreteras interurbanas. Investigación de accidentes de tráfico.</p></div>
+      </div>
+      <div class="funcion-item">
+        <span class="funcion-icon">🌊</span>
+        <div><div class="funcion-title">Vigilancia de costas y fronteras</div><p class="funcion-desc">Control de fronteras terrestres, marítimas y aéreas. Lucha contra la inmigración irregular y el tráfico de personas.</p></div>
+      </div>
+      <div class="funcion-item">
+        <span class="funcion-icon">🌲</span>
+        <div><div class="funcion-title">Medio natural y medioambiente</div><p class="funcion-desc">Protección de la naturaleza y el medioambiente. Persecución de delitos medioambientales y caza furtiva.</p></div>
+      </div>
+      <div class="funcion-item">
+        <span class="funcion-icon">💣</span>
+        <div><div class="funcion-title">Armas y explosivos</div><p class="funcion-icon">Control e inspección de armas, explosivos y sustancias peligrosas. Intervención TEDAX en artefactos explosivos.</p></div>
+      </div>
+      <div class="funcion-item">
+        <span class="funcion-icon">💰</span>
+        <div><div class="funcion-title">Fiscalidad y contrabando</div><p class="funcion-desc">Represión del contrabando, fraude fiscal y blanqueo de capitales. Funciones aduaneras en colaboración con Hacienda.</p></div>
+      </div>
+      <div class="funcion-item">
+        <span class="funcion-icon">🔐</span>
+        <div><div class="funcion-title">Protección de personalidades</div><p class="funcion-desc">Seguridad de altas personalidades del Estado, así como edificios e instalaciones gubernamentales.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ESPECIALIDADES -->
+<section class="section" id="especialidades">
+  <div class="container">
+    <div class="fade-up">
+      <span class="tag">Dentro del cuerpo</span>
+      <h2 class="section-heading">Especialidades y <span>unidades</span></h2>
+      <p class="section-sub">La Guardia Civil cuenta con distintas unidades y especialidades para hacer frente a los diferentes retos de seguridad.</p>
+    </div>
+    <div class="espec-grid fade-up">
+      <div class="espec-card"><div class="espec-icon">🚦</div><div class="espec-name">Agrupación de Tráfico</div><p class="espec-desc">Vigilancia y control del tráfico en carreteras. Prevención y reducción de accidentes viales.</p></div>
+      <div class="espec-card"><div class="espec-icon">🌊</div><div class="espec-name">Servicio Marítimo</div><p class="espec-desc">Vigilancia de costas y lucha contra el contrabando y narcotráfico por vía marítima.</p></div>
+      <div class="espec-card"><div class="espec-icon">🌲</div><div class="espec-name">SEPRONA</div><p class="espec-desc">Servicio de Protección de la Naturaleza. Medioambiente, fauna y flora protegida.</p></div>
+      <div class="espec-card"><div class="espec-icon">💣</div><div class="espec-name">TEDAX</div><p class="espec-desc">Técnicos especialistas en desactivación de artefactos explosivos.</p></div>
+      <div class="espec-card"><div class="espec-icon">🔬</div><div class="espec-name">Policía Judicial</div><p class="espec-desc">UCO y unidades especializadas en crimen organizado, terrorismo y delincuencia grave.</p></div>
+      <div class="espec-card"><div class="espec-icon">🖥️</div><div class="espec-name">Ciberdelincuencia</div><p class="espec-desc">Unidad de Coordinación de Ciberseguridad (UCCO). Lucha contra el cibercrimen.</p></div>
+      <div class="espec-card"><div class="espec-icon">🚁</div><div class="espec-name">Servicio Aéreo</div><p class="espec-desc">Apoyo aéreo con helicópteros para vigilancia, rescate y operaciones especiales.</p></div>
+      <div class="espec-card"><div class="espec-icon">🐕</div><div class="espec-name">Guías caninos</div><p class="espec-desc">Equipos caninos para detección de drogas, explosivos y búsqueda y rescate.</p></div>
+      <div class="espec-card"><div class="espec-icon">🧑‍⚕️</div><div class="espec-name">Servicio de Montaña</div><p class="espec-desc">Rescate de montañeros, control de espacios naturales de alta montaña y zonas de difícil acceso.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- VALORES -->
+<section class="section section-alt" id="valores">
+  <div class="container">
+    <div class="fade-up" style="text-align:center;margin-bottom:3rem;">
+      <span class="tag">Tema 19 · Código de Conducta RD 176/2022</span>
+      <h2 class="section-heading">Valores del <span>cuerpo</span></h2>
+      <p class="section-sub" style="margin:0 auto;">Los valores que rigen la conducta del guardia civil, recogidos en el Código de Conducta y en el histórico Decálogo.</p>
+    </div>
+    <div class="valores-grid fade-up">
+      <div class="valor">
+        <div class="valor__icon">⚖️</div>
+        <div class="valor__name">Honor</div>
+        <p class="valor__desc">"El honor ha de ser mi principal divisa; debo, por consiguiente, conservarlo sin mancha. Una vez perdido, no se recobra jamás." — Decálogo GC</p>
+      </div>
+      <div class="valor">
+        <div class="valor__icon">🎖️</div>
+        <div class="valor__name">Disciplina</div>
+        <p class="valor__desc">Respeto a la jerarquía y al orden. La disciplina es el vínculo que une a todos los miembros del instituto en torno a un objetivo común.</p>
+      </div>
+      <div class="valor">
+        <div class="valor__icon">🤝</div>
+        <div class="valor__name">Lealtad</div>
+        <p class="valor__desc">Fidelidad a España, a la Constitución, a la Ley y a las instituciones. Compromiso inquebrantable con el servicio al ciudadano.</p>
+      </div>
+      <div class="valor">
+        <div class="valor__icon">🛡️</div>
+        <div class="valor__name">Servicio</div>
+        <p class="valor__desc">Vocación de servicio a los ciudadanos. Protección de los más vulnerables y entrega sin reservas en el cumplimiento del deber.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div><div class="footer__brand-name">Ingreso<span>GC</span></div><p class="footer__desc">Formación profesional para el acceso a la Escala de Cabos y Guardias.</p></div>
+      <div class="footer__col"><div class="footer__col-title">Plataforma</div><a href="login.html">Acceso alumnos</a><a href="proceso-selectivo.html">Proceso selectivo</a><a href="normativa.html">Normativa</a></div>
+      <div class="footer__col"><div class="footer__col-title">Información</div><a href="guardia-civil.html">La Guardia Civil</a><a href="actualidad.html">Actualidad</a><a href="faq.html">FAQ</a></div>
+      <div class="footer__col"><div class="footer__col-title">Legal</div><a href="#">Aviso legal</a><a href="#">Privacidad</a><a href="#">Contacto</a></div>
+    </div>
+    <div class="footer__bottom"><span>© 2025 Ingreso GC – DM Forma.</span><span>No afiliada a organismos oficiales.</span></div>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>

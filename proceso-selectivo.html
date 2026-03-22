@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proceso Selectivo Guardia Civil 2025 – Todas las Fases | Ingreso GC</title>
+  <meta name="description" content="Guía completa del proceso selectivo Guardia Civil 2025: requisitos, examen teórico, pruebas físicas, psicotécnicos, entrevista y reconocimiento médico. Consejos para cada fase.">
+  <meta name="keywords" content="proceso selectivo guardia civil, fases oposicion guardia civil, pruebas fisicas guardia civil 2025, examen guardia civil, psicotecnicos guardia civil">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .page-hero{background:linear-gradient(135deg,#0b2816 0%,var(--verde) 100%);padding:80px 0 60px;color:white;}
+    .page-hero h1{font-family:var(--fuente-d);font-size:clamp(2.5rem,5vw,4rem);font-weight:800;color:var(--blanco);line-height:1.1;margin-bottom:1rem;}
+    .page-hero p{color:rgba(255,255,255,0.75);font-size:1.1rem;max-width:600px;font-weight:300;}
+    .breadcrumb{display:flex;gap:0.5rem;font-size:0.82rem;color:rgba(255,255,255,0.55);margin-bottom:1rem;}
+    .breadcrumb a{color:rgba(255,255,255,0.7);}
+    .breadcrumb span{color:rgba(255,255,255,0.4);}
+
+    /* Fases tabs */
+    .fase-tabs{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:3rem;}
+    .fase-tab{padding:10px 20px;border-radius:var(--radio);font-weight:600;font-size:0.88rem;cursor:pointer;border:2px solid transparent;transition:all var(--t);background:var(--blanco);color:var(--gris-med);border-color:var(--gris-claro);}
+    .fase-tab.active,.fase-tab:hover{background:var(--verde);color:var(--blanco);border-color:var(--verde);}
+
+    /* Fase sections */
+    .fase-section{display:none;}
+    .fase-section.active{display:block;}
+
+    /* Tabla marcas fisicas */
+    .tabla-fisicas{width:100%;border-collapse:collapse;font-size:0.88rem;}
+    .tabla-fisicas th{background:var(--verde);color:white;padding:10px 14px;text-align:left;font-weight:600;}
+    .tabla-fisicas th:first-child{border-radius:8px 0 0 8px;}
+    .tabla-fisicas th:last-child{border-radius:0 8px 8px 0;}
+    .tabla-fisicas td{padding:10px 14px;border-bottom:1px solid var(--gris-claro);color:var(--gris-osc);}
+    .tabla-fisicas tr:last-child td{border-bottom:none;}
+    .tabla-fisicas tr:hover td{background:var(--verde-bg);}
+    .tabla-fisicas .marca{font-weight:700;color:var(--verde);}
+
+    /* Consejos */
+    .consejo{display:flex;gap:1rem;background:var(--verde-bg);border-radius:var(--radio);padding:1rem 1.25rem;border-left:3px solid var(--verde);margin-bottom:0.75rem;}
+    .consejo-icon{font-size:1.2rem;flex-shrink:0;margin-top:2px;}
+    .consejo-text{font-size:0.9rem;color:var(--gris-osc);line-height:1.6;}
+
+    /* Puntuacion */
+    .puntuacion-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+    .punt-card{background:var(--blanco);border-radius:var(--radio-lg);padding:1.5rem;border:1px solid var(--gris-claro);text-align:center;}
+    .punt-num{font-family:var(--fuente-d);font-size:2.5rem;font-weight:700;color:var(--verde);display:block;line-height:1;}
+    .punt-label{font-size:0.82rem;color:var(--gris-med);text-transform:uppercase;letter-spacing:0.06em;margin-top:0.4rem;}
+
+    /* Requisitos */
+    .req-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+    .req-item{display:flex;align-items:flex-start;gap:0.75rem;background:var(--blanco);border-radius:var(--radio);padding:1rem;border:1px solid var(--gris-claro);}
+    .req-ck{width:24px;height:24px;border-radius:50%;background:var(--verde);color:white;display:flex;align-items:center;justify-content:center;font-size:0.8rem;flex-shrink:0;font-weight:700;}
+    .req-text{font-size:0.9rem;color:var(--gris-osc);line-height:1.5;}
+    .req-text strong{color:var(--negro);}
+
+    @media(max-width:768px){
+      .puntuacion-grid{grid-template-columns:1fr 1fr;}
+      .req-grid{grid-template-columns:1fr;}
+    }
+    @media(max-width:500px){.puntuacion-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="container navbar__inner">
+    <a href="index.html" class="navbar__brand">Ingreso<span>GC</span></a>
+    <ul class="navbar__menu" id="nav-menu">
+      <li><a href="index.html" class="navbar__link">Inicio</a></li>
+      <li><a href="guardia-civil.html" class="navbar__link">La GC</a></li>
+      <li><a href="proceso-selectivo.html" class="navbar__link active">Proceso selectivo</a></li>
+      <li><a href="normativa.html" class="navbar__link">Normativa</a></li>
+      <li><a href="faq.html" class="navbar__link">FAQ</a></li>
+      <li><a href="actualidad.html" class="navbar__link">Actualidad</a></li>
+      <li><a href="login.html" class="navbar__cta">Área alumnos →</a></li>
+    </ul>
+    <button class="navbar__hamburger" id="hamburger" aria-label="Menú" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Inicio</a><span>/</span><span>Proceso selectivo</span></div>
+    <h1>Proceso Selectivo 2025</h1>
+    <p>Guía completa de todas las fases, requisitos y consejos para superar la oposición a la Guardia Civil.</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <!-- RESUMEN SISTEMA -->
+    <div class="fade-up" style="margin-bottom:3rem;">
+      <span class="tag">Convocatoria 2025 · Res. 160/38240/2025</span>
+      <h2 class="section-heading">Sistema <span>concurso-oposición</span></h2>
+      <p class="section-sub">La selección se divide en dos grandes fases: la fase de concurso (méritos) y la fase de oposición (pruebas eliminatorias).</p>
+      <div class="puntuacion-grid">
+        <div class="punt-card"><span class="punt-num">45</span><div class="punt-label">Puntos máx. fase concurso</div></div>
+        <div class="punt-card"><span class="punt-num">150</span><div class="punt-label">Puntos máx. fase oposición</div></div>
+        <div class="punt-card"><span class="punt-num">1,5x</span><div class="punt-label">Aspirantes convocados por plaza</div></div>
+      </div>
+    </div>
+
+    <!-- TABS -->
+    <div class="fase-tabs fade-up">
+      <button class="fase-tab active" onclick="showFase('requisitos',this)">✅ Requisitos</button>
+      <button class="fase-tab" onclick="showFase('concurso',this)">📋 Fase concurso</button>
+      <button class="fase-tab" onclick="showFase('teorico',this)">📝 Examen teórico</button>
+      <button class="fase-tab" onclick="showFase('psicotecnico',this)">🧠 Psicotécnica</button>
+      <button class="fase-tab" onclick="showFase('fisicas',this)">🏃 Pruebas físicas</button>
+      <button class="fase-tab" onclick="showFase('entrevista',this)">🗣️ Entrevista</button>
+      <button class="fase-tab" onclick="showFase('medico',this)">🩺 Reconocimiento médico</button>
+    </div>
+
+    <!-- REQUISITOS -->
+    <div id="fase-requisitos" class="fase-section active fade-up">
+      <h2 class="section-heading" style="margin-bottom:1.5rem;">Requisitos de <span>acceso</span></h2>
+      <p style="color:var(--gris-med);margin-bottom:2rem;">Todos los requisitos deben cumplirse en la fecha de finalización del plazo de admisión de instancias y mantenerse durante el proceso selectivo. <em>(Base 2 de la convocatoria)</em></p>
+      <div class="req-grid">
+        <div class="req-item"><div class="req-ck">✓</div><div class="req-text"><strong>Nacionalidad española</strong><br>Imprescindible en la fecha de cierre del plazo de solicitudes.</div></div>
+        <div class="req-item"><div class="req-ck">✓</div><div class="req-text"><strong>Edad: entre 18 y 40 años en 2025</strong><br>Cumplir 18 años durante 2025. No haber cumplido ni cumplir 41 años en 2025.</div></div>
+        <div class="req-item"><div class="req-ck">✓</div><div class="req-text"><strong>Titulación académica</strong><br>Graduado ESO, Técnico Básico, Técnico FP, o equivalente. También acceso a FP Grado Medio o Superior.</div></div>
+        <div class="req-item"><div class="req-ck">✓</div><div class="req-text"><strong>Permiso de conducción clase B</strong><br>Obligatorio. Verificable por la Dirección General de Tráfico.</div></div>
+        <div class="req-item"><div class="req-ck">✓</div><div class="req-text"><strong>Sin antecedentes penales</strong><br>Carecer de antecedentes penales ni procedimientos judiciales en curso por delito doloso.</div></div>
+        <div class="req-item"><div class="req-ck">✓</div><div class="req-text"><strong>No separado del servicio público</strong><br>No haber sido separado por expediente disciplinario de ninguna Administración Pública.</div></div>
+        <div class="req-item"><div class="req-ck">✓</div><div class="req-text"><strong>Aptitud psicofísica</strong><br>Acreditada mediante reconocimiento médico y pruebas físicas dentro del proceso selectivo.</div></div>
+        <div class="req-item"><div class="req-ck">✓</div><div class="req-text"><strong>Compromiso de portar armas</strong><br>Declaración expresa del aspirante de asumir el compromiso de portarlas y utilizarlas.</div></div>
+        <div class="req-item"><div class="req-ck">✓</div><div class="req-text"><strong>Sin tatuajes prohibidos</strong><br>No tener tatuajes con imágenes contrarias a valores constitucionales o imagen de la GC.</div></div>
+        <div class="req-item"><div class="req-ck">✓</div><div class="req-text"><strong>No baja por expediente previo</strong><br>No haber causado baja en un centro docente de formación GC por no superar las pruebas.</div></div>
+      </div>
+      <div style="margin-top:2rem;background:rgba(200,150,12,0.08);border:1px solid rgba(200,150,12,0.3);border-radius:var(--radio);padding:1.25rem;">
+        <strong style="color:var(--dorado);display:block;margin-bottom:0.5rem;">💡 Tasa de examen</strong>
+        <p style="font-size:0.9rem;color:var(--gris-osc);">Tasa general: <strong>11,66 €</strong> · Familia numerosa general: <strong>5,83 €</strong> · Exentos: demandantes de empleo (con requisitos), familia numerosa especial y víctimas del terrorismo.</p>
+      </div>
+    </div>
+
+    <!-- FASE CONCURSO -->
+    <div id="fase-concurso" class="fase-section fade-up">
+      <h2 class="section-heading" style="margin-bottom:1.5rem;">Fase de <span>concurso</span></h2>
+      <p style="color:var(--gris-med);margin-bottom:2rem;">La fase de concurso valora los méritos del aspirante. Máximo 45 puntos. <em>(Apéndice I de la convocatoria)</em></p>
+      <div class="grid-2" style="gap:2rem;margin-bottom:2rem;">
+        <div>
+          <h3 style="font-family:var(--fuente-d);font-size:1.4rem;font-weight:700;color:var(--negro);margin-bottom:1rem;">Méritos profesionales <span style="font-family:var(--fuente-b);font-size:1rem;color:var(--verde);">(máx. 13,5 pts)</span></h3>
+          <div class="consejo"><div class="consejo-icon">📋</div><div class="consejo-text"><strong>Servicio como militar de tropa:</strong> 0,90 pts/año completo (máx. 9 pts)</div></div>
+          <div class="consejo"><div class="consejo-icon">📋</div><div class="consejo-text"><strong>Empleo Cabo:</strong> 2,40 pts · <strong>Cabo 1º:</strong> 3,60 pts</div></div>
+          <div class="consejo"><div class="consejo-icon">📋</div><div class="consejo-text"><strong>Acceso libre:</strong> 0,90 pts/año en la Administración General del Estado</div></div>
+          <div class="consejo"><div class="consejo-icon">📋</div><div class="consejo-text"><strong>Reservista voluntario:</strong> 0,025 pts/mes</div></div>
+        </div>
+        <div>
+          <h3 style="font-family:var(--fuente-d);font-size:1.4rem;font-weight:700;color:var(--negro);margin-bottom:1rem;">Méritos académicos <span style="font-family:var(--fuente-b);font-size:1rem;color:var(--verde);">(máx. 27 pts)</span></h3>
+          <div class="consejo"><div class="consejo-icon">🎓</div><div class="consejo-text"><strong>Bachiller o titulación superior (MECES 1-4):</strong> 2 puntos</div></div>
+          <div class="consejo"><div class="consejo-icon">🌍</div><div class="consejo-text"><strong>Idiomas B2:</strong> 5 pts · <strong>C1:</strong> 7 pts · <strong>C2:</strong> 9 pts (por idioma)</div></div>
+          <div class="consejo"><div class="consejo-icon">🚗</div><div class="consejo-text"><strong>Carnet A o A2:</strong> 3 pts · <strong>C+E, D+E:</strong> 3 pts · <strong>C, D:</strong> 2 pts</div></div>
+          <div class="consejo"><div class="consejo-icon">🏆</div><div class="consejo-text"><strong>Deportista alto nivel:</strong> 0,20-0,35 pts/año según grupo</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXAMEN TEORICO -->
+    <div id="fase-teorico" class="fase-section fade-up">
+      <h2 class="section-heading" style="margin-bottom:0.5rem;">Prueba de conocimientos <span>teórico-prácticos</span></h2>
+      <p style="color:var(--verde);font-weight:700;margin-bottom:1.5rem;">140 minutos · Sin solución de continuidad entre pruebas</p>
+      <div class="grid-2" style="gap:1.5rem;margin-bottom:2rem;">
+        <div class="card card--gold-border">
+          <h3 class="card__title">📝 Conocimientos generales</h3>
+          <ul style="font-size:0.9rem;color:var(--gris-med);line-height:1.8;">
+            <li>• 100 preguntas tipo test (4 opciones)</li>
+            <li>• Extraídas del temario oficial (25 temas)</li>
+            <li>• Puntuación máxima: 100 puntos</li>
+            <li>• Mínimo para superar: <strong style="color:var(--verde);">50 puntos</strong></li>
+            <li>• Penalización por error: 1/3 de la pregunta</li>
+            <li>• Sin penalización por pregunta en blanco</li>
+          </ul>
+        </div>
+        <div class="card card--gold-border">
+          <h3 class="card__title">🔤 Ortografía y gramática</h3>
+          <ul style="font-size:0.9rem;color:var(--gris-med);line-height:1.8;">
+            <li>• Ortografía: 5 frases con 4 palabras subrayadas cada una</li>
+            <li>• Señalar las palabras con falta ortográfica</li>
+            <li>• Gramática: frases incorrectas morfológica/sintácticamente</li>
+            <li>• Calificación: <strong style="color:var(--verde);">Apto / No apto</strong></li>
+            <li>• Máximo 5 errores en cada prueba</li>
+          </ul>
+        </div>
+        <div class="card card--gold-border">
+          <h3 class="card__title">🇬🇧 Lengua inglesa</h3>
+          <ul style="font-size:0.9rem;color:var(--gris-med);line-height:1.8;">
+            <li>• 20 preguntas tipo test</li>
+            <li>• Nivel ESO (RD 217/2022)</li>
+            <li>• Puntuación máxima: 20 puntos</li>
+            <li>• Mínimo para superar: <strong style="color:var(--verde);">8 puntos</strong></li>
+            <li>• Penalización por error: 1/3</li>
+          </ul>
+        </div>
+        <div style="background:var(--negro);border-radius:var(--radio-lg);padding:2rem;color:white;">
+          <h3 style="font-family:var(--fuente-d);font-size:1.2rem;font-weight:700;color:var(--dorado-claro);margin-bottom:1rem;">💡 Consejos para el examen teórico</h3>
+          <div style="display:flex;flex-direction:column;gap:0.6rem;">
+            <div style="font-size:0.88rem;color:rgba(255,255,255,0.8);">→ Estudia la normativa original, no solo resúmenes</div>
+            <div style="font-size:0.88rem;color:rgba(255,255,255,0.8);">→ Practica la ortografía con dictados y ejercicios específicos</div>
+            <div style="font-size:0.88rem;color:rgba(255,255,255,0.8);">→ No dejes preguntas en blanco que sepas razonablemente</div>
+            <div style="font-size:0.88rem;color:rgba(255,255,255,0.8);">→ Si dudas mucho, mejor no contestar (evita la penalización)</div>
+            <div style="font-size:0.88rem;color:rgba(255,255,255,0.8);">→ El inglés es nivel ESO: gramática básica y vocabulario común</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PSICOTECNICO -->
+    <div id="fase-psicotecnico" class="fase-section fade-up">
+      <h2 class="section-heading" style="margin-bottom:0.5rem;">Prueba <span>psicotécnica</span></h2>
+      <p style="color:var(--verde);font-weight:700;margin-bottom:1.5rem;">55 minutos totales · 2 partes</p>
+      <div class="grid-2" style="gap:1.5rem;margin-bottom:2rem;">
+        <div class="card card--gold-border">
+          <h3 class="card__title">🧠 Aptitudes intelectuales</h3>
+          <ul style="font-size:0.9rem;color:var(--gris-med);line-height:1.8;">
+            <li>• 80 preguntas de test de inteligencia</li>
+            <li>• Evalúa: capacidad de aprendizaje, análisis y razonamiento</li>
+            <li>• Puntuación máxima: 30 puntos</li>
+            <li>• Mínimo: <strong style="color:var(--verde);">12 puntos</strong></li>
+            <li>• Penalización por error: 1/3</li>
+            <li>• 55 minutos incluyendo lectura de instrucciones</li>
+          </ul>
+        </div>
+        <div class="card card--gold-border">
+          <h3 class="card__title">👤 Perfil de personalidad</h3>
+          <ul style="font-size:0.9rem;color:var(--gris-med);line-height:1.8;">
+            <li>• Evaluación de características de personalidad</li>
+            <li>• Variables actitudinales y motivacionales</li>
+            <li>• Sin puntuación independiente</li>
+            <li>• Sirve como apoyo a la entrevista personal</li>
+            <li>• No existe una respuesta "correcta": responde con sinceridad</li>
+          </ul>
+        </div>
+      </div>
+      <div class="consejo"><div class="consejo-icon">💡</div><div class="consejo-text"><strong>Consejo clave:</strong> Los test psicotécnicos se entrenan. Practica con test de inteligencia general, series numéricas, matrices, razonamiento verbal y espacial. La velocidad de procesamiento es tan importante como la precisión.</div></div>
+    </div>
+
+    <!-- PRUEBAS FÍSICAS -->
+    <div id="fase-fisicas" class="fase-section fade-up">
+      <h2 class="section-heading" style="margin-bottom:0.5rem;">Pruebas <span>físicas</span></h2>
+      <p style="color:var(--verde);font-weight:700;margin-bottom:2rem;">Calificación: Apto / No apto · Todas son eliminatorias · Apéndice II de la convocatoria 2025</p>
+
+      <div class="grid-2" style="gap:1.5rem;margin-bottom:2.5rem;">
+        <div class="card"><h3 class="card__title">🏃 Resistencia (R2) – 2000 metros lisos</h3><p class="card__text">Salida en pie. Un único intento. Debes completar los 2000 metros dentro del tiempo máximo establecido según sexo y edad.</p></div>
+        <div class="card"><h3 class="card__title">🔄 Coordinación (C1) – Circuito de agilidad</h3><p class="card__text">Recorrido con vallas y banderines. Dos intentos permitidos si el primero es nulo o se supera el tiempo. Vallas no deben derribarse.</p></div>
+        <div class="card"><h3 class="card__title">💪 Potencia tren superior (P3) – Extensiones brazos</h3><p class="card__text">Extensiones desde posición inclinada. La barbilla debe tocar el suelo. Dos intentos. Se permite un descanso en posición inclinada.</p></div>
+        <div class="card"><h3 class="card__title">🏊 Soltura acuática (O1) – 50 metros natación</h3><p class="card__text">Estilo libre en piscina. Un único intento. Sin contacto con elementos del carril salvo en el viraje.</p></div>
+      </div>
+
+      <h3 style="font-family:var(--fuente-d);font-size:1.4rem;font-weight:700;color:var(--negro);margin-bottom:1.25rem;">Tabla de marcas mínimas 2025</h3>
+      <div style="overflow-x:auto;">
+        <table class="tabla-fisicas">
+          <thead>
+            <tr>
+              <th>Prueba</th>
+              <th>Sexo</th>
+              <th>&lt; 35 años</th>
+              <th>35-40 años</th>
+              <th>≥ 40 años</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Resistencia (2000m)</td><td>H</td><td class="marca">9 min 25 s</td><td>9 min 48 s</td><td>10 min 33 s</td></tr>
+            <tr><td>Resistencia (2000m)</td><td>M</td><td class="marca">11 min 14 s</td><td>11 min 35 s</td><td>12 min 49 s</td></tr>
+            <tr><td>Coordinación (circuito)</td><td>H</td><td class="marca">14,00 s</td><td>14,40 s</td><td>15,10 s</td></tr>
+            <tr><td>Coordinación (circuito)</td><td>M</td><td class="marca">16,00 s</td><td>16,40 s</td><td>17,90 s</td></tr>
+            <tr><td>Extensiones de brazos</td><td>H</td><td class="marca">16</td><td>16</td><td>14</td></tr>
+            <tr><td>Extensiones de brazos</td><td>M</td><td class="marca">11</td><td>11</td><td>9</td></tr>
+            <tr><td>Natación (50 m)</td><td>H</td><td class="marca">70 s</td><td>71 s</td><td>73 s</td></tr>
+            <tr><td>Natación (50 m)</td><td>M</td><td class="marca">81 s</td><td>83 s</td><td>88 s</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:0.78rem;color:#aaa;margin-top:0.75rem;">Fuente: Apéndice II de la Resolución 160/38240/2025 (BOE nº 128, de 28 de mayo de 2025)</p>
+
+      <div style="margin-top:2rem;">
+        <h3 style="font-family:var(--fuente-d);font-size:1.2rem;font-weight:700;margin-bottom:1rem;color:var(--negro);">💡 Consejos para las físicas</h3>
+        <div class="consejo"><div class="consejo-icon">🏃</div><div class="consejo-text"><strong>2000m:</strong> Comienza a entrenar con al menos 6 meses de antelación. Alterna rodajes suaves con series de velocidad. El objetivo es bajar al menos 30 segundos de tu marca mínima exigida.</div></div>
+        <div class="consejo"><div class="consejo-icon">💪</div><div class="consejo-text"><strong>Extensiones:</strong> Practica la técnica exacta del examen (barbilla al suelo). Trabaja la fuerza del pecho y tríceps. Muchos suspenden por técnica incorrecta, no por fuerza.</div></div>
+        <div class="consejo"><div class="consejo-icon">🏊</div><div class="consejo-text"><strong>Natación:</strong> Si no sabes nadar bien, es la prueba más urgente. Apúntate a clases cuanto antes. 50m es poco pero debes hacerlo en tiempo.</div></div>
+        <div class="consejo"><div class="consejo-icon">📋</div><div class="consejo-text"><strong>Certificado médico:</strong> Debes presentar un certificado médico oficial expedido dentro de los 20 días anteriores a las pruebas físicas. Tienen modelos oficiales en los apéndices III y IV de la convocatoria.</div></div>
+      </div>
+    </div>
+
+    <!-- ENTREVISTA -->
+    <div id="fase-entrevista" class="fase-section fade-up">
+      <h2 class="section-heading" style="margin-bottom:1.5rem;">Entrevista <span>personal</span></h2>
+      <div class="grid-2" style="gap:2rem;margin-bottom:2rem;">
+        <div>
+          <p style="color:var(--gris-med);margin-bottom:1.5rem;">La entrevista evalúa la capacidad del aspirante para adecuarse al desempeño profesional. Se valoran competencias y cualidades en una entrevista semiestructurada con psicólogos y oficiales/suboficiales de la GC.</p>
+          <h3 style="font-family:var(--fuente-d);font-size:1.2rem;font-weight:700;color:var(--negro);margin-bottom:1rem;">Competencias evaluadas</h3>
+          <div class="consejo"><div class="consejo-icon">📏</div><div class="consejo-text"><strong>I. Adecuación a normas y código de conducta</strong></div></div>
+          <div class="consejo"><div class="consejo-icon">🎯</div><div class="consejo-text"><strong>II. Responsabilidad / Madurez</strong></div></div>
+          <div class="consejo"><div class="consejo-icon">💪</div><div class="consejo-text"><strong>III. Espíritu de sacrificio y abnegación</strong></div></div>
+          <div class="consejo"><div class="consejo-icon">😌</div><div class="consejo-text"><strong>IV. Autocontrol</strong></div></div>
+          <div class="consejo"><div class="consejo-icon">🗣️</div><div class="consejo-text"><strong>V. Habilidades sociales y de comunicación</strong></div></div>
+          <div class="consejo"><div class="consejo-icon">🔄</div><div class="consejo-text"><strong>VI. Adaptación</strong></div></div>
+        </div>
+        <div>
+          <div style="background:var(--negro);border-radius:var(--radio-lg);padding:2rem;color:white;">
+            <h3 style="font-family:var(--fuente-d);font-size:1.2rem;font-weight:700;color:var(--dorado-claro);margin-bottom:1rem;">💡 Consejos para la entrevista</h3>
+            <div style="display:flex;flex-direction:column;gap:0.75rem;">
+              <div style="font-size:0.88rem;color:rgba(255,255,255,0.8);">→ Responde con sinceridad. La coherencia entre el psicotécnico y la entrevista es clave.</div>
+              <div style="font-size:0.88rem;color:rgba(255,255,255,0.8);">→ Infórmate bien sobre la institución: historia, funciones, valores, estructura.</div>
+              <div style="font-size:0.88rem;color:rgba(255,255,255,0.8);">→ Muestra vocación real y motivación sólida por el servicio público.</div>
+              <div style="font-size:0.88rem;color:rgba(255,255,255,0.8);">→ Cuida el lenguaje no verbal: postura, contacto visual, tono de voz.</div>
+              <div style="font-size:0.88rem;color:rgba(255,255,255,0.8);">→ Si tienes "no apto provisional", tienes derecho a revisión. Pídela siempre.</div>
+              <div style="font-size:0.88rem;color:rgba(255,255,255,0.8);">→ Antes de la entrevista se rellena un BIODATA biográfico como apoyo.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MEDICO -->
+    <div id="fase-medico" class="fase-section fade-up">
+      <h2 class="section-heading" style="margin-bottom:1.5rem;">Reconocimiento <span>médico</span></h2>
+      <p style="color:var(--gris-med);margin-bottom:2rem;">El reconocimiento médico determina la aptitud psicofísica según el cuadro de exclusiones del Anexo I de la Orden PCI/155/2019. Los aspirantes se presentarán en ayunas y con retención de orina.</p>
+      <div class="grid-2" style="gap:1.5rem;">
+        <div class="card">
+          <h3 class="card__title">Resultados posibles</h3>
+          <ul style="font-size:0.9rem;line-height:2;color:var(--gris-med);">
+            <li><span class="badge badge-verde">APTO</span> — Supera el proceso selectivo.</li>
+            <li><span class="badge badge-rojo">NO APTO</span> — Excluido. Tiene derecho a revisión en 3 días hábiles.</li>
+            <li><span class="badge badge-gold">NO APTO CIRCUNSTANCIAL</span> — Se fija nueva fecha ante Junta Médica.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 class="card__title">Aspectos más valorados</h3>
+          <ul style="font-size:0.9rem;line-height:1.9;color:var(--gris-med);">
+            <li>• Agudeza visual y auditiva</li>
+            <li>• Estado cardiovascular</li>
+            <li>• Índice de masa corporal</li>
+            <li>• Ausencia de patologías que impidan el servicio</li>
+            <li>• Estudio analítico completo</li>
+            <li>• Electrocardiograma</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div><div class="footer__brand-name">Ingreso<span>GC</span></div><p class="footer__desc">Formación profesional para el acceso a la Escala de Cabos y Guardias.</p></div>
+      <div class="footer__col"><div class="footer__col-title">Plataforma</div><a href="login.html">Acceso alumnos</a><a href="proceso-selectivo.html">Proceso selectivo</a><a href="normativa.html">Normativa</a></div>
+      <div class="footer__col"><div class="footer__col-title">Info</div><a href="guardia-civil.html">La Guardia Civil</a><a href="actualidad.html">Actualidad</a><a href="faq.html">FAQ</a></div>
+      <div class="footer__col"><div class="footer__col-title">Legal</div><a href="#">Aviso legal</a><a href="#">Privacidad</a><a href="#">Contacto</a></div>
+    </div>
+    <div class="footer__bottom"><span>© 2025 Ingreso GC – DM Forma.</span><span>No afiliada a organismos oficiales.</span></div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  function showFase(id, btn) {
+    document.querySelectorAll('.fase-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.fase-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('fase-' + id).classList.add('active');
+    btn.classList.add('active');
+    document.getElementById('fase-' + id).scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Panel del Profesor | Ingreso GC</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    body{display:flex;flex-direction:column;min-height:100vh;}
+    .topbar{background:var(--negro);height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;position:sticky;top:0;z-index:900;box-shadow:0 2px 12px rgba(0,0,0,0.2);}
+    .topbar-brand{font-family:var(--fuente-d);font-size:1.4rem;font-weight:700;color:var(--blanco);}
+    .topbar-brand span{color:var(--dorado-claro);}
+    .topbar-badge{background:var(--dorado);color:var(--negro);font-size:0.7rem;font-weight:700;padding:3px 10px;border-radius:100px;text-transform:uppercase;letter-spacing:0.06em;}
+    .topbar-right{display:flex;align-items:center;gap:1rem;}
+    .topbar-user{font-size:0.85rem;color:rgba(255,255,255,0.7);}
+    .topbar-logout{padding:7px 16px;background:rgba(255,255,255,0.1);color:var(--blanco);border-radius:6px;font-size:0.82rem;cursor:pointer;border:none;transition:background var(--t);}
+    .topbar-logout:hover{background:rgba(255,255,255,0.2);}
+
+    .panel-layout{display:flex;flex:1;}
+    .sidebar{width:240px;background:var(--blanco);border-right:1px solid var(--gris-claro);padding:1.5rem 0;flex-shrink:0;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;}
+    .sidebar-label{font-size:0.68rem;font-weight:700;color:var(--gris-med);text-transform:uppercase;letter-spacing:0.1em;padding:0 1.5rem;margin-bottom:0.5rem;}
+    .sidebar-item{display:flex;align-items:center;gap:0.75rem;padding:10px 1.5rem;cursor:pointer;color:var(--gris-osc);font-size:0.88rem;font-weight:500;transition:all var(--t);margin-bottom:2px;}
+    .sidebar-item:hover{background:var(--verde-bg);color:var(--verde);}
+    .sidebar-item.active{background:var(--negro);color:var(--blanco);}
+    .sidebar-item .si-icon{font-size:1.1rem;width:20px;text-align:center;}
+    .sidebar-sep{height:1px;background:var(--gris-claro);margin:1rem 1rem;}
+
+    .panel-main{flex:1;padding:2rem;overflow-x:hidden;}
+    .panel-section{display:none;}
+    .panel-section.active{display:block;}
+
+    /* STATS */
+    .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2rem;}
+    .stat-card{background:var(--blanco);border-radius:var(--radio-lg);padding:1.5rem;border:1px solid var(--gris-claro);}
+    .stat-card .s-num{font-family:var(--fuente-d);font-size:2.2rem;font-weight:700;color:var(--negro);line-height:1;display:block;}
+    .stat-card .s-label{font-size:0.78rem;color:var(--gris-med);text-transform:uppercase;letter-spacing:0.05em;margin-top:4px;}
+    .stat-card .s-delta{font-size:0.78rem;font-weight:600;margin-top:4px;}
+    .stat-card.highlight{background:var(--verde);border-color:var(--verde);}
+    .stat-card.highlight .s-num,.stat-card.highlight .s-label,.stat-card.highlight .s-delta{color:var(--blanco);}
+
+    /* TABLA */
+    .tabla{width:100%;border-collapse:collapse;font-size:0.88rem;}
+    .tabla th{background:var(--fondo);border-bottom:2px solid var(--gris-claro);padding:10px 14px;text-align:left;font-size:0.75rem;font-weight:700;color:var(--gris-med);text-transform:uppercase;letter-spacing:0.07em;}
+    .tabla td{padding:12px 14px;border-bottom:1px solid var(--gris-claro);color:var(--gris-osc);vertical-align:middle;}
+    .tabla tr:hover td{background:var(--verde-bg);}
+    .tabla tr:last-child td{border-bottom:none;}
+
+    /* MINI PROGRESS */
+    .mini-prog{background:var(--gris-claro);border-radius:100px;height:6px;width:80px;overflow:hidden;display:inline-block;vertical-align:middle;}
+    .mini-prog-fill{height:100%;background:var(--verde);border-radius:100px;}
+
+    /* FORM SECTION */
+    .form-card{background:var(--blanco);border-radius:var(--radio-lg);padding:2rem;border:1px solid var(--gris-claro);margin-bottom:2rem;}
+    .form-card h3{font-family:var(--fuente-d);font-size:1.3rem;font-weight:700;color:var(--negro);margin-bottom:1.5rem;}
+    .form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+
+    /* Notificacion */
+    .notif{position:fixed;bottom:2rem;right:2rem;background:var(--verde);color:white;padding:1rem 1.5rem;border-radius:var(--radio);font-size:0.88rem;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,0.2);transform:translateY(100px);opacity:0;transition:all 0.3s;z-index:9999;}
+    .notif.show{transform:translateY(0);opacity:1;}
+
+    @media(max-width:1024px){.stats-row{grid-template-columns:repeat(2,1fr);}}
+    @media(max-width:768px){.sidebar{display:none;}.panel-main{padding:1rem;}.stats-row{grid-template-columns:1fr 1fr;}}
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <div style="display:flex;align-items:center;gap:1rem;">
+    <div class="topbar-brand">Ingreso<span>GC</span></div>
+    <span class="topbar-badge">Profesor</span>
+  </div>
+  <div class="topbar-right">
+    <span class="topbar-user" id="prof-name">Profesor</span>
+    <button class="topbar-logout" onclick="Auth.logout()">Salir</button>
+  </div>
+</div>
+
+<div class="panel-layout">
+  <nav class="sidebar">
+    <div style="padding:1.5rem 0;">
+      <div class="sidebar-label" style="margin-bottom:1rem;">Principal</div>
+      <div class="sidebar-item active" onclick="showSection('resumen',this)"><span class="si-icon">📊</span> Resumen</div>
+      <div class="sidebar-item" onclick="showSection('alumnos',this)"><span class="si-icon">👥</span> Alumnos</div>
+      <div class="sidebar-sep"></div>
+      <div class="sidebar-label" style="margin-bottom:1rem;">Contenido</div>
+      <div class="sidebar-item" onclick="showSection('preguntas',this)"><span class="si-icon">❓</span> Banco de preguntas</div>
+      <div class="sidebar-item" onclick="showSection('temario',this)"><span class="si-icon">📚</span> Gestión temario</div>
+      <div class="sidebar-item" onclick="showSection('material',this)"><span class="si-icon">📁</span> Material</div>
+      <div class="sidebar-sep"></div>
+      <div class="sidebar-label" style="margin-bottom:1rem;">Plataforma</div>
+      <div class="sidebar-item" onclick="showSection('foro',this)"><span class="si-icon">💬</span> Foro · Moderación</div>
+      <div class="sidebar-item" onclick="showSection('convocatoria',this)"><span class="si-icon">📋</span> Convocatoria</div>
+      <div class="sidebar-item" onclick="showSection('config',this)"><span class="si-icon">⚙️</span> Configuración</div>
+    </div>
+  </nav>
+
+  <main class="panel-main">
+
+    <!-- ── RESUMEN ── -->
+    <section id="sec-resumen" class="panel-section active">
+      <h1 style="font-family:var(--fuente-d);font-size:2rem;font-weight:700;color:var(--negro);margin-bottom:0.25rem;">Panel de control</h1>
+      <p style="color:var(--gris-med);font-size:0.88rem;margin-bottom:2rem;">Resumen general de la plataforma · Ingreso GC 2025</p>
+
+      <div class="stats-row">
+        <div class="stat-card highlight">
+          <span class="s-num">12</span>
+          <div class="s-label">Alumnos activos</div>
+          <div class="s-delta">↑ +3 este mes</div>
+        </div>
+        <div class="stat-card">
+          <span class="s-num">247</span>
+          <div class="s-label">Tests realizados</div>
+          <div class="s-delta" style="color:var(--verde);">↑ +18 esta semana</div>
+        </div>
+        <div class="stat-card">
+          <span class="s-num">68</span>
+          <div class="s-label">Nota media</div>
+          <div class="s-delta" style="color:var(--verde);">Sobre 100 pts</div>
+        </div>
+        <div class="stat-card">
+          <span class="s-num">420</span>
+          <div class="s-label">Preguntas en banco</div>
+          <div class="s-delta" style="color:var(--gris-med);">25 temas cubiertos</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:1.5rem;">
+        <div>
+          <h2 style="font-family:var(--fuente-d);font-size:1.3rem;font-weight:700;color:var(--negro);margin-bottom:1rem;">Actividad reciente de alumnos</h2>
+          <div style="background:var(--blanco);border-radius:var(--radio-lg);border:1px solid var(--gris-claro);overflow:hidden;">
+            <table class="tabla">
+              <thead><tr><th>Alumno</th><th>Último test</th><th>Nota</th><th>Progreso</th></tr></thead>
+              <tbody>
+                <tr><td><strong>María C.</strong></td><td>Hace 2h</td><td><span class="badge badge-verde">78 pts</span></td><td><div class="mini-prog"><div class="mini-prog-fill" style="width:72%"></div></div> 72%</td></tr>
+                <tr><td><strong>Javier R.</strong></td><td>Hace 5h</td><td><span class="badge badge-gold">62 pts</span></td><td><div class="mini-prog"><div class="mini-prog-fill" style="width:85%"></div></div> 85%</td></tr>
+                <tr><td><strong>Ana L.</strong></td><td>Ayer</td><td><span class="badge badge-rojo">44 pts</span></td><td><div class="mini-prog"><div class="mini-prog-fill" style="width:40%"></div></div> 40%</td></tr>
+                <tr><td><strong>Pedro M.</strong></td><td>Ayer</td><td><span class="badge badge-verde">81 pts</span></td><td><div class="mini-prog"><div class="mini-prog-fill" style="width:60%"></div></div> 60%</td></tr>
+                <tr><td><strong>Sara G.</strong></td><td>Hace 2 días</td><td><span class="badge badge-gold">55 pts</span></td><td><div class="mini-prog"><div class="mini-prog-fill" style="width:30%"></div></div> 30%</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div>
+          <h2 style="font-family:var(--fuente-d);font-size:1.3rem;font-weight:700;color:var(--negro);margin-bottom:1rem;">Estado de contenidos</h2>
+          <div style="background:var(--blanco);border-radius:var(--radio-lg);padding:1.5rem;border:1px solid var(--gris-claro);">
+            <div style="display:flex;flex-direction:column;gap:1rem;">
+              <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:0.88rem;color:var(--gris-osc);">📚 Temas con contenido</span><span class="badge badge-verde">25 / 25</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:0.88rem;color:var(--gris-osc);">❓ Preguntas en banco</span><span class="badge badge-verde">420</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:0.88rem;color:var(--gris-osc);">📁 Recursos subidos</span><span class="badge badge-gold">9</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:0.88rem;color:var(--gris-osc);">💬 Posts en foro</span><span class="badge badge-gris">23</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:0.88rem;color:var(--gris-osc);">📋 Convocatoria actualizada</span><span class="badge badge-verde">✓ 2025</span></div>
+            </div>
+            <div style="margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--gris-claro);">
+              <button class="btn btn-primary btn-sm" style="width:100%;justify-content:center;" onclick="showSection('preguntas',document.querySelector('[onclick*=preguntas]'))">+ Añadir preguntas →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ALUMNOS ── -->
+    <section id="sec-alumnos" class="panel-section">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem;">
+        <div>
+          <h1 style="font-family:var(--fuente-d);font-size:2rem;font-weight:700;color:var(--negro);margin-bottom:0.25rem;">Gestión de alumnos</h1>
+          <p style="color:var(--gris-med);font-size:0.88rem;">12 alumnos activos · Convocatoria 2025</p>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="notif('Función disponible en v2.0 con base de datos.')">+ Nuevo alumno</button>
+      </div>
+      <div style="background:var(--blanco);border-radius:var(--radio-lg);border:1px solid var(--gris-claro);overflow:hidden;">
+        <table class="tabla">
+          <thead><tr><th>Alumno</th><th>Email</th><th>Tests</th><th>Nota media</th><th>Temario</th><th>Estado</th><th>Acciones</th></tr></thead>
+          <tbody id="tabla-alumnos"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ── BANCO PREGUNTAS ── -->
+    <section id="sec-preguntas" class="panel-section">
+      <h1 style="font-family:var(--fuente-d);font-size:2rem;font-weight:700;color:var(--negro);margin-bottom:1.5rem;">Banco de preguntas</h1>
+
+      <div class="form-card">
+        <h3>➕ Añadir nueva pregunta</h3>
+        <div class="form-group">
+          <label>Tema</label>
+          <select id="nq-tema">
+            <option value="">Selecciona un tema...</option>
+            <option value="1">T1 – Derechos Humanos</option>
+            <option value="2">T2 – Igualdad efectiva</option>
+            <option value="3">T3 – Prevención Riesgos Laborales</option>
+            <option value="4">T4 – Derecho Constitucional</option>
+            <option value="5">T5 – Derecho UE</option>
+            <option value="6">T6 – Instituciones Internacionales</option>
+            <option value="7">T7 – Derecho Civil</option>
+            <option value="8">T8 – Derecho Penal</option>
+            <option value="9">T9 – Derecho Procesal Penal</option>
+            <option value="10">T10 – Derecho Administrativo</option>
+            <option value="11">T11 – Protección de Datos</option>
+            <option value="12">T12 – Extranjería</option>
+            <option value="13">T13 – Seguridad Pública y Privada</option>
+            <option value="14">T14 – Ministerios Interior y Defensa</option>
+            <option value="15">T15 – FFCCSS · Guardia Civil</option>
+            <option value="16">T16 – Materias Socioculturales</option>
+            <option value="17">T17 – TIC</option>
+            <option value="18">T18 – Topografía</option>
+            <option value="19">T19 – Deontología</option>
+            <option value="20">T20 – Menores</option>
+            <option value="21">T21 – Violencia de Género</option>
+            <option value="22">T22 – Armas y Explosivos</option>
+            <option value="23">T23 – Derecho Fiscal</option>
+            <option value="24">T24 – Inglés</option>
+            <option value="25">T25 – Lengua Española</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Enunciado de la pregunta</label><textarea id="nq-preg" rows="3" placeholder="Escribe el enunciado completo..."></textarea></div>
+        <div class="form-row-2">
+          <div class="form-group"><label>Opción A</label><input type="text" id="nq-a" placeholder="Opción A"></div>
+          <div class="form-group"><label>Opción B</label><input type="text" id="nq-b" placeholder="Opción B"></div>
+          <div class="form-group"><label>Opción C</label><input type="text" id="nq-c" placeholder="Opción C"></div>
+          <div class="form-group"><label>Opción D</label><input type="text" id="nq-d" placeholder="Opción D"></div>
+        </div>
+        <div class="form-row-2">
+          <div class="form-group">
+            <label>Respuesta correcta</label>
+            <select id="nq-ok"><option value="0">A</option><option value="1">B</option><option value="2">C</option><option value="3">D</option></select>
+          </div>
+          <div class="form-group"><label>Dificultad</label><select id="nq-dif"><option>Fácil</option><option selected>Media</option><option>Difícil</option></select></div>
+        </div>
+        <div class="form-group"><label>Explicación / justificación normativa</label><textarea id="nq-exp" rows="2" placeholder="Explica la respuesta correcta con referencia a la norma..."></textarea></div>
+        <button class="btn btn-primary" onclick="guardarPregunta()">Guardar pregunta →</button>
+      </div>
+
+      <h2 style="font-family:var(--fuente-d);font-size:1.3rem;font-weight:700;color:var(--negro);margin-bottom:1rem;">Últimas preguntas añadidas</h2>
+      <div style="background:var(--blanco);border-radius:var(--radio-lg);border:1px solid var(--gris-claro);overflow:hidden;">
+        <table class="tabla">
+          <thead><tr><th>Tema</th><th>Enunciado</th><th>Dificultad</th><th>Acciones</th></tr></thead>
+          <tbody id="tabla-preguntas"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ── TEMARIO (gestión) ── -->
+    <section id="sec-temario" class="panel-section">
+      <h1 style="font-family:var(--fuente-d);font-size:2rem;font-weight:700;color:var(--negro);margin-bottom:1.5rem;">Gestión del temario</h1>
+      <div style="background:rgba(200,150,12,0.08);border:1px solid rgba(200,150,12,0.3);border-radius:var(--radio);padding:1.1rem 1.5rem;margin-bottom:2rem;font-size:0.88rem;color:var(--gris-osc);">
+        <strong style="color:var(--dorado);">📌 Actualización anual:</strong> Para actualizar el temario cuando salga nueva convocatoria, simplemente modifica los datos en los archivos JSON de contenido o contacta con soporte técnico. Los temas están estructurados de forma modular.
+      </div>
+      <div id="tabla-temas-prof"></div>
+    </section>
+
+    <!-- ── MATERIAL ── -->
+    <section id="sec-material" class="panel-section">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem;">
+        <div>
+          <h1 style="font-family:var(--fuente-d);font-size:2rem;font-weight:700;color:var(--negro);margin-bottom:0.25rem;">Gestión de material</h1>
+          <p style="color:var(--gris-med);font-size:0.88rem;">Infografías, resúmenes, vídeos y técnicas de estudio</p>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="notif('Subida de archivos disponible en v2.0.')">+ Subir recurso</button>
+      </div>
+      <div style="background:var(--blanco);border-radius:var(--radio-lg);border:1px solid var(--gris-claro);overflow:hidden;">
+        <table class="tabla">
+          <thead><tr><th>Título</th><th>Tipo</th><th>Tema</th><th>Estado</th><th>Acciones</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Proceso selectivo 2025</strong></td><td><span class="badge badge-verde">Infografía</span></td><td>General</td><td><span class="badge badge-verde">Publicado</span></td><td><button class="btn btn-secondary btn-sm" onclick="notif('Edición disponible en v2.0.')">Editar</button></td></tr>
+            <tr><td><strong>Resumen T4: Derecho Constitucional</strong></td><td><span class="badge badge-gold">Resumen PDF</span></td><td>T4</td><td><span class="badge badge-verde">Publicado</span></td><td><button class="btn btn-secondary btn-sm" onclick="notif('Edición disponible en v2.0.')">Editar</button></td></tr>
+            <tr><td><strong>Tutorial: extensiones de brazos</strong></td><td><span class="badge badge-gris">Vídeo</span></td><td>Físicas</td><td><span class="badge badge-gold">Borrador</span></td><td><button class="btn btn-secondary btn-sm" onclick="notif('Publicación disponible en v2.0.')">Publicar</button></td></tr>
+            <tr><td><strong>Método Pomodoro adaptado</strong></td><td><span class="badge badge-gris">Técnica</span></td><td>General</td><td><span class="badge badge-verde">Publicado</span></td><td><button class="btn btn-secondary btn-sm" onclick="notif('Edición disponible en v2.0.')">Editar</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ── FORO ── -->
+    <section id="sec-foro" class="panel-section">
+      <h1 style="font-family:var(--fuente-d);font-size:2rem;font-weight:700;color:var(--negro);margin-bottom:1.5rem;">Foro · Moderación</h1>
+      <div style="background:var(--blanco);border-radius:var(--radio-lg);border:1px solid var(--gris-claro);overflow:hidden;">
+        <table class="tabla">
+          <thead><tr><th>Autor</th><th>Título</th><th>Fecha</th><th>Estado</th><th>Acciones</th></tr></thead>
+          <tbody>
+            <tr><td>María C.</td><td>Duda sobre el T21 – Violencia de Género</td><td>Hoy</td><td><span class="badge badge-verde">Activo</span></td><td><button class="btn btn-secondary btn-sm" onclick="notif('Post eliminado.')">Eliminar</button></td></tr>
+            <tr><td>Javier R.</td><td>Mi planificación para 8 meses</td><td>Hoy</td><td><span class="badge badge-verde">Activo</span></td><td><button class="btn btn-secondary btn-sm" onclick="notif('Post eliminado.')">Eliminar</button></td></tr>
+            <tr><td>Ana L.</td><td>¿Cuándo se publican los resultados del médico?</td><td>Ayer</td><td><span class="badge badge-gold">Pendiente</span></td><td><button class="btn btn-primary btn-sm" onclick="notif('Post aprobado.')">Aprobar</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ── CONVOCATORIA ── -->
+    <section id="sec-convocatoria" class="panel-section">
+      <h1 style="font-family:var(--fuente-d);font-size:2rem;font-weight:700;color:var(--negro);margin-bottom:1.5rem;">Datos de convocatoria</h1>
+      <p style="color:var(--gris-med);font-size:0.88rem;margin-bottom:2rem;">Actualiza estos datos cada vez que salga una nueva convocatoria. Se mostrarán en toda la plataforma.</p>
+      <div class="form-card">
+        <h3>📋 Convocatoria activa</h3>
+        <div class="form-row-2">
+          <div class="form-group"><label>Año convocatoria</label><input type="text" value="2025"></div>
+          <div class="form-group"><label>Referencia BOE</label><input type="text" value="BOE nº 128, 28 mayo 2025"></div>
+          <div class="form-group"><label>Resolución</label><input type="text" value="160/38240/2025"></div>
+          <div class="form-group"><label>Plazas totales</label><input type="number" value="3118"></div>
+          <div class="form-group"><label>Plazas libres</label><input type="number" value="1630"></div>
+          <div class="form-group"><label>Plazas militares</label><input type="number" value="1248"></div>
+          <div class="form-group"><label>Plazas CGJ</label><input type="number" value="240"></div>
+          <div class="form-group"><label>Fecha incorporación</label><input type="text" value="27 octubre 2025"></div>
+          <div class="form-group"><label>Academia</label><input type="text" value="Academia de Baeza (Jaén)"></div>
+          <div class="form-group"><label>Tasa examen (€)</label><input type="text" value="11,66 €"></div>
+        </div>
+        <button class="btn btn-primary" onclick="notif('✓ Datos de convocatoria guardados correctamente.')">Guardar cambios →</button>
+      </div>
+    </section>
+
+    <!-- ── CONFIGURACIÓN ── -->
+    <section id="sec-config" class="panel-section">
+      <h1 style="font-family:var(--fuente-d);font-size:2rem;font-weight:700;color:var(--negro);margin-bottom:1.5rem;">Configuración de la plataforma</h1>
+      <div class="form-card">
+        <h3>🌐 Ajustes generales</h3>
+        <div class="form-row-2">
+          <div class="form-group"><label>Nombre de la plataforma</label><input type="text" value="Ingreso GC – DM Forma"></div>
+          <div class="form-group"><label>Subtítulo</label><input type="text" value="Tu camino al éxito"></div>
+          <div class="form-group"><label>Email de contacto</label><input type="email" placeholder="profesor@dmforma.es"></div>
+          <div class="form-group"><label>URL de la plataforma</label><input type="text" placeholder="https://tu-usuario.github.io/ingreso-gc"></div>
+        </div>
+        <div class="form-group"><label>Aviso informativo (se muestra en el panel del alumno)</label><textarea rows="2" placeholder="Ej: Recuerda que el plazo de matriculación cierra el 30 de junio..."></textarea></div>
+        <button class="btn btn-primary" onclick="notif('✓ Configuración guardada.')">Guardar configuración →</button>
+      </div>
+
+      <div class="form-card">
+        <h3>🔐 Acceso y seguridad</h3>
+        <div class="form-group"><label>Contraseña actual</label><input type="password" placeholder="••••••••"></div>
+        <div class="form-group"><label>Nueva contraseña</label><input type="password" placeholder="••••••••"></div>
+        <div class="form-group"><label>Confirmar nueva contraseña</label><input type="password" placeholder="••••••••"></div>
+        <button class="btn btn-secondary" onclick="notif('✓ Contraseña actualizada.')">Cambiar contraseña</button>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<div class="notif" id="notif-box"></div>
+
+<script src="js/main.js"></script>
+<script>
+Auth.requireAuth();
+if(Auth.getRol()!=='profesor') window.location.href='panel-alumno.html';
+document.getElementById('prof-name').textContent = Auth.getNombre();
+
+function showSection(id, el) {
+  document.querySelectorAll('.panel-section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.sidebar-item').forEach(s=>s.classList.remove('active'));
+  document.getElementById('sec-'+id).classList.add('active');
+  if(el) el.classList.add('active');
+}
+
+function notif(msg) {
+  const n = document.getElementById('notif-box');
+  n.textContent = msg;
+  n.classList.add('show');
+  setTimeout(()=>n.classList.remove('show'), 3000);
+}
+
+// Tabla alumnos demo
+const ALUMNOS_DEMO = [
+  {n:'María C.',e:'maria@email.com',tests:18,nota:72,prog:72,estado:'Activo'},
+  {n:'Javier R.',e:'javier@email.com',tests:31,nota:68,prog:85,estado:'Activo'},
+  {n:'Ana L.',e:'ana@email.com',tests:9,nota:44,prog:40,estado:'Activo'},
+  {n:'Pedro M.',e:'pedro@email.com',tests:22,nota:81,prog:60,estado:'Activo'},
+  {n:'Sara G.',e:'sara@email.com',tests:5,nota:55,prog:30,estado:'Inactivo'},
+];
+document.getElementById('tabla-alumnos').innerHTML = ALUMNOS_DEMO.map(a=>`
+  <tr>
+    <td><strong>${a.n}</strong></td>
+    <td style="color:var(--gris-med);font-size:0.82rem;">${a.e}</td>
+    <td>${a.tests}</td>
+    <td><span class="badge ${a.nota>=60?'badge-verde':a.nota>=50?'badge-gold':'badge-rojo'}">${a.nota} pts</span></td>
+    <td><div class="mini-prog" style="width:100px;"><div class="mini-prog-fill" style="width:${a.prog}%"></div></div> ${a.prog}%</td>
+    <td><span class="badge ${a.estado==='Activo'?'badge-verde':'badge-gris'}">${a.estado}</span></td>
+    <td><button class="btn btn-secondary btn-sm" onclick="notif('Perfil de ${a.n}. Disponible en v2.0.')">Ver perfil</button></td>
+  </tr>`).join('');
+
+// Banco preguntas
+const TEMAS_SHORT=[{v:1,l:'T1 Derechos Humanos'},{v:4,l:'T4 Const.'},{v:8,l:'T8 Penal'},{v:15,l:'T15 GC'},{v:21,l:'T21 VdG'}];
+function guardarPregunta(){
+  const t=document.getElementById('nq-tema').value;
+  const p=document.getElementById('nq-preg').value.trim();
+  if(!t||!p){notif('⚠️ Completa al menos el tema y el enunciado.');return;}
+  const stored=JSON.parse(localStorage.getItem('gc_prof_preguntas')||'[]');
+  const dif=document.getElementById('nq-dif').value;
+  stored.unshift({tema:document.getElementById('nq-tema').options[document.getElementById('nq-tema').selectedIndex].text,preg:p,dif});
+  localStorage.setItem('gc_prof_preguntas',JSON.stringify(stored));
+  ['nq-preg','nq-a','nq-b','nq-c','nq-d','nq-exp'].forEach(id=>document.getElementById(id).value='');
+  renderPreguntas();
+  notif('✓ Pregunta guardada en el banco.');
+}
+function renderPreguntas(){
+  const stored=JSON.parse(localStorage.getItem('gc_prof_preguntas')||'[]');
+  const demo=[
+    {tema:'T15 – FFCCSS · Guardia Civil',preg:'La Guardia Civil tiene naturaleza de...',dif:'Fácil'},
+    {tema:'T4 – Derecho Constitucional',preg:'¿En qué artículo se recoge el derecho a la vida?',dif:'Media'},
+    {tema:'T21 – Violencia de Género',preg:'La LO 1/2004 tiene por objeto actuar contra...',dif:'Media'},
+    {tema:'T8 – Derecho Penal',preg:'El delito de lesiones está regulado en...',dif:'Difícil'},
+  ];
+  const all=[...stored,...demo];
+  document.getElementById('tabla-preguntas').innerHTML=all.map(q=>`
+    <tr>
+      <td><span class="badge badge-verde" style="font-size:0.7rem;">${q.tema}</span></td>
+      <td style="max-width:280px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${q.preg}</td>
+      <td><span class="badge ${q.dif==='Fácil'?'badge-verde':q.dif==='Media'?'badge-gold':'badge-rojo'}">${q.dif}</span></td>
+      <td style="display:flex;gap:0.5rem;">
+        <button class="btn btn-secondary btn-sm" onclick="notif('Edición disponible en v2.0.')">Editar</button>
+        <button class="btn btn-sm" style="background:#fef2f2;color:#dc2626;border:1px solid #fecaca;" onclick="notif('Pregunta eliminada.')">✕</button>
+      </td>
+    </tr>`).join('');
+}
+renderPreguntas();
+
+// Tabla temario profesor
+const TMS=[
+  {n:1,t:'Derechos Humanos',s:'ONU · CEDH · CPI',nuevo:false},
+  {n:4,t:'Derecho Constitucional',s:'CE 1978',nuevo:false},
+  {n:15,t:'FFCCSS · Guardia Civil',s:'LO 2/1986',nuevo:false},
+  {n:19,t:'Deontología Profesional',s:'RD 176/2022',nuevo:true},
+  {n:21,t:'Violencia de Género',s:'LO 1/2004',nuevo:true},
+  {n:22,t:'Armas y Explosivos',s:'RD 137/1993',nuevo:true},
+];
+document.getElementById('tabla-temas-prof').innerHTML=`
+  <div style="background:var(--blanco);border-radius:var(--radio-lg);border:1px solid var(--gris-claro);overflow:hidden;">
+    <table class="tabla">
+      <thead><tr><th>Nº</th><th>Tema</th><th>Normativa</th><th>Nuevo 2023</th><th>Preguntas</th><th>Acciones</th></tr></thead>
+      <tbody>${TMS.map(t=>`
+        <tr>
+          <td><strong>T${t.n}</strong></td>
+          <td>${t.t}</td>
+          <td style="font-size:0.8rem;color:var(--gris-med);">${t.s}</td>
+          <td>${t.nuevo?'<span class="badge badge-gold">★ Nuevo</span>':'—'}</td>
+          <td>~18</td>
+          <td><button class="btn btn-secondary btn-sm" onclick="notif('Gestión de contenido del tema disponible en v2.0.')">Gestionar</button></td>
+        </tr>`).join('')}
+        <tr style="background:var(--verde-bg);"><td colspan="6" style="text-align:center;color:var(--gris-med);font-size:0.85rem;padding:1rem;">... y 19 temas más. Todos los 25 temas están disponibles en la plataforma.</td></tr>
+      </tbody>
+    </table>
+  </div>`;
+</script>
+</body>
+</html>

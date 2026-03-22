@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Acceso Alumnos | Ingreso GC – DM Forma</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    body{min-height:100vh;display:flex;flex-direction:column;}
+    .login-wrap{flex:1;display:grid;grid-template-columns:1fr 1.1fr;min-height:calc(100vh - 68px);}
+
+    /* Panel izquierdo */
+    .login-left{background:linear-gradient(155deg,#0b2816 0%,#1b5e35 60%,#2e7d4f 100%);padding:3rem;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;}
+    .login-left::before{content:'';position:absolute;right:-80px;bottom:-80px;width:360px;height:360px;border-radius:50%;background:rgba(200,150,12,0.06);}
+    .login-left::after{content:'';position:absolute;left:-60px;top:-60px;width:280px;height:280px;border-radius:50%;background:rgba(255,255,255,0.03);}
+    .login-brand{font-family:var(--fuente-d);font-size:2rem;font-weight:700;color:var(--blanco);margin-bottom:0.3rem;}
+    .login-brand span{color:var(--dorado-claro);}
+    .login-tagline{font-size:0.85rem;color:rgba(255,255,255,0.55);margin-bottom:3rem;}
+    .login-feat{display:flex;flex-direction:column;gap:1.25rem;position:relative;z-index:1;}
+    .login-feat-item{display:flex;align-items:flex-start;gap:1rem;}
+    .login-feat-icon{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+    .login-feat-text strong{display:block;color:var(--blanco);font-size:0.92rem;margin-bottom:2px;}
+    .login-feat-text span{font-size:0.82rem;color:rgba(255,255,255,0.55);}
+    .login-stats{display:flex;gap:2rem;margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.1);position:relative;z-index:1;}
+    .login-stat .n{font-family:var(--fuente-d);font-size:1.8rem;font-weight:700;color:var(--dorado-claro);display:block;line-height:1;}
+    .login-stat .l{font-size:0.72rem;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.06em;}
+
+    /* Panel derecho */
+    .login-right{background:var(--fondo);display:flex;align-items:center;justify-content:center;padding:3rem 2rem;}
+    .login-box{width:100%;max-width:420px;}
+    .login-tabs{display:flex;background:var(--gris-claro);border-radius:var(--radio);padding:4px;margin-bottom:2rem;}
+    .login-tab{flex:1;padding:10px;text-align:center;border-radius:6px;font-weight:600;font-size:0.88rem;cursor:pointer;color:var(--gris-med);transition:all var(--t);}
+    .login-tab.active{background:var(--blanco);color:var(--negro);box-shadow:0 2px 8px rgba(0,0,0,0.08);}
+    .login-form{display:none;}
+    .login-form.active{display:block;}
+    .login-form h2{font-family:var(--fuente-d);font-size:1.8rem;font-weight:700;color:var(--negro);margin-bottom:0.4rem;}
+    .login-form p{font-size:0.88rem;color:var(--gris-med);margin-bottom:1.75rem;}
+    .input-icon{position:relative;}
+    .input-icon input{padding-left:42px;}
+    .input-icon .ico{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:1rem;pointer-events:none;}
+    .forgot{text-align:right;margin-top:-0.75rem;margin-bottom:1.25rem;}
+    .forgot a{font-size:0.82rem;color:var(--verde);font-weight:600;}
+    .forgot a:hover{text-decoration:underline;}
+    .btn-block{width:100%;justify-content:center;padding:14px;}
+    .login-sep{display:flex;align-items:center;gap:1rem;margin:1.5rem 0;color:var(--gris-med);font-size:0.82rem;}
+    .login-sep::before,.login-sep::after{content:'';flex:1;height:1px;background:var(--gris-claro);}
+    .demo-hint{background:rgba(200,150,12,0.08);border:1px solid rgba(200,150,12,0.25);border-radius:var(--radio);padding:0.9rem 1rem;font-size:0.82rem;color:var(--gris-osc);line-height:1.6;margin-top:1.25rem;}
+    .demo-hint strong{color:var(--dorado);}
+    .error-msg{background:rgba(220,38,38,0.08);border:1px solid rgba(220,38,38,0.2);border-radius:var(--radio);padding:0.75rem 1rem;font-size:0.85rem;color:#dc2626;margin-bottom:1rem;display:none;}
+
+    @media(max-width:768px){
+      .login-wrap{grid-template-columns:1fr;}
+      .login-left{display:none;}
+    }
+  </style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="container navbar__inner">
+    <a href="index.html" class="navbar__brand">Ingreso<span>GC</span></a>
+    <ul class="navbar__menu" id="nav-menu">
+      <li><a href="index.html" class="navbar__link">Inicio</a></li>
+      <li><a href="proceso-selectivo.html" class="navbar__link">Proceso selectivo</a></li>
+      <li><a href="normativa.html" class="navbar__link">Normativa</a></li>
+      <li><a href="faq.html" class="navbar__link">FAQ</a></li>
+    </ul>
+    <button class="navbar__hamburger" id="hamburger" aria-label="Menú" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="login-wrap">
+  <!-- IZQUIERDA -->
+  <div class="login-left">
+    <div class="login-brand">Ingreso<span>GC</span></div>
+    <div class="login-tagline">Tu academia online para la Guardia Civil</div>
+    <div class="login-feat">
+      <div class="login-feat-item">
+        <div class="login-feat-icon">📝</div>
+        <div class="login-feat-text"><strong>Tests tipo examen real</strong><span>Con corrección automática y explicaciones</span></div>
+      </div>
+      <div class="login-feat-item">
+        <div class="login-feat-icon">📚</div>
+        <div class="login-feat-text"><strong>Temario oficial completo</strong><span>25 temas según la normativa vigente 2025</span></div>
+      </div>
+      <div class="login-feat-item">
+        <div class="login-feat-icon">📊</div>
+        <div class="login-feat-text"><strong>Seguimiento personalizado</strong><span>Progreso tema a tema y detección de fallos</span></div>
+      </div>
+      <div class="login-feat-item">
+        <div class="login-feat-icon">💬</div>
+        <div class="login-feat-text"><strong>Foro de opositores</strong><span>Comunidad de alumnos y resolución de dudas</span></div>
+      </div>
+    </div>
+    <div class="login-stats">
+      <div class="login-stat"><span class="n">3.118</span><span class="l">Plazas 2025</span></div>
+      <div class="login-stat"><span class="n">25</span><span class="l">Temas</span></div>
+      <div class="login-stat"><span class="n">+400</span><span class="l">Preguntas</span></div>
+    </div>
+  </div>
+
+  <!-- DERECHA -->
+  <div class="login-right">
+    <div class="login-box">
+      <div class="login-tabs">
+        <div class="login-tab active" onclick="showTab('login')">Iniciar sesión</div>
+        <div class="login-tab" onclick="showTab('registro')">Registrarse</div>
+      </div>
+
+      <!-- LOGIN FORM -->
+      <div id="form-login" class="login-form active">
+        <h2>Bienvenido de nuevo</h2>
+        <p>Accede a tu plataforma de preparación</p>
+        <div id="login-error" class="error-msg">Usuario o contraseña incorrectos.</div>
+        <div class="form-group">
+          <label>Correo electrónico o usuario</label>
+          <div class="input-icon">
+            <span class="ico">✉️</span>
+            <input type="text" id="login-usuario" placeholder="tu@correo.com" autocomplete="username">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Contraseña</label>
+          <div class="input-icon">
+            <span class="ico">🔒</span>
+            <input type="password" id="login-pass" placeholder="••••••••" autocomplete="current-password">
+          </div>
+        </div>
+        <div class="forgot"><a href="#">¿Olvidaste tu contraseña?</a></div>
+        <button class="btn btn-primary btn-block" onclick="doLogin()">Acceder →</button>
+        <div class="demo-hint">
+          <strong>Acceso de demostración:</strong><br>
+          • <strong>Alumno:</strong> usuario: <code>alumno</code> · pass: <code>1234</code><br>
+          • <strong>Profesor:</strong> usuario: <code>profesor</code> · pass: <code>1234</code>
+        </div>
+      </div>
+
+      <!-- REGISTRO FORM -->
+      <div id="form-registro" class="login-form">
+        <h2>Crear cuenta</h2>
+        <p>Únete a la plataforma de preparación</p>
+        <div class="form-group">
+          <label>Nombre completo</label>
+          <div class="input-icon">
+            <span class="ico">👤</span>
+            <input type="text" id="reg-nombre" placeholder="Tu nombre">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Correo electrónico</label>
+          <div class="input-icon">
+            <span class="ico">✉️</span>
+            <input type="email" id="reg-email" placeholder="tu@correo.com">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Contraseña</label>
+          <div class="input-icon">
+            <span class="ico">🔒</span>
+            <input type="password" id="reg-pass" placeholder="Mínimo 8 caracteres">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Rol</label>
+          <select id="reg-rol">
+            <option value="alumno">Alumno opositor</option>
+            <option value="profesor">Profesor / Preparador</option>
+          </select>
+        </div>
+        <button class="btn btn-primary btn-block" onclick="doRegistro()">Crear cuenta →</button>
+        <div class="demo-hint"><strong>Nota:</strong> Esta es una versión de demostración. Los datos se guardan localmente en tu navegador.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+<script>
+  function showTab(tab) {
+    document.querySelectorAll('.login-tab').forEach((t,i)=>t.classList.toggle('active', (i===0&&tab==='login')||(i===1&&tab==='registro')));
+    document.getElementById('form-login').classList.toggle('active', tab==='login');
+    document.getElementById('form-registro').classList.toggle('active', tab==='registro');
+  }
+
+  function doLogin() {
+    const u = document.getElementById('login-usuario').value.trim();
+    const p = document.getElementById('login-pass').value;
+    const err = document.getElementById('login-error');
+    if (!u || !p) { err.style.display='block'; err.textContent='Completa todos los campos.'; return; }
+    const rol = Auth.login(u, p);
+    if (rol) {
+      window.location.href = rol === 'profesor' ? 'panel-profesor.html' : 'panel-alumno.html';
+    } else {
+      err.style.display='block';
+    }
+  }
+
+  function doRegistro() {
+    const n = document.getElementById('reg-nombre').value.trim();
+    const e = document.getElementById('reg-email').value.trim();
+    const p = document.getElementById('reg-pass').value;
+    const r = document.getElementById('reg-rol').value;
+    if (!n||!e||!p) { alert('Completa todos los campos.'); return; }
+    Auth.login(r==='profesor'?'profesor_'+n:n, p);
+    window.location.href = r==='profesor' ? 'panel-profesor.html' : 'panel-alumno.html';
+  }
+
+  // Enter key
+  document.addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
+
+  // Si ya logueado, redirigir
+  if (Auth.isLogged()) {
+    window.location.href = Auth.getRol()==='profesor' ? 'panel-profesor.html' : 'panel-alumno.html';
+  }
+</script>
+</body>
+</html>
