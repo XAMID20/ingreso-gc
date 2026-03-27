@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Tema 11 – Protección de Datos | Ingreso GC</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    body{display:flex;flex-direction:column;min-height:100vh;}
+    .topbar{background:var(--verde);height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;position:sticky;top:0;z-index:900;box-shadow:0 2px 12px rgba(0,0,0,0.15);}
+    .topbar-brand{font-family:var(--fuente-d);font-size:1.4rem;font-weight:700;color:var(--blanco);}
+    .topbar-brand span{color:var(--dorado-claro);}
+    .topbar-back{padding:7px 16px;background:rgba(255,255,255,0.12);color:var(--blanco);border-radius:6px;font-size:0.82rem;border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;}
+    .topbar-back:hover{background:rgba(255,255,255,0.22);}
+    .layout{display:grid;grid-template-columns:260px 1fr;flex:1;}
+    .idx{background:var(--blanco);border-right:1px solid var(--gris-claro);padding:1.25rem;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;}
+    .idx-num{font-family:var(--fuente-d);font-size:3rem;font-weight:800;color:var(--verde);line-height:1;}
+    .idx-tit{font-family:var(--fuente-d);font-size:0.95rem;font-weight:700;color:var(--negro);line-height:1.2;margin-bottom:0.75rem;}
+    .idx-lbl{font-size:0.65rem;font-weight:700;color:var(--gris-med);text-transform:uppercase;letter-spacing:0.1em;margin:1rem 0 0.35rem;}
+    .idx-a{display:flex;align-items:center;gap:7px;padding:5px 8px;border-radius:6px;cursor:pointer;font-size:0.78rem;color:var(--gris-osc);transition:all var(--t);margin-bottom:1px;text-decoration:none;}
+    .idx-a:hover{background:var(--verde-bg);color:var(--verde);}
+    .idx-a.on{background:var(--verde);color:var(--blanco);}
+    .dot{width:5px;height:5px;border-radius:50%;background:currentColor;opacity:0.35;flex-shrink:0;}
+    .done-btn{width:100%;margin-top:1rem;padding:10px;border-radius:var(--radio);font-weight:700;font-size:0.85rem;cursor:pointer;transition:all var(--t);background:transparent;color:var(--verde);border:2px solid var(--verde);}
+    .done-btn:hover,.done-btn.done{background:var(--verde);color:white;}
+    .content{padding:2rem 3rem;max-width:900px;}
+    .hero{background:linear-gradient(135deg,#0b2816,var(--verde));border-radius:var(--radio-lg);padding:2rem;color:white;margin-bottom:2rem;position:relative;overflow:hidden;}
+    .hero::after{content:"11";position:absolute;right:1rem;top:-2rem;font-family:var(--fuente-d);font-size:10rem;font-weight:800;color:rgba(255,255,255,0.04);line-height:1;pointer-events:none;}
+    .hero-tag{display:inline-block;background:rgba(200,150,12,0.2);border:1px solid rgba(200,150,12,0.4);border-radius:100px;padding:3px 12px;font-size:0.7rem;font-weight:700;color:var(--dorado-claro);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.6rem;}
+    .hero h1{font-family:var(--fuente-d);font-size:2.2rem;font-weight:800;color:var(--blanco);margin-bottom:0.5rem;}
+    .hero-meta{display:flex;gap:1.25rem;flex-wrap:wrap;font-size:0.8rem;color:rgba(255,255,255,0.65);}
+    .s{margin-bottom:2.5rem;scroll-margin-top:75px;}
+    .s h2{font-family:var(--fuente-d);font-size:1.65rem;font-weight:700;color:var(--negro);margin-bottom:1rem;padding-bottom:0.6rem;border-bottom:2.5px solid var(--verde);}
+    .s h3{font-family:var(--fuente-d);font-size:1.25rem;font-weight:700;color:var(--negro);margin:1.5rem 0 0.6rem;padding-left:0.75rem;border-left:3px solid var(--dorado);}
+    .s h4{font-size:0.88rem;font-weight:700;color:var(--verde);margin:1.25rem 0 0.35rem;text-transform:uppercase;letter-spacing:0.05em;}
+    .s p{font-size:0.91rem;color:var(--gris-osc);line-height:1.9;margin-bottom:0.7rem;}
+    .s ul,.s ol{margin:0.4rem 0 0.8rem 1.3rem;}
+    .s ul li,.s ol li{font-size:0.91rem;color:var(--gris-osc);line-height:1.85;margin-bottom:0.2rem;}
+    .ab{background:var(--verde-bg);border-left:4px solid var(--verde);border-radius:0 var(--radio) var(--radio) 0;padding:0.9rem 1.4rem;margin:0.6rem 0 1rem;}
+    .ab-ref{font-size:0.68rem;font-weight:700;color:var(--verde);text-transform:uppercase;letter-spacing:0.09em;margin-bottom:0.45rem;}
+    .ab p{font-size:0.875rem;color:var(--gris-osc);line-height:1.85;margin-bottom:0.35rem;}
+    .ab p:last-child{margin-bottom:0;}
+    .ab strong{color:var(--negro);}
+    .ab em{color:var(--verde-med);font-style:normal;font-weight:700;}
+    .key{background:rgba(200,150,12,0.07);border:1px solid rgba(200,150,12,0.28);border-radius:var(--radio);padding:0.9rem 1.3rem;margin:0.7rem 0;}
+    .key-t{font-size:0.68rem;font-weight:700;color:var(--dorado);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.4rem;}
+    .key p{font-size:0.875rem;color:var(--gris-osc);line-height:1.8;margin-bottom:0.25rem;}
+    .note{background:rgba(27,94,53,0.06);border-left:3px solid var(--verde-claro);border-radius:0 var(--radio) var(--radio) 0;padding:0.75rem 1.2rem;margin:0.5rem 0;font-size:0.85rem;color:var(--gris-osc);line-height:1.75;}
+    .tabla{width:100%;border-collapse:collapse;font-size:0.83rem;margin:0.75rem 0 1.25rem;}
+    .tabla th{background:var(--verde);color:white;padding:8px 12px;text-align:left;font-weight:600;font-size:0.8rem;}
+    .tabla td{padding:8px 12px;border-bottom:1px solid var(--gris-claro);color:var(--gris-osc);vertical-align:top;line-height:1.6;}
+    .tabla tr:last-child td{border-bottom:none;}
+    .tabla tr:hover td{background:var(--verde-bg);}
+    .nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;border-top:1px solid var(--gris-claro);margin-top:1.5rem;flex-wrap:wrap;gap:1rem;}
+    .nav a{display:flex;align-items:center;gap:8px;font-weight:600;color:var(--verde);font-size:0.88rem;padding:9px 14px;border-radius:var(--radio);border:2px solid var(--verde);transition:all var(--t);text-decoration:none;}
+    .nav a:hover{background:var(--verde);color:white;}
+    @media(max-width:1024px){.layout{grid-template-columns:1fr;}.idx{display:none;}.content{padding:1.25rem;}}
+  </style>
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-brand">Ingreso<span>GC</span></div>
+  <div style="display:flex;align-items:center;gap:1rem;">
+    <span style="font-size:0.8rem;color:rgba(255,255,255,0.5);">Tema 11 de 25</span>
+    <a href="panel-alumno.html" class="topbar-back">← Volver al panel</a>
+  </div>
+</div>
+<div class="layout">
+<aside class="idx">
+  <div class="idx-num">T11</div>
+  <div class="idx-tit">Protección de Datos Personales</div>
+  <div style="font-size:0.7rem;color:var(--gris-med);display:flex;justify-content:space-between;margin-bottom:3px;"><span>Estado</span><span id="pct">—</span></div>
+  <div style="background:var(--gris-claro);border-radius:100px;height:5px;overflow:hidden;margin-bottom:1rem;"><div id="pbar" style="height:100%;background:var(--verde);border-radius:100px;width:0%;transition:width 0.5s;"></div></div>
+  <div class="idx-lbl">Contenido</div>
+  <a class="idx-a on" href="#intro"><span class="dot"></span>1. Introducción y marco normativo</a>
+  <a class="idx-a" href="#titulo1"><span class="dot"></span>2. Título I — Disposiciones generales</a>
+  <a class="idx-a" href="#titulo2"><span class="dot"></span>3. Título II — Principios</a>
+  <a class="idx-a" href="#consentimiento"><span class="dot"></span>4. Consentimiento y menores</a>
+  <a class="idx-a" href="#categorias"><span class="dot"></span>5. Categorías especiales</a>
+  <a class="idx-a" href="#titulo3"><span class="dot"></span>6. Título III — Derechos ARCO+</a>
+  <a class="idx-a" href="#titulo4"><span class="dot"></span>7. Título IV — Tratamientos especiales</a>
+  <a class="idx-a" href="#videovigilancia"><span class="dot"></span>8. Videovigilancia</a>
+  <a class="idx-a" href="#titulo5"><span class="dot"></span>9. Título V — Responsable/Encargado</a>
+  <a class="idx-a" href="#dpd"><span class="dot"></span>10. Delegado de Protección de Datos</a>
+  <a class="idx-a" href="#aepd"><span class="dot"></span>11. Título VII — La AEPD</a>
+  <a class="idx-a" href="#infracciones"><span class="dot"></span>12. Infracciones y sanciones</a>
+  <a class="idx-a" href="#digitales"><span class="dot"></span>13. Derechos digitales</a>
+  <a class="idx-a" href="#resumen"><span class="dot"></span>14. Resumen y cifras clave</a>
+  <button class="done-btn" id="dbtn" onclick="tDone()">✓ Marcar como completado</button>
+</aside>
+<main class="content">
+
+<div class="hero">
+  <div class="hero-tag">Tema 11 · LO 3/2018 · BOE-A-2018-16673 · RGPD (UE) 2016/679</div>
+  <h1>Protección de Datos Personales y garantía de los derechos digitales</h1>
+  <div class="hero-meta">
+    <span>📄 LO 3/2018, de 5 de diciembre</span>
+    <span>🇪🇺 Complementa el RGPD europeo</span>
+    <span>⭐ Pregunta habitual en examen</span>
+  </div>
+</div>
+
+<!-- 1. INTRODUCCIÓN -->
+<section class="s" id="intro">
+<h2>1. Introducción y marco normativo</h2>
+<p>La <strong>Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y garantía de los derechos digitales (LOPDGDD)</strong> es la norma española que adapta el ordenamiento jurídico nacional al <strong>Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo, de 27 de abril de 2016</strong>, conocido como <strong>Reglamento General de Protección de Datos (RGPD)</strong>.</p>
+
+<div class="key">
+<div class="key-t">⭐ Marco normativo — datos esenciales</div>
+<p><strong>RGPD:</strong> Reglamento (UE) 2016/679, de 27 de abril de 2016. Aplicación directa en todos los Estados miembros desde el 25 de mayo de 2018.</p>
+<p><strong>LOPDGDD:</strong> LO 3/2018, de 5 de diciembre. Adapta y complementa el RGPD en España. Publicada en el BOE el 6 de diciembre de 2018.</p>
+<p><strong>Norma anterior derogada:</strong> LO 15/1999, de 13 de diciembre, de Protección de Datos de Carácter Personal (LOPD).</p>
+<p><strong>Fundamento constitucional:</strong> Artículo 18.4 CE: «La ley limitará el uso de la informática para garantizar el honor y la intimidad personal y familiar de los ciudadanos y el pleno ejercicio de sus derechos.»</p>
+</div>
+
+<p>La ley tiene dos grandes objetivos:</p>
+<ul>
+  <li><strong>a)</strong> Adaptar el ordenamiento jurídico español al RGPD y completar sus disposiciones.</li>
+  <li><strong>b)</strong> Garantizar los derechos digitales de la ciudadanía conforme al mandato establecido en el artículo 18.4 de la Constitución.</li>
+</ul>
+
+<div class="note">El RGPD es un Reglamento europeo, lo que significa que es <strong>directamente aplicable</strong> en todos los Estados miembros sin necesidad de transposición. La LOPDGDD no transpone el RGPD sino que lo <em>complementa</em> y <em>desarrolla</em> en los aspectos que el propio RGPD deja a discreción de los Estados.</div>
+</section>
+
+<!-- 2. TÍTULO I -->
+<section class="s" id="titulo1">
+<h2>2. Título I — Disposiciones generales</h2>
+
+<div class="ab"><div class="ab-ref">Artículo 1 — Objeto de la ley</div>
+<p>La presente ley orgánica tiene por objeto:</p>
+<p><strong>a)</strong> Adaptar el ordenamiento jurídico español al Reglamento (UE) 2016/679 y completar sus disposiciones. El derecho fundamental de las personas físicas a la protección de datos personales, <em>amparado por el artículo 18.4 de la Constitución</em>, se ejercerá con arreglo a lo establecido en el RGPD y en esta ley orgánica.</p>
+<p><strong>b)</strong> Garantizar los derechos digitales de la ciudadanía conforme al mandato establecido en el artículo 18.4 de la Constitución.</p></div>
+
+<div class="ab"><div class="ab-ref">Artículo 2 — Ámbito de aplicación</div>
+<p><strong>1.</strong> Lo dispuesto en los Títulos I a IX y en los artículos 89 a 94 se aplica a cualquier tratamiento total o parcialmente automatizado de datos personales, así como al tratamiento no automatizado de datos personales contenidos o destinados a ser incluidos en un fichero.</p>
+<p><strong>2.</strong> Esta ley orgánica <em>no será de aplicación</em>:</p>
+<p><strong>a)</strong> A los tratamientos excluidos del ámbito de aplicación del RGPD por su artículo 2.2.</p>
+<p><strong>b)</strong> A los tratamientos de datos de personas fallecidas, sin perjuicio de lo establecido en el artículo 3.</p>
+<p><strong>c)</strong> A los tratamientos sometidos a la normativa sobre protección de materias clasificadas.</p></div>
+
+<div class="ab"><div class="ab-ref">Artículo 3 — Datos de las personas fallecidas</div>
+<p><strong>1.</strong> Las personas vinculadas al fallecido por razones familiares o de hecho así como sus herederos podrán dirigirse al responsable o encargado del tratamiento al objeto de solicitar el acceso a los datos personales de aquella y, en su caso, su rectificación o supresión.</p>
+<p>Como excepción, no podrán acceder cuando la persona fallecida lo hubiese <em>prohibido expresamente</em> o así lo establezca una ley. Dicha prohibición no afectará al derecho de los herederos a acceder a los datos de carácter <em>patrimonial</em> del causante.</p>
+<p><strong>2.</strong> Las personas o instituciones a las que el fallecido hubiese designado expresamente podrán también solicitar el acceso a los datos personales de este y, en su caso, su rectificación o supresión.</p>
+<p><strong>3.</strong> En caso de fallecimiento de <em>menores</em>, estas facultades podrán ejercerse por sus representantes legales o por el Ministerio Fiscal, que podrá actuar de oficio o a instancia de cualquier persona física o jurídica interesada.</p></div>
+</section>
+
+<!-- 3. TÍTULO II PRINCIPIOS -->
+<section class="s" id="titulo2">
+<h2>3. Título II — Principios de protección de datos</h2>
+<p>El Título II desarrolla y complementa los principios del RGPD aplicables al tratamiento de datos personales en España.</p>
+
+<div class="ab"><div class="ab-ref">Artículo 4 — Exactitud de los datos</div>
+<p><strong>1.</strong> Conforme al artículo 5.1.d) del RGPD, los datos serán exactos y, si fuere necesario, actualizados.</p>
+<p><strong>2.</strong> No será imputable al responsable del tratamiento la inexactitud de los datos cuando estos hubiesen sido obtenidos directamente del afectado, de un mediador o intermediario del sector, mediante portabilidad, u obtenidos de un registro público, <em>siempre que el responsable haya adoptado todas las medidas razonables para que se supriman o rectifiquen sin dilación</em>.</p></div>
+
+<div class="ab"><div class="ab-ref">Artículo 5 — Deber de confidencialidad</div>
+<p><strong>1.</strong> Los responsables y encargados del tratamiento de datos, así como todas las personas que intervengan en cualquier fase de este, estarán sujetas al <em>deber de confidencialidad</em> al que se refiere el artículo 5.1.f) del RGPD.</p>
+<p><strong>2.</strong> La obligación general será complementaria de los deberes de secreto profesional de conformidad con su normativa aplicable.</p>
+<p><strong>3.</strong> Las obligaciones establecidas se mantendrán <em>aun cuando hubiese finalizado la relación del obligado</em> con el responsable o encargado del tratamiento.</p></div>
+</section>
+
+<!-- 4. CONSENTIMIENTO -->
+<section class="s" id="consentimiento">
+<h2>4. Consentimiento y tratamiento de datos de menores</h2>
+
+<div class="ab"><div class="ab-ref">Artículo 6 — Tratamiento basado en el consentimiento del afectado</div>
+<p><strong>1.</strong> De conformidad con el artículo 4.11 del RGPD, se entiende por consentimiento del afectado <em>toda manifestación de voluntad libre, específica, informada e inequívoca</em> por la que este acepta, ya sea mediante una declaración o una clara acción afirmativa, el tratamiento de datos personales que le conciernen.</p>
+<p><strong>2.</strong> Cuando se pretenda fundar el tratamiento en el consentimiento del afectado para una pluralidad de finalidades será preciso que conste de manera específica e inequívoca que dicho consentimiento se otorga para todas ellas.</p>
+<p><strong>3.</strong> No podrá supeditarse la ejecución del contrato a que el afectado consienta el tratamiento de los datos personales para finalidades que no guarden relación con el mantenimiento, desarrollo o control de la relación contractual.</p></div>
+
+<div class="ab"><div class="ab-ref">Artículo 7 — Consentimiento de los menores de edad</div>
+<p><strong>1.</strong> El tratamiento de los datos personales de un menor de edad únicamente podrá fundarse en su consentimiento cuando sea <em>mayor de catorce años</em>.</p>
+<p>Se exceptúan los supuestos en que la ley exija la asistencia de los titulares de la patria potestad o tutela para la celebración del acto o negocio jurídico en cuyo contexto se recaba el consentimiento.</p>
+<p><strong>2.</strong> El tratamiento de los datos de los <em>menores de catorce años</em>, fundado en el consentimiento, solo será lícito si consta el del titular de la <em>patria potestad o tutela</em>, con el alcance que determinen.</p></div>
+
+<div class="key">
+<div class="key-t">⭐ Edad de consentimiento digital — MUY PREGUNTADO</div>
+<p>El menor de <strong>14 años</strong> necesita el consentimiento de sus padres o tutores para que sus datos sean tratados. A partir de <strong>14 años</strong>, puede consentir por sí mismo, salvo que la ley exija la asistencia de los padres. Esta es una de las preguntas más habituales del examen real.</p>
+</div>
+
+<div class="ab"><div class="ab-ref">Artículo 8 — Tratamiento de datos por obligación legal, interés público o ejercicio de poderes públicos</div>
+<p><strong>1.</strong> El tratamiento de datos personales solo podrá considerarse fundado en el cumplimiento de una obligación legal exigible al responsable cuando así lo prevea una <em>norma de Derecho de la Unión Europea o una norma con rango de ley</em>.</p>
+<p><strong>2.</strong> El tratamiento de datos personales solo podrá considerarse fundado en el cumplimiento de una misión realizada en interés público o en el ejercicio de poderes públicos cuando derive de una <em>competencia atribuida por una norma con rango de ley</em>.</p></div>
+</section>
+
+<!-- 5. CATEGORÍAS ESPECIALES -->
+<section class="s" id="categorias">
+<h2>5. Categorías especiales de datos y datos penales</h2>
+
+<div class="ab"><div class="ab-ref">Artículo 9 — Categorías especiales de datos</div>
+<p><strong>1.</strong> A fin de evitar situaciones discriminatorias, <em>el solo consentimiento del afectado no bastará</em> para levantar la prohibición del tratamiento de datos cuya finalidad principal sea identificar su <em>ideología, afiliación sindical, religión, orientación sexual, creencias u origen racial o étnico</em>.</p>
+<p><strong>2.</strong> Los tratamientos de datos de las letras g), h) e i) del artículo 9.2 RGPD fundados en el Derecho español deberán estar amparados en una <em>norma con rango de ley</em>, que podrá establecer requisitos adicionales relativos a su seguridad y confidencialidad.</p></div>
+
+<div class="note">Las categorías especiales de datos son los que el RGPD considera de mayor riesgo para los derechos fundamentales: datos sobre origen racial o étnico, opiniones políticas, convicciones religiosas o filosóficas, afiliación sindical, datos genéticos, datos biométricos, datos relativos a la salud, vida sexual u orientación sexual. Para estos datos la prohibición de tratamiento solo puede levantarse por las causas del art. 9.2 RGPD, y el mero consentimiento no basta para los datos de identificación ideológica.</div>
+
+<div class="ab"><div class="ab-ref">Artículo 10 — Tratamiento de datos de naturaleza penal</div>
+<p><strong>1.</strong> El tratamiento de datos relativos a condenas e infracciones penales, para fines distintos de los de prevención, investigación, detección o enjuiciamiento de infracciones penales, solo podrá llevarse a cabo cuando se encuentre amparado en una norma de Derecho de la Unión, en esta ley orgánica o en otras normas de rango legal.</p>
+<p><strong>3.</strong> Los tratamientos de datos referidos a condenas e infracciones penales solo serán posibles fuera de los supuestos anteriores cuando sean llevados a cabo por <em>abogados y procuradores</em> y tengan por objeto recoger la información facilitada por sus clientes para el ejercicio de sus funciones.</p></div>
+</section>
+
+<!-- 6. TÍTULO III DERECHOS -->
+<section class="s" id="titulo3">
+<h2>6. Título III — Derechos de las personas (ARCO+)</h2>
+<p>La LOPDGDD desarrolla el ejercicio de los derechos reconocidos en los artículos 15 a 22 del RGPD, conocidos como derechos ARCO+:</p>
+
+<table class="tabla">
+<thead><tr><th>Derecho</th><th>Artículo RGPD</th><th>Artículo LOPDGDD</th><th>Contenido esencial</th></tr></thead>
+<tbody>
+<tr><td><strong>Acceso</strong></td><td>Art. 15</td><td>Art. 13</td><td>Derecho a saber qué datos trata el responsable, con qué finalidad, durante cuánto tiempo y a quién se ceden.</td></tr>
+<tr><td><strong>Rectificación</strong></td><td>Art. 16</td><td>Art. 14</td><td>Derecho a que se corrijan datos inexactos o incompletos. El afectado debe indicar la corrección y aportar documentación justificativa.</td></tr>
+<tr><td><strong>Supresión</strong> (derecho al olvido)</td><td>Art. 17</td><td>Art. 15</td><td>Derecho a que se borren los datos cuando ya no sean necesarios, se retire el consentimiento, o su tratamiento sea ilícito.</td></tr>
+<tr><td><strong>Limitación del tratamiento</strong></td><td>Art. 18</td><td>Art. 16</td><td>Derecho a que se suspenda el tratamiento de los datos en determinadas circunstancias. Debe constar claramente en los sistemas del responsable.</td></tr>
+<tr><td><strong>Portabilidad</strong></td><td>Art. 20</td><td>Art. 17</td><td>Derecho a recibir los datos en formato estructurado, de uso común y legtura mecánica, y a transmitirlos a otro responsable.</td></tr>
+<tr><td><strong>Oposición</strong></td><td>Art. 21</td><td>Art. 18</td><td>Derecho a oponerse al tratamiento, incluyendo la elaboración de perfiles. También cubre las decisiones individuales automatizadas (art. 22 RGPD).</td></tr>
+</tbody>
+</table>
+
+<div class="ab"><div class="ab-ref">Artículo 11 — Transparencia e información al afectado</div>
+<p><strong>1.</strong> El responsable podrá dar cumplimiento al deber de información facilitando al afectado la <em>información básica</em> e indicándole una dirección electrónica u otro medio que permita acceder de forma sencilla e inmediata a la restante información.</p>
+<p><strong>2.</strong> La información básica deberá contener, al menos:</p>
+<p><strong>a)</strong> La identidad del responsable del tratamiento y de su representante, en su caso.</p>
+<p><strong>b)</strong> La finalidad del tratamiento.</p>
+<p><strong>c)</strong> La posibilidad de ejercer los derechos establecidos en los artículos 15 a 22 del RGPD.</p></div>
+
+<div class="ab"><div class="ab-ref">Artículo 12 — Disposiciones generales sobre ejercicio de los derechos</div>
+<p><strong>1.</strong> Los derechos reconocidos en los artículos 15 a 22 del RGPD podrán ejercerse directamente o por medio de representante legal o voluntario.</p>
+<p><strong>4.</strong> La prueba del cumplimiento del deber de responder a la solicitud de ejercicio de sus derechos <em>recaerá sobre el responsable</em>.</p>
+<p><strong>7.</strong> Serán <em>gratuitas</em> las actuaciones llevadas a cabo por el responsable del tratamiento para atender las solicitudes de ejercicio de estos derechos.</p></div>
+
+<div class="ab"><div class="ab-ref">Artículo 13 — Derecho de acceso</div>
+<p><strong>3.</strong> A los efectos del artículo 12.5 del RGPD se podrá considerar repetitivo el ejercicio del derecho de acceso en <em>más de una ocasión durante el plazo de seis meses</em>, a menos que exista causa legítima para ello.</p></div>
+</section>
+
+<!-- 7. TÍTULO IV -->
+<section class="s" id="titulo4">
+<h2>7. Título IV — Tratamientos de datos especiales</h2>
+<p>El Título IV regula una serie de tratamientos habituales que presentan particularidades especiales en cuanto a su régimen jurídico.</p>
+
+<div class="ab"><div class="ab-ref">Artículo 20 — Sistemas de información crediticia</div>
+<p><strong>1.</strong> Salvo prueba en contrario, se presumirá lícita la inclusión en dichos sistemas de información de datos referidos al incumplimiento de obligaciones dinerarias cuando se hubieran cumplido los siguientes requisitos:</p>
+<p><strong>a)</strong> Existencia previa de una deuda cierta, vencida, exigible que haya resultado impagada.</p>
+<p><strong>b)</strong> Que no hayan transcurrido <em>cinco años</em> desde la fecha en que la deuda fue exigible.</p>
+<p><strong>c)</strong> Que el acreedor o quien actúe por su cuenta no haya comunicado al afectado la inclusión de sus datos.</p></div>
+
+<div class="key">
+<div class="key-t">⭐ Sistemas de información crediticia — plazo máximo</div>
+<p>Los datos de morosos solo pueden figurar en los ficheros de solvencia (como ASNEF) durante un máximo de <strong>5 años</strong> desde que la deuda fue exigible. Transcurrido ese plazo deben suprimirse.</p>
+</div>
+</section>
+
+<!-- 8. VIDEOVIGILANCIA -->
+<section class="s" id="videovigilancia">
+<h2>8. Videovigilancia — Artículo 22</h2>
+<p>El artículo 22 regula el tratamiento de datos a través de sistemas de cámaras y videocámaras. Es uno de los artículos más preguntados en el examen real.</p>
+
+<div class="ab"><div class="ab-ref">Artículo 22 — Tratamientos con fines de videovigilancia</div>
+<p><strong>1.</strong> Las personas físicas o jurídicas, públicas o privadas, podrán llevar a cabo el tratamiento de imágenes a través de sistemas de cámaras o videocámaras con la finalidad de <em>preservar la seguridad de las personas y bienes</em>, así como de sus instalaciones.</p>
+<p><strong>2.</strong> Solo podrán captarse imágenes de la vía pública en la medida en que resulte imprescindible para la finalidad mencionada. No obstante, será posible la captación de la vía pública en una extensión superior cuando fuese necesario para garantizar la seguridad de bienes o instalaciones estratégicos o de infraestructuras vinculadas al transporte, <em>sin que en ningún caso pueda suponer la captación de imágenes del interior de un domicilio privado</em>.</p>
+<p><strong>3.</strong> Los datos serán suprimidos en el <em>plazo máximo de un mes</em> desde su captación, salvo cuando hubieran de ser conservados para acreditar la comisión de actos que atenten contra la integridad de personas, bienes o instalaciones. En tal caso, las imágenes deberán ser puestas a disposición de la autoridad competente en un <em>plazo máximo de setenta y dos horas</em> desde que se tuviera conocimiento de la existencia de la grabación.</p>
+<p><strong>4.</strong> El deber de información se entenderá cumplido mediante la colocación de un <em>dispositivo informativo en lugar suficientemente visible</em> identificando, al menos, la existencia del tratamiento, la identidad del responsable y la posibilidad de ejercitar los derechos. También podrá incluirse un código de conexión o dirección de internet.</p>
+<p><strong>5.</strong> Se considera excluido del ámbito de aplicación del RGPD el tratamiento por una persona física de imágenes que <em>solamente capten el interior de su propio domicilio</em>. Esta exclusión <em>no abarca</em> el tratamiento realizado por una entidad de seguridad privada contratada para la vigilancia de un domicilio.</p>
+<p><strong>6.</strong> El tratamiento de datos procedentes de imágenes y sonidos obtenidos por las <em>Fuerzas y Cuerpos de Seguridad</em> y órganos competentes para la vigilancia en centros penitenciarios y control del tráfico, cuando tenga fines de prevención, investigación, detección o enjuiciamiento de infracciones penales, se regirá por la <em>legislación de transposición de la Directiva (UE) 2016/680</em>.</p></div>
+
+<div class="key">
+<div class="key-t">⭐ Videovigilancia — datos clave del examen</div>
+<p><strong>Conservación máxima:</strong> 1 mes desde la captación.</p>
+<p><strong>Si hay delito:</strong> Las imágenes deben ponerse a disposición de la autoridad en máximo 72 horas desde que se conoce la grabación.</p>
+<p><strong>Cartel informativo:</strong> Obligatorio en lugar visible. Debe identificar: existencia del tratamiento, identidad del responsable y posibilidad de ejercer derechos.</p>
+<p><strong>Interior del propio domicilio:</strong> Excluido del RGPD. Pero NO si lo hace una empresa de seguridad privada contratada.</p>
+<p><strong>FFCCSS:</strong> Se rigen por la Directiva (UE) 2016/680 (fines policiales), no por el RGPD ordinario.</p>
+</div>
+</section>
+
+<!-- 9. TÍTULO V RESPONSABLE/ENCARGADO -->
+<section class="s" id="titulo5">
+<h2>9. Título V — Responsable y encargado del tratamiento</h2>
+
+<div class="ab"><div class="ab-ref">Artículo 28 — Obligaciones generales del responsable y encargado</div>
+<p><strong>1.</strong> Los responsables y encargados, teniendo en cuenta los elementos citados en el artículo 24.1 del RGPD, aplicarán las medidas técnicas y organizativas apropiadas a fin de garantizar y poder demostrar que el tratamiento es conforme con el RGPD y con la presente ley orgánica. El responsable analizará la posible adopción de códigos de conducta o mecanismos de certificación.</p></div>
+
+<div class="ab"><div class="ab-ref">Artículo 32 — Bloqueo de los datos</div>
+<p>El responsable del tratamiento estará obligado a bloquear los datos cuando proceda en aplicación de los artículos 17 y 18 del RGPD. Los datos bloqueados no podrán ser objeto de tratamiento alguno, excepto su puesta a disposición de los jueces y tribunales, el Ministerio Fiscal o las Administraciones Públicas competentes.</p></div>
+
+<div class="ab"><div class="ab-ref">Artículo 33 — Encargado del tratamiento</div>
+<p><strong>1.</strong> El encargado del tratamiento y el responsable del tratamiento deberán suscribir un <em>contrato u otro acto jurídico</em> con arreglo al Derecho de la Unión o de los Estados miembros conforme a lo señalado en el artículo 28 del RGPD.</p></div>
+</section>
+
+<!-- 10. DPD -->
+<section class="s" id="dpd">
+<h2>10. El Delegado de Protección de Datos (DPD)</h2>
+<p>Los artículos 34 a 37 regulan la figura del <strong>Delegado de Protección de Datos (DPD)</strong>, que actúa como interlocutor entre la organización y la AEPD.</p>
+
+<div class="ab"><div class="ab-ref">Artículo 34 — Designación obligatoria del DPD</div>
+<p><strong>1.</strong> Los responsables y encargados deberán designar un DPD obligatoriamente cuando se trate de, entre otras entidades:</p>
+<p><strong>a)</strong> Los colegios profesionales y sus consejos generales.</p>
+<p><strong>b)</strong> Los centros docentes en cualquier nivel educativo y las Universidades públicas y privadas.</p>
+<p><strong>c)</strong> Las entidades que exploten redes y presten servicios de comunicaciones electrónicas, cuando traten habitual y sistemáticamente datos a gran escala.</p>
+<p><strong>d)</strong> Los prestadores de servicios de la sociedad de la información cuando elaboren a gran escala perfiles de los usuarios.</p>
+<p><strong>e)</strong> Las entidades de crédito.</p>
+<p><strong>f)</strong> Los establecimientos financieros de crédito.</p>
+<p><strong>g)</strong> Las entidades aseguradoras y reaseguradoras.</p>
+<p><strong>h)</strong> Las empresas de servicios de inversión.</p>
+<p><strong>i)</strong> Los distribuidores y comercializadores de energía eléctrica y gas natural.</p>
+<p><strong>j)</strong> Las entidades responsables de ficheros comunes para la evaluación de la solvencia patrimonial.</p>
+<p><strong>k)</strong> Las entidades que desarrollen actividades de publicidad y prospección comercial con elaboración de perfiles.</p>
+<p><strong>l)</strong> Los centros sanitarios legalmente obligados al mantenimiento de historias clínicas. <em>Se exceptúan los profesionales de la salud que ejerzan a título individual.</em></p>
+<p><strong>ñ)</strong> Las <em>empresas de seguridad privada</em>.</p>
+<p><strong>o)</strong> Las federaciones deportivas cuando traten datos de menores de edad.</p>
+<p><strong>3.</strong> Los responsables y encargados comunicarán en el <em>plazo de diez días</em> a la AEPD las designaciones, nombramientos y ceses de los DPD.</p></div>
+
+<div class="ab"><div class="ab-ref">Artículo 35 — Cualificación del DPD</div>
+<p>El cumplimiento de los requisitos del artículo 37.5 RGPD podrá demostrarse, entre otros medios, a través de <em>mecanismos voluntarios de certificación</em> que tendrán particularmente en cuenta la obtención de una titulación universitaria que acredite conocimientos especializados en el derecho y la práctica en materia de protección de datos.</p></div>
+
+<div class="ab"><div class="ab-ref">Artículo 36 — Posición del DPD</div>
+<p><strong>1.</strong> El DPD actuará como interlocutor del responsable o encargado ante la AEPD y las autoridades autonómicas de protección de datos. Podrá inspeccionar los procedimientos y emitir recomendaciones.</p>
+<p><strong>2.</strong> El DPD integrado en la organización <em>no podrá ser removido ni sancionado</em> por el responsable o encargado por desempeñar sus funciones salvo que incurriera en dolo o negligencia grave. Se garantizará su independencia.</p>
+<p><strong>3.</strong> En el ejercicio de sus funciones el DPD tendrá acceso a los datos personales y procesos de tratamiento, no pudiendo oponerse a este acceso la existencia de cualquier <em>deber de confidencialidad o secreto</em>.</p>
+<p><strong>4.</strong> Cuando el DPD aprecie una vulneración relevante en materia de protección de datos lo documentará y comunicará <em>inmediatamente</em> a los órganos de administración y dirección.</p></div>
+
+<div class="ab"><div class="ab-ref">Artículo 37 — Intervención del DPD ante reclamaciones</div>
+<p><strong>1.</strong> El afectado podrá, con carácter previo a reclamar ante la AEPD, dirigirse al DPD de la entidad. En este caso, el DPD comunicará al afectado la decisión adoptada en el <em>plazo máximo de dos meses</em> desde la recepción de la reclamación.</p>
+<p><strong>2.</strong> La AEPD podrá remitir la reclamación al DPD a fin de que este responda en el <em>plazo de un mes</em>. Si transcurrido dicho plazo el DPD no hubiera comunicado la respuesta, la AEPD continuará el procedimiento.</p></div>
+</section>
+
+<!-- 11. AEPD -->
+<section class="s" id="aepd">
+<h2>11. Título VII — La Agencia Española de Protección de Datos (AEPD)</h2>
+
+<div class="ab"><div class="ab-ref">Artículo 44 — Disposiciones generales</div>
+<p><strong>1.</strong> La Agencia Española de Protección de Datos es una <em>autoridad administrativa independiente de ámbito estatal</em>, con personalidad jurídica y plena capacidad pública y privada, que actúa con plena independencia de los poderes públicos en el ejercicio de sus funciones.</p>
+<p>Su denominación oficial es: <em>«Agencia Española de Protección de Datos, Autoridad Administrativa Independiente»</em>.</p>
+<p>Se relaciona con el Gobierno a través del <em>Ministerio de Justicia</em>.</p>
+<p><strong>2.</strong> La AEPD tendrá la condición de representante común de las autoridades de protección de datos del Reino de España en el <em>Comité Europeo de Protección de Datos</em>.</p></div>
+
+<div class="ab"><div class="ab-ref">Artículo 45 — Régimen jurídico</div>
+<p><strong>2.</strong> El Gobierno, <em>a propuesta de la Agencia Española de Protección de Datos</em>, aprobará su Estatuto mediante <em>real decreto</em>.</p></div>
+
+<div class="ab"><div class="ab-ref">Artículo 48 — La Presidencia de la AEPD</div>
+<p><strong>1.</strong> La Presidencia de la AEPD la dirige, ostenta su representación y dicta sus resoluciones, circulares y directrices.</p>
+<p><strong>2.</strong> La Presidencia estará auxiliada por un Adjunto en el que podrá delegar sus funciones, a excepción de las relacionadas con los procedimientos sancionadores del Título VIII.</p>
+<p><strong>3.</strong> La Presidencia y el Adjunto de la AEPD serán nombrados por el Gobierno, a propuesta del Ministerio de Justicia, entre personas de reconocida competencia profesional. Previa evaluación, el Gobierno remitirá al Congreso una propuesta que deberá ser ratificada por la <em>Comisión de Justicia por mayoría de tres quintos en primera votación, o mayoría absoluta en segunda</em>.</p></div>
+
+<div class="key">
+<div class="key-t">⭐ AEPD — datos esenciales</div>
+<p><strong>Naturaleza:</strong> Autoridad administrativa independiente de ámbito estatal.</p>
+<p><strong>Adscripción:</strong> Se relaciona con el Gobierno a través del Ministerio de Justicia.</p>
+<p><strong>Estatuto:</strong> Aprobado por el Gobierno mediante real decreto, a propuesta de la propia AEPD.</p>
+<p><strong>Presidencia:</strong> Nombrada por el Gobierno a propuesta del Ministerio de Justicia. Ratificada por la Comisión de Justicia del Congreso por 3/5 (1ª votación) o mayoría absoluta (2ª votación).</p>
+<p><strong>Representante europeo:</strong> Representa a España en el Comité Europeo de Protección de Datos.</p>
+</div>
+</section>
+
+<!-- 12. INFRACCIONES -->
+<section class="s" id="infracciones">
+<h2>12. Título VIII — Procedimientos e infracciones y sanciones</h2>
+
+<div class="ab"><div class="ab-ref">Artículo 64 — Forma de iniciación y duración del procedimiento</div>
+<p><strong>1.</strong> Cuando el procedimiento se refiera exclusivamente a la falta de atención de una solicitud de ejercicio de derechos (arts. 15 a 22 RGPD), el plazo para resolver será de <em>seis meses</em> a contar desde la notificación del acuerdo de admisión a trámite. Transcurrido ese plazo, el interesado podrá considerar <em>estimada su reclamación</em>.</p></div>
+
+<table class="tabla">
+<thead><tr><th>Tipo de infracción</th><th>Ejemplos</th><th>Sanción máxima (RGPD)</th></tr></thead>
+<tbody>
+<tr><td><strong>Muy graves</strong></td><td>Vulneración de principios básicos del tratamiento. Tratamiento sin base jurídica. Incumplimiento de resolución de la autoridad de control.</td><td>20.000.000 € o el 4% de la facturación mundial</td></tr>
+<tr><td><strong>Graves</strong></td><td>Vulneración del deber de transparencia. Incumplimiento de medidas técnicas y organizativas. No comunicar brechas de seguridad.</td><td>10.000.000 € o el 2% de la facturación mundial</td></tr>
+<tr><td><strong>Leves</strong></td><td>Incumplimientos formales. No comunicar la designación del DPD.</td><td>Apercibimiento o multa reducida</td></tr>
+</tbody>
+</table>
+
+<div class="note">Para las Administraciones Públicas el régimen sancionador es diferente: no se les imponen multas económicas sino que se declara la infracción y se publican en el BOE. Las multas se aplican principalmente a entidades privadas.</div>
+</section>
+
+<!-- 13. DERECHOS DIGITALES -->
+<section class="s" id="digitales">
+<h2>13. Derechos digitales — Título X</h2>
+<p>El Título X de la LOPDGDD recoge una nueva generación de <strong>derechos digitales</strong>, que representan una de las grandes novedades de la ley respecto a la normativa anterior.</p>
+
+<h3>Derechos digitales reconocidos</h3>
+
+<table class="tabla">
+<thead><tr><th>Derecho digital</th><th>Artículo</th><th>Contenido</th></tr></thead>
+<tbody>
+<tr><td><strong>Neutralidad de internet y acceso universal</strong></td><td>Art. 79</td><td>Derecho de acceso universal a internet y a la neutralidad de la Red. Las Administraciones Públicas promoverán la alfabetización digital.</td></tr>
+<tr><td><strong>Seguridad digital</strong></td><td>Art. 80</td><td>Derecho a la seguridad de las comunicaciones que se transmitan y reciban a través de internet.</td></tr>
+<tr><td><strong>Educación digital</strong></td><td>Art. 83</td><td>El sistema educativo garantizará la plena inserción del alumnado en la sociedad digital y el aprendizaje de uso seguro y crítico de los medios digitales.</td></tr>
+<tr><td><strong>Protección de menores en internet</strong></td><td>Art. 84</td><td>Los padres, madres, tutores y centros educativos velarán porque menores de edad hagan un uso equilibrado y responsable de los dispositivos digitales.</td></tr>
+<tr><td><strong>Rectificación en internet</strong></td><td>Art. 85</td><td>Derecho a solicitar la retirada de contenidos que vulneren derechos. Especial protección para los menores.</td></tr>
+<tr><td><strong>Derecho al olvido en búsquedas de internet</strong></td><td>Art. 93</td><td>Derecho a que los motores de búsqueda eliminen de sus resultados los enlaces a información publicada que vulnere la normativa o resulte inadecuada.</td></tr>
+<tr><td><strong>Derecho al olvido en redes sociales</strong></td><td>Art. 94</td><td>Derecho a solicitar la supresión de datos e informaciones publicadas en redes sociales cuando sean inadecuados, inexactos o excesivos.</td></tr>
+<tr><td><strong>Derecho a la portabilidad en redes sociales</strong></td><td>Art. 95</td><td>Derecho a recibir los contenidos proporcionados a un servicio en la nube o red social y transmitirlos a otro servicio equivalente.</td></tr>
+<tr><td><strong>Derecho al testamento digital</strong></td><td>Art. 96</td><td>Cualquier persona podrá dejar instrucciones sobre el destino de sus contenidos digitales tras su muerte.</td></tr>
+<tr><td><strong>Desconexión digital en el trabajo</strong></td><td>Art. 88</td><td>Los trabajadores tienen derecho a la desconexión digital a fin de garantizar el respeto de su tiempo de descanso, vacaciones y la conciliación.</td></tr>
+<tr><td><strong>Intimidad frente a videovigilancia laboral</strong></td><td>Art. 89</td><td>Los empleadores podrán tratar imágenes de cámaras para el control de los trabajadores, pero deben informarles previamente.</td></tr>
+<tr><td><strong>Intimidad ante el uso de dispositivos digitales en el trabajo</strong></td><td>Art. 87</td><td>Los trabajadores tienen derecho a la protección de su intimidad en el uso de dispositivos digitales puestos a disposición por el empleador.</td></tr>
+</tbody>
+</table>
+
+<div class="key">
+<div class="key-t">⭐ Derechos digitales más preguntados</div>
+<p><strong>Derecho al olvido (arts. 93-94):</strong> En buscadores (Google, Bing...) y en redes sociales. Distinto del derecho de supresión del RGPD: el olvido se aplica a contenidos que ya eran públicos.</p>
+<p><strong>Testamento digital (art. 96):</strong> Novedad de la LOPDGDD. Cualquier persona puede dejar instrucciones sobre sus contenidos digitales post mortem.</p>
+<p><strong>Desconexión digital laboral (art. 88):</strong> Derecho de los trabajadores a no responder comunicaciones digitales fuera del horario laboral. Debe regularse mediante política interna de la empresa.</p>
+<p><strong>Edad de consentimiento (art. 7):</strong> 14 años. Es el dato numérico más preguntado del Tema 11.</p>
+</div>
+</section>
+
+<!-- 14. RESUMEN -->
+<section class="s" id="resumen">
+<h2>14. Resumen y cifras clave</h2>
+
+<table class="tabla">
+<thead><tr><th>Concepto</th><th>Dato esencial</th></tr></thead>
+<tbody>
+<tr><td>Ley aplicable</td><td>LO 3/2018, de 5 de diciembre (LOPDGDD)</td></tr>
+<tr><td>Reglamento europeo</td><td>RGPD — Reglamento (UE) 2016/679, de 27 de abril de 2016</td></tr>
+<tr><td>Fundamento constitucional</td><td>Art. 18.4 CE</td></tr>
+<tr><td>Edad mínima consentimiento menores</td><td><strong>14 años</strong></td></tr>
+<tr><td>Plazo conservación imágenes videovigilancia</td><td><strong>1 mes</strong> máximo</td></tr>
+<tr><td>Plazo entrega imágenes a autoridad si hay delito</td><td><strong>72 horas</strong> desde conocimiento</td></tr>
+<tr><td>Plazo máximo datos en ficheros de morosidad</td><td><strong>5 años</strong> desde que la deuda fue exigible</td></tr>
+<tr><td>Plazo comunicación designación DPD a AEPD</td><td><strong>10 días</strong></td></tr>
+<tr><td>Plazo respuesta DPD a reclamación del afectado</td><td><strong>2 meses</strong></td></tr>
+<tr><td>Plazo respuesta DPD si la remite la AEPD</td><td><strong>1 mes</strong></td></tr>
+<tr><td>Plazo resolución procedimiento AEPD (derechos)</td><td><strong>6 meses</strong></td></tr>
+<tr><td>Derecho de acceso: máximo repeticiones</td><td>1 vez cada <strong>6 meses</strong> (salvo causa legítima)</td></tr>
+<tr><td>Naturaleza AEPD</td><td>Autoridad administrativa independiente de ámbito estatal</td></tr>
+<tr><td>Adscripción AEPD</td><td>Se relaciona con el Gobierno a través del Ministerio de Justicia</td></tr>
+<tr><td>Estatuto AEPD</td><td>Aprobado por Real Decreto del Gobierno, a propuesta de la AEPD</td></tr>
+<tr><td>Sanción máxima (infracción muy grave)</td><td>20 millones € o 4% facturación mundial anual</td></tr>
+</tbody>
+</table>
+
+<div class="nav">
+  <a href="panel-alumno.html">← Volver al temario</a>
+  <a href="panel-alumno.html" style="background:var(--dorado);color:var(--negro);border-color:var(--dorado);">Ir a los tests →</a>
+</div>
+</main>
+</div>
+
+<script src="js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  Auth.requireAuth();
+  if(Progreso.done(11)){
+    document.getElementById('dbtn').classList.add('done');
+    document.getElementById('dbtn').textContent='✓ Completado';
+    document.getElementById('pbar').style.width='100%';
+    document.getElementById('pct').textContent='Completado';
+  } else {
+    document.getElementById('pbar').style.width='35%';
+    document.getElementById('pct').textContent='En progreso';
+  }
+  function tDone(){
+    const d=Progreso.toggle(11);
+    document.getElementById('dbtn').classList.toggle('done',d);
+    document.getElementById('dbtn').textContent=d?'✓ Completado':'✓ Marcar completado';
+    document.getElementById('pbar').style.width=d?'100%':'35%';
+    document.getElementById('pct').textContent=d?'Completado':'En progreso';
+  }
+  window.tDone = tDone;
+  document.querySelectorAll('.idx-a').forEach(a=>{
+    a.addEventListener('click',function(){
+      document.querySelectorAll('.idx-a').forEach(x=>x.classList.remove('on'));
+      this.classList.add('on');
+    });
+  });
+});
+</script>
+</body>
+</html>
