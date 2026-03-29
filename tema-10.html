@@ -1,0 +1,2560 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tema 10 – Derecho Administrativo | Ingreso GC – DM Forma</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde: #1b5e35;
+    --verde-claro: #2e7d52;
+    --dorado: #c8960c;
+    --dorado-claro: #e8b020;
+    --negro: #111827;
+    --gris-oscuro: #374151;
+    --gris-medio: #6b7280;
+    --gris-claro: #f3f4f6;
+    --blanco: #ffffff;
+    --borde: #d1d5db;
+    --rojo-trampa: #7f1d1d;
+    --rojo-fondo: #fef2f2;
+    --rojo-borde: #fca5a5;
+    --azul-fondo: #eff6ff;
+    --azul-borde: #93c5fd;
+    --azul-texto: #1e3a5f;
+    --naranja-fondo: #fff7ed;
+    --naranja-borde: #fdba74;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--negro);
+    background: var(--blanco);
+  }
+
+  /* ── CABECERA ── */
+  header {
+    background: var(--verde);
+    color: var(--blanco);
+    text-align: center;
+    padding: 18px 20px 12px;
+    border-bottom: 4px solid var(--dorado);
+  }
+  header .site-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--dorado-claro);
+    margin-bottom: 4px;
+  }
+  header h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    line-height: 1.1;
+  }
+  header .subtitulo {
+    font-size: 13px;
+    color: rgba(255,255,255,0.75);
+    margin-top: 4px;
+  }
+
+  /* ── BREADCRUMB ── */
+  .breadcrumb {
+    background: var(--gris-claro);
+    border-bottom: 1px solid var(--borde);
+    padding: 8px 24px;
+    font-size: 12px;
+    color: var(--gris-medio);
+  }
+  .breadcrumb a { color: var(--verde); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  /* ── CONTENEDOR ── */
+  .contenedor {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 32px 24px 60px;
+  }
+
+  /* ── CABECERA DEL TEMA ── */
+  .tema-header {
+    text-align: center;
+    border-bottom: 3px double var(--verde);
+    padding-bottom: 20px;
+    margin-bottom: 32px;
+  }
+  .tema-header .numero-tema {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--dorado);
+    font-weight: 700;
+  }
+  .tema-header h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 30px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--verde);
+    letter-spacing: 1px;
+    margin-top: 4px;
+    line-height: 1.2;
+  }
+  .tema-header .referencia {
+    font-size: 12px;
+    color: var(--gris-medio);
+    margin-top: 8px;
+    font-style: italic;
+  }
+
+  /* ── ÍNDICE ── */
+  .indice {
+    background: var(--gris-claro);
+    border-left: 4px solid var(--verde);
+    border-radius: 0 6px 6px 0;
+    padding: 16px 20px;
+    margin-bottom: 36px;
+  }
+  .indice h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--verde);
+    margin-bottom: 10px;
+  }
+  .indice ol { padding-left: 18px; }
+  .indice li { font-size: 13px; color: var(--gris-oscuro); margin-bottom: 4px; }
+  .indice a { color: var(--verde); text-decoration: none; }
+  .indice a:hover { text-decoration: underline; }
+
+  /* ── SECCIONES ── */
+  .seccion { margin-bottom: 44px; }
+
+  /* ── EPÍGRAFES H2 ── */
+  h2.epigrafe {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--blanco);
+    background: var(--verde);
+    padding: 10px 16px;
+    border-left: 5px solid var(--dorado);
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    border-radius: 0 4px 4px 0;
+  }
+
+  /* ── SUBEPÍGRAFES H3 ── */
+  h3.subepigrafe {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--verde);
+    border-bottom: 2px solid var(--dorado);
+    padding-bottom: 5px;
+    margin: 28px 0 14px;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── ARTÍCULO ── */
+  .articulo { margin-bottom: 18px; }
+  .art-titulo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--gris-oscuro);
+    text-decoration: underline;
+    margin-bottom: 8px;
+    letter-spacing: 0.3px;
+  }
+
+  /* ── PÁRRAFOS ── */
+  p { margin-bottom: 10px; text-align: justify; }
+
+  /* ── LISTAS ── */
+  ul.lista-normal, ol.lista-normal {
+    margin: 8px 0 12px 24px;
+  }
+  ul.lista-normal li, ol.lista-normal li {
+    margin-bottom: 6px;
+    text-align: justify;
+  }
+
+  /* ── RECUADROS ── */
+
+  /* Importante (dorado) */
+  .nota-importante {
+    background: #fffbeb;
+    border: 1px solid var(--dorado);
+    border-left: 4px solid var(--dorado);
+    border-radius: 0 6px 6px 0;
+    padding: 12px 16px;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+  .nota-importante .box-titulo {
+    color: #92400e;
+    display: block;
+    margin-bottom: 5px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  /* Trampa de examen (rojo) */
+  .trampa-examen {
+    background: var(--rojo-fondo);
+    border: 1px solid var(--rojo-borde);
+    border-left: 4px solid #ef4444;
+    border-radius: 0 6px 6px 0;
+    padding: 12px 16px;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+  .trampa-examen .box-titulo {
+    color: var(--rojo-trampa);
+    display: block;
+    margin-bottom: 5px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  /* Clave de examen (azul) */
+  .clave-examen {
+    background: var(--azul-fondo);
+    border: 1px solid var(--azul-borde);
+    border-left: 4px solid #3b82f6;
+    border-radius: 0 6px 6px 0;
+    padding: 12px 16px;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+  .clave-examen .box-titulo {
+    color: var(--azul-texto);
+    display: block;
+    margin-bottom: 5px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  /* Resumen parcial (verde claro) */
+  .resumen-parcial {
+    background: #f0fdf4;
+    border: 1px solid #86efac;
+    border-left: 4px solid var(--verde-claro);
+    border-radius: 0 6px 6px 0;
+    padding: 12px 16px;
+    margin: 20px 0;
+    font-size: 14px;
+  }
+  .resumen-parcial .box-titulo {
+    color: var(--verde);
+    display: block;
+    margin-bottom: 6px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  /* ── TABLAS ── */
+  table.tabla-tema {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0 20px;
+    font-size: 13.5px;
+  }
+  table.tabla-tema thead th {
+    background: var(--verde);
+    color: var(--blanco);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 9px 12px;
+    text-align: left;
+  }
+  table.tabla-tema tbody tr:nth-child(even) { background: var(--gris-claro); }
+  table.tabla-tema tbody td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--borde);
+    vertical-align: top;
+  }
+  table.tabla-tema .col-clave {
+    font-weight: 700;
+    color: var(--verde);
+  }
+  table.tabla-tema .si { color: #15803d; font-weight: 700; }
+  table.tabla-tema .no { color: #dc2626; font-weight: 700; }
+
+  /* ── TEST FINAL ── */
+  .test-section {
+    background: var(--negro);
+    color: var(--blanco);
+    border-radius: 8px;
+    padding: 28px 28px 32px;
+    margin-top: 50px;
+  }
+  .test-section h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--dorado-claro);
+    border-bottom: 2px solid var(--dorado);
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+  }
+  .pregunta {
+    background: #1f2937;
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    border-left: 3px solid var(--dorado);
+  }
+  .pregunta .num-pregunta {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--dorado-claro);
+    margin-bottom: 6px;
+  }
+  .pregunta .enunciado {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #e5e7eb;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+  .opciones {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 10px 0;
+  }
+  .opciones li {
+    font-size: 13.5px;
+    color: #d1d5db;
+    padding: 4px 0;
+  }
+  .opciones li span.letra {
+    font-weight: 700;
+    color: #9ca3af;
+    margin-right: 6px;
+  }
+  .respuesta-correcta {
+    font-size: 13px;
+    background: #14532d;
+    color: #86efac;
+    border-radius: 4px;
+    padding: 6px 10px;
+    display: inline-block;
+    font-weight: 700;
+  }
+
+  /* ── RESUMEN GLOBAL ── */
+  .resumen-global {
+    background: linear-gradient(135deg, #1b5e35 0%, #2e7d52 100%);
+    color: var(--blanco);
+    border-radius: 8px;
+    padding: 28px 28px 32px;
+    margin-top: 40px;
+  }
+  .resumen-global h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--dorado-claro);
+    border-bottom: 2px solid rgba(200,150,12,0.5);
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+  }
+  .resumen-global ul { padding-left: 20px; }
+  .resumen-global ul li {
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: rgba(255,255,255,0.92);
+    line-height: 1.6;
+  }
+  .resumen-global strong { color: var(--dorado-claro); }
+
+  /* ── ESQUEMA VISUAL ── */
+  .esquema {
+    background: var(--gris-claro);
+    border: 1px solid var(--borde);
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-size: 13.5px;
+    font-family: 'Lato', sans-serif;
+  }
+  .esquema .esq-titulo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--verde);
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--borde);
+    padding-bottom: 5px;
+  }
+  .esquema-fila {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 5px 0;
+    border-bottom: 1px dashed #e5e7eb;
+  }
+  .esquema-fila:last-child { border-bottom: none; }
+  .esq-key {
+    font-weight: 700;
+    color: var(--negro);
+    min-width: 140px;
+    flex-shrink: 0;
+  }
+  .esq-val { color: var(--gris-oscuro); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--negro);
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    font-size: 12px;
+    padding: 16px;
+    border-top: 3px solid var(--verde);
+  }
+
+  @media (max-width: 600px) {
+    .contenedor { padding: 20px 14px 40px; }
+    h2.epigrafe { font-size: 17px; }
+    header h1 { font-size: 22px; }
+    .esquema-fila { flex-direction: column; gap: 2px; }
+    .esq-key { min-width: auto; }
+  }
+  @media print {
+    header, footer, .breadcrumb { display: none; }
+    .contenedor { max-width: 100%; padding: 0; }
+    h2.epigrafe { color: #000 !important; background: none !important; }
+  }
+
+  /* ── BARRA DE NAVEGACIÓN FINAL ── */
+  .nav-final {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 0;
+    border-top: 2px solid var(--borde);
+    margin-top: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .nav-final a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 10px 18px;
+    border-radius: 6px;
+    border: 2px solid var(--verde);
+    color: var(--verde);
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+    font-family: 'Barlow Condensed', sans-serif;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .nav-final a:hover { background: var(--verde); color: var(--blanco); }
+  .nav-final a.btn-tests {
+    background: var(--dorado);
+    color: var(--negro);
+    border-color: var(--dorado);
+
+  /* ── LÍNEA DE TIEMPO (instrucción procedimiento) ── */
+  .timeline { position: relative; margin: 20px 0; padding-left: 0; }
+  .timeline-fase { display: flex; gap: 16px; margin-bottom: 12px; align-items: flex-start; }
+  .fase-numero {
+    background: var(--verde); color: var(--blanco);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px; font-weight: 800;
+    min-width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .fase-contenido {
+    flex: 1; background: var(--gris-claro); border: 1px solid var(--borde);
+    border-left: 3px solid var(--dorado); border-radius: 0 6px 6px 0; padding: 10px 14px;
+  }
+  .fase-titulo {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 700;
+    text-transform: uppercase; color: var(--verde); margin-bottom: 4px; letter-spacing: 0.3px;
+  }
+  .fase-desc { font-size: 13.5px; color: var(--gris-oscuro); line-height: 1.6; }
+
+  /* ── DIVISOR ENTRE BLOQUES ── */
+  .bloque-divisor {
+    text-align: center; margin: 48px 0 40px;
+    position: relative;
+  }
+  .bloque-divisor::before {
+    content: ''; position: absolute; top: 50%; left: 0; right: 0;
+    height: 3px; background: linear-gradient(to right, transparent, var(--verde), transparent);
+  }
+  .bloque-divisor span {
+    position: relative; background: var(--blanco);
+    padding: 0 20px;
+    font-family: 'Barlow Condensed', sans-serif; font-size: 13px;
+    font-weight: 700; text-transform: uppercase; letter-spacing: 2px;
+    color: var(--verde);
+  }
+
+  @media (max-width: 600px) {
+    .contenedor { padding: 20px 14px 40px; }
+    h2.epigrafe { font-size: 17px; }
+    header h1 { font-size: 22px; }
+    .esquema-fila { flex-direction: column; gap: 2px; }
+    .esq-key { min-width: auto; }
+    .timeline-fase { flex-direction: column; gap: 8px; }
+  }
+  @media print {
+    header, footer, .breadcrumb { display: none; }
+    .contenedor { max-width: 100%; padding: 0; }
+    h2.epigrafe { color: #000 !important; background: none !important; }
+    .bloque-divisor::before { background: #000; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="site-name">Ingreso GC – DM Forma</div>
+  <h1>Guardia Civil · Escala de Cabos y Guardias</h1>
+  <div class="subtitulo">Temario actualizado · Orientado a examen tipo test</div>
+</header>
+
+<div class="breadcrumb">
+  <a href="index.html">Inicio</a> &rsaquo; <a href="panel-alumno.html">Temario</a> &rsaquo; <strong>Tema 10 – Derecho Administrativo</strong>
+</div>
+
+<div class="contenedor">
+
+  <div class="tema-header">
+    <div class="numero-tema">Tema 10</div>
+    <h2>Derecho Administrativo.<br>Leyes 39/2015 y 40/2015</h2>
+    <div class="referencia">
+      Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común &nbsp;|&nbsp;
+      Ley 40/2015, de 1 de octubre, de Régimen Jurídico del Sector Público &nbsp;|&nbsp;
+      Ley 50/1997, de 27 de noviembre, del Gobierno
+    </div>
+  </div>
+
+  <!-- ÍNDICE FUSIONADO -->
+  <div class="indice">
+    <h3>Índice del Tema</h3>
+    <p style="font-size:12px; color:var(--gris-medio); margin-bottom:10px; font-style:italic;">
+      Parte A · Ley 39/2015 — Procedimiento Administrativo Común
+    </p>
+    <ol class="lista-normal">
+      <li><a href="#s1">Objeto, ámbito de aplicación y principios de la Ley 39/2015</a></li>
+      <li><a href="#s2">Derechos de los ciudadanos en sus relaciones con la Administración</a></li>
+      <li><a href="#s3">Los interesados: capacidad, legitimación y representación</a></li>
+      <li><a href="#s4">Actividad de la Administración: registros, plazos y obligación de resolver</a></li>
+      <li><a href="#s5">Los actos administrativos: requisitos, eficacia y validez</a></li>
+      <li><a href="#s6">Iniciación del procedimiento administrativo</a></li>
+      <li><a href="#s7">Ordenación e instrucción del procedimiento</a></li>
+      <li><a href="#s8">Terminación del procedimiento</a></li>
+      <li><a href="#s9">Recursos administrativos</a></li>
+    </ol>
+    <p style="font-size:12px; color:var(--gris-medio); margin: 14px 0 10px; font-style:italic; border-top:1px solid var(--borde); padding-top:10px;">
+      Parte B · Ley 40/2015 — Régimen Jurídico del Sector Público
+    </p>
+    <ol class="lista-normal" start="10">
+      <li><a href="#s10-ley40">Ámbito de aplicación y concepto de Administración Pública</a></li>
+      <li><a href="#s11-ley40">Principios generales de actuación</a></li>
+      <li><a href="#s12-ley40">La Administración General del Estado: organización central y periférica</a></li>
+      <li><a href="#s13-ley40">Los órganos administrativos: concepto, creación y clases</a></li>
+      <li><a href="#s14-ley40">La competencia: irrenunciabilidad y técnicas de alteración</a></li>
+      <li><a href="#s15-ley40">Órganos colegiados: régimen jurídico y funcionamiento</a></li>
+      <li><a href="#s16-ley40">Abstención y recusación</a></li>
+      <li><a href="#s17-ley40">Relaciones interadministrativas</a></li>
+      <li><a href="#s18-ley40">La Ley del Gobierno y su disposición final 3.ª</a></li>
+    </ol>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- PARTE A: LEY 39/2015 — PROCEDIMIENTO ADMINISTRATIVO COMÚN     -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+
+  <div class="bloque-divisor">
+    <span>📋 PARTE A · LEY 39/2015 — PROCEDIMIENTO ADMINISTRATIVO COMÚN</span>
+  </div>
+
+  <!-- ═══ SECCIÓN 1 ═══ -->
+  <div class="seccion" id="s1">
+    <h2 class="epigrafe">1. Objeto, ámbito de aplicación y principios de la Ley 39/2015</h2>
+
+    <h3 class="subepigrafe">Objeto de la Ley (art. 1)</h3>
+
+    <p>La <strong>Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas</strong> tiene por objeto regular:</p>
+    <ul class="lista-normal">
+      <li>Los <strong>requisitos de validez y eficacia</strong> de los actos administrativos.</li>
+      <li>El <strong>procedimiento administrativo común</strong> a todas las Administraciones Públicas, incluyendo el procedimiento sancionador y el de reclamación de responsabilidad patrimonial.</li>
+      <li>Los <strong>principios a los que se ha de ajustar el ejercicio de la iniciativa legislativa</strong> y la potestad reglamentaria.</li>
+    </ul>
+
+    <div class="clave-examen">
+      <span class="box-titulo">📌 Distinción clave: Ley 39/2015 vs. Ley 40/2015</span>
+      <strong>Ley 39/2015</strong> = Procedimiento Administrativo (cómo actúa la Administración con los ciudadanos).<br>
+      <strong>Ley 40/2015</strong> = Régimen Jurídico del Sector Público (cómo se organiza la Administración internamente).<br>
+      Ambas se aprueban el mismo día (1 de octubre de 2015) y son complementarias.
+    </div>
+
+    <h3 class="subepigrafe">Ámbito subjetivo de aplicación (art. 2)</h3>
+
+    <p>La Ley 39/2015 se aplica al mismo sector público que la Ley 40/2015: AGE, CC.AA., Administración Local y sector público institucional. También se aplica a las <strong>Corporaciones de Derecho Público</strong> cuando ejerzan funciones públicas atribuidas o delegadas por una Administración, y supletoriamente en lo demás.</p>
+
+    <div class="trampa-examen">
+      <span class="box-titulo">🚨 Trampa de examen</span>
+      Solo mediante <strong>Ley</strong> (no por reglamento) pueden incluirse trámites adicionales o distintos a los previstos en la Ley 39/2015, cuando resulte eficaz, proporcionado y necesario. Por reglamento solo pueden establecerse <strong>especialidades</strong> referidas a órganos competentes, plazos, formas de iniciación y terminación, publicación e informes.
+    </div>
+
+    <div class="resumen-parcial">
+      <span class="box-titulo">✅ Resumen epígrafe 1</span>
+      Ley 39/2015: procedimiento, validez y eficacia de actos, principios de buena regulación. Ley 39 = relación ciudadano-Administración; Ley 40 = organización interna. Solo por Ley caben trámites adicionales distintos.
+    </div>
+  </div>
+
+  <!-- ═══ SECCIÓN 2 ═══ -->
+  <div class="seccion" id="s2">
+    <h2 class="epigrafe">2. Derechos de los ciudadanos en sus relaciones con la Administración</h2>
+
+    <h3 class="subepigrafe">Derechos generales (art. 13)</h3>
+
+    <p>Quienes tienen capacidad de obrar ante las Administraciones Públicas son titulares de los siguientes derechos:</p>
+
+    <table class="tabla-tema">
+      <thead><tr><th>Letra</th><th>Derecho</th></tr></thead>
+      <tbody>
+        <tr><td class="col-clave">a)</td><td>Comunicarse con la Administración a través de un <strong>Punto de Acceso General electrónico</strong>.</td></tr>
+        <tr><td class="col-clave">b)</td><td>Ser <strong>asistidos en el uso de medios electrónicos</strong>.</td></tr>
+        <tr><td class="col-clave">c)</td><td>Utilizar las <strong>lenguas oficiales</strong> en el territorio de su Comunidad Autónoma.</td></tr>
+        <tr><td class="col-clave">d)</td><td>Acceso a la <strong>información pública</strong>, archivos y registros (Ley 19/2013 de transparencia).</td></tr>
+        <tr><td class="col-clave">e)</td><td>Ser tratados con <strong>respeto y deferencia</strong> por las autoridades y empleados públicos.</td></tr>
+        <tr><td class="col-clave">f)</td><td>Exigir las <strong>responsabilidades</strong> de las Administraciones y autoridades.</td></tr>
+        <tr><td class="col-clave">g)</td><td>Obtener y utilizar los <strong>medios de identificación y firma electrónica</strong>.</td></tr>
+        <tr><td class="col-clave">h)</td><td><strong>Protección de datos</strong> de carácter personal.</td></tr>
+        <tr><td class="col-clave">i)</td><td>Cualesquiera otros que reconozcan la <strong>Constitución y las leyes</strong>.</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="subepigrafe">Derechos específicos de los interesados en el procedimiento (art. 53)</h3>
+
+    <p>Además de los derechos generales, los interesados en un procedimiento administrativo concreto tienen derecho a:</p>
+    <ul class="lista-normal">
+      <li>Conocer el <strong>estado de tramitación</strong> del procedimiento y obtener copia de los documentos contenidos en el expediente.</li>
+      <li>Identificar a las <strong>autoridades y personal</strong> al servicio de la Administración bajo cuya responsabilidad se tramita el procedimiento.</li>
+      <li>No presentar documentos que ya obren en poder de la Administración o hayan sido elaborados por ella.</li>
+      <li>Obtener información y orientación sobre los <strong>requisitos jurídicos o técnicos</strong> que las disposiciones vigentes impongan a los proyectos, actuaciones o solicitudes que se propongan realizar.</li>
+      <li>Actuar asistidos de <strong>asesor</strong> cuando lo consideren conveniente.</li>
+      <li>Formular <strong>alegaciones</strong> y aportar documentos en cualquier fase del procedimiento anterior al trámite de audiencia.</li>
+      <li>Que no se soliciten más datos de los <strong>estrictamente necesarios</strong>.</li>
+    </ul>
+
+    <h3 class="subepigrafe">Derecho y obligación de relacionarse electrónicamente (art. 14)</h3>
+
+    <div class="esquema">
+      <div class="esq-titulo">¿Quién está obligado a relacionarse electrónicamente?</div>
+      <div class="esquema-fila">
+        <span class="esq-key">Personas físicas</span>
+        <span class="esq-val">Pueden elegir libremente si usan medios electrónicos o no, <strong>salvo que estén obligadas</strong> por ley o reglamento.</span>
+      </div>
+      <div class="esquema-fila">
+        <span class="esq-key">Personas jurídicas</span>
+        <span class="esq-val"><strong>Obligadas siempre</strong> a relacionarse electrónicamente.</span>
+      </div>
+      <div class="esquema-fila">
+        <span class="esq-key">Entidades sin personalidad jurídica</span>
+        <span class="esq-val"><strong>Obligadas siempre</strong>.</span>
+      </div>
+      <div class="esquema-fila">
+        <span class="esq-key">Profesionales con colegiación obligatoria</span>
+        <span class="esq-val"><strong>Obligados</strong> para actos en ejercicio de su actividad profesional. Incluye expresamente notarios y registradores.</span>
+      </div>
+      <div class="esquema-fila">
+        <span class="esq-key">Quienes representan a un obligado electrónico</span>
+        <span class="esq-val"><strong>Obligados</strong> a relacionarse electrónicamente.</span>
+      </div>
+      <div class="esquema-fila">
+        <span class="esq-key">Empleados públicos</span>
+        <span class="esq-val"><strong>Obligados</strong> en los trámites que realicen con la Administración por razón de su condición de empleado.</span>
+      </div>
+    </div>
+
+    <div class="trampa-examen">
+      <span class="box-titulo">🚨 Trampa de examen</span>
+      Las <strong>personas físicas</strong> tienen el <em>derecho a elegir</em> si se relacionan electrónicamente o no. Solo están obligadas cuando así lo establezca una norma. En cambio, las personas <strong>jurídicas</strong> y entidades <strong>sin personalidad jurídica</strong> están <em>siempre obligadas</em>. Esta distinción persona física/jurídica es muy frecuente en examen.
+    </div>
+
+    <h3 class="subepigrafe">Lengua de los procedimientos (art. 15)</h3>
+    <ul class="lista-normal">
+      <li>En la AGE: la lengua del procedimiento es el <strong>castellano</strong>. Si la sede está en una CC.AA. con lengua cooficial, el interesado puede usarla.</li>
+      <li>Si hay discrepancia entre varios interesados sobre la lengua, el procedimiento se tramita en <strong>castellano</strong>, aunque los documentos se expiden en la lengua elegida por cada interesado.</li>
+      <li>En CC.AA. y Entidades Locales: según la legislación autonómica correspondiente.</li>
+    </ul>
+
+    <div class="resumen-parcial">
+      <span class="box-titulo">✅ Resumen epígrafe 2</span>
+      Derechos generales (art. 13): 9 letras. Derechos del interesado en procedimiento (art. 53): estado tramitación, identificar responsables, no repetir documentos... Obligados electrónicamente: personas jurídicas, entidades sin personalidad, profesionales colegiados, empleados públicos. Personas físicas: libre elección salvo norma específica.
+    </div>
+  </div>
+
+  <!-- ═══ SECCIÓN 3 ═══ -->
+  <div class="seccion" id="s3">
+    <h2 class="epigrafe">3. Los interesados en el procedimiento: capacidad, legitimación y representación</h2>
+
+    <h3 class="subepigrafe">Capacidad de obrar (art. 3)</h3>
+
+    <p>Tienen capacidad de obrar ante las Administraciones Públicas:</p>
+    <ol class="lista-normal" type="a">
+      <li>Las personas físicas o jurídicas que ostenten capacidad de obrar con arreglo a las <strong>normas civiles</strong>.</li>
+      <li>Los <strong>menores de edad</strong> para el ejercicio y defensa de aquellos derechos e intereses cuya actuación esté permitida por el ordenamiento jurídico sin asistencia de quien ejerza la patria potestad, tutela o curatela. <em>Excepción: menores incapacitados cuando la incapacitación afecte al derecho en cuestión.</em></li>
+      <li>Los <strong>grupos de afectados, uniones y entidades sin personalidad jurídica y patrimonios independientes o autónomos</strong>, cuando la Ley así lo declare expresamente.</li>
+    </ol>
+
+    <div class="trampa-examen">
+      <span class="box-titulo">🚨 Trampa de examen: menores de edad</span>
+      Los menores de edad <strong>sí tienen capacidad de obrar</strong> ante la Administración para defender sus derechos e intereses cuando el ordenamiento jurídico se lo permita sin asistencia de sus representantes legales. No hace falta la mayoría de edad para todo tipo de actuaciones administrativas.
+    </div>
+
+    <h3 class="subepigrafe">Concepto de interesado (art. 4)</h3>
+
+    <p>Se consideran interesados en el procedimiento administrativo:</p>
+    <ol class="lista-normal" type="a">
+      <li>Quienes lo <strong>promuevan</strong> como titulares de derechos o intereses legítimos individuales o colectivos.</li>
+      <li>Los que, sin haber iniciado el procedimiento, tengan derechos que puedan resultar <strong>afectados por la decisión</strong> que se adopte.</li>
+      <li>Aquellos cuyos intereses legítimos puedan resultar afectados por la resolución y se <strong>personen en el procedimiento</strong> en tanto no haya recaído resolución definitiva.</li>
+    </ol>
+
+    <p>Cuando la condición de interesado derive de una relación jurídica <strong>transmisible</strong>, el derechohabiente sucederá en tal condición cualquiera que sea el estado del procedimiento.</p>
+
+    <h3 class="subepigrafe">Representación (art. 5)</h3>
+
+    <p>Los interesados con capacidad de obrar pueden actuar por medio de <strong>representante</strong>. Para actos de mero trámite se presume la representación; para otros actos (formular solicitudes, interponer recursos, desistir, renunciar a derechos) debe <strong>acreditarse</strong>.</p>
+
+    <p>La representación puede acreditarse mediante cualquier medio válido en Derecho, incluyendo el <strong>apoderamiento apud acta</strong> (comparecencia personal o electrónica) o la inscripción en el <strong>registro electrónico de apoderamientos</strong>.</p>
+
+    <div class="nota-importante">
+      <span class="box-titulo">⚠ Falta de acreditación de representación</span>
+      La falta o insuficiente acreditación de la representación <strong>no impide</strong> que se tenga por realizado el acto, siempre que se aporte o subsane en el plazo de <strong>diez días</strong> (o superior si las circunstancias lo requieren) que debe conceder el órgano administrativo.
+    </div>
+
+    <h3 class="subepigrafe">Pluralidad de interesados (art. 7)</h3>
+    <p>Cuando en una solicitud, escrito o comunicación figuren varios interesados, las actuaciones se efectuarán con el representante o interesado que <strong>expresamente hayan señalado</strong>, y en su defecto con el que <strong>figure en primer término</strong>.</p>
+
+    <div class="resumen-parcial">
+      <span class="box-titulo">✅ Resumen epígrafe 3</span>
+      Capacidad de obrar: personas físicas/jurídicas + menores (para lo que el ordenamiento permita) + entidades sin personalidad (cuando la ley lo declare). Interesado: quien promueve + afectados + personados antes de resolución. Representación: para actos sustantivos debe acreditarse; para trámites se presume. Falta de acreditación: 10 días para subsanar.
+    </div>
+  </div>
+
+  <!-- ═══ SECCIÓN 4 ═══ -->
+  <div class="seccion" id="s4">
+    <h2 class="epigrafe">4. Actividad de la Administración: registros, plazos y obligación de resolver</h2>
+
+    <h3 class="subepigrafe">Registros (art. 16)</h3>
+
+    <p>Cada Administración dispondrá de un <strong>Registro Electrónico General</strong> en el que se harán asientos de todo documento que sea presentado o recibido en cualquier órgano administrativo, organismo público o entidad vinculada o dependiente.</p>
+
+    <div class="esquema">
+      <div class="esq-titulo">¿Dónde pueden presentarse los documentos? (art. 16.4)</div>
+      <div class="esquema-fila"><span class="esq-key">a)</span><span class="esq-val">Registro electrónico de la Administración u Organismo al que se dirigen, y de cualquier otro sujeto del art. 2.1.</span></div>
+      <div class="esquema-fila"><span class="esq-key">b)</span><span class="esq-val">Oficinas de <strong>Correos</strong>, en la forma que reglamentariamente se establezca.</span></div>
+      <div class="esquema-fila"><span class="esq-key">c)</span><span class="esq-val"><strong>Representaciones diplomáticas</strong> u oficinas consulares de España en el extranjero.</span></div>
+      <div class="esquema-fila"><span class="esq-key">d)</span><span class="esq-val"><strong>Oficinas de asistencia en materia de registros</strong>.</span></div>
+      <div class="esquema-fila"><span class="esq-key">e)</span><span class="esq-val">Cualquier otro que establezcan las disposiciones vigentes.</span></div>
+    </div>
+
+    <div class="clave-examen">
+      <span class="box-titulo">📌 Clave: registro electrónico 24/7</span>
+      El registro electrónico permite la presentación de documentos <strong>todos los días del año durante las 24 horas</strong>. Si se presenta en día inhábil, se entiende realizado en la <strong>primera hora del primer día hábil siguiente</strong>.
+    </div>
+
+    <h3 class="subepigrafe">Cómputo de plazos (art. 30)</h3>
+
+    <table class="tabla-tema">
+      <thead><tr><th>Tipo de plazo</th><th>Cómputo</th><th>Días excluidos</th></tr></thead>
+      <tbody>
+        <tr><td class="col-clave">Por horas</td><td>Horas hábiles. De hora en hora y de minuto en minuto desde la notificación. Máximo 24 horas (si más, se expresan en días).</td><td>Las de días inhábiles</td></tr>
+        <tr><td class="col-clave">Por días</td><td>Días <strong>hábiles</strong> (salvo que la ley diga «días naturales»). Se cuenta desde el día <strong>siguiente</strong> a la notificación o publicación.</td><td>Sábados, domingos y festivos</td></tr>
+        <tr><td class="col-clave">Por meses o años</td><td>Desde el día siguiente a la notificación. Concluye el mismo día en el mes/año de vencimiento.</td><td>—</td></tr>
+      </tbody>
+    </table>
+
+    <div class="trampa-examen">
+      <span class="box-titulo">🚨 Trampas sobre plazos</span>
+      <ul class="lista-normal" style="margin-top:6px;">
+        <li>El plazo por días se cuenta en días <strong>hábiles</strong> por defecto. Solo son naturales si la ley lo dice expresamente.</li>
+        <li>Si el último día es inhábil, el plazo se prorroga al <strong>primer día hábil siguiente</strong>.</li>
+        <li>Si un día es hábil en el municipio del interesado pero inhábil en la sede del órgano (o viceversa), se considera <strong>inhábil en todo caso</strong>.</li>
+        <li>La ampliación de plazo: máximo la <strong>mitad</strong> del plazo, si no perjudica derechos de terceros.</li>
+        <li>Tramitación de urgencia: los plazos se reducen a la <strong>mitad</strong>, salvo los de presentación de solicitudes y recursos.</li>
+      </ul>
+    </div>
+
+    <h3 class="subepigrafe">Obligación de resolver (art. 21)</h3>
+
+    <p>La Administración está <strong>obligada a dictar resolución expresa y a notificarla</strong> en todos los procedimientos, cualquiera que sea su forma de iniciación.</p>
+
+    <div class="esquema">
+      <div class="esq-titulo">Plazos máximos para resolver y notificar</div>
+      <div class="esquema-fila">
+        <span class="esq-key">Plazo general</span>
+        <span class="esq-val">El fijado por la norma reguladora del procedimiento. <strong>No puede exceder de 6 meses</strong> salvo que una ley establezca uno mayor.</span>
+      </div>
+      <div class="esquema-fila">
+        <span class="esq-key">Plazo supletorio</span>
+        <span class="esq-val">Cuando la norma no fije plazo: <strong>3 meses</strong>.</span>
+      </div>
+      <div class="esquema-fila">
+        <span class="esq-key">Inicio del cómputo</span>
+        <span class="esq-val">Procedimientos de oficio: desde el <strong>acuerdo de iniciación</strong>. Procedimientos a solicitud del interesado: desde la <strong>entrada en el registro electrónico</strong> del órgano competente.</span>
+      </div>
+    </div>
+
+    <h3 class="subepigrafe">Silencio administrativo en procedimientos iniciados a solicitud del interesado (art. 24)</h3>
+
+    <p>Si vence el plazo sin resolución expresa notificada:</p>
+
+    <table class="tabla-tema">
+      <thead><tr><th>Regla general</th><th>Excepciones (silencio NEGATIVO)</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Silencio POSITIVO</strong><br>(estimación por silencio)</td>
+          <td>
+            <ul class="lista-normal" style="margin:4px 0 0 14px; font-size:13px;">
+              <li>Cuando una norma con rango de Ley establezca lo contrario.</li>
+              <li>Derecho de petición (art. 29 CE).</li>
+              <li>Si la estimación transfiriera al solicitante o a terceros <strong>facultades sobre dominio público o servicio público</strong>.</li>
+              <li>Actividades que puedan <strong>dañar el medio ambiente</strong>.</li>
+              <li>Procedimientos de <strong>responsabilidad patrimonial</strong>.</li>
+              <li>Procedimientos de <strong>impugnación de actos y disposiciones</strong>.</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="trampa-examen">
+      <span class="box-titulo">🚨 Trampas sobre el silencio administrativo</span>
+      <ul class="lista-normal" style="margin-top:6px;">
+        <li>La estimación por silencio tiene a todos los efectos la consideración de <strong>acto administrativo finalizador</strong> del procedimiento.</li>
+        <li>La desestimación por silencio tiene solo el efecto de <strong>permitir interponer el recurso</strong> que proceda.</li>
+        <li>Si hay silencio positivo, la resolución expresa posterior <strong>solo puede ser confirmatoria</strong> del acto presunto.</li>
+        <li>Si hay silencio negativo, la resolución expresa posterior no está vinculada al sentido del silencio.</li>
+        <li>En procedimientos iniciados de <strong>oficio</strong> con potestades sancionadoras o de intervención: el vencimiento del plazo produce la <strong>caducidad</strong>.</li>
+      </ul>
+    </div>
+
+    <h3 class="subepigrafe">Notificación (arts. 40–44)</h3>
+
+    <p>Los actos administrativos que afecten a derechos e intereses de los interesados deben ser <strong>notificados</strong>. La notificación debe contener: texto íntegro del acto, indicación de si es o no definitivo en vía administrativa, recursos que procedan, órgano ante el que han de interponerse y plazo.</p>
+
+    <div class="esquema">
+      <div class="esq-titulo">Medios de notificación (orden de preferencia)</div>
+      <div class="esquema-fila">
+        <span class="esq-key">1.º Notificación electrónica</span>
+        <span class="esq-val">Es preferente para los obligados a relacionarse electrónicamente. Se practica mediante <strong>comparecencia en sede electrónica</strong> o mediante <strong>Dirección Electrónica Habilitada única (DEHú)</strong>.</span>
+      </div>
+      <div class="esquema-fila">
+        <span class="esq-key">2.º Notificación en papel</span>
+        <span class="esq-val">Para quienes no estén obligados a relacionarse electrónicamente o lo hayan solicitado expresamente. Se practica en el <strong>lugar señalado por el interesado</strong> o, en su defecto, en cualquier lugar adecuado.</span>
+      </div>
+    </div>
+
+    <div class="nota-importante">
+      <span class="box-titulo">⚠ Notificación sin éxito: publicación en BOE</span>
+      Cuando la notificación por los medios anteriores resulte imposible (interesado en paradero desconocido, rehúsa recibirla o hay dos intentos fallidos), se practicará mediante <strong>publicación en el Boletín Oficial del Estado</strong> (tablón edictal único). En los dos intentos fallidos de notificación en papel, deben realizarse en hora distinta y, si es posible, en días distintos.
+    </div>
+
+    <div class="resumen-parcial">
+      <span class="box-titulo">✅ Resumen epígrafe 4</span>
+      Registro: electrónico, 24h/365 días. Presentación: registro electrónico / Correos / consulados / oficinas asistencia. Plazos: días hábiles por defecto; si último inhábil → primer hábil siguiente; ampliación máx. mitad; urgencia → mitad. Obligación de resolver: plazo general máx. 6 meses; supletorio 3 meses. Silencio: positivo (regla general iniciados a solicitud) / negativo (excepciones). Notificación: preferente electrónica; si falla → BOE.
+    </div>
+  </div>
+
+  <!-- ═══ SECCIÓN 5 ═══ -->
+  <div class="seccion" id="s5">
+    <h2 class="epigrafe">5. Los actos administrativos: requisitos, eficacia y validez</h2>
+
+    <h3 class="subepigrafe">Requisitos de los actos administrativos (arts. 34–37)</h3>
+
+    <p>Los actos administrativos deben cumplir los siguientes requisitos:</p>
+    <ul class="lista-normal">
+      <li><strong>Producirse por el órgano competente</strong> mediante el procedimiento establecido.</li>
+      <li><strong>Motivación</strong> (art. 35): obligatoria en determinados supuestos (actos que limiten derechos, deniegan, separan del criterio general, resuelven recursos, se separen de dictámenes preceptivos, afecten a derechos fundamentales...).</li>
+      <li><strong>Forma</strong>: por escrito a través de medios electrónicos, salvo que su naturaleza exija otra forma.</li>
+    </ul>
+
+    <div class="clave-examen">
+      <span class="box-titulo">📌 Actos que deben motivarse (art. 35) — los más importantes</span>
+      <ul class="lista-normal" style="margin-top:4px;">
+        <li>Los que limiten derechos subjetivos o intereses legítimos.</li>
+        <li>Los que resuelvan procedimientos de revisión de oficio, recursos, reclamaciones y procedimientos de arbitraje.</li>
+        <li>Los que se separen del criterio seguido en actuaciones precedentes o del dictamen de órganos consultivos.</li>
+        <li>Los acuerdos de suspensión de actos y los adoptados en procedimientos sancionadores.</li>
+        <li>Los dictados en el ejercicio de potestades discrecionales, así como los que deban serlo en virtud de disposición legal o reglamentaria expresa.</li>
+      </ul>
+    </div>
+
+    <h3 class="subepigrafe">Eficacia de los actos (arts. 38–40)</h3>
+
+    <p>Los actos de las Administraciones Públicas sujetos al Derecho Administrativo se presumen válidos y producen efectos desde la fecha en que se dicten, salvo que en ellos se disponga otra cosa.</p>
+
+    <p>La eficacia queda <strong>demorada</strong> cuando:</p>
+    <ul class="lista-normal">
+      <li>Lo exija el contenido del acto o esté supeditada a su notificación, publicación o aprobación superior.</li>
+      <li>Se dicten <strong>a instancia del interesado</strong> con eficacia retroactiva, cuando se dicten en sustitución de actos anulados o produzcan efectos favorables, siempre que no lesione derechos de terceros.</li>
+    </ul>
+
+    <h3 class="subepigrafe">Nulidad de pleno derecho (art. 47)</h3>
+
+    <p>Son <strong>nulos de pleno derecho</strong> los actos de las Administraciones Públicas en los casos siguientes:</p>
+    <ol class="lista-normal" type="a">
+      <li>Los que <strong>lesionen los derechos y libertades susceptibles de amparo constitucional</strong>.</li>
+      <li>Los dictados por <strong>órgano manifiestamente incompetente</strong> por razón de la materia o del territorio.</li>
+      <li>Los que tengan <strong>contenido imposible</strong>.</li>
+      <li>Los que sean <strong>constitutivos de infracción penal</strong> o se dicten como consecuencia de ésta.</li>
+      <li>Los dictados <strong>prescindiendo total y absolutamente del procedimiento legalmente establecido</strong> o de las normas que contienen las reglas esenciales para la formación de la voluntad de los órganos colegiados.</li>
+      <li>Los actos <strong>expresos o implícitos contrarios al ordenamiento jurídico</strong> por los que se adquieren facultades o derechos cuando se carezca de los requisitos esenciales para su adquisición.</li>
+      <li>Cualquier otro que se establezca expresamente en una disposición de rango legal.</li>
+    </ol>
+
+    <div class="trampa-examen">
+      <span class="box-titulo">🚨 Trampa de examen: nulidad vs. anulabilidad</span>
+      <table class="tabla-tema" style="margin-top:8px; font-size:13px;">
+        <thead><tr><th>Aspecto</th><th>Nulidad de pleno derecho (art. 47)</th><th>Anulabilidad (art. 48)</th></tr></thead>
+        <tbody>
+          <tr><td>Gravedad</td><td>Vicios más graves</td><td>Cualquier infracción no constitutiva de nulidad</td></tr>
+          <tr><td>Efectos</td><td>El acto <strong>nunca fue válido</strong> (ex tunc)</td><td>El acto es válido hasta que se anula</td></tr>
+          <tr><td>Plazo para impugnar</td><td><strong>En cualquier momento</strong> (revisión de oficio)</td><td>Plazo de recurso o revisión</td></tr>
+          <tr><td>Convalidación</td><td class="no">NO es posible</td><td class="si">SÍ es posible</td></tr>
+          <tr><td>Subsanación</td><td class="no">NO</td><td class="si">SÍ (art. 52)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="subepigrafe">Anulabilidad (art. 48)</h3>
+
+    <p>Son <strong>anulables</strong> los actos de las Administraciones Públicas que incurran en cualquier infracción del ordenamiento jurídico, incluso la desviación de poder.</p>
+
+    <p>No obstante, el defecto de forma solo determinará la anulabilidad cuando el acto carezca de los requisitos formales indispensables para alcanzar su fin o dé lugar a la indefensión de los interesados. Las actuaciones administrativas realizadas fuera del tiempo establecido solo implicarán la anulabilidad cuando así lo imponga la naturaleza del término o plazo.</p>
+
+    <h3 class="subepigrafe">Convalidación (art. 52)</h3>
+    <p>La Administración podrá convalidar los actos <strong>anulables</strong> (no los nulos), subsanando los vicios de que adolezcan. El acto de convalidación producirá efecto desde su fecha, salvo lo dispuesto en materia de retroactividad.</p>
+
+    <div class="resumen-parcial">
+      <span class="box-titulo">✅ Resumen epígrafe 5</span>
+      Requisitos acto: competencia, procedimiento, motivación (cuando proceda), forma escrita/electrónica. Eficacia: desde que se dictan, salvo que se demore. Nulidad de pleno derecho (art. 47): 7 supuestos tasados, impugnable en cualquier momento, no convalidable. Anulabilidad (art. 48): cualquier otra infracción, convalidable, subsanable.
+    </div>
+  </div>
+
+  <!-- ═══ SECCIÓN 6 ═══ -->
+  <div class="seccion" id="s6">
+    <h2 class="epigrafe">6. El procedimiento administrativo común: iniciación</h2>
+
+    <h3 class="subepigrafe">Formas de iniciación (art. 54)</h3>
+
+    <table class="tabla-tema">
+      <thead><tr><th>Forma</th><th>Descripción</th><th>Ejemplos</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="col-clave">De oficio</td>
+          <td>La propia Administración lo inicia por acuerdo del órgano competente.</td>
+          <td>Procedimientos sancionadores, inspecciones, expropiaciones.</td>
+        </tr>
+        <tr>
+          <td class="col-clave">A solicitud del interesado</td>
+          <td>El ciudadano presenta una solicitud ante la Administración.</td>
+          <td>Autorizaciones, licencias, subvenciones, recursos.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="subepigrafe">Iniciación de oficio (art. 59)</h3>
+
+    <p>Los procedimientos de oficio pueden iniciarse por:</p>
+    <ul class="lista-normal">
+      <li><strong>Propia iniciativa</strong> del órgano competente.</li>
+      <li>Orden superior.</li>
+      <li><strong>Petición razonada</strong> de otros órganos.</li>
+      <li><strong>Denuncia</strong> de un ciudadano o de otro órgano.</li>
+    </ul>
+
+    <div class="nota-importante">
+      <span class="box-titulo">⚠ La denuncia NO convierte al denunciante en interesado</span>
+      Quien presenta una denuncia no adquiere por ese solo hecho la condición de interesado en el procedimiento. Solo si el denunciante acredita tener un interés legítimo puede ser parte en el procedimiento.
+    </div>
+
+    <h3 class="subepigrafe">Iniciación a solicitud del interesado (arts. 66–68)</h3>
+
+    <p>Las solicitudes deben contener (art. 66):</p>
+    <ol class="lista-normal" type="a">
+      <li>Nombre y apellidos del interesado y representante si lo hubiera.</li>
+      <li>Identificación del medio electrónico o lugar para notificaciones.</li>
+      <li>Hechos, razones y petición en que se concrete la solicitud.</li>
+      <li>Lugar y fecha.</li>
+      <li>Firma del solicitante o acreditación de la autenticidad de su voluntad.</li>
+      <li>Órgano, centro o unidad administrativa al que se dirige.</li>
+    </ol>
+
+    <div class="articulo">
+      <div class="art-titulo">Subsanación y mejora de solicitudes (art. 68)</div>
+      <p>Si la solicitud no reúne los requisitos exigidos, el órgano competente requerirá al interesado para que subsane la falta o acompañe los documentos preceptivos en el plazo de <strong>10 días</strong>, con indicación de que, si no lo hace, se le tendrá por <strong>desistido</strong> de su petición, previa resolución.</p>
+    </div>
+
+    <div class="trampa-examen">
+      <span class="box-titulo">🚨 Trampa de examen: desistimiento vs. renuncia</span>
+      <ul class="lista-normal" style="margin-top:6px;">
+        <li><strong>Desistimiento</strong> (art. 94): el interesado abandona el procedimiento pero conserva el derecho para ejercitarlo de nuevo.</li>
+        <li><strong>Renuncia</strong> (art. 94): el interesado abandona el derecho en sí mismo, que queda extinguido.</li>
+        <li>El desistimiento y la renuncia se pueden hacer en cualquier momento antes de que se dicte la resolución.</li>
+        <li>La Administración aceptará de plano el desistimiento o renuncia salvo que existan terceros interesados o el interés público lo impida.</li>
+      </ul>
+    </div>
+
+    <h3 class="subepigrafe">Medidas provisionales (art. 56)</h3>
+
+    <p>Iniciado el procedimiento, el órgano competente puede adoptar <strong>medidas provisionales</strong> para asegurar la eficacia de la resolución que pudiera recaer, si hay elementos de juicio suficientes para ello. También pueden adoptarse <strong>antes de la iniciación</strong>, en caso de urgencia, pero quedan sin efecto si no se inicia el procedimiento en 15 días.</p>
+
+    <div class="resumen-parcial">
+      <span class="box-titulo">✅ Resumen epígrafe 6</span>
+      Iniciación: de oficio (propia iniciativa, orden superior, petición razonada, denuncia) o a solicitud del interesado. Solicitud: 6 elementos mínimos. Subsanación: 10 días o se tiene por desistido. Desistimiento = abandono del procedimiento (conserva el derecho). Renuncia = abandono del derecho. Medidas provisionales: desde la iniciación (excepcionalmente antes, con límite de 15 días).
+    </div>
+  </div>
+
+  <!-- ═══ SECCIÓN 7 ═══ -->
+  <div class="seccion" id="s7">
+    <h2 class="epigrafe">7. Ordenación e instrucción del procedimiento</h2>
+
+    <h3 class="subepigrafe">Ordenación del procedimiento (arts. 71–79)</h3>
+
+    <p>Los procedimientos se tramitan y resolverán con el <strong>impulso de oficio</strong> en todos sus trámites. Los expedientes tienen un orden de incoación riguroso y deben despacharse salvo que el órgano instructor ordene razonadamente la alteración del orden por exigirlo el interés general o la instrucción del procedimiento.</p>
+
+    <div class="nota-importante">
+      <span class="box-titulo">⚠ Expediente administrativo (art. 70)</span>
+      El expediente administrativo es el <strong>conjunto ordenado de documentos y actuaciones</strong> que sirven de antecedente y fundamento a la resolución, así como las diligencias encaminadas a ejecutarla. Se forma a través de la <strong>sede electrónica</strong> del órgano competente y se integra por documentos electrónicos.
+    </div>
+
+    <h3 class="subepigrafe">Instrucción del procedimiento (arts. 75–83)</h3>
+
+    <p>La instrucción comprende los actos necesarios para la determinación, conocimiento y comprobación de los datos en virtud de los cuales deba pronunciarse la resolución. Los actos de instrucción principales son:</p>
+
+    <div class="timeline">
+      <div class="timeline-fase">
+        <div class="fase-numero">1</div>
+        <div class="fase-contenido">
+          <div class="fase-titulo">Alegaciones (art. 76)</div>
+          <div class="fase-desc">Los interesados pueden aducir alegaciones y aportar documentos <strong>en cualquier momento</strong> antes del trámite de audiencia, que deben ser tenidos en cuenta por el órgano instructor.</div>
+        </div>
+      </div>
+      <div class="timeline-fase">
+        <div class="fase-numero">2</div>
+        <div class="fase-contenido">
+          <div class="fase-titulo">Prueba (art. 77)</div>
+          <div class="fase-desc">Cuando la Administración no tenga por ciertos los hechos alegados, o la naturaleza del procedimiento lo exija, el instructor acordará la apertura de un período de prueba de <strong>10 a 30 días</strong>. El instructor puede rechazar motivadamente las pruebas propuestas que sean improcedentes.</div>
+        </div>
+      </div>
+      <div class="timeline-fase">
+        <div class="fase-numero">3</div>
+        <div class="fase-contenido">
+          <div class="fase-titulo">Informes (art. 79–80)</div>
+          <div class="fase-desc">Pueden ser <strong>preceptivos</strong> (exigidos por ley) o <strong>facultativos</strong>. Son <strong>vinculantes</strong> o <strong>no vinculantes</strong>. El plazo para emitir informes es de <strong>10 días</strong> salvo que se fije otro. Si no se emiten en plazo, se pueden proseguir las actuaciones salvo que sean preceptivos y determinantes; en ese caso puede interrumpirse el plazo de resolución.</div>
+        </div>
+      </div>
+      <div class="timeline-fase">
+        <div class="fase-numero">4</div>
+        <div class="fase-contenido">
+          <div class="fase-titulo">Trámite de audiencia (art. 82)</div>
+          <div class="fase-desc">Instruidos los procedimientos, e inmediatamente antes de redactar la propuesta de resolución, se pondrá de manifiesto a los interesados para que puedan alegar y presentar documentos en el plazo de <strong>10 a 15 días</strong>. Puede omitirse si no hay hechos ni otras alegaciones que los del propio interesado.</div>
+        </div>
+      </div>
+      <div class="timeline-fase">
+        <div class="fase-numero">5</div>
+        <div class="fase-contenido">
+          <div class="fase-titulo">Información pública (art. 83)</div>
+          <div class="fase-desc">Cuando la naturaleza del procedimiento lo requiera, puede acordarse un período de <strong>información pública</strong> anunciado en el BOE, Diario Oficial de la CC.AA. o en el de la provincia. Mínimo <strong>20 días</strong>. La comparecencia no otorga por sí sola la condición de interesado.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trampa-examen">
+      <span class="box-titulo">🚨 Trampas sobre la instrucción</span>
+      <ul class="lista-normal" style="margin-top:6px;">
+        <li>El trámite de audiencia se realiza <strong>antes de la propuesta de resolución</strong>, no antes de la resolución definitiva.</li>
+        <li>La comparecencia en el trámite de información pública <strong>NO otorga por sí sola</strong> la condición de interesado.</li>
+        <li>El plazo de prueba es de <strong>10 a 30 días</strong> (mínimo y máximo).</li>
+        <li>El plazo de audiencia es de <strong>10 a 15 días</strong>.</li>
+        <li>Los informes preceptivos: plazo de <strong>10 días</strong> (salvo que norma fije otro).</li>
+      </ul>
+    </div>
+
+    <div class="resumen-parcial">
+      <span class="box-titulo">✅ Resumen epígrafe 7</span>
+      Impulso de oficio. Instrucción: alegaciones (cualquier momento antes de audiencia) → prueba (10-30 días) → informes (10 días; preceptivos/facultativos, vinculantes/no vinculantes) → audiencia (10-15 días, antes de la propuesta) → información pública (mín. 20 días, no da condición de interesado).
+    </div>
+  </div>
+
+  <!-- ═══ SECCIÓN 8 ═══ -->
+  <div class="seccion" id="s8">
+    <h2 class="epigrafe">8. Terminación del procedimiento</h2>
+
+    <h3 class="subepigrafe">Formas de terminación (art. 84)</h3>
+
+    <p>El procedimiento puede terminar de las siguientes formas:</p>
+
+    <table class="tabla-tema">
+      <thead><tr><th>Forma de terminación</th><th>Descripción</th></tr></thead>
+      <tbody>
+        <tr><td class="col-clave">Resolución</td><td>Forma normal. El órgano competente decide sobre el fondo del asunto.</td></tr>
+        <tr><td class="col-clave">Desistimiento</td><td>El interesado abandona el procedimiento. El derecho se conserva.</td></tr>
+        <tr><td class="col-clave">Renuncia al derecho</td><td>El interesado renuncia al derecho. El derecho se extingue.</td></tr>
+        <tr><td class="col-clave">Declaración de caducidad</td><td>Cuando el procedimiento se paraliza por causa imputable al interesado más de 3 meses. Se le advierte que se producirá la caducidad si no actúa en 10 días.</td></tr>
+        <tr><td class="col-clave">Imposibilidad material sobrevenida</td><td>El objeto del procedimiento desaparece.</td></tr>
+        <tr><td class="col-clave">Terminación convencional</td><td>Mediante acuerdos, pactos, convenios o contratos con los interesados (art. 86).</td></tr>
+      </tbody>
+    </table>
+
+    <div class="trampa-examen">
+      <span class="box-titulo">🚨 Caducidad del procedimiento (art. 95)</span>
+      La caducidad se produce cuando el procedimiento se paraliza por causa imputable al interesado durante <strong>más de 3 meses</strong>. La Administración debe advertirle que, si no actúa en el plazo de <strong>10 días</strong>, declarará la caducidad. La caducidad <strong>no produce por sí sola la prescripción</strong> de las acciones del particular o de la Administración, pero los procedimientos caducados no interrumpen la prescripción.
+    </div>
+
+    <h3 class="subepigrafe">La resolución (arts. 88–89)</h3>
+
+    <p>La resolución decide todas las cuestiones planteadas por los interesados y aquellas que se deriven del procedimiento. Debe ser:</p>
+    <ul class="lista-normal">
+      <li><strong>Congruente</strong> con las peticiones formuladas, sin que pueda agravarse la situación inicial del interesado.</li>
+      <li><strong>Motivada</strong> cuando así lo exija el art. 35.</li>
+      <li>Expresar los <strong>recursos</strong> que procedan, el órgano ante el que interponerse y el plazo.</li>
+    </ul>
+
+    <div class="clave-examen">
+      <span class="box-titulo">📌 Prohibición de reformatio in peius</span>
+      En los procedimientos tramitados a solicitud del interesado, la resolución <strong>no puede agravar o perjudicar</strong> la situación inicial del solicitante. Esto se conoce como la prohibición de <em>reformatio in peius</em> (reforma peyorativa).
+    </div>
+
+    <h3 class="subepigrafe">Ejecutividad y suspensión de actos (arts. 97–105)</h3>
+    <ul class="lista-normal">
+      <li>Los actos de las Administraciones Públicas <strong>son inmediatamente ejecutivos</strong> salvo que se adopte la suspensión, se requiera aprobación superior o autorización de otro órgano, o se trate de una resolución de un recurso.</li>
+      <li>Las Administraciones Públicas no iniciarán ninguna actuación material de ejecución de resoluciones que limiten derechos individuales sin que el acto haya sido <strong>notificado previamente</strong>.</li>
+    </ul>
+
+    <div class="resumen-parcial">
+      <span class="box-titulo">✅ Resumen epígrafe 8</span>
+      Terminación: resolución / desistimiento (conserva derecho) / renuncia (extingue derecho) / caducidad (parálisis &gt;3 meses, advertencia 10 días) / imposibilidad sobrevenida / terminación convencional. Resolución: congruente, motivada si procede, expresar recursos, sin reformatio in peius. Actos: inmediatamente ejecutivos, previa notificación.
+    </div>
+  </div>
+
+  <!-- ═══ SECCIÓN 9 ═══ -->
+  <div class="seccion" id="s9">
+    <h2 class="epigrafe">9. Recursos administrativos</h2>
+
+    <h3 class="subepigrafe">Principios generales (art. 112)</h3>
+
+    <p>Contra las resoluciones y los actos de trámite (solo cuando decidan el fondo, determinen la imposibilidad de continuar el procedimiento, produzcan indefensión o perjuicio irreparable) pueden interponerse los recursos de <strong>alzada</strong> y <strong>reposición</strong>.</p>
+
+    <div class="clave-examen">
+      <span class="box-titulo">📌 Regla fundamental sobre recursos</span>
+      Contra las disposiciones administrativas de <strong>carácter general</strong> (reglamentos) <strong>no cabe recurso en vía administrativa</strong>. Solo pueden impugnarse los actos de aplicación de esas disposiciones.
+    </div>
+
+    <h3 class="subepigrafe">El Recurso de Alzada (arts. 121–122)</h3>
+
+    <div class="esquema">
+      <div class="esq-titulo">Recurso de Alzada — elementos clave</div>
+      <div class="esquema-fila">
+        <span class="esq-key">Objeto</span>
+        <span class="esq-val">Actos y resoluciones que <strong>no pongan fin a la vía administrativa</strong>.</span>
+      </div>
+      <div class="esquema-fila">
+        <span class="esq-key">Órgano competente</span>
+        <span class="esq-val"><strong>Órgano superior jerárquico</strong> del que dictó el acto.</span>
+      </div>
+      <div class="esquema-fila">
+        <span class="esq-key">Plazo de interposición</span>
+        <span class="esq-val"><strong>1 mes</strong> si el acto es expreso. Si es presunto (silencio negativo): <strong>en cualquier momento</strong> a partir del día siguiente a aquel en que se produzcan los efectos del silencio.</span>
+      </div>
+      <div class="esquema-fila">
+        <span class="esq-key">Plazo para resolver</span>
+        <span class="esq-val"><strong>3 meses</strong>. Si transcurre sin resolución → se entiende <strong>desestimado</strong> (silencio negativo).</span>
+      </div>
+      <div class="esquema-fila">
+        <span class="esq-key">Presentación</span>
+        <span class="esq-val">Ante el órgano que dictó el acto O ante el competente para resolverlo.</span>
+      </div>
+      <div class="esquema-fila">
+        <span class="esq-key">Efecto</span>
+        <span class="esq-val">Su resolución pone <strong>fin a la vía administrativa</strong>.</span>
+      </div>
+    </div>
+
+    <h3 class="subepigrafe">El Recurso Potestativo de Reposición (arts. 123–124)</h3>
+
+    <div class="esquema">
+      <div class="esq-titulo">Recurso de Reposición — elementos clave</div>
+      <div class="esquema-fila">
+        <span class="esq-key">Objeto</span>
+        <span class="esq-val">Actos que pongan <strong>fin a la vía administrativa</strong>.</span>
+      </div>
+      <div class="esquema-fila">
+        <span class="esq-key">Carácter</span>
+        <span class="esq-val"><strong>Potestativo</strong>: el interesado puede optar por interponerlo o ir directamente al contencioso-administrativo.</span>
+      </div>
+      <div class="esquema-fila">
+        <span class="esq-key">Órgano competente</span>
+        <span class="esq-val"><strong>El mismo órgano que dictó el acto</strong>.</span>
+      </div>
+      <div class="esquema-fila">
+        <span class="esq-key">Plazo de interposición</span>
+        <span class="esq-val"><strong>1 mes</strong> si el acto es expreso. Si es presunto: en cualquier momento.</span>
+      </div>
+      <div class="esquema-fila">
+        <span class="esq-key">Plazo para resolver</span>
+        <span class="esq-val"><strong>1 mes</strong>. Si no se resuelve en plazo → silencio <strong>negativo</strong>.</span>
+      </div>
+      <div class="esquema-fila">
+        <span class="esq-key">Importante</span>
+        <span class="esq-val">No puede interponerse recurso contencioso-administrativo hasta que sea resuelto o desestimado presuntamente el recurso de reposición <strong>interpuesto</strong>. Contra la resolución del recurso de reposición <strong>no puede interponerse de nuevo</strong> este recurso.</span>
+      </div>
+    </div>
+
+    <h3 class="subepigrafe">El Recurso Extraordinario de Revisión (arts. 125–126)</h3>
+
+    <div class="esquema">
+      <div class="esq-titulo">Recurso Extraordinario de Revisión — elementos clave</div>
+      <div class="esquema-fila">
+        <span class="esq-key">Objeto</span>
+        <span class="esq-val">Actos <strong>firmes en vía administrativa</strong>, solo en causas tasadas.</span>
+      </div>
+      <div class="esquema-fila">
+        <span class="esq-key">Órgano competente</span>
+        <span class="esq-val">El <strong>mismo órgano que dictó el acto</strong>.</span>
+      </div>
+      <div class="esquema-fila">
+        <span class="esq-key">Causas (art. 125.1)</span>
+        <span class="esq-val">a) Error de hecho que resulte de documentos del expediente; b) Aparición de documentos esenciales posteriores que evidencian el error; c) Documentos o testimonios declarados falsos por sentencia judicial firme; d) Resolución dictada por prevaricación, cohecho, violencia u otra conducta punible declarada en sentencia firme.</span>
+      </div>
+      <div class="esquema-fila">
+        <span class="esq-key">Plazo</span>
+        <span class="esq-val">Causa a): <strong>4 años</strong> desde la notificación. Causas b), c), d): <strong>3 meses</strong> desde que se conocieron los documentos o quedó firme la sentencia.</span>
+      </div>
+      <div class="esquema-fila">
+        <span class="esq-key">Resolución</span>
+        <span class="esq-val">Plazo de <strong>3 meses</strong>. Si no se resuelve → se entiende <strong>desestimado</strong>.</span>
+      </div>
+    </div>
+
+    <h3 class="subepigrafe">Fin de la vía administrativa (art. 114)</h3>
+
+    <p>Ponen fin a la vía administrativa:</p>
+    <ol class="lista-normal" type="a">
+      <li>Las resoluciones de los recursos de <strong>alzada</strong>.</li>
+      <li>Las resoluciones de procedimientos alternativos al recurso de alzada (art. 112.2).</li>
+      <li>Las resoluciones de órganos que <strong>carezcan de superior jerárquico</strong>, salvo que una Ley establezca lo contrario.</li>
+      <li>Los acuerdos, pactos, convenios o contratos finalizadores del procedimiento.</li>
+      <li>La resolución administrativa de los procedimientos de responsabilidad patrimonial.</li>
+      <li>En el ámbito estatal además: los actos de <strong>miembros y órganos del Gobierno</strong>, los de Ministros y Secretarios de Estado en ejercicio de sus competencias, los de órganos directivos con nivel de Director General o superior en materia de personal, y los de los máximos órganos directivos de Organismos públicos.</li>
+    </ol>
+
+    <h3 class="subepigrafe">Tabla comparativa de los tres recursos</h3>
+
+    <table class="tabla-tema">
+      <thead>
+        <tr>
+          <th>Característica</th>
+          <th>Alzada</th>
+          <th>Reposición</th>
+          <th>Revisión extraordinaria</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="col-clave">Actos recurribles</td><td>No ponen fin a vía adm.</td><td>Ponen fin a vía adm.</td><td>Firmes en vía adm.</td></tr>
+        <tr><td class="col-clave">Carácter</td><td>Obligatorio</td><td>Potestativo</td><td>Extraordinario</td></tr>
+        <tr><td class="col-clave">Órgano que resuelve</td><td>Superior jerárquico</td><td>El mismo que dictó el acto</td><td>El mismo que dictó el acto</td></tr>
+        <tr><td class="col-clave">Plazo interposición</td><td>1 mes (expreso)</td><td>1 mes (expreso)</td><td>4 años (causa a) / 3 meses (resto)</td></tr>
+        <tr><td class="col-clave">Plazo para resolver</td><td>3 meses</td><td>1 mes</td><td>3 meses</td></tr>
+        <tr><td class="col-clave">Silencio</td><td>Negativo (desestimado)</td><td>Negativo</td><td>Negativo (desestimado)</td></tr>
+        <tr><td class="col-clave">Efecto de la resolución</td><td>Pone fin a vía adm.</td><td>—</td><td>—</td></tr>
+      </tbody>
+    </table>
+
+    <div class="trampa-examen">
+      <span class="box-titulo">🚨 Trampas frecuentes sobre recursos</span>
+      <ul class="lista-normal" style="margin-top:6px;">
+        <li>Alzada: plazo de interposición <strong>1 mes</strong>, plazo para resolver <strong>3 meses</strong>.</li>
+        <li>Reposición: tanto el plazo de interposición como el de resolución son <strong>1 mes</strong>.</li>
+        <li>Contra la resolución de un recurso de alzada <strong>no cabe ningún otro recurso administrativo</strong> (salvo el extraordinario de revisión si procede). Solo cabe acudir al contencioso-administrativo.</li>
+        <li>El recurso de reposición es <strong>potestativo</strong>: si el interesado no lo interpone, puede ir directamente al contencioso. Pero si lo interpone, <strong>debe esperar su resolución</strong> antes de acudir al contencioso.</li>
+        <li>El recurso extraordinario de revisión requiere causas <strong>tasadas</strong>: no basta con invocar cualquier ilegalidad.</li>
+        <li>La interposición de cualquier recurso, por regla general, <strong>NO suspende la ejecución</strong> del acto impugnado.</li>
+      </ul>
+    </div>
+
+    <div class="resumen-parcial">
+      <span class="box-titulo">✅ Resumen epígrafe 9</span>
+      Alzada: no pone fin vía adm. → superior jerárquico → 1 mes → resuelve en 3 meses → pone fin vía adm. Reposición: pone fin vía adm. → mismo órgano → 1 mes → resuelve en 1 mes → potestativo → si se interpone, hay que esperar. Revisión extraordinaria: actos firmes → mismo órgano → causas tasadas → 4 años (error de hecho) / 3 meses (resto) → resuelve en 3 meses. La interposición de recursos NO suspende la ejecución.
+    </div>
+  </div>
+
+  <!-- ═══ SECCIÓN 10: RESUMEN + TEST ═══ -->
+  <div class="seccion" id="s10-ley39">
+
+    <div class="resumen-global">
+      <h2>🏁 Resumen global del Tema 10B — Ley 39/2015</h2>
+      <ul>
+        <li><strong>Ley 39/2015 vs. Ley 40/2015:</strong> La 39 regula el procedimiento y la relación con el ciudadano; la 40, la organización interna. Solo por Ley (no reglamento) pueden añadirse trámites adicionales distintos.</li>
+        <li><strong>Derechos generales (art. 13):</strong> 9 derechos. Los específicos del interesado (art. 53) incluyen conocer el estado del procedimiento, no repetir documentos ya aportados, actuar asistido de asesor.</li>
+        <li><strong>Obligación electrónica:</strong> Personas jurídicas, entidades sin personalidad, profesionales colegiados, empleados públicos y representantes de obligados → siempre electrónico. Personas físicas → libre elección salvo norma.</li>
+        <li><strong>Interesado:</strong> quien promueve + afectados + personados antes de resolución definitiva. Denuncia no convierte en interesado.</li>
+        <li><strong>Representación:</strong> acreditación para actos sustantivos; presunción para trámites. Falta de acreditación: 10 días para subsanar.</li>
+        <li><strong>Registro electrónico:</strong> 24h/365 días. Presentación día inhábil = primera hora día hábil siguiente.</li>
+        <li><strong>Plazos:</strong> días hábiles por defecto. Último día inhábil → primer hábil siguiente. Ampliación: mitad del plazo máximo. Urgencia: reduce a la mitad (salvo solicitudes y recursos).</li>
+        <li><strong>Obligación de resolver:</strong> Plazo general máx. 6 meses; supletorio 3 meses. Procedimientos a solicitud: desde entrada en registro. De oficio: desde acuerdo de iniciación.</li>
+        <li><strong>Silencio administrativo:</strong> Positivo (regla general, solicitud del interesado). Negativo: dominio público, medio ambiente, responsabilidad patrimonial, impugnación de actos, y cuando ley lo establezca. Actos de oficio con potestades sancionadoras: caducidad.</li>
+        <li><strong>Nulidad de pleno derecho (art. 47):</strong> 7 supuestos, en cualquier momento, no convalidable. Anulabilidad (art. 48): resto de infracciones, convalidable.</li>
+        <li><strong>Instrucción:</strong> alegaciones (en cualquier momento antes de audiencia) → prueba (10-30 días) → informes (10 días) → audiencia (10-15 días, ANTES de la propuesta) → información pública (mín. 20 días).</li>
+        <li><strong>Terminación:</strong> resolución / desistimiento / renuncia / caducidad (&gt;3 meses, advertencia 10 días) / imposibilidad sobrevenida / terminación convencional.</li>
+        <li><strong>Alzada:</strong> 1 mes para interponer / 3 meses para resolver / silencio negativo / pone fin a vía adm.</li>
+        <li><strong>Reposición:</strong> potestativa / 1 mes para interponer / 1 mes para resolver / silencio negativo.</li>
+        <li><strong>Revisión extraordinaria:</strong> actos firmes / causas tasadas / 4 años (error hecho) o 3 meses (resto) / 3 meses para resolver.</li>
+        <li><strong>Interposición de recursos:</strong> NO suspende la ejecución del acto (regla general).</li>
+      </ul>
+    </div>
+
+    <div class="test-section">
+      <h2>📝 Preguntas tipo test — Tema 10B (Ley 39/2015)</h2>
+
+      <div class="pregunta">
+        <div class="num-pregunta">Pregunta 1</div>
+        <div class="enunciado">¿Qué diferencia principal existe entre la Ley 39/2015 y la Ley 40/2015?</div>
+        <ul class="opciones">
+          <li><span class="letra">A)</span> La Ley 39/2015 regula la organización interna de la Administración y la Ley 40/2015 el procedimiento.</li>
+          <li><span class="letra">B)</span> La Ley 39/2015 regula el procedimiento administrativo y la relación con el ciudadano; la Ley 40/2015, el régimen jurídico y organización del sector público.</li>
+          <li><span class="letra">C)</span> Ambas regulan lo mismo pero una se aplica a la AGE y la otra a las CC.AA.</li>
+          <li><span class="letra">D)</span> La Ley 39/2015 solo regula el procedimiento sancionador.</li>
+        </ul>
+        <span class="respuesta-correcta">✔ Respuesta correcta: B</span>
+      </div>
+
+      <div class="pregunta">
+        <div class="num-pregunta">Pregunta 2</div>
+        <div class="enunciado">¿Quiénes están obligados a relacionarse electrónicamente con las Administraciones Públicas en todo caso?</div>
+        <ul class="opciones">
+          <li><span class="letra">A)</span> Todas las personas físicas mayores de 18 años.</li>
+          <li><span class="letra">B)</span> Las personas jurídicas, entidades sin personalidad jurídica y profesionales con colegiación obligatoria.</li>
+          <li><span class="letra">C)</span> Solo los funcionarios públicos.</li>
+          <li><span class="letra">D)</span> Solo quienes residan en núcleos urbanos con acceso a internet.</li>
+        </ul>
+        <span class="respuesta-correcta">✔ Respuesta correcta: B</span>
+      </div>
+
+      <div class="pregunta">
+        <div class="num-pregunta">Pregunta 3</div>
+        <div class="enunciado">El registro electrónico de cada Administración permite la presentación de documentos:</div>
+        <ul class="opciones">
+          <li><span class="letra">A)</span> Solo en días y horarios hábiles.</li>
+          <li><span class="letra">B)</span> Todos los días del año durante las 24 horas.</li>
+          <li><span class="letra">C)</span> De lunes a viernes de 9:00 a 14:00 horas.</li>
+          <li><span class="letra">D)</span> Todos los días del año, excepto los festivos nacionales.</li>
+        </ul>
+        <span class="respuesta-correcta">✔ Respuesta correcta: B</span>
+      </div>
+
+      <div class="pregunta">
+        <div class="num-pregunta">Pregunta 4</div>
+        <div class="enunciado">Cuando los plazos se señalan por días, ¿cómo se computan por defecto según la Ley 39/2015?</div>
+        <ul class="opciones">
+          <li><span class="letra">A)</span> En días naturales, incluyendo sábados, domingos y festivos.</li>
+          <li><span class="letra">B)</span> En días hábiles, excluyendo sábados, domingos y festivos.</li>
+          <li><span class="letra">C)</span> En días hábiles, excluyendo solo domingos y festivos.</li>
+          <li><span class="letra">D)</span> En días naturales salvo que la ley diga expresamente días hábiles.</li>
+        </ul>
+        <span class="respuesta-correcta">✔ Respuesta correcta: B</span>
+      </div>
+
+      <div class="pregunta">
+        <div class="num-pregunta">Pregunta 5</div>
+        <div class="enunciado">En un procedimiento iniciado a solicitud del interesado, si la Administración no notifica resolución expresa en plazo, la regla general es que opera el silencio:</div>
+        <ul class="opciones">
+          <li><span class="letra">A)</span> Negativo, pudiendo el interesado interponer recurso.</li>
+          <li><span class="letra">B)</span> Positivo, estimándose la solicitud, salvo en los casos previstos expresamente.</li>
+          <li><span class="letra">C)</span> Neutro, sin efecto alguno hasta que se dicte resolución expresa.</li>
+          <li><span class="letra">D)</span> Negativo siempre, con independencia de la materia.</li>
+        </ul>
+        <span class="respuesta-correcta">✔ Respuesta correcta: B</span>
+      </div>
+
+      <div class="pregunta">
+        <div class="num-pregunta">Pregunta 6</div>
+        <div class="enunciado">¿Cuál de los siguientes actos es nulo de pleno derecho conforme al artículo 47 de la Ley 39/2015?</div>
+        <ul class="opciones">
+          <li><span class="letra">A)</span> El dictado por órgano incompetente jerárquicamente.</li>
+          <li><span class="letra">B)</span> El que incurre en desviación de poder.</li>
+          <li><span class="letra">C)</span> El dictado por órgano manifiestamente incompetente por razón de la materia o del territorio.</li>
+          <li><span class="letra">D)</span> El que carece de motivación cuando esta es preceptiva.</li>
+        </ul>
+        <span class="respuesta-correcta">✔ Respuesta correcta: C</span>
+      </div>
+
+      <div class="pregunta">
+        <div class="num-pregunta">Pregunta 7</div>
+        <div class="enunciado">El trámite de audiencia en el procedimiento administrativo se realiza:</div>
+        <ul class="opciones">
+          <li><span class="letra">A)</span> Al inicio del procedimiento, antes de la instrucción.</li>
+          <li><span class="letra">B)</span> Después de dictar la resolución, para que el interesado pueda recurrirla.</li>
+          <li><span class="letra">C)</span> Inmediatamente antes de redactar la propuesta de resolución, con un plazo de 10 a 15 días.</li>
+          <li><span class="letra">D)</span> Simultáneamente al período de prueba, con una duración de 10 a 30 días.</li>
+        </ul>
+        <span class="respuesta-correcta">✔ Respuesta correcta: C</span>
+      </div>
+
+      <div class="pregunta">
+        <div class="num-pregunta">Pregunta 8</div>
+        <div class="enunciado">En materia de terminación del procedimiento, ¿cuál es la diferencia entre desistimiento y renuncia?</div>
+        <ul class="opciones">
+          <li><span class="letra">A)</span> No existe diferencia, ambos extinguen el derecho.</li>
+          <li><span class="letra">B)</span> En el desistimiento se conserva el derecho para ejercitarlo de nuevo; en la renuncia el derecho se extingue.</li>
+          <li><span class="letra">C)</span> En el desistimiento se extingue el derecho; en la renuncia se conserva.</li>
+          <li><span class="letra">D)</span> La renuncia la puede hacer solo la Administración; el desistimiento, solo el interesado.</li>
+        </ul>
+        <span class="respuesta-correcta">✔ Respuesta correcta: B</span>
+      </div>
+
+      <div class="pregunta">
+        <div class="num-pregunta">Pregunta 9</div>
+        <div class="enunciado">El recurso de alzada se interpone ante:</div>
+        <ul class="opciones">
+          <li><span class="letra">A)</span> El mismo órgano que dictó el acto recurrido, exclusivamente.</li>
+          <li><span class="letra">B)</span> El Tribunal Contencioso-Administrativo competente.</li>
+          <li><span class="letra">C)</span> El órgano que dictó el acto o ante el superior jerárquico competente para resolverlo.</li>
+          <li><span class="letra">D)</span> El superior jerárquico exclusivamente, sin posibilidad de presentarlo ante el órgano que dictó el acto.</li>
+        </ul>
+        <span class="respuesta-correcta">✔ Respuesta correcta: C</span>
+      </div>
+
+      <div class="pregunta">
+        <div class="num-pregunta">Pregunta 10</div>
+        <div class="enunciado">¿Cuál es el plazo máximo para que la Administración resuelva un recurso de reposición?</div>
+        <ul class="opciones">
+          <li><span class="letra">A)</span> Tres meses.</li>
+          <li><span class="letra">B)</span> Seis meses.</li>
+          <li><span class="letra">C)</span> Un mes.</li>
+          <li><span class="letra">D)</span> Dos meses.</li>
+        </ul>
+        <span class="respuesta-correcta">✔ Respuesta correcta: C</span>
+      </div>
+
+      <div class="pregunta">
+        <div class="num-pregunta">Pregunta 11</div>
+        <div class="enunciado">El recurso extraordinario de revisión puede interponerse contra:</div>
+        <ul class="opciones">
+          <li><span class="letra">A)</span> Cualquier acto administrativo en el plazo de un mes desde su notificación.</li>
+          <li><span class="letra">B)</span> Actos firmes en vía administrativa, solo cuando concurra alguna de las causas tasadas del artículo 125.1.</li>
+          <li><span class="letra">C)</span> Actos que no hayan puesto fin a la vía administrativa, por causas tasadas.</li>
+          <li><span class="letra">D)</span> Solo contra reglamentos y disposiciones de carácter general.</li>
+        </ul>
+        <span class="respuesta-correcta">✔ Respuesta correcta: B</span>
+      </div>
+
+      <div class="pregunta">
+        <div class="num-pregunta">Pregunta 12</div>
+        <div class="enunciado">Respecto a la interposición de recursos administrativos y la ejecución del acto impugnado, la regla general es:</div>
+        <ul class="opciones">
+          <li><span class="letra">A)</span> La interposición de cualquier recurso suspende automáticamente la ejecución del acto.</li>
+          <li><span class="letra">B)</span> La interposición de cualquier recurso no suspende la ejecución del acto impugnado.</li>
+          <li><span class="letra">C)</span> Solo el recurso de alzada suspende la ejecución del acto.</li>
+          <li><span class="letra">D)</span> La suspensión es automática si se solicita expresamente en el escrito de interposición del recurso.</li>
+        </ul>
+        <span class="respuesta-correcta">✔ Respuesta correcta: B</span>
+      </div>
+
+      <div class="pregunta">
+        <div class="num-pregunta">Pregunta 13</div>
+        <div class="enunciado">Si la solicitud de un interesado no reúne los requisitos exigidos, el órgano competente debe requerirle para que subsane en el plazo de:</div>
+        <ul class="opciones">
+          <li><span class="letra">A)</span> 5 días hábiles.</li>
+          <li><span class="letra">B)</span> 15 días hábiles.</li>
+          <li><span class="letra">C)</span> 10 días, con indicación de que si no lo hace se le tendrá por desistido.</li>
+          <li><span class="letra">D)</span> 20 días naturales.</li>
+        </ul>
+        <span class="respuesta-correcta">✔ Respuesta correcta: C</span>
+      </div>
+
+      <div class="pregunta">
+        <div class="num-pregunta">Pregunta 14</div>
+        <div class="enunciado">La caducidad del procedimiento por paralización imputable al interesado se produce cuando la paralización supera:</div>
+        <ul class="opciones">
+          <li><span class="letra">A)</span> Un mes, con advertencia previa de 5 días para actuar.</li>
+          <li><span class="letra">B)</span> Dos meses, con advertencia previa de 15 días para actuar.</li>
+          <li><span class="letra">C)</span> Tres meses, con advertencia previa de 10 días para actuar.</li>
+          <li><span class="letra">D)</span> Seis meses, sin necesidad de advertencia previa.</li>
+        </ul>
+        <span class="respuesta-correcta">✔ Respuesta correcta: C</span>
+      </div>
+
+      <div class="pregunta">
+        <div class="num-pregunta">Pregunta 15</div>
+        <div class="enunciado">¿Cuándo opera el silencio administrativo negativo en procedimientos iniciados a solicitud del interesado?</div>
+        <ul class="opciones">
+          <li><span class="letra">A)</span> Siempre que la Administración no resuelva en el plazo establecido.</li>
+          <li><span class="letra">B)</span> Nunca, el silencio siempre es positivo en procedimientos iniciados a solicitud.</li>
+          <li><span class="letra">C)</span> Entre otros supuestos, cuando se trate de actividades que puedan dañar el medio ambiente, cuando la estimación transfiera facultades sobre el dominio público, o en procedimientos de responsabilidad patrimonial.</li>
+          <li><span class="letra">D)</span> Solo cuando una norma reglamentaria así lo establezca.</li>
+        </ul>
+        <span class="respuesta-correcta">✔ Respuesta correcta: C</span>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- PARTE B: LEY 40/2015 — RÉGIMEN JURÍDICO DEL SECTOR PÚBLICO    -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+
+  <div class="bloque-divisor">
+    <span>🏛️ PARTE B · LEY 40/2015 — RÉGIMEN JURÍDICO DEL SECTOR PÚBLICO</span>
+  </div>
+
+  <div class="seccion" id="s10-ley40">
+    <h2 class="epigrafe">1. Ámbito de aplicación y concepto de Administración Pública</h2>
+
+    <h3 class="subepigrafe">Objeto de la Ley 40/2015</h3>
+
+    <p>La <strong>Ley 40/2015, de 1 de octubre, de Régimen Jurídico del Sector Público</strong> establece y regula tres grandes bloques:</p>
+    <ul class="lista-normal">
+      <li>Las <strong>bases del régimen jurídico</strong> de las Administraciones Públicas.</li>
+      <li>Los <strong>principios del sistema de responsabilidad</strong> de las Administraciones Públicas y de la potestad sancionadora.</li>
+      <li>La <strong>organización y funcionamiento</strong> de la Administración General del Estado y de su sector público institucional.</li>
+    </ul>
+
+    <h3 class="subepigrafe">El Sector Público y las Administraciones Públicas</h3>
+
+    <p>La Ley 40/2015 se aplica al <strong>sector público</strong>, que comprende cuatro tipos de entidades:</p>
+
+    <table class="tabla-tema">
+      <thead><tr><th>Entidad</th><th>¿Administración Pública?</th></tr></thead>
+      <tbody>
+        <tr><td>Administración General del Estado</td><td class="si">SÍ</td></tr>
+        <tr><td>Administraciones de las Comunidades Autónomas</td><td class="si">SÍ</td></tr>
+        <tr><td>Entidades que integran la Administración Local</td><td class="si">SÍ</td></tr>
+        <tr><td>Organismos públicos y entidades de derecho público (sector inst.)</td><td class="si">SÍ</td></tr>
+        <tr><td>Entidades de derecho <strong>privado</strong> vinculadas a la Administración</td><td class="no">NO</td></tr>
+        <tr><td>Universidades públicas</td><td class="no">NO</td></tr>
+      </tbody>
+    </table>
+
+    <div class="trampa-examen">
+      <span class="box-titulo">🚨 Trampa de examen</span>
+      Las <strong>Universidades públicas</strong> y las <strong>entidades de derecho privado</strong> vinculadas a la Administración forman parte del sector público institucional, pero <strong>NO tienen la consideración de Administraciones Públicas</strong>. Esto se pregunta con frecuencia.
+    </div>
+
+    <div class="articulo">
+      <div class="art-titulo">El Sector Público Institucional se integra por:</div>
+      <ol class="lista-normal" type="a">
+        <li>Organismos públicos y entidades de derecho <strong>público</strong> vinculados o dependientes de las Administraciones Públicas. → <strong>Son</strong> Administración Pública.</li>
+        <li>Entidades de derecho <strong>privado</strong> vinculadas o dependientes. Se sujetan a la Ley solo cuando ejerzan potestades administrativas. → <strong>No son</strong> Administración Pública.</li>
+        <li><strong>Universidades públicas</strong>: normativa propia, supletoriamente la Ley 40/2015. → <strong>No son</strong> Administración Pública.</li>
+      </ol>
+    </div>
+
+    <div class="clave-examen">
+      <span class="box-titulo">📌 Frase clave tipo examen</span>
+      <em>«Cada una de las Administraciones Públicas actúa para el cumplimiento de sus fines con <strong>personalidad jurídica única</strong>.»</em> (art. 3.4 Ley 40/2015)
+    </div>
+
+    <div class="resumen-parcial">
+      <span class="box-titulo">✅ Resumen epígrafe 1</span>
+      Sector público = AGE + CC.AA. + Administración Local + sector público institucional. Solo las 3 primeras + organismos de derecho público son Administraciones Públicas. Las universidades y entidades privadas NO.
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- SECCIÓN 2 -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <div class="seccion" id="s11-ley40">
+    <h2 class="epigrafe">2. Principios generales de actuación de las Administraciones Públicas</h2>
+
+    <p>Las Administraciones Públicas sirven con objetividad los intereses generales y actúan de acuerdo con los principios de <strong>eficacia, jerarquía, descentralización, desconcentración y coordinación</strong>, con sometimiento pleno a la Constitución, a la Ley y al Derecho (art. 3.1 Ley 40/2015).</p>
+
+    <div class="clave-examen">
+      <span class="box-titulo">📌 Los 5 grandes principios de actuación (memorizar)</span>
+      <strong>E · J · D · D · C</strong> → <strong>E</strong>ficacia · <strong>J</strong>erarquía · <strong>D</strong>escentralización · <strong>D</strong>esconcentración · <strong>C</strong>oordinación
+    </div>
+
+    <h3 class="subepigrafe">Los 11 principios adicionales (art. 3.1 letras a–k)</h3>
+
+    <table class="tabla-tema">
+      <thead><tr><th>Letra</th><th>Principio</th></tr></thead>
+      <tbody>
+        <tr><td class="col-clave">a)</td><td>Servicio efectivo a los ciudadanos.</td></tr>
+        <tr><td class="col-clave">b)</td><td>Simplicidad, claridad y proximidad a los ciudadanos.</td></tr>
+        <tr><td class="col-clave">c)</td><td>Participación, objetividad y transparencia de la actuación administrativa.</td></tr>
+        <tr><td class="col-clave">d)</td><td>Racionalización y agilidad de los procedimientos.</td></tr>
+        <tr><td class="col-clave">e)</td><td>Buena fe, confianza legítima y lealtad institucional.</td></tr>
+        <tr><td class="col-clave">f)</td><td>Responsabilidad por la gestión pública.</td></tr>
+        <tr><td class="col-clave">g)</td><td>Planificación y dirección por objetivos y control de la gestión.</td></tr>
+        <tr><td class="col-clave">h)</td><td>Eficacia en el cumplimiento de los objetivos fijados.</td></tr>
+        <tr><td class="col-clave">i)</td><td>Economía, suficiencia y adecuación estricta de los medios a los fines.</td></tr>
+        <tr><td class="col-clave">j)</td><td>Eficiencia en la asignación y utilización de los recursos públicos.</td></tr>
+        <tr><td class="col-clave">k)</td><td>Cooperación, colaboración y coordinación entre las Administraciones Públicas.</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="subepigrafe">Principios de intervención (art. 4 Ley 40/2015)</h3>
+
+    <p>Cuando una Administración establezca medidas que <strong>limiten el ejercicio de derechos</strong> o exijan requisitos para el desarrollo de una actividad, deberá:</p>
+    <ul class="lista-normal">
+      <li>Aplicar el <strong>principio de proporcionalidad</strong> y elegir la medida menos restrictiva.</li>
+      <li>Motivar su necesidad para la protección del interés público.</li>
+      <li>Justificar su adecuación para lograr los fines perseguidos, sin diferencias de trato discriminatorias.</li>
+      <li>Evaluar periódicamente los efectos y resultados obtenidos.</li>
+    </ul>
+
+    <h3 class="subepigrafe">Otras reglas generales del art. 3</h3>
+    <ul class="lista-normal">
+      <li>Las Administraciones Públicas se relacionarán entre sí a través de <strong>medios electrónicos</strong>, garantizando interoperabilidad, seguridad y protección de datos.</li>
+      <li>Cada Administración Pública actúa con <strong>personalidad jurídica única</strong>.</li>
+    </ul>
+
+    <div class="resumen-parcial">
+      <span class="box-titulo">✅ Resumen epígrafe 2</span>
+      5 principios básicos: eficacia, jerarquía, descentralización, desconcentración y coordinación. Más 11 principios adicionales (a–k). Principio de proporcionalidad cuando se limitan derechos. Relaciones electrónicas. Personalidad jurídica única.
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- SECCIÓN 3 -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <div class="seccion" id="s12-ley40">
+    <h2 class="epigrafe">3. La Administración General del Estado: organización central y periférica</h2>
+
+    <p>El <strong>Título I de la Ley 40/2015</strong> (arts. 55 a 139) regula la organización de la Administración General del Estado (AGE). Se organiza en dos grandes ámbitos: la <strong>organización central</strong> y la <strong>organización territorial o periférica</strong>.</p>
+
+    <h3 class="subepigrafe">Organización central de la AGE (arts. 55–72)</h3>
+
+    <p>La Administración General del Estado se organiza en <strong>Ministerios</strong>, que abarcan uno o varios sectores funcionalmente homogéneos. Al frente de cada Ministerio hay un <strong>Ministro</strong>.</p>
+
+    <div class="esquema">
+      <div class="esq-titulo">Jerarquía de los órganos centrales de la AGE (de mayor a menor)</div>
+      <div class="esquema-fila"><span class="esq-key">1.º Ministros</span><span class="esq-val">Máximo responsable del Departamento. Miembro del Gobierno.</span></div>
+      <div class="esquema-fila"><span class="esq-key">2.º Secretarios de Estado</span><span class="esq-val">Órganos superiores directamente responsables de la ejecución de la acción del Gobierno en un sector.</span></div>
+      <div class="esquema-fila"><span class="esq-key">3.º Subsecretarios</span><span class="esq-val">Representan al Ministerio, dirigen los servicios comunes. Uno por Ministerio.</span></div>
+      <div class="esquema-fila"><span class="esq-key">3.º Secretarios Generales</span><span class="esq-val">Cuando existan. Responsables de un sector de actividad administrativa.</span></div>
+      <div class="esquema-fila"><span class="esq-key">4.º Secretarios Grales. Técnicos</span><span class="esq-val">Dependen del Subsecretario. Asistencia jurídica, publicaciones, estadística.</span></div>
+      <div class="esquema-fila"><span class="esq-key">4.º Directores Generales</span><span class="esq-val">Gestión de una o varias áreas funcionales.</span></div>
+      <div class="esquema-fila"><span class="esq-key">5.º Subdirectores Generales</span><span class="esq-val">Responsables de la ejecución de proyectos concretos.</span></div>
+    </div>
+
+    <div class="clave-examen">
+      <span class="box-titulo">📌 Clave examen: órganos superiores vs. directivos</span>
+      Son <strong>órganos superiores</strong>: los <strong>Ministros</strong> y los <strong>Secretarios de Estado</strong>.<br>
+      Son <strong>órganos directivos</strong>: Subsecretarios, Secretarios Generales, Secretarios Generales Técnicos, Directores Generales y Subdirectores Generales.<br>
+      Los Subdirectores Generales son directivos pero <strong>no tienen nivel orgánico superior</strong> a los anteriores.
+    </div>
+
+    <div class="trampa-examen">
+      <span class="box-titulo">🚨 Trampa de examen</span>
+      El <strong>Subsecretario</strong> es el único cargo del que depende el Secretario General Técnico. <strong>Solo hay un Subsecretario por Ministerio</strong>. El Secretario de Estado no siempre existe en todos los Ministerios, pero el Subsecretario sí es obligatorio.
+    </div>
+
+    <h3 class="subepigrafe">Organización territorial de la AGE (arts. 73–89)</h3>
+
+    <p>La Administración General del Estado se organiza territorialmente a través de:</p>
+
+    <div class="esquema">
+      <div class="esq-titulo">Órganos territoriales de la AGE</div>
+      <div class="esquema-fila">
+        <span class="esq-key">Delegaciones del Gobierno</span>
+        <span class="esq-val">En cada <strong>Comunidad Autónoma</strong>. Dirigen y coordinan la AGE en el territorio autonómico. Al frente: el <strong>Delegado del Gobierno</strong>, nombrado por R.D. del Consejo de Ministros a propuesta del Ministro de Política Territorial.</span>
+      </div>
+      <div class="esquema-fila">
+        <span class="esq-key">Subdelegaciones del Gobierno</span>
+        <span class="esq-val">En cada <strong>provincia</strong> (excepto en las que son capital de CC.AA. uninprovincial, donde el Delegado asume estas funciones). Al frente: el <strong>Subdelegado del Gobierno</strong>, funcionario de carrera.</span>
+      </div>
+      <div class="esquema-fila">
+        <span class="esq-key">Direcciones insulares</span>
+        <span class="esq-val">En <strong>islas</strong> donde se justifique. Dependen de la Delegación o Subdelegación.</span>
+      </div>
+    </div>
+
+    <div class="clave-examen">
+      <span class="box-titulo">📌 Claves del Delegado del Gobierno</span>
+      <ul class="lista-normal" style="margin-top:4px;">
+        <li>Representa al Gobierno en la Comunidad Autónoma.</li>
+        <li>Dirige y coordina la Administración del Estado en el territorio.</li>
+        <li>Depende orgánicamente de la <strong>Presidencia del Gobierno</strong> y funcionalmente de cada Ministerio.</li>
+        <li>Nombrado por Real Decreto del Consejo de Ministros.</li>
+        <li>En CC.AA. <strong>uniprovinciales</strong>: el Delegado asume también las funciones de Subdelegado.</li>
+      </ul>
+    </div>
+
+    <div class="trampa-examen">
+      <span class="box-titulo">🚨 Trampa de examen</span>
+      El <strong>Subdelegado del Gobierno</strong> es siempre un <strong>funcionario de carrera</strong>, a diferencia del Delegado del Gobierno (cargo político). Esto se pregunta frecuentemente.
+    </div>
+
+    <h3 class="subepigrafe">Administración en el exterior</h3>
+    <p>La AGE también tiene presencia en el exterior a través de las <strong>Misiones Diplomáticas</strong>, Representaciones Permanentes ante Organismos Internacionales y las <strong>Oficinas Consulares</strong>. Su regulación específica es la legislación del Servicio Exterior del Estado.</p>
+
+    <div class="resumen-parcial">
+      <span class="box-titulo">✅ Resumen epígrafe 3</span>
+      AGE central: Ministros (órganos superiores) → Secretarios de Estado (superiores) → Subsecretarios, Secretarios Generales, Secretarios Generales Técnicos, Directores Generales, Subdirectores Generales (directivos). AGE territorial: Delegaciones del Gobierno (CC.AA.) + Subdelegaciones (provincias) + Direcciones insulares (islas). Delegado = cargo político; Subdelegado = funcionario de carrera.
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- SECCIÓN 4 -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <div class="seccion" id="s13-ley40">
+    <h2 class="epigrafe">4. Los órganos administrativos: concepto, creación y clases</h2>
+
+    <h3 class="subepigrafe">Concepto (art. 5 Ley 40/2015)</h3>
+
+    <p>Tienen la consideración de <strong>órganos administrativos</strong> las unidades administrativas a las que se les atribuyan:</p>
+    <ul class="lista-normal">
+      <li>Funciones que tengan <strong>efectos jurídicos frente a terceros</strong>, o</li>
+      <li>Cuya actuación tenga <strong>carácter preceptivo</strong>.</li>
+    </ul>
+
+    <p>No toda unidad administrativa es un órgano. La diferencia está en si tiene atribuidas funciones con efectos jurídicos frente a terceros.</p>
+
+    <h3 class="subepigrafe">Requisitos para crear un órgano (art. 5.3)</h3>
+
+    <p>La creación de cualquier órgano exige cumplir <strong>tres requisitos mínimos</strong>:</p>
+    <ol class="lista-normal" type="a">
+      <li>Determinación de su forma de <strong>integración</strong> y <strong>dependencia jerárquica</strong>.</li>
+      <li>Delimitación de sus <strong>funciones y competencias</strong>.</li>
+      <li>Dotación de los <strong>créditos necesarios</strong> para su puesta en marcha y funcionamiento.</li>
+    </ol>
+
+    <div class="nota-importante">
+      <span class="box-titulo">⚠ Regla anti-duplicación (art. 5.4)</span>
+      No podrán crearse nuevos órganos que supongan <strong>duplicación</strong> de otros ya existentes si al mismo tiempo no se suprime o restringe debidamente la competencia de estos. La creación solo tendrá lugar previa comprobación de que no existe otro en la misma Administración que desarrolle <strong>igual función sobre el mismo territorio y población</strong>.
+    </div>
+
+    <h3 class="subepigrafe">Instrucciones y órdenes de servicio (art. 6)</h3>
+
+    <p>Los órganos administrativos dirigen a sus órganos jerárquicamente dependientes mediante <strong>instrucciones y órdenes de servicio</strong>.</p>
+
+    <div class="trampa-examen">
+      <span class="box-titulo">🚨 Trampa de examen</span>
+      El incumplimiento de las instrucciones u órdenes de servicio <strong>NO afecta por sí solo a la validez</strong> de los actos dictados, sin perjuicio de la <strong>responsabilidad disciplinaria</strong> en que se pueda incurrir. Es decir: el acto es válido aunque se hayan vulnerado las instrucciones internas.
+    </div>
+
+    <h3 class="subepigrafe">Órganos consultivos (art. 7)</h3>
+
+    <p>La Administración consultiva puede articularse mediante órganos específicos con <strong>autonomía orgánica y funcional</strong> respecto a la Administración activa. Estos servicios <strong>no podrán estar sujetos a dependencia jerárquica</strong> ni recibir instrucciones de los órganos que hayan elaborado las disposiciones o actos objeto de consulta. Actúan de forma <strong>colegiada</strong>.</p>
+
+    <div class="resumen-parcial">
+      <span class="box-titulo">✅ Resumen epígrafe 4</span>
+      Órgano = unidad con efectos jurídicos frente a terceros o carácter preceptivo. Requisitos de creación: integración/dependencia + funciones/competencias + créditos. No duplicación. Incumplimiento de instrucciones: no invalida el acto pero genera responsabilidad disciplinaria.
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- SECCIÓN 5 -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <div class="seccion" id="s14-ley40">
+    <h2 class="epigrafe">5. La competencia: irrenunciabilidad y técnicas de alteración</h2>
+
+    <h3 class="subepigrafe">Principio general: irrenunciabilidad (art. 8)</h3>
+
+    <p>La competencia es <strong>irrenunciable</strong> y se ejercerá por los órganos que la tengan atribuida como propia, salvo los casos de <strong>delegación o avocación</strong> en los términos previstos en la Ley.</p>
+
+    <div class="clave-examen">
+      <span class="box-titulo">📌 Regla clave sobre titularidad</span>
+      La delegación, las encomiendas de gestión, la delegación de firma y la suplencia <strong>NO suponen alteración de la titularidad</strong> de la competencia. Solo la <strong>desconcentración</strong> sí supone alteración definitiva de la titularidad.
+    </div>
+
+    <h3 class="subepigrafe">Técnicas de alteración de la competencia: tabla comparativa</h3>
+
+    <table class="tabla-tema">
+      <thead>
+        <tr>
+          <th>Técnica</th>
+          <th>¿Altera titularidad?</th>
+          <th>¿Requiere publicación?</th>
+          <th>¿Cabe recurso?</th>
+          <th>Quién la ejerce</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col-clave">Desconcentración</td>
+          <td class="si">SÍ (permanente)</td>
+          <td class="si">SÍ (por norma)</td>
+          <td>—</td>
+          <td>El órgano jerárquico superior</td>
+        </tr>
+        <tr>
+          <td class="col-clave">Delegación de competencias</td>
+          <td class="no">NO</td>
+          <td class="si">SÍ (BOE/BOCA/BOP)</td>
+          <td>No cabe contra acuerdo delegación</td>
+          <td>Órgano que tiene la competencia</td>
+        </tr>
+        <tr>
+          <td class="col-clave">Avocación</td>
+          <td class="no">NO (temporal)</td>
+          <td class="si">Notificación interesados</td>
+          <td class="no">NO</td>
+          <td>Órgano superior jerárquico</td>
+        </tr>
+        <tr>
+          <td class="col-clave">Encomienda de gestión</td>
+          <td class="no">NO</td>
+          <td class="si">SÍ (BOE/BOCA/BOP)</td>
+          <td>—</td>
+          <td>Cualquier órgano</td>
+        </tr>
+        <tr>
+          <td class="col-clave">Delegación de firma</td>
+          <td class="no">NO</td>
+          <td class="no">NO</td>
+          <td>—</td>
+          <td>Titular del órgano</td>
+        </tr>
+        <tr>
+          <td class="col-clave">Suplencia</td>
+          <td class="no">NO</td>
+          <td class="no">NO</td>
+          <td>—</td>
+          <td>Se designa o corresponde al superior</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="subepigrafe">Delegación de competencias (art. 9)</h3>
+
+    <p>Los órganos pueden delegar en <strong>otros órganos de la misma Administración</strong> (aunque no sean jerárquicamente dependientes) o en <strong>Organismos públicos o Entidades de Derecho Público vinculados o dependientes</strong>.</p>
+
+    <div class="articulo">
+      <div class="art-titulo">Competencias NO delegables (art. 9.2) — memorizar las 4</div>
+      <ol class="lista-normal" type="a">
+        <li>Asuntos relativos a relaciones con la <strong>Jefatura del Estado, Presidencia del Gobierno, Cortes Generales, Presidencias de CC.AA. y Asambleas Legislativas</strong>.</li>
+        <li>La <strong>adopción de disposiciones de carácter general</strong> (reglamentos).</li>
+        <li>La <strong>resolución de recursos</strong> en los órganos que hayan dictado los actos objeto de recurso.</li>
+        <li>Las materias en que así lo determine una <strong>norma con rango de Ley</strong>.</li>
+      </ol>
+    </div>
+
+    <div class="articulo">
+      <div class="art-titulo">Reglas clave de la delegación</div>
+      <ul class="lista-normal">
+        <li>Las delegaciones y su <strong>revocación deben publicarse</strong> en el BOE, BOCA o BOP.</li>
+        <li>Las resoluciones adoptadas por delegación se consideran <strong>dictadas por el órgano delegante</strong> y deben indicar expresamente que se adoptan por delegación.</li>
+        <li>Salvo autorización expresa de una Ley, <strong>no puede subdelegarse</strong> una competencia que ya se ejerce por delegación.</li>
+        <li>La delegación es <strong>revocable en cualquier momento</strong> por el órgano que la confirió.</li>
+      </ul>
+    </div>
+
+    <div class="trampa-examen">
+      <span class="box-titulo">🚨 Trampa de examen</span>
+      Un órgano que recibe una competencia por delegación <strong>no puede, a su vez, delegarla</strong> (prohibición de subdelegación), salvo autorización expresa de una Ley. Las resoluciones dictadas por delegación se consideran dictadas por el <strong>órgano delegante</strong>, no por el delegado.
+    </div>
+
+    <h3 class="subepigrafe">Avocación (art. 10)</h3>
+
+    <p>Los órganos superiores pueden <strong>avocar para sí</strong> el conocimiento de asuntos cuya resolución corresponda a sus órganos dependientes, cuando circunstancias de índole <strong>técnica, económica, social, jurídica o territorial</strong> lo hagan conveniente.</p>
+
+    <ul class="lista-normal">
+      <li>Se realiza mediante <strong>acuerdo motivado</strong>.</li>
+      <li>Debe notificarse a los interesados <strong>antes o simultáneamente</strong> a la resolución final.</li>
+      <li>Contra el acuerdo de avocación <strong>no cabe recurso</strong>, aunque puede impugnarse al recurrir la resolución final.</li>
+      <li>En casos de delegación en órganos no dependientes jerárquicamente, solo puede avocar el <strong>órgano delegante</strong>.</li>
+    </ul>
+
+    <h3 class="subepigrafe">Encomienda de gestión (art. 11)</h3>
+
+    <p>Permite encomendar la realización de actividades de carácter <strong>material o técnico</strong> a otros órganos o entidades, cuando no se posean medios técnicos idóneos o por razones de eficacia.</p>
+
+    <div class="trampa-examen">
+      <span class="box-titulo">🚨 Diferencia clave: delegación vs. encomienda</span>
+      <table class="tabla-tema" style="margin-top:8px; font-size:13px;">
+        <thead><tr><th>Aspecto</th><th>Delegación</th><th>Encomienda de gestión</th></tr></thead>
+        <tbody>
+          <tr><td>Objeto</td><td>Ejercicio de competencias <strong>jurídicas</strong></td><td>Actividades <strong>materiales o técnicas</strong></td></tr>
+          <tr><td>Titularidad</td><td>No se transfiere</td><td>No se transfiere</td></tr>
+          <tr><td>Publicación</td><td class="si">SÍ (BOE/BOCA/BOP)</td><td class="si">SÍ (BOE/BOCA/BOP)</td></tr>
+          <tr><td>Puede ser entre distintas Admones.</td><td class="si">SÍ</td><td class="si">SÍ (mediante convenio)</td></tr>
+          <tr><td>¿Contiene resoluciones jurídicas?</td><td class="si">SÍ</td><td class="no">NO (solo ejecución material)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="subepigrafe">Delegación de firma (art. 12)</h3>
+    <ul class="lista-normal">
+      <li>Solo cabe en materias de la <strong>competencia propia o delegada</strong> del titular.</li>
+      <li><strong>No altera la competencia</strong> del órgano delegante.</li>
+      <li><strong>No requiere publicación</strong> para su validez.</li>
+      <li>En los actos firmados por delegación debe constar esta circunstancia y la <strong>autoridad de procedencia</strong>.</li>
+    </ul>
+
+    <h3 class="subepigrafe">Suplencia (art. 13)</h3>
+    <ul class="lista-normal">
+      <li>Opera en casos de <strong>vacante, ausencia, enfermedad</strong> o abstención/recusación.</li>
+      <li><strong>No implica alteración de la competencia</strong>.</li>
+      <li><strong>No requiere publicación</strong> para su validez.</li>
+      <li>En las resoluciones dictadas mediante suplencia debe constar el titular del órgano en cuya suplencia se actúa y quien efectivamente la ejerce.</li>
+      <li>Si no se designa suplente, la competencia la ejerce quien designe el <strong>órgano administrativo inmediato superior</strong>.</li>
+    </ul>
+
+    <h3 class="subepigrafe">Decisiones sobre competencia (art. 14)</h3>
+    <ul class="lista-normal">
+      <li>Si un órgano se considera incompetente, remite directamente las actuaciones al <strong>órgano competente</strong> y notifica a los interesados.</li>
+      <li>Los <strong>conflictos de atribuciones</strong> solo pueden suscitarse entre órganos de la <strong>misma Administración no relacionados jerárquicamente</strong>, y respecto a asuntos sobre los que <strong>no haya finalizado el procedimiento</strong>.</li>
+    </ul>
+
+    <div class="resumen-parcial">
+      <span class="box-titulo">✅ Resumen epígrafe 5</span>
+      Competencia = irrenunciable. Solo desconcentración altera titularidad. Delegación: publicación obligatoria, no subdelegable, revocable, resoluciones dictadas por el delegante. Avocación: motivada, notificación a interesados, sin recurso. Encomienda: actividades materiales/técnicas. Delegación de firma y suplencia: sin publicación, sin alteración de competencia.
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- SECCIÓN 6 -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <div class="seccion" id="s15-ley40">
+    <h2 class="epigrafe">6. Órganos colegiados: régimen jurídico y funcionamiento</h2>
+
+    <h3 class="subepigrafe">Concepto (art. 20)</h3>
+
+    <p>Son órganos colegiados los que se creen formalmente y estén integrados por <strong>tres o más personas</strong>, a los que se atribuyan funciones administrativas de <strong>decisión, propuesta, asesoramiento, seguimiento o control</strong>, y que actúen integrados en la AGE o sus Organismos públicos.</p>
+
+    <h3 class="subepigrafe">Clasificación (art. 21)</h3>
+
+    <div class="esquema">
+      <div class="esq-titulo">Tipos de órganos colegiados por composición</div>
+      <div class="esquema-fila">
+        <span class="esq-key">Interministeriales</span>
+        <span class="esq-val">Sus miembros proceden de <strong>diferentes Ministerios</strong>.</span>
+      </div>
+      <div class="esquema-fila">
+        <span class="esq-key">Ministeriales</span>
+        <span class="esq-val">Sus componentes proceden de los órganos de <strong>un solo Ministerio</strong>.</span>
+      </div>
+    </div>
+
+    <h3 class="subepigrafe">Creación de órganos colegiados (art. 22)</h3>
+
+    <p>Solo requiere <strong>norma específica con publicación en BOE</strong> cuando se atribuyan competencias <strong>decisorias</strong>, de propuesta o emisión de <strong>informes preceptivos</strong>, o de seguimiento o control.</p>
+
+    <table class="tabla-tema">
+      <thead><tr><th>Tipo de órgano</th><th>Norma de creación</th></tr></thead>
+      <tbody>
+        <tr><td>Interministerial con Presidente de rango superior a Director General</td><td><strong>Real Decreto</strong></td></tr>
+        <tr><td>Restantes órganos interministeriales</td><td><strong>Orden ministerial conjunta</strong></td></tr>
+        <tr><td>Ministeriales</td><td><strong>Orden ministerial</strong></td></tr>
+        <tr><td>Sin competencias decisorias ni de control (grupos de trabajo)</td><td>Acuerdo del Consejo de Ministros o del Ministerio</td></tr>
+      </tbody>
+    </table>
+
+    <div class="trampa-examen">
+      <span class="box-titulo">🚨 Trampa de examen</span>
+      Los <strong>grupos o comisiones de trabajo</strong> (órganos colegiados sin competencias decisorias) pueden crearse sin norma específica en el BOE, y sus acuerdos <strong>no pueden tener efectos directos frente a terceros</strong>.
+    </div>
+
+    <h3 class="subepigrafe">Quórum de constitución (art. 17)</h3>
+
+    <p>Para la válida constitución del órgano se requiere la asistencia (presencial o a distancia):</p>
+    <ul class="lista-normal">
+      <li>Del <strong>Presidente y Secretario</strong> (o quienes les suplan), Y</li>
+      <li>De la <strong>mitad al menos</strong> de sus miembros.</li>
+    </ul>
+
+    <div class="trampa-examen">
+      <span class="box-titulo">🚨 Trampa de examen</span>
+      Los órganos colegiados pueden celebrar sesiones <strong>presenciales o a distancia</strong> (incluyendo videoconferencia, correo electrónico, etc.). El quórum exige <strong>la mitad</strong> de los miembros + Presidente + Secretario. Si se reúnen <strong>todos los miembros</strong> de forma presencial o a distancia, pueden constituirse <strong>sin convocatoria previa</strong> si todos lo deciden.
+    </div>
+
+    <h3 class="subepigrafe">Funcionamiento y adopción de acuerdos</h3>
+    <ul class="lista-normal">
+      <li>Las convocatorias se remiten preferentemente por <strong>medios electrónicos</strong>, con el orden del día y documentación.</li>
+      <li>No puede debatirse ningún asunto que no figure en el orden del día, salvo que asistan <strong>todos los miembros</strong> y lo declare urgente la <strong>mayoría</strong>.</li>
+      <li>Los acuerdos se adoptan por <strong>mayoría de votos</strong>.</li>
+      <li>Quienes voten en contra o se abstengan quedan <strong>exentos de responsabilidad</strong> derivada de los acuerdos.</li>
+    </ul>
+
+    <h3 class="subepigrafe">El Presidente: funciones y sustitución (art. 19.2)</h3>
+    <ul class="lista-normal">
+      <li>Ostenta la representación del órgano.</li>
+      <li>Convoca sesiones ordinarias y extraordinarias y fija el orden del día.</li>
+      <li>Preside las sesiones, modera debates y puede suspenderlos.</li>
+      <li><strong>Dirime con su voto los empates</strong> a efectos de adoptar acuerdos.</li>
+      <li>Asegura el cumplimiento de las leyes.</li>
+      <li>Visa las actas y certificaciones.</li>
+    </ul>
+    <p>Sustitución: primero el <strong>Vicepresidente</strong>; en su defecto, el miembro de <strong>mayor jerarquía, antigüedad y edad</strong> (por este orden).</p>
+
+    <div class="clave-examen">
+      <span class="box-titulo">📌 Orden de sustitución del Presidente</span>
+      1.º Vicepresidente → 2.º Mayor jerarquía → 3.º Mayor antigüedad → 4.º Mayor edad
+    </div>
+
+    <h3 class="subepigrafe">Los miembros: obligaciones (art. 19.3)</h3>
+    <ul class="lista-normal">
+      <li>Recibir la convocatoria con <strong>antelación mínima de 2 días</strong>.</li>
+      <li>Participar en los debates y ejercer el derecho al voto.</li>
+      <li>Los miembros que sean autoridades o personal al servicio de las AAPP (miembros natos) <strong>no pueden abstenerse</strong> en las votaciones.</li>
+      <li>Los que discrepenl pueden formular <strong>voto particular por escrito en el plazo de 2 días</strong>.</li>
+    </ul>
+
+    <h3 class="subepigrafe">El Secretario: funciones (arts. 16 y 19.4)</h3>
+    <ul class="lista-normal">
+      <li>Puede ser miembro del órgano o persona al servicio de la Administración.</li>
+      <li>Vela por la <strong>legalidad formal y material</strong> de las actuaciones.</li>
+      <li>Certifica las actuaciones del órgano.</li>
+      <li>Asiste con <strong>voz pero sin voto</strong> (salvo si es miembro, en cuyo caso tiene voz y voto).</li>
+      <li>Efectúa la convocatoria <strong>por orden del Presidente</strong>.</li>
+      <li>Redacta y autoriza las actas.</li>
+      <li>Expide certificaciones de consultas, dictámenes y acuerdos.</li>
+    </ul>
+
+    <h3 class="subepigrafe">Las actas (art. 18)</h3>
+    <p>El Secretario levanta acta de cada sesión, que debe incluir necesariamente: <strong>asistentes, orden del día, lugar y tiempo, puntos principales de las deliberaciones y contenido de los acuerdos</strong>.</p>
+    <ul class="lista-normal">
+      <li>El acta se aprueba en la <strong>misma sesión o en la inmediata siguiente</strong>.</li>
+      <li>El Secretario la elabora con el <strong>visto bueno del Presidente</strong>.</li>
+      <li>Puede acordarse la <strong>grabación</strong> de la sesión; el fichero resultante acompaña al acta.</li>
+      <li>Los miembros tienen derecho a solicitar la <strong>transcripción íntegra</strong> de su intervención.</li>
+    </ul>
+
+    <div class="resumen-parcial">
+      <span class="box-titulo">✅ Resumen epígrafe 6</span>
+      Órganos colegiados: mínimo 3 personas. Interministeriales / ministeriales. Quórum: Presidente + Secretario + mitad miembros. Sesiones: presenciales o a distancia. Acuerdos: mayoría. Presidente dirime empates. Sustitución: Vicepresidente → mayor jerarquía → antigüedad → edad. Convocatoria: 2 días de antelación. Secretario: voz sin voto (salvo que sea miembro). Acta: misma sesión o siguiente.
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- SECCIÓN 7 -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <div class="seccion" id="s16-ley40">
+    <h2 class="epigrafe">7. Abstención y recusación</h2>
+
+    <h3 class="subepigrafe">Abstención (art. 23)</h3>
+
+    <p>Las autoridades y el personal al servicio de las Administraciones <strong>se abstendrán</strong> de intervenir en el procedimiento cuando concurra alguna de las causas tasadas, comunicándolo a su <strong>superior inmediato</strong>.</p>
+
+    <div class="articulo">
+      <div class="art-titulo">Las 5 causas de abstención (art. 23.2)</div>
+      <ol class="lista-normal" type="a">
+        <li><strong>Interés personal</strong> en el asunto, ser administrador de entidad interesada, o tener cuestión litigiosa pendiente con algún interesado.</li>
+        <li><strong>Parentesco</strong>: vínculo matrimonial o situación de hecho asimilable, o consanguinidad hasta el <strong>4.º grado</strong> o afinidad hasta el <strong>2.º grado</strong>, con los interesados, administradores, asesores, representantes o mandatarios, o compartir despacho profesional con ellos.</li>
+        <li><strong>Amistad íntima o enemistad manifiesta</strong> con alguna de las personas del apartado anterior.</li>
+        <li>Haber intervenido como <strong>perito o testigo</strong> en el procedimiento de que se trate.</li>
+        <li>Tener relación de servicio o haber prestado <strong>servicios profesionales en los 2 últimos años</strong> a persona interesada directamente en el asunto.</li>
+      </ol>
+    </div>
+
+    <div class="trampa-examen">
+      <span class="box-titulo">🚨 Trampa de examen: consanguinidad vs. afinidad</span>
+      Consanguinidad: hasta el <strong>4.º grado</strong> (bisabuelos, primos hermanos, sobrinos nietos...).<br>
+      Afinidad: hasta el <strong>2.º grado</strong> (suegros, cuñados...).<br>
+      <strong>No confundir los grados</strong>: el parentesco de afinidad es más restringido (2.º, no 4.º).
+    </div>
+
+    <div class="nota-importante">
+      <span class="box-titulo">⚠ Efecto de actuar sin abstenerse</span>
+      La actuación sin abstenerse cuando concurren causas <strong>NO implica necesariamente la invalidez</strong> del acto, pero sí genera la <strong>responsabilidad que proceda</strong>. Esta distinción es fundamental para el examen.
+    </div>
+
+    <h3 class="subepigrafe">Recusación (art. 24)</h3>
+
+    <p>La recusación puede promoverla el <strong>interesado en cualquier momento</strong> de la tramitación, mediante <strong>escrito</strong> que exprese la causa o causas en que se funda.</p>
+
+    <div class="esquema">
+      <div class="esq-titulo">Procedimiento de recusación</div>
+      <div class="esquema-fila">
+        <span class="esq-key">Día siguiente</span>
+        <span class="esq-val">El recusado manifiesta a su <strong>superior inmediato</strong> si reconoce o no la causa alegada.</span>
+      </div>
+      <div class="esquema-fila">
+        <span class="esq-key">Si reconoce la causa</span>
+        <span class="esq-val">El superior aprecia la concurrencia y acuerda la sustitución <strong>acto seguido</strong>.</span>
+      </div>
+      <div class="esquema-fila">
+        <span class="esq-key">Si niega la causa</span>
+        <span class="esq-val">El superior resuelve en el plazo de <strong>3 días</strong>, previos los informes y comprobaciones oportunos.</span>
+      </div>
+      <div class="esquema-fila">
+        <span class="esq-key">Recurso</span>
+        <span class="esq-val"><strong>No cabe recurso</strong> directo, aunque puede alegarse al recurrir la resolución final del procedimiento.</span>
+      </div>
+    </div>
+
+    <h3 class="subepigrafe">Tabla comparativa: Abstención vs. Recusación</h3>
+
+    <table class="tabla-tema">
+      <thead><tr><th>Aspecto</th><th>Abstención</th><th>Recusación</th></tr></thead>
+      <tbody>
+        <tr><td class="col-clave">¿Quién la promueve?</td><td>El propio funcionario/autoridad</td><td>El interesado en el procedimiento</td></tr>
+        <tr><td class="col-clave">Momento</td><td>Cuando aprecia la causa</td><td>En cualquier momento del procedimiento</td></tr>
+        <tr><td class="col-clave">Forma</td><td>Comunicación al superior inmediato</td><td>Escrito expresando la causa</td></tr>
+        <tr><td class="col-clave">Plazo para resolver</td><td>—</td><td>3 días (si el recusado niega la causa)</td></tr>
+        <tr><td class="col-clave">Recurso directo</td><td>—</td><td class="no">NO cabe recurso directo</td></tr>
+        <tr><td class="col-clave">Causas</td><td colspan="2">Las mismas 5 causas del art. 23.2</td></tr>
+        <tr><td class="col-clave">Efecto de no actuar</td><td>Responsabilidad, pero acto no necesariamente inválido</td><td>—</td></tr>
+      </tbody>
+    </table>
+
+    <div class="resumen-parcial">
+      <span class="box-titulo">✅ Resumen epígrafe 7</span>
+      Abstención: la inicia el funcionario, 5 causas (interés, parentesco 4.º/2.º, amistad-enemistad, perito-testigo, servicios últimos 2 años). No abstenerse no invalida el acto pero genera responsabilidad. Recusación: la inicia el interesado, cualquier momento, por escrito. Plazo 3 días si recusado niega. Sin recurso directo.
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- SECCIÓN 8 -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <div class="seccion" id="s17-ley40">
+    <h2 class="epigrafe">8. Relaciones interadministrativas (Título V Ley 40/2015)</h2>
+
+    <p>El <strong>Título V de la Ley 40/2015</strong> (arts. 140 a 158) regula las relaciones entre las distintas Administraciones Públicas, basadas en tres técnicas principales: <strong>colaboración, cooperación y coordinación</strong>.</p>
+
+    <h3 class="subepigrafe">Principios de las relaciones interadministrativas (art. 140)</h3>
+
+    <table class="tabla-tema">
+      <thead><tr><th>Principio</th><th>Contenido clave</th></tr></thead>
+      <tbody>
+        <tr><td class="col-clave">Lealtad institucional</td><td>Respeto mutuo entre Administraciones.</td></tr>
+        <tr><td class="col-clave">Adecuación al orden competencial</td><td>Respeto a la distribución de competencias establecida en la Constitución, Estatutos de Autonomía y normativa de régimen local.</td></tr>
+        <tr><td class="col-clave">Colaboración</td><td>Deber de actuar con el resto de Administraciones para el logro de fines comunes.</td></tr>
+        <tr><td class="col-clave">Cooperación</td><td>Dos o más Administraciones asumen compromisos específicos de forma <strong>voluntaria</strong>.</td></tr>
+        <tr><td class="col-clave">Coordinación</td><td>Una Administración (singularmente la AGE) garantiza la coherencia de las actuaciones de diferentes Administraciones sobre una misma materia.</td></tr>
+        <tr><td class="col-clave">Eficiencia</td><td>Compartir uso de recursos comunes cuando sea posible.</td></tr>
+        <tr><td class="col-clave">Responsabilidad</td><td>Cada Administración responde de sus obligaciones y compromisos.</td></tr>
+        <tr><td class="col-clave">Garantía e igualdad</td><td>Igualdad en el ejercicio de los derechos de todos los ciudadanos frente a distintas Administraciones.</td></tr>
+        <tr><td class="col-clave">Solidaridad interterritorial</td><td>De acuerdo con la Constitución.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="clave-examen">
+      <span class="box-titulo">📌 Diferencia clave: colaboración vs. cooperación vs. coordinación</span>
+      <ul class="lista-normal" style="margin-top:4px;">
+        <li><strong>Colaboración</strong>: deber genérico de actuar juntas para fines comunes. Es un <em>deber</em>.</li>
+        <li><strong>Cooperación</strong>: compromisos específicos asumidos <em>voluntariamente</em>. Se formaliza en convenios o acuerdos de órganos de cooperación.</li>
+        <li><strong>Coordinación</strong>: una Administración (normalmente la AGE) garantiza la coherencia. Puede ser <em>impuesta</em>, no solo voluntaria.</li>
+      </ul>
+    </div>
+
+    <h3 class="subepigrafe">Deber de colaboración (arts. 141–142)</h3>
+
+    <p>Las Administraciones deben:</p>
+    <ul class="lista-normal">
+      <li>Respetar el ejercicio legítimo de las competencias de las otras Administraciones.</li>
+      <li>Facilitar información que las otras Administraciones precisen.</li>
+      <li>Prestar la asistencia que otras Administraciones soliciten para el eficaz ejercicio de sus competencias.</li>
+    </ul>
+
+    <p>La asistencia y colaboración <strong>solo puede negarse</strong> cuando:</p>
+    <ul class="lista-normal">
+      <li>El organismo no esté facultado para prestarla según su normativa específica.</li>
+      <li>No disponga de medios suficientes.</li>
+      <li>Causara un <strong>perjuicio grave</strong> a los intereses que tutela o al cumplimiento de sus propias funciones.</li>
+      <li>La información solicitada tenga carácter <strong>confidencial o reservado</strong>.</li>
+    </ul>
+    <p>La negativa debe <strong>comunicarse motivadamente</strong> a la Administración solicitante.</p>
+
+    <h3 class="subepigrafe">Técnicas de cooperación (arts. 143–158)</h3>
+
+    <p>La formalización de relaciones de cooperación requiere <strong>aceptación expresa de las partes</strong>, en acuerdos de órganos de cooperación o en <strong>convenios</strong>.</p>
+
+    <div class="esquema">
+      <div class="esq-titulo">Órganos de cooperación más importantes</div>
+      <div class="esquema-fila">
+        <span class="esq-key">Conferencia de Presidentes</span>
+        <span class="esq-val">Órgano multilateral entre el Gobierno de la Nación y los Gobiernos de las CC.AA. La preside el <strong>Presidente del Gobierno</strong>.</span>
+      </div>
+      <div class="esquema-fila">
+        <span class="esq-key">Conferencias Sectoriales</span>
+        <span class="esq-val">Órgano multilateral de ámbito sectorial. La preside el <strong>Ministro competente</strong> por razón de materia. Deben inscribirse en el Registro Electrónico estatal de Órganos e Instrumentos de Cooperación.</span>
+      </div>
+      <div class="esquema-fila">
+        <span class="esq-key">Comisiones Bilaterales de Cooperación</span>
+        <span class="esq-val">Composición bilateral: representantes de la AGE + representantes de una CC.AA. o de Ceuta o Melilla.</span>
+      </div>
+      <div class="esquema-fila">
+        <span class="esq-key">Comisiones Territoriales de Coordinación</span>
+        <span class="esq-val">Composición multilateral entre Administraciones con territorios coincidentes o limítrofes. Para mejorar coordinación de servicios y evitar duplicidades.</span>
+      </div>
+    </div>
+
+    <div class="articulo">
+      <div class="art-titulo">Conferencias Sectoriales: puntos clave para el examen</div>
+      <ul class="lista-normal">
+        <li>Pueden ejercer funciones <strong>consultivas, decisorias o de coordinación</strong>.</li>
+        <li>Sus decisiones pueden revestir forma de <strong>Acuerdo</strong> (obligatorio para los que votaron a favor; si hay coordinación de la AGE, obligatorio para todos) o <strong>Recomendación</strong> (orientativa, pueden apartarse motivadamente).</li>
+        <li>La convocatoria corresponde al <strong>Ministro que la preside</strong>, al menos <strong>una vez al año</strong> o a petición de <strong>un tercio de sus miembros</strong>.</li>
+        <li>Cada Conferencia dispondrá de un <strong>reglamento interno de organización y funcionamiento</strong> aprobado por sus miembros.</li>
+        <li>Tienen un <strong>Secretario</strong> designado por el Presidente de la Conferencia.</li>
+      </ul>
+    </div>
+
+    <div class="trampa-examen">
+      <span class="box-titulo">🚨 Trampa de examen</span>
+      Los <strong>Acuerdos</strong> de la Conferencia Sectorial son de obligado cumplimiento para quienes votaron a favor. Si la AGE ejerce funciones de coordinación, el Acuerdo es obligatorio para <strong>todas las Administraciones</strong> con independencia del sentido de su voto. Las <strong>Recomendaciones</strong> no son obligatorias, pero si un miembro se aparta de ellas debe <strong>motivarlo en el expediente</strong>.
+    </div>
+
+    <h3 class="subepigrafe">Convenios (aspectos clave)</h3>
+    <ul class="lista-normal">
+      <li>Son el instrumento principal para formalizar la cooperación.</li>
+      <li>Cada Administración Pública mantendrá un <strong>registro electrónico</strong> actualizado de los convenios que haya suscrito y los órganos de cooperación en que participe.</li>
+    </ul>
+
+    <div class="resumen-parcial">
+      <span class="box-titulo">✅ Resumen epígrafe 8</span>
+      Relaciones interadministrativas: colaboración (deber), cooperación (voluntaria), coordinación (puede imponerse). Conferencia de Presidentes (preside el Pdte. del Gobierno). Conferencias Sectoriales (preside el Ministro, mínimo 1 vez/año o 1/3 miembros). Decisiones: Acuerdo (obligatorio) o Recomendación (orientativa). Comisiones bilaterales (AGE + CC.AA.). Negativa a colaborar debe ser motivada.
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- SECCIÓN 9 -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <div class="seccion" id="s18-ley40">
+    <h2 class="epigrafe">9. La Ley del Gobierno (Ley 50/1997) y su disposición final 3.ª</h2>
+
+    <h3 class="subepigrafe">La Ley 50/1997, de 27 de noviembre, del Gobierno</h3>
+
+    <p>La <strong>Ley 50/1997, de 27 de noviembre, del Gobierno</strong> regula la composición, organización y funcionamiento del Gobierno y de sus miembros, así como las relaciones con los demás poderes constitucionales. Es la ley que desarrolla el artículo 98 de la Constitución española.</p>
+
+    <h3 class="subepigrafe">Composición del Gobierno (art. 1 Ley 50/1997)</h3>
+
+    <p>El Gobierno se compone de:</p>
+    <ul class="lista-normal">
+      <li>El <strong>Presidente del Gobierno</strong>.</li>
+      <li>El <strong>Vicepresidente o Vicepresidentes</strong>, en su caso.</li>
+      <li>Los <strong>Ministros</strong>.</li>
+      <li>Los demás miembros que establezca la ley.</li>
+    </ul>
+
+    <div class="clave-examen">
+      <span class="box-titulo">📌 Los Secretarios de Estado NO son miembros del Gobierno</span>
+      Los Secretarios de Estado son <strong>órganos superiores de la AGE</strong> pero <strong>no son miembros del Gobierno</strong>. Esta distinción es muy importante para el examen.
+    </div>
+
+    <h3 class="subepigrafe">El Presidente del Gobierno: funciones principales</h3>
+    <ul class="lista-normal">
+      <li>Dirige la acción del Gobierno y coordina las funciones de los demás miembros.</li>
+      <li>Establece el programa político del Gobierno.</li>
+      <li>Propone al Rey el nombramiento y cese de los Ministros.</li>
+      <li>Refrenda los actos del Rey según lo previsto en la Constitución.</li>
+      <li>Interpone el recurso de inconstitucionalidad.</li>
+      <li>Plantea la cuestión de confianza.</li>
+      <li>Propone al Rey la disolución del Congreso, del Senado o de las Cortes.</li>
+    </ul>
+
+    <h3 class="subepigrafe">El Consejo de Ministros</h3>
+    <p>El Consejo de Ministros es el órgano colegiado del Gobierno. Le corresponde, entre otras funciones:</p>
+    <ul class="lista-normal">
+      <li>Aprobar proyectos de ley y su remisión al Congreso.</li>
+      <li>Aprobar el Proyecto de Ley de Presupuestos Generales del Estado.</li>
+      <li>Aprobar los reales decretos-ley y reales decretos legislativos.</li>
+      <li>Acordar la negociación y firma de tratados internacionales.</li>
+      <li>Declarar los estados de alarma y de excepción.</li>
+      <li>Aprobar los reglamentos para el desarrollo y la ejecución de las leyes.</li>
+    </ul>
+
+    <h3 class="subepigrafe">Disposición Final 3.ª de la Ley 40/2015</h3>
+
+    <p>La <strong>Disposición Final 3.ª de la Ley 40/2015</strong> modifica la Ley 50/1997, del Gobierno, en lo relativo a la <strong>potestad reglamentaria</strong> y a la <strong>iniciativa legislativa</strong>. En concreto, introduce en la Ley del Gobierno los principios de <strong>buena regulación</strong> que deben guiar el ejercicio de la iniciativa legislativa y la potestad reglamentaria de las Administraciones Públicas.</p>
+
+    <p>Estos principios de buena regulación (art. 129 Ley 39/2015, cuya aplicación se remite desde la D.F. 3.ª Ley 40/2015) son:</p>
+
+    <table class="tabla-tema">
+      <thead><tr><th>Principio</th><th>Contenido</th></tr></thead>
+      <tbody>
+        <tr><td class="col-clave">Necesidad</td><td>La regulación solo se aplica cuando sea necesaria para garantizar el interés general.</td></tr>
+        <tr><td class="col-clave">Proporcionalidad</td><td>La regulación debe ser la más adecuada para garantizar los objetivos sin más restricciones que las necesarias.</td></tr>
+        <tr><td class="col-clave">Seguridad jurídica</td><td>La regulación debe ser coherente con el ordenamiento jurídico vigente.</td></tr>
+        <tr><td class="col-clave">Transparencia</td><td>Se garantiza el acceso sencillo, universal y actualizado a la normativa.</td></tr>
+        <tr><td class="col-clave">Accesibilidad</td><td>La normativa debe ser accesible a sus destinatarios.</td></tr>
+        <tr><td class="col-clave">Simplicidad</td><td>La regulación debe ser sencilla y clara.</td></tr>
+        <tr><td class="col-clave">Eficacia</td><td>Consecución de los objetivos que la justificaron.</td></tr>
+        <tr><td class="col-clave">Eficiencia</td><td>La regulación genera las menores cargas posibles para los ciudadanos.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="resumen-parcial">
+      <span class="box-titulo">✅ Resumen epígrafe 9</span>
+      Gobierno: Presidente + Vicepresidente/s + Ministros. Secretarios de Estado NO son miembros del Gobierno. Consejo de Ministros: órgano colegiado del Gobierno. D.F. 3.ª Ley 40/2015 modifica Ley del Gobierno en relación con principios de buena regulación: necesidad, proporcionalidad, seguridad jurídica, transparencia, accesibilidad, simplicidad, eficacia y eficiencia.
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- SECCIÓN 10: RESUMEN GLOBAL + TEST -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <div class="seccion" id="s19-ley40">
+
+    <!-- RESUMEN GLOBAL -->
+    <div class="resumen-global">
+      <h2>🏁 Resumen global del Tema 10</h2>
+      <ul>
+        <li><strong>Sector público ≠ Administración Pública:</strong> Universidades y entidades privadas son sector público institucional pero NO son Administraciones Públicas.</li>
+        <li><strong>5 principios básicos:</strong> Eficacia, Jerarquía, Descentralización, Desconcentración, Coordinación (E·J·D·D·C).</li>
+        <li><strong>AGE central:</strong> Órganos superiores (Ministros + Secretarios de Estado) y directivos (el resto). Solo 1 Subsecretario por Ministerio.</li>
+        <li><strong>AGE territorial:</strong> Delegado del Gobierno (CC.AA., cargo político); Subdelegado (provincia, funcionario de carrera); sin subdelegación en CC.AA. uniprovinciales.</li>
+        <li><strong>Órgano administrativo:</strong> unidad con efectos jurídicos frente a terceros o carácter preceptivo. 3 requisitos de creación. Prohibición de duplicar.</li>
+        <li><strong>Competencia = irrenunciable.</strong> Solo la desconcentración altera la titularidad definitivamente.</li>
+        <li><strong>Delegación:</strong> publicación obligatoria, no subdelegable, resoluciones del delegante, revocable.</li>
+        <li><strong>Avocación:</strong> motivada, notificación a interesados, sin recurso directo.</li>
+        <li><strong>Encomienda:</strong> actividades materiales/técnicas, no jurídicas.</li>
+        <li><strong>Delegación de firma y suplencia:</strong> sin publicación, sin alteración de titularidad.</li>
+        <li><strong>Órganos colegiados:</strong> mínimo 3 personas. Quórum = Presidente + Secretario + mitad miembros. Acuerdos por mayoría. Convocatoria 2 días mínimo. Voto particular en 2 días.</li>
+        <li><strong>Presidente:</strong> dirime empates. Se sustituye por Vicepresidente → mayor jerarquía → antigüedad → edad.</li>
+        <li><strong>Secretario:</strong> voz sin voto (salvo que sea miembro del órgano).</li>
+        <li><strong>Abstención:</strong> 5 causas. Parentesco: consanguinidad 4.º / afinidad 2.º. No abstenerse: responsabilidad, pero el acto no es necesariamente inválido.</li>
+        <li><strong>Recusación:</strong> promovida por el interesado, en cualquier momento, por escrito. Plazo 3 días si niega la causa. Sin recurso directo.</li>
+        <li><strong>Relaciones interadministrativas:</strong> Colaboración (deber) / Cooperación (voluntaria) / Coordinación (puede ser impuesta). Conferencia de Presidentes: preside el Pdte. del Gobierno. Conferencias Sectoriales: preside el Ministro, mínimo 1 vez/año.</li>
+        <li><strong>Acuerdos vs. Recomendaciones:</strong> Acuerdos = obligatorios; Recomendaciones = orientativas.</li>
+        <li><strong>Gobierno:</strong> Presidente + Vicepresidentes + Ministros. Secretarios de Estado NO son miembros del Gobierno.</li>
+      </ul>
+    </div>
+
+    <!-- TEST -->
+    <div class="test-section">
+      <h2>📝 Preguntas tipo test — Tema 10</h2>
+
+      <div class="pregunta">
+        <div class="num-pregunta">Pregunta 1</div>
+        <div class="enunciado">¿Las Universidades públicas tienen la consideración de Administraciones Públicas según la Ley 40/2015?</div>
+        <ul class="opciones">
+          <li><span class="letra">A)</span> Sí, forman parte de la Administración General del Estado.</li>
+          <li><span class="letra">B)</span> No, se regirán por su normativa específica y supletoriamente por la Ley 40/2015.</li>
+          <li><span class="letra">C)</span> Sí, son organismos públicos vinculados a la Administración.</li>
+          <li><span class="letra">D)</span> Sí, pero solo cuando ejerzan potestades administrativas.</li>
+        </ul>
+        <span class="respuesta-correcta">✔ Respuesta correcta: B</span>
+      </div>
+
+      <div class="pregunta">
+        <div class="num-pregunta">Pregunta 2</div>
+        <div class="enunciado">¿Cuáles son los dos órganos superiores de la Administración General del Estado?</div>
+        <ul class="opciones">
+          <li><span class="letra">A)</span> Los Subsecretarios y los Directores Generales.</li>
+          <li><span class="letra">B)</span> Los Ministros y los Secretarios de Estado.</li>
+          <li><span class="letra">C)</span> Los Ministros y los Secretarios Generales Técnicos.</li>
+          <li><span class="letra">D)</span> Los Secretarios de Estado y los Subsecretarios.</li>
+        </ul>
+        <span class="respuesta-correcta">✔ Respuesta correcta: B</span>
+      </div>
+
+      <div class="pregunta">
+        <div class="num-pregunta">Pregunta 3</div>
+        <div class="enunciado">El Subdelegado del Gobierno en una provincia es:</div>
+        <ul class="opciones">
+          <li><span class="letra">A)</span> Un cargo político nombrado por Real Decreto del Consejo de Ministros.</li>
+          <li><span class="letra">B)</span> Un cargo de libre designación entre altos cargos del Ministerio de Interior.</li>
+          <li><span class="letra">C)</span> Un funcionario de carrera.</li>
+          <li><span class="letra">D)</span> Un cargo político propuesto por el Delegado del Gobierno.</li>
+        </ul>
+        <span class="respuesta-correcta">✔ Respuesta correcta: C</span>
+      </div>
+
+      <div class="pregunta">
+        <div class="num-pregunta">Pregunta 4</div>
+        <div class="enunciado">La competencia administrativa es irrenunciable. ¿Cuál de las siguientes técnicas SÍ supone una alteración definitiva de la titularidad de la competencia?</div>
+        <ul class="opciones">
+          <li><span class="letra">A)</span> La delegación de competencias.</li>
+          <li><span class="letra">B)</span> La encomienda de gestión.</li>
+          <li><span class="letra">C)</span> La desconcentración.</li>
+          <li><span class="letra">D)</span> La suplencia.</li>
+        </ul>
+        <span class="respuesta-correcta">✔ Respuesta correcta: C</span>
+      </div>
+
+      <div class="pregunta">
+        <div class="num-pregunta">Pregunta 5</div>
+        <div class="enunciado">Conforme al artículo 9 de la Ley 40/2015, NO podrá ser objeto de delegación:</div>
+        <ul class="opciones">
+          <li><span class="letra">A)</span> La resolución de expedientes sancionadores.</li>
+          <li><span class="letra">B)</span> La adopción de disposiciones de carácter general.</li>
+          <li><span class="letra">C)</span> La concesión de autorizaciones administrativas.</li>
+          <li><span class="letra">D)</span> La instrucción de procedimientos administrativos.</li>
+        </ul>
+        <span class="respuesta-correcta">✔ Respuesta correcta: B</span>
+      </div>
+
+      <div class="pregunta">
+        <div class="num-pregunta">Pregunta 6</div>
+        <div class="enunciado">Las resoluciones adoptadas por delegación de competencias:</div>
+        <ul class="opciones">
+          <li><span class="letra">A)</span> Se consideran dictadas por el órgano delegado.</li>
+          <li><span class="letra">B)</span> Se consideran dictadas por el órgano delegante.</li>
+          <li><span class="letra">C)</span> No necesitan indicar que se adoptan por delegación.</li>
+          <li><span class="letra">D)</span> No son susceptibles de recurso administrativo.</li>
+        </ul>
+        <span class="respuesta-correcta">✔ Respuesta correcta: B</span>
+      </div>
+
+      <div class="pregunta">
+        <div class="num-pregunta">Pregunta 7</div>
+        <div class="enunciado">Para la válida constitución de un órgano colegiado, ¿qué quórum se exige?</div>
+        <ul class="opciones">
+          <li><span class="letra">A)</span> La mayoría absoluta de sus miembros más el Presidente.</li>
+          <li><span class="letra">B)</span> La asistencia del Presidente, el Secretario y la mitad al menos de sus miembros.</li>
+          <li><span class="letra">C)</span> Solo la presencia del Presidente y del Secretario.</li>
+          <li><span class="letra">D)</span> Un tercio de sus miembros más el Presidente y el Secretario.</li>
+        </ul>
+        <span class="respuesta-correcta">✔ Respuesta correcta: B</span>
+      </div>
+
+      <div class="pregunta">
+        <div class="num-pregunta">Pregunta 8</div>
+        <div class="enunciado">Si el Presidente de un órgano colegiado de la AGE está ausente y no existe Vicepresidente, ¿quién le sustituye?</div>
+        <ul class="opciones">
+          <li><span class="letra">A)</span> El Secretario del órgano.</li>
+          <li><span class="letra">B)</span> El miembro de mayor antigüedad.</li>
+          <li><span class="letra">C)</span> El miembro de mayor jerarquía, y si hay empate, el de mayor antigüedad, y si persiste, el de mayor edad.</li>
+          <li><span class="letra">D)</span> El miembro de mayor edad.</li>
+        </ul>
+        <span class="respuesta-correcta">✔ Respuesta correcta: C</span>
+      </div>
+
+      <div class="pregunta">
+        <div class="num-pregunta">Pregunta 9</div>
+        <div class="enunciado">Una autoridad actúa en un procedimiento sin haberse abstenido, pese a concurrir una causa legal. ¿Cuál es el efecto jurídico?</div>
+        <ul class="opciones">
+          <li><span class="letra">A)</span> El acto es nulo de pleno derecho.</li>
+          <li><span class="letra">B)</span> El acto es anulable en todo caso.</li>
+          <li><span class="letra">C)</span> No implica necesariamente la invalidez del acto, pero sí genera responsabilidad.</li>
+          <li><span class="letra">D)</span> No produce ningún efecto jurídico sobre el acto ni sobre el funcionario.</li>
+        </ul>
+        <span class="respuesta-correcta">✔ Respuesta correcta: C</span>
+      </div>
+
+      <div class="pregunta">
+        <div class="num-pregunta">Pregunta 10</div>
+        <div class="enunciado">En materia de recusación, si el recusado niega la causa alegada, ¿en qué plazo debe resolverlo su superior?</div>
+        <ul class="opciones">
+          <li><span class="letra">A)</span> En el plazo de 5 días hábiles.</li>
+          <li><span class="letra">B)</span> En el plazo de 3 días.</li>
+          <li><span class="letra">C)</span> En el plazo de 10 días.</li>
+          <li><span class="letra">D)</span> En el mismo día en que se plantee la recusación.</li>
+        </ul>
+        <span class="respuesta-correcta">✔ Respuesta correcta: B</span>
+      </div>
+
+      <div class="pregunta">
+        <div class="num-pregunta">Pregunta 11</div>
+        <div class="enunciado">¿Cuál es la diferencia principal entre la encomienda de gestión y la delegación de competencias?</div>
+        <ul class="opciones">
+          <li><span class="letra">A)</span> La encomienda trasfiere la titularidad de la competencia; la delegación no.</li>
+          <li><span class="letra">B)</span> La encomienda tiene por objeto actividades materiales o técnicas; la delegación, el ejercicio de competencias jurídicas.</li>
+          <li><span class="letra">C)</span> Solo la encomienda requiere publicación en el BOE.</li>
+          <li><span class="letra">D)</span> La encomienda no puede realizarse entre Administraciones distintas.</li>
+        </ul>
+        <span class="respuesta-correcta">✔ Respuesta correcta: B</span>
+      </div>
+
+      <div class="pregunta">
+        <div class="num-pregunta">Pregunta 12</div>
+        <div class="enunciado">La Conferencia Sectorial se convoca, como mínimo:</div>
+        <ul class="opciones">
+          <li><span class="letra">A)</span> Una vez al trimestre.</li>
+          <li><span class="letra">B)</span> Dos veces al año.</li>
+          <li><span class="letra">C)</span> Una vez al año, o cuando lo solicite un tercio de sus miembros.</li>
+          <li><span class="letra">D)</span> Una vez al año, o cuando lo solicite la mitad de sus miembros.</li>
+        </ul>
+        <span class="respuesta-correcta">✔ Respuesta correcta: C</span>
+      </div>
+
+      <div class="pregunta">
+        <div class="num-pregunta">Pregunta 13</div>
+        <div class="enunciado">Respecto a los Acuerdos adoptados en Conferencias Sectoriales cuando la AGE ejerce funciones de coordinación:</div>
+        <ul class="opciones">
+          <li><span class="letra">A)</span> Solo son obligatorios para las CC.AA. que votaron a favor.</li>
+          <li><span class="letra">B)</span> Son obligatorios para todas las Administraciones, con independencia del sentido de su voto.</li>
+          <li><span class="letra">C)</span> Son meramente orientativos, como las Recomendaciones.</li>
+          <li><span class="letra">D)</span> Son obligatorios solo para la Administración General del Estado.</li>
+        </ul>
+        <span class="respuesta-correcta">✔ Respuesta correcta: B</span>
+      </div>
+
+      <div class="pregunta">
+        <div class="num-pregunta">Pregunta 14</div>
+        <div class="enunciado">¿Los Secretarios de Estado son miembros del Gobierno según la Ley 50/1997?</div>
+        <ul class="opciones">
+          <li><span class="letra">A)</span> Sí, son el tercer escalón del Gobierno tras el Presidente y los Vicepresidentes.</li>
+          <li><span class="letra">B)</span> No, son órganos superiores de la AGE pero no integran el Gobierno.</li>
+          <li><span class="letra">C)</span> Sí, cuando así lo determine el Presidente del Gobierno por Real Decreto.</li>
+          <li><span class="letra">D)</span> No, pero pueden asistir con voz pero sin voto al Consejo de Ministros.</li>
+        </ul>
+        <span class="respuesta-correcta">✔ Respuesta correcta: B</span>
+      </div>
+
+      <div class="pregunta">
+        <div class="num-pregunta">Pregunta 15</div>
+        <div class="enunciado">El incumplimiento de instrucciones u órdenes de servicio por parte de un órgano administrativo:</div>
+        <ul class="opciones">
+          <li><span class="letra">A)</span> Determina la nulidad de pleno derecho del acto dictado.</li>
+          <li><span class="letra">B)</span> Determina la anulabilidad del acto dictado.</li>
+          <li><span class="letra">C)</span> No afecta por sí solo a la validez del acto, sin perjuicio de la responsabilidad disciplinaria.</li>
+          <li><span class="letra">D)</span> Determina la suspensión del procedimiento administrativo.</li>
+        </ul>
+        <span class="respuesta-correcta">✔ Respuesta correcta: C</span>
+      </div>
+
+    </div><!-- /test-section -->
+
+  </div><!-- /seccion 10 -->
+
+</div><!-- /contenedor -->
+
+</div><!-- /contenedor -->
+
+<div class="contenedor" style="padding-top:0; padding-bottom:20px;">
+  <div class="nav-final">
+    <a href="panel-alumno.html">← Volver al temario</a>
+    <a href="tests-t10.html" class="btn-tests">📋 Ir a los tests del Tema 10 →</a>
+  </div>
+</div>
+
+<footer>
+  <p>Ingreso GC – DM Forma · Preparación oposiciones Escala de Cabos y Guardias de la Guardia Civil</p>
+  <p style="margin-top:4px;">Contenido elaborado conforme a la <strong>Ley 39/2015</strong>, <strong>Ley 40/2015</strong> y <strong>Ley 50/1997</strong> · Convocatoria 2025 (BOE n.º 128, 28 mayo 2025)</p>
+</footer>
+
+</body>
+</html>
