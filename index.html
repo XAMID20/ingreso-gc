@@ -17,7 +17,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
   <style>
-    /* HERO */
     .hero{min-height:90vh;background:linear-gradient(155deg,rgba(11,40,22,0.94) 0%,rgba(27,94,53,0.82) 55%,rgba(46,125,79,0.65) 100%),repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(255,255,255,0.015) 40px,rgba(255,255,255,0.015) 80px),linear-gradient(135deg,#0b2816 0%,#1b5e35 100%);display:flex;align-items:center;position:relative;overflow:hidden;}
     .hero::after{content:'';position:absolute;right:-120px;top:-80px;width:560px;height:120%;background:rgba(200,150,12,0.05);transform:rotate(-12deg);pointer-events:none;}
     .hero__inner{position:relative;z-index:2;max-width:760px;}
@@ -34,19 +33,13 @@
     .hero__stat .num{font-family:var(--fuente-d);font-size:2rem;font-weight:700;color:var(--dorado-claro);display:block;line-height:1;}
     .hero__stat .lbl{font-size:0.75rem;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.07em;}
     .hero__sep{width:1px;background:rgba(255,255,255,0.15);align-self:stretch;}
-
-    /* VENTAJAS */
     .ventajas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
-
-    /* STEPS */
     .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;position:relative;}
     .steps::before{content:'';position:absolute;top:32px;left:10%;right:10%;height:2px;background:linear-gradient(90deg,var(--verde),var(--verde-claro));z-index:0;}
     .step{text-align:center;position:relative;z-index:1;}
     .step__num{width:64px;height:64px;background:var(--verde);color:var(--blanco);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--fuente-d);font-size:1.4rem;font-weight:700;margin:0 auto 1rem;border:3px solid var(--blanco);box-shadow:0 0 0 3px var(--verde);}
     .step__title{font-family:var(--fuente-d);font-size:1rem;font-weight:700;color:var(--negro);margin-bottom:0.4rem;}
     .step__desc{font-size:0.82rem;color:var(--gris-med);line-height:1.5;}
-
-    /* TESTIMONIOS */
     .testimonios-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
     .testimonio{background:var(--blanco);border-radius:var(--radio-lg);padding:2rem;border:1px solid var(--gris-claro);position:relative;transition:all var(--t);}
     .testimonio:hover{box-shadow:var(--sombra);transform:translateY(-4px);}
@@ -56,8 +49,6 @@
     .testimonio__av{width:42px;height:42px;border-radius:50%;background:var(--verde);color:var(--blanco);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.9rem;flex-shrink:0;}
     .testimonio__nombre{font-weight:700;font-size:0.9rem;color:var(--negro);}
     .testimonio__rol{font-size:0.78rem;color:var(--gris-med);}
-
-    /* NOTICIAS */
     .noticias-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
     .noticia{background:var(--blanco);border-radius:var(--radio-lg);overflow:hidden;border:1px solid var(--gris-claro);transition:all var(--t);}
     .noticia:hover{box-shadow:var(--sombra);transform:translateY(-4px);}
@@ -70,28 +61,15 @@
     .noticia__body{padding:1.5rem;}
     .noticia__text{font-size:0.88rem;color:var(--gris-med);line-height:1.7;margin-bottom:0.75rem;}
     .noticia__date{font-size:0.75rem;color:#aaa;}
-
-    /* CTA */
     .cta-section{background:linear-gradient(135deg,var(--negro) 0%,#1b2a20 100%);padding:100px 0;text-align:center;}
     .cta-section h2{font-family:var(--fuente-d);font-size:clamp(2.2rem,4vw,3.5rem);font-weight:700;color:var(--blanco);margin-bottom:1rem;}
     .cta-section h2 span{color:var(--dorado-claro);}
     .cta-section p{color:rgba(255,255,255,0.65);font-size:1.1rem;max-width:520px;margin:0 auto 2.5rem;font-weight:300;line-height:1.8;}
-
-    /* CONVOCATORIA BOX */
     .conv-box{background:var(--negro);border-radius:var(--radio-lg);padding:2rem;color:white;}
     .conv-box li{display:flex;align-items:flex-start;gap:10px;font-size:0.9rem;color:rgba(255,255,255,0.8);margin-bottom:0.65rem;}
     .conv-box li .ck{color:var(--verde-claro);}
-
-    @media(max-width:900px){
-      .steps{grid-template-columns:repeat(3,1fr);}
-      .steps::before{display:none;}
-      .testimonios-grid,.noticias-grid,.ventajas-grid{grid-template-columns:1fr;}
-    }
-    @media(max-width:600px){
-      .steps{grid-template-columns:1fr 1fr;}
-      .hero__stats{gap:1.25rem;}
-      .hero__sep{display:none;}
-    }
+    @media(max-width:900px){.steps{grid-template-columns:repeat(3,1fr);}.steps::before{display:none;}.testimonios-grid,.noticias-grid,.ventajas-grid{grid-template-columns:1fr;}}
+    @media(max-width:600px){.steps{grid-template-columns:1fr 1fr;}.hero__stats{gap:1.25rem;}.hero__sep{display:none;}}
   </style>
 </head>
 <body>
@@ -107,6 +85,7 @@
       <li><a href="normativa.html" class="navbar__link">Normativa</a></li>
       <li><a href="faq.html" class="navbar__link">FAQ</a></li>
       <li><a href="actualidad.html" class="navbar__link">Actualidad</a></li>
+      <li><a href="tests.html" class="navbar__link" style="color:var(--dorado-claro);font-weight:700;">⚡ Tests IA</a></li>
       <li><a href="login.html" class="navbar__cta">Área alumnos →</a></li>
     </ul>
     <button class="navbar__hamburger" id="hamburger" aria-label="Menú" aria-expanded="false">
@@ -131,14 +110,14 @@
       <p class="hero__sub">La plataforma de formación más completa para el acceso a la Escala de Cabos y Guardias. Temario oficial actualizado, tests tipo examen real y seguimiento personalizado.</p>
       <div class="hero__actions">
         <a href="login.html" class="btn btn-gold">Acceder a la plataforma →</a>
-        <a href="proceso-selectivo.html" class="btn btn-outline-white">Ver el proceso selectivo</a>
+        <a href="tests.html" class="btn btn-outline-white">⚡ Probar tests con IA</a>
       </div>
       <div class="hero__stats">
         <div class="hero__stat"><span class="num">3.118</span><span class="lbl">Plazas 2025</span></div>
         <div class="hero__sep"></div>
         <div class="hero__stat"><span class="num">25</span><span class="lbl">Temas oficiales</span></div>
         <div class="hero__sep"></div>
-        <div class="hero__stat"><span class="num">+400</span><span class="lbl">Preguntas test</span></div>
+        <div class="hero__stat"><span class="num">∞</span><span class="lbl">Tests ilimitados</span></div>
         <div class="hero__sep"></div>
         <div class="hero__stat"><span class="num">100%</span><span class="lbl">Actualizado</span></div>
       </div>
@@ -156,9 +135,9 @@
     </div>
     <div class="ventajas-grid fade-up">
       <article class="card card--gold-border">
-        <div class="card__icon">📝</div>
-        <h3 class="card__title">Tests tipo examen real</h3>
-        <p class="card__text">100 preguntas con penalización igual que el examen oficial. Corrección inmediata con explicación basada en la normativa.</p>
+        <div class="card__icon">⚡</div>
+        <h3 class="card__title">Tests ilimitados con IA</h3>
+        <p class="card__text">Preguntas generadas por IA a partir de la normativa oficial del BOE. Cada test es único. Los 23 temas del temario oficial.</p>
       </article>
       <article class="card card--gold-border">
         <div class="card__icon">📚</div>
@@ -198,31 +177,11 @@
       <p class="section-sub" style="margin:0 auto;">La oposición consta de fase de concurso y fase de oposición con pruebas eliminatorias.</p>
     </div>
     <div class="steps fade-up">
-      <div class="step">
-        <div class="step__num">1</div>
-        <div class="step__title">Fase concurso</div>
-        <p class="step__desc">Valoración de méritos. Hasta 45 puntos. Méritos profesionales, académicos e idiomas.</p>
-      </div>
-      <div class="step">
-        <div class="step__num">2</div>
-        <div class="step__title">Examen teórico</div>
-        <p class="step__desc">100 preguntas + ortografía + gramática + 20 inglés. 140 minutos totales.</p>
-      </div>
-      <div class="step">
-        <div class="step__num">3</div>
-        <div class="step__title">Psicotécnica</div>
-        <p class="step__desc">80 preguntas (mín. 12 pts) + perfil de personalidad. 55 minutos.</p>
-      </div>
-      <div class="step">
-        <div class="step__num">4</div>
-        <div class="step__title">Pruebas físicas</div>
-        <p class="step__desc">Resistencia, coordinación, extensiones y natación. Apto/No apto.</p>
-      </div>
-      <div class="step">
-        <div class="step__num">5</div>
-        <div class="step__title">Médico y entrevista</div>
-        <p class="step__desc">Reconocimiento médico y entrevista personal de competencias.</p>
-      </div>
+      <div class="step"><div class="step__num">1</div><div class="step__title">Fase concurso</div><p class="step__desc">Valoración de méritos. Hasta 45 puntos. Méritos profesionales, académicos e idiomas.</p></div>
+      <div class="step"><div class="step__num">2</div><div class="step__title">Examen teórico</div><p class="step__desc">100 preguntas + ortografía + gramática + 20 inglés. 140 minutos totales.</p></div>
+      <div class="step"><div class="step__num">3</div><div class="step__title">Psicotécnica</div><p class="step__desc">80 preguntas (mín. 12 pts) + perfil de personalidad. 55 minutos.</p></div>
+      <div class="step"><div class="step__num">4</div><div class="step__title">Pruebas físicas</div><p class="step__desc">Resistencia, coordinación, extensiones y natación. Apto/No apto.</p></div>
+      <div class="step"><div class="step__num">5</div><div class="step__title">Médico y entrevista</div><p class="step__desc">Reconocimiento médico y entrevista personal de competencias.</p></div>
     </div>
     <div style="text-align:center;margin-top:3rem;" class="fade-up">
       <a href="proceso-selectivo.html" class="btn btn-primary">Ver guía completa del proceso →</a>
@@ -322,26 +281,17 @@
       <blockquote class="testimonio">
         <div class="testimonio__q">"</div>
         <p class="testimonio__text">Los tests con explicaciones son lo mejor de la plataforma. Cada error se convertía en aprendizaje. Llegué al examen con mucha más seguridad que con otros métodos.</p>
-        <div class="testimonio__autor">
-          <div class="testimonio__av">CM</div>
-          <div><div class="testimonio__nombre">Carlos M.</div><div class="testimonio__rol">Guardia Civil desde julio 2024</div></div>
-        </div>
+        <div class="testimonio__autor"><div class="testimonio__av">CM</div><div><div class="testimonio__nombre">Carlos M.</div><div class="testimonio__rol">Guardia Civil desde julio 2024</div></div></div>
       </blockquote>
       <blockquote class="testimonio">
         <div class="testimonio__q">"</div>
         <p class="testimonio__text">El seguimiento tema a tema fue clave para organizarme. Sabía exactamente cuáles eran mis puntos débiles y podía focalizarme en reforzarlos antes del examen.</p>
-        <div class="testimonio__autor">
-          <div class="testimonio__av">LR</div>
-          <div><div class="testimonio__nombre">Laura R.</div><div class="testimonio__rol">Guardia Civil desde julio 2024</div></div>
-        </div>
+        <div class="testimonio__autor"><div class="testimonio__av">LR</div><div><div class="testimonio__nombre">Laura R.</div><div class="testimonio__rol">Guardia Civil desde julio 2024</div></div></div>
       </blockquote>
       <blockquote class="testimonio">
         <div class="testimonio__q">"</div>
         <p class="testimonio__text">La normativa siempre actualizada y los simulacros tipo examen real me dieron la confianza necesaria. Llegué al día del examen sabiendo exactamente qué me iba a encontrar.</p>
-        <div class="testimonio__autor">
-          <div class="testimonio__av">MG</div>
-          <div><div class="testimonio__nombre">Miguel G.</div><div class="testimonio__rol">Guardia Civil desde octubre 2023</div></div>
-        </div>
+        <div class="testimonio__autor"><div class="testimonio__av">MG</div><div><div class="testimonio__nombre">Miguel G.</div><div class="testimonio__rol">Guardia Civil desde octubre 2023</div></div></div>
       </blockquote>
     </div>
   </div>
@@ -354,7 +304,7 @@
     <p>Únete a la plataforma y comienza tu preparación hoy mismo. La convocatoria 2025 ya está activa.</p>
     <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
       <a href="login.html" class="btn btn-gold">Acceder a la plataforma →</a>
-      <a href="proceso-selectivo.html" class="btn btn-outline-white">Más información</a>
+      <a href="tests.html" class="btn btn-outline-white">⚡ Probar tests con IA</a>
     </div>
   </div>
 </section>
@@ -372,7 +322,7 @@
         <a href="login.html">Acceso alumnos</a>
         <a href="proceso-selectivo.html">Proceso selectivo</a>
         <a href="normativa.html">Normativa 2025</a>
-        <a href="faq.html">Preguntas frecuentes</a>
+        <a href="tests.html">Tests con IA</a>
       </div>
       <div class="footer__col">
         <div class="footer__col-title">Información</div>
