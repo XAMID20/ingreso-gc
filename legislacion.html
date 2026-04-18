@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Legislación Oficial — Ingreso GC</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --verde: #1b5e35;
+      --verde-medio: #2d7a4f;
+      --verde-claro: #e8f5ee;
+      --dorado: #c8960c;
+      --dorado-claro: #fdf6e3;
+      --negro: #111827;
+      --gris: #6b7280;
+      --gris-claro: #f3f4f6;
+      --blanco: #ffffff;
+      --borde: #e5e7eb;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #f7f8fa;
+      color: var(--negro);
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      background: var(--verde);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    }
+    .nav-brand {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--blanco);
+      text-decoration: none;
+      letter-spacing: 0.5px;
+    }
+    .nav-brand span { color: var(--dorado); }
+    .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+    .nav-links a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--dorado); }
+    .nav-links a.active { color: var(--dorado); font-weight: 700; }
+    .btn-panel {
+      background: var(--dorado);
+      color: var(--negro) !important;
+      padding: 0.4rem 1rem;
+      border-radius: 6px;
+      font-weight: 700 !important;
+      font-size: 0.85rem !important;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--verde) 0%, #0f3d22 100%);
+      padding: 3.5rem 2rem 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '⚖';
+      position: absolute;
+      font-size: 18rem;
+      opacity: 0.04;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(200,150,12,0.15);
+      border: 1px solid rgba(200,150,12,0.4);
+      color: var(--dorado);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0.3rem 1rem;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      color: var(--blanco);
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+    .hero h1 span { color: var(--dorado); }
+    .hero p {
+      color: rgba(255,255,255,0.75);
+      font-size: 1rem;
+      max-width: 520px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.6;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .hero-stat {
+      text-align: center;
+    }
+    .hero-stat .num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--dorado);
+      line-height: 1;
+    }
+    .hero-stat .label {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* FILTROS */
+    .filtros-bar {
+      background: var(--blanco);
+      border-bottom: 1px solid var(--borde);
+      padding: 1rem 2rem;
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
+    .filtro-btn {
+      background: var(--gris-claro);
+      border: 1px solid var(--borde);
+      color: var(--gris);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 0.4rem 0.9rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filtro-btn:hover, .filtro-btn.activo {
+      background: var(--verde);
+      border-color: var(--verde);
+      color: var(--blanco);
+    }
+
+    /* GRID */
+    .contenedor {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    .grupo-titulo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--verde);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin: 2.5rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--verde-claro);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .grupo-titulo::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 18px;
+      background: var(--dorado);
+      border-radius: 2px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--blanco);
+      border: 1px solid var(--borde);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: all 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--verde);
+      border-radius: 12px 0 0 12px;
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform 0.25s ease;
+    }
+    .card:hover {
+      border-color: var(--verde-medio);
+      box-shadow: 0 4px 20px rgba(27,94,53,0.1);
+      transform: translateY(-2px);
+    }
+    .card:hover::before { transform: scaleY(1); }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .tema-num {
+      background: var(--verde-claro);
+      color: var(--verde);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 800;
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .card-titulo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--negro);
+      line-height: 1.3;
+    }
+
+    .normas-lista {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .norma-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem 0.75rem;
+      background: var(--gris-claro);
+      border-radius: 8px;
+      gap: 0.5rem;
+    }
+    .norma-nombre {
+      font-size: 0.82rem;
+      color: var(--negro);
+      font-weight: 400;
+      line-height: 1.3;
+      flex: 1;
+    }
+    .norma-nombre strong {
+      color: var(--verde);
+      font-weight: 700;
+    }
+    .btn-boe {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: var(--verde);
+      color: var(--blanco);
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+      white-space: nowrap;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    .btn-boe:hover {
+      background: var(--dorado);
+      color: var(--negro);
+    }
+    .btn-boe svg {
+      width: 11px; height: 11px;
+    }
+
+    /* AVISO */
+    .aviso {
+      background: var(--dorado-claro);
+      border: 1px solid rgba(200,150,12,0.3);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      margin-bottom: 2rem;
+      font-size: 0.85rem;
+      color: #7a5a00;
+      line-height: 1.5;
+    }
+    .aviso-icon { font-size: 1.1rem; flex-shrink: 0; }
+
+    /* FOOTER */
+    footer {
+      background: var(--negro);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.8rem;
+    }
+    footer a { color: var(--dorado); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .hero { padding: 2.5rem 1.25rem 2rem; }
+      .grid { grid-template-columns: 1fr; }
+      .filtros-bar { padding: 0.75rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-brand">Ingreso<span>GC</span></a>
+  <div class="nav-links">
+    <a href="index.html">Inicio</a>
+    <a href="proceso-selectivo.html">Proceso</a>
+    <a href="tests.html">Tests IA</a>
+    <a href="legislacion.html" class="active">Legislación</a>
+    <a href="panel-alumno.html" class="btn-panel">Mi Panel</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">📚 Legislación Oficial</div>
+  <h1>Normativa del <span>Temario Oficial</span></h1>
+  <p>Accede directamente al texto consolidado y actualizado de cada ley en el BOE oficial. 23 temas, todas las normas.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="num">23</div><div class="label">Temas</div></div>
+    <div class="hero-stat"><div class="num">30+</div><div class="label">Normas</div></div>
+    <div class="hero-stat"><div class="num">100%</div><div class="label">Oficial BOE</div></div>
+  </div>
+</div>
+
+<!-- FILTROS -->
+<div class="filtros-bar">
+  <button class="filtro-btn activo" onclick="filtrar('todos', this)">Todos</button>
+  <button class="filtro-btn" onclick="filtrar('constitucional', this)">Constitucional</button>
+  <button class="filtro-btn" onclick="filtrar('administrativo', this)">Administrativo</button>
+  <button class="filtro-btn" onclick="filtrar('penal', this)">Penal</button>
+  <button class="filtro-btn" onclick="filtrar('fcse', this)">FCSE / GC</button>
+  <button class="filtro-btn" onclick="filtrar('internacional', this)">Internacional / UE</button>
+  <button class="filtro-btn" onclick="filtrar('especial', this)">Legislación Especial</button>
+</div>
+
+<!-- CONTENIDO -->
+<div class="contenedor">
+
+  <div class="aviso">
+    <span class="aviso-icon">⚠️</span>
+    <span>Los enlaces abren el <strong>texto consolidado oficial</strong> del BOE en vigor. Si una norma ha sido modificada recientemente, el BOE mostrará siempre la versión actualizada. Todos los contenidos son de carácter meramente informativo.</span>
+  </div>
+
+  <!-- GRUPO 1: DERECHOS Y CONSTITUCIÓN -->
+  <div class="grupo-titulo" data-grupo="constitucional">Derechos Fundamentales y Constitución</div>
+  <div class="grid">
+
+    <div class="card" data-categoria="constitucional">
+      <div class="card-header">
+        <span class="tema-num">T1</span>
+        <span class="card-titulo">Derechos Humanos e Instrumentos Internacionales</span>
+      </div>
+      <div class="normas-lista">
+        <div class="norma-item">
+          <span class="norma-nombre"><strong>DUDH</strong> — Declaración Universal de DDHH (1948)</span>
+          <a href="https://www.ohchr.org/es/human-rights/universal-declaration/translations/spanish" target="_blank" class="btn-boe">
+            Ver <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+        <div class="norma-item">
+          <span class="norma-nombre"><strong>CEDH</strong> — Convenio Europeo de DDHH (1950)</span>
+          <a href="https://www.boe.es/buscar/act.php?id=BOE-A-1999-10148" target="_blank" class="btn-boe">
+            BOE <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+        <div class="norma-item">
+          <span class="norma-nombre"><strong>Estatuto Roma</strong> — CPI (1998)</span>
+          <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2002-3339" target="_blank" class="btn-boe">
+            BOE <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-categoria="constitucional">
+      <div class="card-header">
+        <span class="tema-num">T2</span>
+        <span class="card-titulo">Igualdad entre Mujeres y Hombres</span>
+      </div>
+      <div class="normas-lista">
+        <div class="norma-item">
+          <span class="norma-nombre"><strong>LO 3/2007</strong> — Igualdad Efectiva Mujeres y Hombres</span>
+          <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2007-6115" target="_blank" class="btn-boe">
+            BOE <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-categoria="constitucional">
+      <div class="card-header">
+        <span class="tema-num">T4</span>
+        <span class="card-titulo">Derecho Constitucional</span>
+      </div>
+      <div class="normas-lista">
+        <div class="norma-item">
+          <span class="norma-nombre"><strong>CE 1978</strong> — Constitución Española</span>
+          <a href="https://www.boe.es/buscar/act.php?id=BOE-A-1978-31229" target="_blank" class="btn-boe">
+            BOE <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- GRUPO 2: DERECHO ADMINISTRATIVO -->
+  <div class="grupo-titulo" data-grupo="administrativo">Derecho Administrativo</div>
+  <div class="grid">
+
+    <div class="card" data-categoria="administrativo">
+      <div class="card-header">
+        <span class="tema-num">T3</span>
+        <span class="card-titulo">Prevención de Riesgos Laborales</span>
+      </div>
+      <div class="normas-lista">
+        <div class="norma-item">
+          <span class="norma-nombre"><strong>Ley 31/1995</strong> — Prevención de Riesgos Laborales</span>
+          <a href="https://www.boe.es/buscar/act.php?id=BOE-A-1995-24292" target="_blank" class="btn-boe">
+            BOE <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-categoria="administrativo">
+      <div class="card-header">
+        <span class="tema-num">T10</span>
+        <span class="card-titulo">Derecho Administrativo — Procedimiento y Régimen Jurídico</span>
+      </div>
+      <div class="normas-lista">
+        <div class="norma-item">
+          <span class="norma-nombre"><strong>Ley 39/2015</strong> — Procedimiento Administrativo Común</span>
+          <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2015-10565" target="_blank" class="btn-boe">
+            BOE <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+        <div class="norma-item">
+          <span class="norma-nombre"><strong>Ley 40/2015</strong> — Régimen Jurídico del Sector Público</span>
+          <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2015-10566" target="_blank" class="btn-boe">
+            BOE <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-categoria="administrativo">
+      <div class="card-header">
+        <span class="tema-num">T11</span>
+        <span class="card-titulo">Protección de Datos Personales</span>
+      </div>
+      <div class="normas-lista">
+        <div class="norma-item">
+          <span class="norma-nombre"><strong>LO 3/2018</strong> — LOPD y Garantía Derechos Digitales</span>
+          <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2018-16673" target="_blank" class="btn-boe">
+            BOE <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+        <div class="norma-item">
+          <span class="norma-nombre"><strong>RGPD</strong> — Reglamento UE 2016/679</span>
+          <a href="https://www.boe.es/doue/2016/119/L00001-00088.pdf" target="_blank" class="btn-boe">
+            EUR-Lex <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-categoria="administrativo">
+      <div class="card-header">
+        <span class="tema-num">T14</span>
+        <span class="card-titulo">Ministerios del Interior y Defensa</span>
+      </div>
+      <div class="normas-lista">
+        <div class="norma-item">
+          <span class="norma-nombre"><strong>RD 455/2020</strong> — Estructura Ministerio del Interior</span>
+          <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2020-4592" target="_blank" class="btn-boe">
+            BOE <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- GRUPO 3: DERECHO PENAL Y PROCESAL -->
+  <div class="grupo-titulo" data-grupo="penal">Derecho Penal y Procesal</div>
+  <div class="grid">
+
+    <div class="card" data-categoria="penal">
+      <div class="card-header">
+        <span class="tema-num">T8</span>
+        <span class="card-titulo">Derecho Penal</span>
+      </div>
+      <div class="normas-lista">
+        <div class="norma-item">
+          <span class="norma-nombre"><strong>LO 10/1995</strong> — Código Penal</span>
+          <a href="https://www.boe.es/buscar/act.php?id=BOE-A-1995-25444" target="_blank" class="btn-boe">
+            BOE <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-categoria="penal">
+      <div class="card-header">
+        <span class="tema-num">T9</span>
+        <span class="card-titulo">Derecho Procesal Penal</span>
+      </div>
+      <div class="normas-lista">
+        <div class="norma-item">
+          <span class="norma-nombre"><strong>LECrim</strong> — Ley de Enjuiciamiento Criminal (1882)</span>
+          <a href="https://www.boe.es/buscar/act.php?id=BOE-A-1882-6036" target="_blank" class="btn-boe">
+            BOE <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+        <div class="norma-item">
+          <span class="norma-nombre"><strong>LO 6/1984</strong> — Habeas Corpus</span>
+          <a href="https://www.boe.es/buscar/act.php?id=BOE-A-1984-12781" target="_blank" class="btn-boe">
+            BOE <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-categoria="penal">
+      <div class="card-header">
+        <span class="tema-num">T20</span>
+        <span class="card-titulo">Responsabilidad Penal de Menores</span>
+      </div>
+      <div class="normas-lista">
+        <div class="norma-item">
+          <span class="norma-nombre"><strong>LO 5/2000</strong> — Responsabilidad Penal Menores</span>
+          <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2000-641" target="_blank" class="btn-boe">
+            BOE <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-categoria="penal">
+      <div class="card-header">
+        <span class="tema-num">T21</span>
+        <span class="card-titulo">Violencia de Género</span>
+      </div>
+      <div class="normas-lista">
+        <div class="norma-item">
+          <span class="norma-nombre"><strong>LO 1/2004</strong> — Medidas de Protección Integral VG</span>
+          <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2004-21760" target="_blank" class="btn-boe">
+            BOE <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- GRUPO 4: FCSE Y GUARDIA CIVIL -->
+  <div class="grupo-titulo" data-grupo="fcse">FCSE — Guardia Civil</div>
+  <div class="grid">
+
+    <div class="card" data-categoria="fcse">
+      <div class="card-header">
+        <span class="tema-num">T13</span>
+        <span class="card-titulo">Seguridad Pública y Privada</span>
+      </div>
+      <div class="normas-lista">
+        <div class="norma-item">
+          <span class="norma-nombre"><strong>LO 4/2015</strong> — Protección de la Seguridad Ciudadana</span>
+          <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2015-3442" target="_blank" class="btn-boe">
+            BOE <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+        <div class="norma-item">
+          <span class="norma-nombre"><strong>Ley 5/2014</strong> — Seguridad Privada</span>
+          <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2014-4096" target="_blank" class="btn-boe">
+            BOE <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-categoria="fcse">
+      <div class="card-header">
+        <span class="tema-num">T15</span>
+        <span class="card-titulo">FCSE — Guardia Civil</span>
+      </div>
+      <div class="normas-lista">
+        <div class="norma-item">
+          <span class="norma-nombre"><strong>LO 2/1986</strong> — Fuerzas y Cuerpos de Seguridad</span>
+          <a href="https://www.boe.es/buscar/act.php?id=BOE-A-1986-6859" target="_blank" class="btn-boe">
+            BOE <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+        <div class="norma-item">
+          <span class="norma-nombre"><strong>Ley 29/2014</strong> — Régimen del Personal de la GC</span>
+          <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2014-11700" target="_blank" class="btn-boe">
+            BOE <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-categoria="fcse">
+      <div class="card-header">
+        <span class="tema-num">T19</span>
+        <span class="card-titulo">Deontología Profesional</span>
+      </div>
+      <div class="normas-lista">
+        <div class="norma-item">
+          <span class="norma-nombre"><strong>RD 176/2022</strong> — Código Ético de la GC</span>
+          <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2022-3219" target="_blank" class="btn-boe">
+            BOE <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-categoria="fcse">
+      <div class="card-header">
+        <span class="tema-num">T22</span>
+        <span class="card-titulo">Armas y Explosivos</span>
+      </div>
+      <div class="normas-lista">
+        <div class="norma-item">
+          <span class="norma-nombre"><strong>RD 137/1993</strong> — Reglamento de Armas</span>
+          <a href="https://www.boe.es/buscar/act.php?id=BOE-A-1993-7masterId" target="_blank" class="btn-boe">
+            BOE <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+        <div class="norma-item">
+          <span class="norma-nombre"><strong>RD 130/2017</strong> — Reglamento de Explosivos</span>
+          <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2017-1392" target="_blank" class="btn-boe">
+            BOE <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- GRUPO 5: INTERNACIONAL Y UE -->
+  <div class="grupo-titulo" data-grupo="internacional">Internacional y Unión Europea</div>
+  <div class="grid">
+
+    <div class="card" data-categoria="internacional">
+      <div class="card-header">
+        <span class="tema-num">T5</span>
+        <span class="card-titulo">Derecho de la Unión Europea</span>
+      </div>
+      <div class="normas-lista">
+        <div class="norma-item">
+          <span class="norma-nombre"><strong>TUE</strong> — Tratado de la Unión Europea (Lisboa)</span>
+          <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2009-19828" target="_blank" class="btn-boe">
+            BOE <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+        <div class="norma-item">
+          <span class="norma-nombre"><strong>TFUE</strong> — Tratado de Funcionamiento de la UE</span>
+          <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2009-19830" target="_blank" class="btn-boe">
+            BOE <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-categoria="internacional">
+      <div class="card-header">
+        <span class="tema-num">T6</span>
+        <span class="card-titulo">Instituciones Internacionales</span>
+      </div>
+      <div class="normas-lista">
+        <div class="norma-item">
+          <span class="norma-nombre"><strong>Carta ONU</strong> — Naciones Unidas (1945)</span>
+          <a href="https://www.un.org/es/about-us/un-charter" target="_blank" class="btn-boe">
+            Ver <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+        <div class="norma-item">
+          <span class="norma-nombre"><strong>Tratado OTAN</strong> — Tratado Atlántico Norte (1949)</span>
+          <a href="https://www.boe.es/buscar/doc.php?id=BOE-A-1982-9619" target="_blank" class="btn-boe">
+            BOE <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-categoria="internacional">
+      <div class="card-header">
+        <span class="tema-num">T12</span>
+        <span class="card-titulo">Extranjería e Inmigración</span>
+      </div>
+      <div class="normas-lista">
+        <div class="norma-item">
+          <span class="norma-nombre"><strong>LO 4/2000</strong> — Ley de Extranjería</span>
+          <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2000-544" target="_blank" class="btn-boe">
+            BOE <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- GRUPO 6: LEGISLACIÓN ESPECIAL -->
+  <div class="grupo-titulo" data-grupo="especial">Legislación Especial</div>
+  <div class="grid">
+
+    <div class="card" data-categoria="especial">
+      <div class="card-header">
+        <span class="tema-num">T7</span>
+        <span class="card-titulo">Derecho Civil</span>
+      </div>
+      <div class="normas-lista">
+        <div class="norma-item">
+          <span class="norma-nombre"><strong>Código Civil</strong> — Real Decreto 24 julio 1889</span>
+          <a href="https://www.boe.es/buscar/act.php?id=BOE-A-1889-4763" target="_blank" class="btn-boe">
+            BOE <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-categoria="especial">
+      <div class="card-header">
+        <span class="tema-num">T16</span>
+        <span class="card-titulo">Protección Civil y Sostenibilidad</span>
+      </div>
+      <div class="normas-lista">
+        <div class="norma-item">
+          <span class="norma-nombre"><strong>Ley 17/2015</strong> — Sistema Nacional de Protección Civil</span>
+          <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2015-8470" target="_blank" class="btn-boe">
+            BOE <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+        <div class="norma-item">
+          <span class="norma-nombre"><strong>Ley 42/2007</strong> — Patrimonio Natural y Biodiversidad</span>
+          <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2007-21490" target="_blank" class="btn-boe">
+            BOE <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-categoria="especial">
+      <div class="card-header">
+        <span class="tema-num">T17</span>
+        <span class="card-titulo">TIC y Ciberseguridad</span>
+      </div>
+      <div class="normas-lista">
+        <div class="norma-item">
+          <span class="norma-nombre"><strong>Ley 11/2022</strong> — Medidas de Ciberseguridad</span>
+          <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2022-7191" target="_blank" class="btn-boe">
+            BOE <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+        <div class="norma-item">
+          <span class="norma-nombre"><strong>Ley 6/2020</strong> — Servicios de Confianza Electrónica</span>
+          <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2020-13698" target="_blank" class="btn-boe">
+            BOE <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" data-categoria="especial">
+      <div class="card-header">
+        <span class="tema-num">T23</span>
+        <span class="card-titulo">Derecho Fiscal y Aduanas</span>
+      </div>
+      <div class="normas-lista">
+        <div class="norma-item">
+          <span class="norma-nombre"><strong>LO 12/1995</strong> — Represión del Contrabando</span>
+          <a href="https://www.boe.es/buscar/act.php?id=BOE-A-1995-26273" target="_blank" class="btn-boe">
+            BOE <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Ingreso GC – DM Forma · <a href="index.html">Inicio</a> · <a href="tests.html">Tests IA</a> · Los textos legales son propiedad de la AEBOE y tienen carácter informativo.</p>
+</footer>
+
+<script>
+  function filtrar(categoria, btn) {
+    // Actualizar botones
+    document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('activo'));
+    btn.classList.add('activo');
+
+    // Filtrar cards
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      if (categoria === 'todos' || card.dataset.categoria === categoria) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    // Mostrar/ocultar títulos de grupo
+    document.querySelectorAll('.grupo-titulo').forEach(titulo => {
+      if (categoria === 'todos') {
+        titulo.style.display = '';
+      } else {
+        titulo.style.display = titulo.dataset.grupo === categoria ? '' : 'none';
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
