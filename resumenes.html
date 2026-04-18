@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resúmenes del Temario | Ingreso GC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --verde: #1a4a2e;
+      --verde-medio: #2d6a4f;
+      --verde-claro: #52b788;
+      --verde-suave: #d8f3dc;
+      --dorado: #c9a84c;
+      --dorado-suave: #fdf3dc;
+      --gris-oscuro: #1c1c1c;
+      --gris: #4a4a4a;
+      --gris-medio: #8a8a8a;
+      --gris-claro: #f4f4f2;
+      --blanco: #ffffff;
+    }
+
+    body {
+      font-family: 'IBM Plex Sans', sans-serif;
+      background: var(--gris-claro);
+      color: var(--gris-oscuro);
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      background: var(--verde);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      color: var(--blanco);
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--blanco); }
+    .nav-links a.active { color: var(--verde-claro); font-weight: 500; }
+
+    .nav-cta {
+      background: var(--dorado);
+      color: var(--gris-oscuro) !important;
+      padding: 0.35rem 0.9rem;
+      border-radius: 4px;
+      font-weight: 600 !important;
+    }
+
+    /* HEADER */
+    .page-header {
+      background: var(--verde);
+      color: var(--blanco);
+      padding: 3rem 2rem 2.5rem;
+    }
+
+    .page-header-inner { max-width: 900px; margin: 0 auto; }
+
+    .breadcrumb {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 1rem;
+    }
+
+    .breadcrumb a { color: rgba(255,255,255,0.5); text-decoration: none; }
+
+    .page-header h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .page-header p {
+      color: rgba(255,255,255,0.7);
+      font-size: 1rem;
+      font-weight: 300;
+    }
+
+    /* MAIN */
+    .main { max-width: 900px; margin: 0 auto; padding: 2rem; }
+
+    /* CONFIGURADOR */
+    .configurador {
+      background: var(--blanco);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border: 1px solid #e0e0e0;
+    }
+
+    .configurador h2 {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gris-medio);
+      margin-bottom: 1.25rem;
+    }
+
+    .config-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .config-grupo label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--gris);
+      margin-bottom: 0.4rem;
+    }
+
+    .config-grupo select,
+    .config-grupo input {
+      width: 100%;
+      padding: 0.6rem 0.75rem;
+      border: 1px solid #d0d0d0;
+      border-radius: 4px;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 0.9rem;
+      color: var(--gris-oscuro);
+      background: var(--blanco);
+    }
+
+    .config-grupo select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%234a4a4a' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.75rem center;
+      cursor: pointer;
+    }
+
+    .config-grupo select:focus,
+    .config-grupo input:focus {
+      outline: none;
+      border-color: var(--verde-claro);
+    }
+
+    .config-grupo input::placeholder { color: #bbb; }
+
+    /* MODO TABS */
+    .modo-tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .modo-tab {
+      padding: 0.5rem 1rem;
+      border: 1px solid #d0d0d0;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      background: var(--blanco);
+      color: var(--gris);
+      font-family: 'IBM Plex Sans', sans-serif;
+      transition: all 0.15s;
+    }
+
+    .modo-tab.activo {
+      background: var(--verde);
+      color: var(--blanco);
+      border-color: var(--verde);
+      font-weight: 500;
+    }
+
+    .campo-extra { display: none; margin-bottom: 1rem; }
+    .campo-extra.visible { display: block; }
+
+    .btn-generar {
+      width: 100%;
+      background: var(--verde);
+      color: var(--blanco);
+      border: none;
+      padding: 0.85rem;
+      border-radius: 4px;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .btn-generar:hover { background: var(--verde-medio); }
+    .btn-generar:disabled { background: var(--gris-medio); cursor: not-allowed; }
+
+    /* ESTADO */
+    .estado {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--gris-medio);
+      background: var(--blanco);
+      border-radius: 8px;
+      border: 1px solid #e0e0e0;
+    }
+
+    .estado-icono { font-size: 2.5rem; margin-bottom: 0.75rem; }
+
+    .spinner {
+      width: 32px;
+      height: 32px;
+      border: 3px solid #e0e0e0;
+      border-top-color: var(--verde);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 1rem;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* RESULTADO */
+    .resultado-card {
+      background: var(--blanco);
+      border-radius: 8px;
+      border: 1px solid #e0e0e0;
+      overflow: hidden;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    .resultado-header {
+      background: var(--verde);
+      color: var(--blanco);
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .resultado-header-info h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .resultado-header-info p {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.6);
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .btn-copiar {
+      background: rgba(255,255,255,0.15);
+      color: var(--blanco);
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 0.4rem 0.9rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      font-family: 'IBM Plex Sans', sans-serif;
+      transition: background 0.2s;
+    }
+
+    .btn-copiar:hover { background: rgba(255,255,255,0.25); }
+
+    .resultado-body {
+      padding: 2rem;
+      line-height: 1.8;
+      color: var(--gris-oscuro);
+    }
+
+    /* Estilos del texto generado */
+    .resultado-body h2 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--verde);
+      margin: 1.5rem 0 0.75rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid var(--verde-suave);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .resultado-body h2:first-child { margin-top: 0; }
+
+    .resultado-body h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--gris-oscuro);
+      margin: 1rem 0 0.5rem;
+    }
+
+    .resultado-body p {
+      font-size: 0.92rem;
+      margin-bottom: 0.75rem;
+      color: var(--gris);
+    }
+
+    .resultado-body ul, .resultado-body ol {
+      padding-left: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .resultado-body li {
+      font-size: 0.92rem;
+      color: var(--gris);
+      margin-bottom: 0.4rem;
+    }
+
+    .resultado-body strong { color: var(--gris-oscuro); }
+
+    /* FOOTER */
+    footer {
+      background: var(--verde);
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      margin-top: 4rem;
+    }
+
+    footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      .config-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .page-header h1 { font-size: 1.5rem; }
+      .modo-tabs { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/index.html" class="nav-logo">IngresoGC</a>
+  <ul class="nav-links">
+    <li><a href="/index.html">Inicio</a></li>
+    <li><a href="/guardia-civil.html">La GC</a></li>
+    <li><a href="/proceso-selectivo.html">Proceso selectivo</a></li>
+    <li><a href="/normativa.html">Normativa</a></li>
+    <li><a href="/tests.html">Tests IA</a></li>
+    <li><a href="/resumenes.html" class="active">Resúmenes</a></li>
+    <li><a href="/faq.html">FAQ</a></li>
+    <li><a href="/login.html" class="nav-cta">Área alumnos →</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb"><a href="/index.html">Inicio</a> / Resúmenes</div>
+    <h1>Resúmenes del temario</h1>
+    <p>Material didáctico generado con IA a partir de la normativa oficial. Por tema, sección o concepto.</p>
+  </div>
+</div>
+
+<main class="main">
+
+  <div class="configurador">
+    <h2>Configurar resumen</h2>
+
+    <!-- MODO -->
+    <div style="margin-bottom:1rem;">
+      <label style="display:block;font-size:0.8rem;font-weight:500;color:var(--gris);margin-bottom:0.5rem;">Modo</label>
+      <div class="modo-tabs">
+        <button class="modo-tab activo" onclick="setModo('completo')">📄 Tema completo</button>
+        <button class="modo-tab" onclick="setModo('seccion')">📑 Por sección</button>
+        <button class="modo-tab" onclick="setModo('concepto')">🔍 Por concepto</button>
+      </div>
+    </div>
+
+    <!-- TEMA -->
+    <div class="config-grid">
+      <div class="config-grupo">
+        <label>Tema</label>
+        <select id="sel-tema">
+          <option value="1">T1 · Derechos Humanos</option>
+          <option value="2">T2 · Igualdad Mujeres y Hombres</option>
+          <option value="3">T3 · Prevención Riesgos Laborales</option>
+          <option value="4">T4 · Derecho Constitucional</option>
+          <option value="5">T5 · Derecho UE</option>
+          <option value="6">T6 · Instituciones Internacionales</option>
+          <option value="7">T7 · Derecho Civil</option>
+          <option value="8">T8 · Derecho Penal</option>
+          <option value="9">T9 · Derecho Procesal Penal</option>
+          <option value="10">T10 · Derecho Administrativo</option>
+          <option value="11">T11 · Protección de Datos</option>
+          <option value="12">T12 · Extranjería e Inmigración</option>
+          <option value="13">T13 · Seguridad Pública y Privada</option>
+          <option value="14">T14 · Ministerios Interior y Defensa</option>
+          <option value="15">T15 · FCSE · Guardia Civil</option>
+          <option value="16">T16 · Protección Civil y Sostenibilidad</option>
+          <option value="17">T17 · TIC y Ciberseguridad</option>
+          <option value="18">T18 · Topografía</option>
+          <option value="19">T19 · Deontología Profesional ★</option>
+          <option value="20">T20 · Responsabilidad Penal Menores ★</option>
+          <option value="21">T21 · Violencia de Género ★</option>
+          <option value="22">T22 · Armas y Explosivos ★</option>
+          <option value="23">T23 · Derecho Fiscal ★</option>
+        </select>
+      </div>
+      <div class="config-grupo" id="grupo-placeholder">
+        <label>Información</label>
+        <input type="text" disabled placeholder="Selecciona un modo arriba" style="background:#f9f9f9;color:#bbb;">
+      </div>
+    </div>
+
+    <!-- CAMPO SECCIÓN -->
+    <div class="campo-extra" id="campo-seccion">
+      <div class="config-grupo">
+        <label>Sección o título</label>
+        <input type="text" id="inp-seccion" placeholder="Ej: Título I, Capítulo III, artículos 1-20...">
+      </div>
+    </div>
+
+    <!-- CAMPO CONCEPTO -->
+    <div class="campo-extra" id="campo-concepto">
+      <div class="config-grupo">
+        <label>Concepto a explicar</label>
+        <input type="text" id="inp-concepto" placeholder="Ej: habeas corpus, nulidad de pleno derecho, detención preventiva...">
+      </div>
+    </div>
+
+    <button class="btn-generar" id="btn-generar" onclick="generarResumen()">
+      📄 Generar resumen
+    </button>
+  </div>
+
+  <!-- ÁREA DE RESULTADO -->
+  <div id="area-resultado">
+    <div class="estado">
+      <div class="estado-icono">📚</div>
+      <p>Selecciona el tema y el modo, y pulsa <strong>Generar</strong> para obtener el resumen.</p>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <p>© 2025 Ingreso GC – DM Forma · <a href="/index.html">Inicio</a> · <a href="/normativa.html">Normativa</a></p>
+  <p style="margin-top:0.5rem">Contenido generado con IA basado en normativa pública del BOE. Carácter meramente informativo.</p>
+</footer>
+
+<script>
+  const API_URL = 'https://oposgc-api2.vercel.app/api/resumen';
+  let modoActual = 'completo';
+
+  function setModo(modo) {
+    modoActual = modo;
+
+    document.querySelectorAll('.modo-tab').forEach(t => t.classList.remove('activo'));
+    event.target.classList.add('activo');
+
+    document.getElementById('campo-seccion').classList.remove('visible');
+    document.getElementById('campo-concepto').classList.remove('visible');
+    document.getElementById('grupo-placeholder').style.display = 'block';
+
+    if (modo === 'seccion') {
+      document.getElementById('campo-seccion').classList.add('visible');
+      document.getElementById('grupo-placeholder').style.display = 'none';
+    } else if (modo === 'concepto') {
+      document.getElementById('campo-concepto').classList.add('visible');
+      document.getElementById('grupo-placeholder').style.display = 'none';
+    }
+  }
+
+  async function generarResumen() {
+    const tema = document.getElementById('sel-tema').value;
+    const seccion = document.getElementById('inp-seccion').value.trim();
+    const concepto = document.getElementById('inp-concepto').value.trim();
+    const btn = document.getElementById('btn-generar');
+
+    if (modoActual === 'seccion' && !seccion) {
+      alert('Por favor escribe la sección que quieres resumir.');
+      return;
+    }
+
+    if (modoActual === 'concepto' && !concepto) {
+      alert('Por favor escribe el concepto que quieres explicar.');
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Generando resumen…';
+
+    document.getElementById('area-resultado').innerHTML = `
+      <div class="estado">
+        <div class="spinner"></div>
+        <p>Generando material didáctico con IA…</p>
+      </div>`;
+
+    try {
+      let url = `${API_URL}?tema=${tema}`;
+      if (modoActual === 'seccion') url += `&seccion=${encodeURIComponent(seccion)}`;
+      if (modoActual === 'concepto') url += `&concepto=${encodeURIComponent(concepto)}`;
+
+      const res = await fetch(url);
+      const data = await res.json();
+
+      if (!data.success || !data.resumen) {
+        throw new Error(data.message || 'No se pudo generar el resumen');
+      }
+
+      renderResumen(data);
+
+    } catch (err) {
+      document.getElementById('area-resultado').innerHTML = `
+        <div class="estado">
+          <div class="estado-icono">⚠️</div>
+          <p><strong>Error al generar el resumen.</strong><br>${err.message}</p>
+        </div>`;
+    } finally {
+      btn.disabled = false;
+      btn.textContent = '📄 Generar resumen';
+    }
+  }
+
+  function renderResumen(data) {
+    const { meta, resumen } = data;
+
+    const modoLabel = {
+      completo: 'Tema completo',
+      seccion: `Sección: ${meta.seccion}`,
+      concepto: `Concepto: ${meta.concepto}`
+    };
+
+    const textoFormateado = resumen
+      .replace(/^(I{1,3}V?|VI{0,3}|IX|X{0,3})\.\s+(.+)$/gm, '<h2>$1. $2</h2>')
+      .replace(/^\d+\.\d*\s+(.+)$/gm, '<h3>$1</h3>')
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/^[-•]\s+(.+)$/gm, '<li>$1</li>')
+      .replace(/(<li>.*<\/li>\n?)+/g, '<ul>$&</ul>')
+      .replace(/\n\n/g, '</p><p>')
+      .replace(/^(?!<[hul])(.+)$/gm, '<p>$1</p>');
+
+    document.getElementById('area-resultado').innerHTML = `
+      <div class="resultado-card">
+        <div class="resultado-header">
+          <div class="resultado-header-info">
+            <h3>T${meta.tema} · ${meta.titulaTema}</h3>
+            <p>${modoLabel[meta.modo]} · ${meta.norma}</p>
+          </div>
+          <button class="btn-copiar" onclick="copiarTexto()">📋 Copiar texto</button>
+        </div>
+        <div class="resultado-body" id="texto-resumen">
+          ${textoFormateado}
+        </div>
+      </div>`;
+  }
+
+  function copiarTexto() {
+    const texto = document.getElementById('texto-resumen').innerText;
+    navigator.clipboard.writeText(texto).then(() => {
+      const btn = document.querySelector('.btn-copiar');
+      btn.textContent = '✅ Copiado';
+      setTimeout(() => btn.textContent = '📋 Copiar texto', 2000);
+    });
+  }
+</script>
+
+</body>
+</html>
